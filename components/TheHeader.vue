@@ -20,8 +20,4 @@ export default {
 .the-header__container {
   height: 50px;
 }
-
-.teste {
-  margin-right: 20px;
-}
 </style>
