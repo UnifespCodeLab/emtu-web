@@ -1,16 +1,23 @@
 <template>
-  <div class="default-layout">
-    <header>!!! Header goes here !!!</header>
-    <div class="default-layout__content">
-      <Nuxt></Nuxt>
+  <v-app>
+    <div class="default-layout">
+      <TheHeader />
+      <div class="default-layout__content">
+        <Nuxt></Nuxt>
+      </div>
+      <footer>!!! Footer goes here !!!</footer>
     </div>
-    <footer>!!! Footer goes here !!!</footer>
-  </div>
+  </v-app>
 </template>
 
 <script>
+import TheHeader from '~/components/TheHeader.vue'
+
 export default {
   name: 'DefaultLayout',
+  components: {
+    TheHeader,
+  },
 }
 </script>
 
