@@ -46,9 +46,9 @@ export default {
 	data() {
 		return {
 			icons: [
-				{ name: 'mdi-linkedin', link: '' },
-				{ name: 'mdi-email', link: '' },
-				{ name: 'mdi-github', link: '' },
+				{ name: 'mdi-linkedin', link: 'https://www.linkedin.com/company/codelab-unifesp/' },
+				{ name: 'mdi-email', link: 'mailto:codelab.unifesp@gmail.com?subject="link HTML"' },
+				{ name: 'mdi-github', link: 'https://github.com/UnifespCodeLab' },
 			],
 		};
 	},
