@@ -5,17 +5,19 @@
       <div class="default-layout__content">
         <Nuxt></Nuxt>
       </div>
-      <footer>!!! Footer goes here !!!</footer>
+      <TheFooter />
     </div>
   </v-app>
 </template>
 
 <script>
 import TheHeader from '~/components/TheHeader.vue'
+import TheFooter from '~/components/TheFooter.vue'
 
 export default {
   name: 'DefaultLayout',
   components: {
+    TheFooter,
     TheHeader,
   },
 }
