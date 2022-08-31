@@ -6,15 +6,80 @@
 
       <v-spacer></v-spacer>
 
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>          
     </v-toolbar>
-  </v-card>
+
+    <v-sheet
+      height="100vh"
+      class="overflow-hidden"
+      style="position: relative;"
+    >
+      <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      right>
+
+      <div class="ds-flex">
+        <v-icon color="primary" class="title-navigation">mdi-bus</v-icon>
+        <v-list-item-title class="title-navigation">EMTU</v-list-item-title>
+        <v-icon color="primary" class="title-navigation" @click="drawer = false">mdi-close</v-icon>
+      </div>
+      
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <span class="item-title">{{ item.title }}</span>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    </v-sheet>
+    
+  </v-card>  
 </template>
 
 <script>
 export default {
   name: 'TheHeader',
+  data () {
+      return {
+        drawer: false,
+        items: [
+          { title: 'Buscar', icon: 'mdi-magnify' },
+          { title: "Lista de CID's", icon: 'mdi-format-list-numbered' },
+          { title: "Sobre nós", icon: 'mdi-account-group' },
+        ],
+      }
+    },
 }
 </script>
 <style lang="scss">
+
+.ds-flex {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0 15px 10px;
+}
+
+.title-navigation {
+  color:#1976D2;
+  margin-right: 25px;
+}
+
+.item-title {
+  font-size: 16px;
+}
+
 </style>
