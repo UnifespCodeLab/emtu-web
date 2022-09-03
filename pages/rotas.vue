@@ -1,5 +1,5 @@
 <template>
-  <div class="routes-page__container">
+  <div v-if="cidsRoutes" class="routes-page__container">
     <div class="routes-page__chips-container">
       <v-chip
         class="routes-page__chip"
@@ -15,23 +15,23 @@
     </div>
     <div class="routes-page__steps">
       <v-carousel v-model="model">
-        <v-carousel-item v-for="color in colors" :key="color">
-          <v-card>
+        <v-carousel-item v-for="(route, index) in cidsRoutes[selectedCidRoute]" :key="index">
+          <v-card class="routes-page__card" height="90%">
             <v-card-text>
-              <div class="font-weight-bold ml-8 mb-2">Today</div>
+              <div class="font-weight-bold ml-8 mb-2">Rota {{index}}</div>
 
               <v-timeline align-top dense>
                 <v-timeline-item
-                  v-for="message in messages"
-                  :key="message.time"
-                  :color="message.color"
+                  v-for="step in route"
+                  :key="step.time"
+                  :color="step.color"
                   small
                 >
                   <div>
                     <div class="font-weight-normal">
-                      <strong>{{ message.from }}</strong> @{{ message.time }}
+                      <strong>{{ step.name }}</strong> @{{ step.time }}
                     </div>
-                    <div>{{ message.message }}</div>
+                    <div>{{ step.address }}</div>
                   </div>
                 </v-timeline-item>
               </v-timeline>
@@ -44,34 +44,59 @@
 </template>
 
 <script>
+import api from "./mockApi.json"
+
 export default {
   name: 'RoutesPage',
   data() {
     return {
       model: 0,
-      colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
-      messages: [
+      colors: ['', 'secondary', 'yellow darken-2', 'red', 'orange'],
+      steps: [
         {
-          from: 'You',
-          message: `Sure, I'll see you later.`,
+          name: 'Viaduto Dutra',
+          address: `Avenida 19 entre as ruas 20 x 22.`,
           time: '10:42am',
-          color: 'deep-purple lighten-1',
+          color: 'blue',
         },
         {
-          from: 'John Doe',
-          message: 'Yeah, sure. Does 1:00pm work?',
+          name: 'Passarela 01',
+          address: 'Avenida 21, numero 122 entre as ruas 20 x 22.',
           time: '10:37am',
-          color: 'green',
+          color: 'blue',
         },
         {
-          from: 'You',
-          message: 'Did you still want to grab lunch today?',
+          name: 'Passarela 02',
+          address: 'Avenida 34 entre as duas 10 x 12, 0446',
           time: '9:47am',
-          color: 'deep-purple lighten-1',
+          color: 'blue',
+        },
+        {
+          name: 'Passarela 03',
+          address: 'Avenida 34 entre as duas 10 x 12, 0446',
+          time: '9:47am',
+          color: 'blue',
+        },
+        {
+          name: 'Passarela 04',
+          address: 'Avenida 34 entre as duas 10 x 12, 0446',
+          time: '9:47am',
+          color: 'blue',
+        },
+        {
+          name: 'Passarela 04',
+          address: 'Avenida 34 entre as duas 10 x 12, 0446',
+          time: '9:47am',
+          color: 'blue',
         },
       ],
     }
   },
+
+  async fetch() {
+    this.cidsRoutes = await api
+    this.selectedCidRoute = Object.keys(this.cidsRoutes)[0]
+  }
 }
 </script>
 
@@ -80,10 +105,14 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 16px;
-  padding: 0 20px;
+  padding: 0 5px;
   height: 100%;
+
+  @media (min-width: 1200px) {
+    justify-content: center;
+  }
 }
 
 .routes-page__chip {
@@ -94,5 +123,9 @@ export default {
   margin-top: 16px;
   margin-bottom: 16px;
   width: 360px;
+}
+
+.routes-page__card {
+  overflow: auto;
 }
 </style>
