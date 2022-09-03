@@ -5,7 +5,7 @@
       <div class="default-layout__content">
         <Nuxt></Nuxt>
       </div>
-      <TheFooter />
+      <TheFooter class="default-layout__footer"/>
     </div>
   </v-app>
 </template>
@@ -33,5 +33,9 @@ export default {
 .default-layout__content {
   flex: 1;
   background-color: #E5E5E5;
+}
+
+.default-layout__footer {
+  margin-top: 16px;
 }
 </style>
