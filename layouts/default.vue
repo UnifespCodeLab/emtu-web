@@ -32,5 +32,6 @@ export default {
 
 .default-layout__content {
   flex: 1;
+  background-color: #E5E5E5;
 }
 </style>

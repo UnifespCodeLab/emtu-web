@@ -14,5 +14,11 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
   ],
+  // setupFilesAfterEnv: [
+  //   'bdd-lazy-var',
+  //   'bdd-lazy-var/global',
+  // ],
+  // testRunner: 'jest-jasmine2',
+  setupFiles: ['./test/jest-setup.js'],
   testEnvironment: 'jsdom',
 }
