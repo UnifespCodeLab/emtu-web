@@ -66,42 +66,66 @@
     ]
   ],
   "cid02": [
-    {
-      "name": "Viaduto Dutra II",
-      "address": "Avenida 19 entre as ruas 20 x 22.",
-      "time": "10: 42am",
-      "color": "blue"
-    },
-    {
-      "name": "Passarela 01",
-      "address": "Avenida 21, numero 122 entre as ruas 20 x 22.",
-      "time": "10: 37am",
-      "color": "blue"
-    },
-    {
-      "name": "Passarela 02",
-      "address": "Avenida 34 entre as duas 10 x 12,0446",
-      "time": "9: 47am",
-      "color": "blue"
-    },
-    {
-      "name": "Passarela 03",
-      "address": "Avenida 34 entre as duas 10 x 12,0446",
-      "time": "9: 47am",
-      "color": "blue"
-    },
-    {
-      "name": "Passarela 04",
-      "address": "Avenida 34 entre as duas 10 x 12,0446",
-      "time": "9: 47am",
-      "color": "blue"
-    },
-    {
-      "name": "Passarela 04",
-      "address": "Avenida 34 entre as duas 10 x 12,0446",
-      "time": "9: 47am",
-      "color": "blue"
-    }
+    [
+      {
+        "name": "Viaduto DutraII",
+        "address": "Avenida 19 entre as ruas 20 x 22.",
+        "time": "10: 42am",
+        "color": "red"
+      },
+      {
+        "name": "Passarela 039",
+        "address": "Avenida 34 entre as duas 10 x 12,0446",
+        "time": "9: 47am",
+        "color": "red"
+      },
+      {
+        "name": "Passarela 45",
+        "address": "Avenida 34 entre as duas 10 x 12,0446",
+        "time": "9: 47am",
+        "color": "red"
+      },
+      {
+        "name": "Passarela 12",
+        "address": "Avenida 34 entre as duas 10 x 12,0446",
+        "time": "9: 47am",
+        "color": "red"
+      }
+    ],
+    [
+      {
+        "name": "Viaduto DutraII",
+        "address": "Avenida 19 entre as ruas 20 x 22.",
+        "time": "10: 42am",
+        "color": "red"
+      },
+      {
+        "name": "Passarela 02",
+        "address": "Avenida 34 entre as duas 10 x 12,0446",
+        "time": "9: 47am",
+        "color": "red"
+      },
+      {
+        "name": "Passarela 03",
+        "address": "Avenida 34 entre as duas 10 x 12,0446",
+        "time": "9: 47am",
+        "color": "red"
+      }
+    ],
+    [
+      {
+        "name": "Viaduto Dutra II",
+        "address": "Avenida 19 entre as ruas 20 x 22.",
+        "time": "10: 42am",
+        "color": "red"
+      },
+      {
+        "name": "Passarela 03",
+        "address": "Avenida 34 entre as duas 10 x 12,0446",
+        "time": "9: 47am",
+        "color": "red"
+      }
+    ]
   ],
   "cid03": [
     {
