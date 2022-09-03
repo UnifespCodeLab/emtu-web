@@ -1,56 +1,44 @@
 <template>
   <div class="routes-page__container">
     <div class="routes-page__chips-container">
-      <v-chip class="routes-page__chip" close close-icon="mdi-close" color="orange">cid acbd</v-chip>
+      <v-chip
+        class="routes-page__chip"
+        close
+        close-icon="mdi-close"
+        color="orange"
+        >cid acbd</v-chip
+      >
       <v-chip close close-icon="mdi-close" color="red">cid efg</v-chip>
-      <v-chip close close-icon="mdi-close" color="blue">cid mnopqrstuvwxyz1</v-chip>
+      <v-chip close close-icon="mdi-close" color="blue"
+        >cid mnopqrstuvwxyz1</v-chip
+      >
     </div>
     <div class="routes-page__steps">
       <v-carousel v-model="model">
-    <v-carousel-item
-      v-for="(color) in colors"
-      :key="color"
-    >
-      <v-card>
-        <v-card-title class="white--text mt-8">
-            <v-avatar size="56">
-              <img
-                alt="user"
-                src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
-              >
-            </v-avatar>
-            <p class="ml-3">
-              John Doe
-            </p>
-          </v-card-title>
+        <v-carousel-item v-for="color in colors" :key="color">
+          <v-card>
+            <v-card-text>
+              <div class="font-weight-bold ml-8 mb-2">Today</div>
 
-          <v-card-text>
-          <div class="font-weight-bold ml-8 mb-2">
-            Today
-          </div>
-
-          <v-timeline
-            align-top
-            dense
-          >
-            <v-timeline-item
-              v-for="message in messages"
-              :key="message.time"
-              :color="message.color"
-              small
-            >
-              <div>
-                <div class="font-weight-normal">
-                  <strong>{{ message.from }}</strong> @{{ message.time }}
-                </div>
-                <div>{{ message.message }}</div>
-              </div>
-            </v-timeline-item>
-          </v-timeline>
-        </v-card-text>
-      </v-card>
-    </v-carousel-item>
-  </v-carousel>
+              <v-timeline align-top dense>
+                <v-timeline-item
+                  v-for="message in messages"
+                  :key="message.time"
+                  :color="message.color"
+                  small
+                >
+                  <div>
+                    <div class="font-weight-normal">
+                      <strong>{{ message.from }}</strong> @{{ message.time }}
+                    </div>
+                    <div>{{ message.message }}</div>
+                  </div>
+                </v-timeline-item>
+              </v-timeline>
+            </v-card-text>
+          </v-card>
+        </v-carousel-item>
+      </v-carousel>
     </div>
   </div>
 </template>
@@ -61,13 +49,7 @@ export default {
   data() {
     return {
       model: 0,
-      colors: [
-        'primary',
-        'secondary',
-        'yellow darken-2',
-        'red',
-        'orange',
-      ],
+      colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
       messages: [
         {
           from: 'You',
@@ -108,7 +90,7 @@ export default {
   margin: 4px;
 }
 
-.routes-page__steps{
+.routes-page__steps {
   margin-top: 16px;
   margin-bottom: 16px;
   width: 360px;
