@@ -8,7 +8,7 @@
         color="orange"
         >cid acbd</v-chip
       >
-      <v-chip close close-icon="mdi-close" color="red">cid efg</v-chip>
+      <v-chip close close-icon="mdi-close" color="red" @click="updateSelectedCidRoute()">cid efg</v-chip>
       <v-chip close close-icon="mdi-close" color="blue"
         >cid mnopqrstuvwxyz1</v-chip
       >
@@ -22,8 +22,8 @@
 
               <v-timeline align-top dense>
                 <v-timeline-item
-                  v-for="step in route"
-                  :key="step.time"
+                  v-for="step, indexStep in route"
+                  :key="indexStep"
                   :color="step.color"
                   small
                 >
@@ -50,6 +50,7 @@ export default {
   name: 'RoutesPage',
   data() {
     return {
+      cidsRoutes: null,
       model: 0,
       colors: ['', 'secondary', 'yellow darken-2', 'red', 'orange'],
       steps: [
@@ -96,7 +97,17 @@ export default {
   async fetch() {
     this.cidsRoutes = await api
     this.selectedCidRoute = Object.keys(this.cidsRoutes)[0]
-  }
+  },
+
+  methods: {
+    updateSelectedCidRoute() {
+      this.selectedCidRoute = "cid02"
+      this.model = 0
+      this.model = 1
+      this.model = 0
+      // Até o momento o único jeito que encontrei de fazer o componente atualuzar para o slide certo
+    }
+  },
 }
 </script>
 
