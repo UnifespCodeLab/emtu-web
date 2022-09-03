@@ -1,9 +1,9 @@
 <template>
   <div class="routes-page__container">
     <div class="routes-page__chips-container">
-      <v-chip class="routes-page__chip" close close-icon="mdi-close-outline" color="orange">cid acbd</v-chip>
-      <v-chip close close-icon="mdi-close-outline" color="red">cid efg</v-chip>
-      <v-chip close close-icon="mdi-close-outline" color="blue">cid mnopqrstuvwxyz1</v-chip>
+      <v-chip class="routes-page__chip" close close-icon="mdi-close" color="orange">cid acbd</v-chip>
+      <v-chip close close-icon="mdi-close" color="red">cid efg</v-chip>
+      <v-chip close close-icon="mdi-close" color="blue">cid mnopqrstuvwxyz1</v-chip>
     </div>
     <div class="routes-page__steps">
       <v-carousel v-model="model">
