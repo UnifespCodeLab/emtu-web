@@ -8,6 +8,7 @@
         close
         close-icon="mdi-close"
         :color="cidsRoutes[index].color"
+        text-color="white"
         @click="()=>updateSelectedCidRoute(index)"
       >
         {{index}}
@@ -89,7 +90,7 @@ export default {
   padding: 0 5px;
   height: 100%;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 800px) {
     justify-content: center;
   }
 }
@@ -102,6 +103,10 @@ export default {
   margin-top: 16px;
   margin-bottom: 16px;
   width: 360px;
+
+  @media (min-width: 800px) {
+    width: 600px;
+  }
 }
 
 .routes-page__card {
