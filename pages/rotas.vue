@@ -2,29 +2,32 @@
   <div v-if="cidsRoutes" class="routes-page__container">
     <div class="routes-page__chips-container">
       <v-chip
+        v-for="(item, index) in cidsRoutes"
+        :key="index"
         class="routes-page__chip"
         close
         close-icon="mdi-close"
-        color="orange"
-        >cid acbd</v-chip
+        :color="cidsRoutes[index].color"
+        @click="()=>updateSelectedCidRoute(index)"
       >
-      <v-chip close close-icon="mdi-close" color="red" @click="updateSelectedCidRoute()">cid efg</v-chip>
-      <v-chip close close-icon="mdi-close" color="blue"
-        >cid mnopqrstuvwxyz1</v-chip
-      >
+        {{index}}
+      </v-chip>
     </div>
     <div class="routes-page__steps">
       <v-carousel v-model="model">
-        <v-carousel-item v-for="(route, index) in cidsRoutes[selectedCidRoute]" :key="index">
+        <v-carousel-item
+          v-for="(route, index) in cidsRoutes[selectedCidRoute].routes"
+          :key="index"
+        >
           <v-card class="routes-page__card" height="90%">
             <v-card-text>
-              <div class="font-weight-bold ml-8 mb-2">Rota {{index}}</div>
+              <div class="font-weight-bold ml-8 mb-2">Itinerário {{ index + 1 }}</div>
 
               <v-timeline align-top dense>
                 <v-timeline-item
-                  v-for="step, indexStep in route"
+                  v-for="(step, indexStep) in route"
                   :key="indexStep"
-                  :color="step.color"
+                  :color="cidsRoutes[selectedCidRoute].color"
                   small
                 >
                   <div>
@@ -44,7 +47,7 @@
 </template>
 
 <script>
-import api from "./mockApi.json"
+import api from './mockApi.json'
 
 export default {
   name: 'RoutesPage',
@@ -52,45 +55,6 @@ export default {
     return {
       cidsRoutes: null,
       model: 0,
-      colors: ['', 'secondary', 'yellow darken-2', 'red', 'orange'],
-      steps: [
-        {
-          name: 'Viaduto Dutra',
-          address: `Avenida 19 entre as ruas 20 x 22.`,
-          time: '10:42am',
-          color: 'blue',
-        },
-        {
-          name: 'Passarela 01',
-          address: 'Avenida 21, numero 122 entre as ruas 20 x 22.',
-          time: '10:37am',
-          color: 'blue',
-        },
-        {
-          name: 'Passarela 02',
-          address: 'Avenida 34 entre as duas 10 x 12, 0446',
-          time: '9:47am',
-          color: 'blue',
-        },
-        {
-          name: 'Passarela 03',
-          address: 'Avenida 34 entre as duas 10 x 12, 0446',
-          time: '9:47am',
-          color: 'blue',
-        },
-        {
-          name: 'Passarela 04',
-          address: 'Avenida 34 entre as duas 10 x 12, 0446',
-          time: '9:47am',
-          color: 'blue',
-        },
-        {
-          name: 'Passarela 04',
-          address: 'Avenida 34 entre as duas 10 x 12, 0446',
-          time: '9:47am',
-          color: 'blue',
-        },
-      ],
     }
   },
 
@@ -100,12 +64,16 @@ export default {
   },
 
   methods: {
-    updateSelectedCidRoute() {
-      this.selectedCidRoute = "cid02"
+    updateSelectedCidRoute(index) {
+      this.selectedCidRoute = index
       this.model = 0
       this.model = 1
       this.model = 0
       // Até o momento o único jeito que encontrei de fazer o componente atualuzar para o slide certo
+    },
+
+    randomColor() {
+      return this.colors[Math.floor(Math.random() *  this.colors.length)];
     }
   },
 }
