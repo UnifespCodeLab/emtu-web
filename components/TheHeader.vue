@@ -6,7 +6,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>          
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
     </v-toolbar>
 
     <v-sheet
@@ -15,6 +15,7 @@
       style="position: relative;">
       <v-navigation-drawer
         v-model="drawer"
+        :width="sideBarWidth"
         absolute
         right
       >
@@ -41,8 +42,8 @@
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
-    
-  </v-card>  
+
+  </v-card>
 </template>
 
 <script>
@@ -51,6 +52,7 @@ export default {
   data () {
       return {
         drawer: false,
+        innerWidth: window.innerWidth,
         items: [
           { title: 'Buscar', icon: 'mdi-magnify' },
           { title: "Lista de CID's", icon: 'mdi-format-list-numbered' },
@@ -58,9 +60,37 @@ export default {
         ],
       }
     },
+  computed: {
+    sideBarWidth(){
+      return this.innerWidth < 1000 ? "100%" : '300'
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
+  },
+
+  methods: {
+    onResize() {
+      this.innerWidth = window.innerWidth
+    }
+  }
 }
 </script>
 <style lang="scss">
+
+.the-header__drawer{
+  width: 100%;
+
+  @media (min-width: 1000px) {
+    width: 300px;
+  }
+}
 
 .title-container {
   display: flex;
