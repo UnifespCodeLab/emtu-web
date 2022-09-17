@@ -1,12 +1,12 @@
-import { mount, createLocalVue } from "@vue/test-utils"
+import { mount, createLocalVue } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 
-import RoutesPage from "~/pages/rotas.vue"
+import RoutesPage from '~/pages/rotas.vue'
 
-describe ("Pages / RoutesPage", ()=>{
-  const defaultData={
+describe('Pages / RoutesPage', () => {
+  const defaultData = {
     cidsRoutes: null,
-    model: 0
+    model: 0,
   }
 
   const localVue = createLocalVue()
@@ -16,14 +16,14 @@ describe ("Pages / RoutesPage", ()=>{
     vuetify = new Vuetify()
   })
 
-  describe("when all data is correct", ()=>{
-    it("should render the page", ()=>{
+  describe('when all data is correct', () => {
+    it('should render the page', () => {
       const wrapper = mount(RoutesPage, {
         localVue,
         vuetify,
         data() {
           return defaultData
-        }
+        },
       })
       expect(wrapper.element).toMatchSnapshot()
     })

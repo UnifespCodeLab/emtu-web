@@ -1,9 +1,9 @@
 <template>
   <div class="search-page">
     <div class="search-page__form">
-      <v-autocomplete :items="cities" label="Origem" solo></v-autocomplete>
-      <v-autocomplete :items="cities" label="Destino" solo></v-autocomplete>
-      <v-select :items="['Cid 01', 'Cid 02']" label="Cid" solo></v-select>
+      <v-autocomplete :items="cities" label="Origem" solo />
+      <v-autocomplete :items="cities" label="Destino" solo />
+      <v-select :items="['Cid 01', 'Cid 02']" label="Cid" solo />
       <div class="search-page__time-container">
         <v-dialog
           ref="dialogTime"
@@ -20,10 +20,10 @@
               readonly
               v-bind="attrs"
               v-on="on"
-            ></v-text-field>
+            />
           </template>
           <v-time-picker v-if="modalTime" v-model="time" full-width>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn text color="primary" @click="modalTime = false">
               Cancelar
             </v-btn>
@@ -47,10 +47,10 @@
               readonly
               v-bind="attrs"
               v-on="on"
-            ></v-text-field>
+            />
           </template>
           <v-date-picker v-model="date" scrollable>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn text color="primary" @click="modalDate = false">
               Cancelar
             </v-btn>
@@ -60,13 +60,15 @@
           </v-date-picker>
         </v-dialog>
       </div>
-      <v-btn block color="primary" elevation="2" large>BUSCAR</v-btn>
+      <v-btn block color="primary" elevation="2" large>
+        BUSCAR
+      </v-btn>
     </div>
     <img
       class="search-page__image"
       src="~/assets/images/woman-hitchhiking.jpg"
       alt="woman-hitchhiking"
-    />
+    >
   </div>
 </template>
 
