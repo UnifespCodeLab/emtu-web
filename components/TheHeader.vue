@@ -2,11 +2,13 @@
   <v-card flat height="50px" tile>
     <v-toolbar color="primary" dense dark>
       <v-icon>mdi-bus</v-icon>
-      <v-toolbar-title class="ml-4">EMTU</v-toolbar-title>
+      <v-toolbar-title class="ml-4">
+        EMTU
+      </v-toolbar-title>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = true" />
     </v-toolbar>
 
     <v-sheet height="100vh" class="overflow-hidden" style="position: relative">
@@ -17,14 +19,19 @@
         right
       >
         <div class="title-container">
-          <v-icon color="primary" class="title-navigation">mdi-bus</v-icon>
-          <v-list-item-title class="title-navigation">EMTU</v-list-item-title>
+          <v-icon color="primary" class="title-navigation">
+            mdi-bus
+          </v-icon>
+          <v-list-item-title class="title-navigation">
+            EMTU
+          </v-list-item-title>
           <v-icon
             color="primary"
             class="title-navigation"
             @click="drawer = false"
-            >mdi-close</v-icon
           >
+            mdi-close
+          </v-icon>
         </div>
 
         <v-list dense>
