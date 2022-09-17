@@ -8,10 +8,14 @@ module.exports = {
     parser: '@babel/eslint-parser',
     requireConfigFile: false,
   },
-  extends: ['@nuxtjs', 'plugin:nuxt/recommended', 'prettier'],
-  plugins: [
-    'vue',
+  extends: [
+    '@nuxtjs',
+    'plugin:nuxt/recommended',
+    'prettier',
+    'plugin:vue-scoped-css/recommended',
+    'plugin:vue/recommended',
   ],
+  plugins: ['vue'],
   globals: {
     //
     // Tests variables

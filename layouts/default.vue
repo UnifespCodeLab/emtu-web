@@ -3,7 +3,7 @@
     <div class="default-layout">
       <TheHeader />
       <div class="default-layout__content">
-        <Nuxt></Nuxt>
+        <Nuxt />
       </div>
       <TheFooter />
     </div>
@@ -32,6 +32,6 @@ export default {
 
 .default-layout__content {
   flex: 1;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 </style>

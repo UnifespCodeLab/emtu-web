@@ -1,0 +1,159 @@
+{
+  "cid01": {
+    "routes": [
+      [
+        {
+          "name": "Viaduto Dutra",
+          "address": "Avenida 19 entre as ruas 20 x 22.",
+          "time": "10: 42am"
+        },
+        {
+          "name": "Passarela 02",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        }
+      ],
+      [
+        {
+          "name": "Viaduto Dutra",
+          "address": "Avenida 19 entre as ruas 20 x 22.",
+          "time": "10: 42am"
+        },
+        {
+          "name": "Passarela 01",
+          "address": "Avenida 21, numero 122 entre as ruas 20 x 22.",
+          "time": "10: 37am"
+        },
+        {
+          "name": "Passarela 02",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 03",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 04",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        }
+      ]
+    ],
+    "color": "blue"
+  },
+  "cid02": {
+    "routes": [
+      [
+        {
+          "name": "Viaduto Dutra 2",
+          "address": "Avenida 19 entre as ruas 20 x 22.",
+          "time": "10: 42am"
+        },
+        {
+          "name": "Passarela 99",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 111",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 212",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        }
+      ],
+      [
+        {
+          "name": "Viaduto Dutra 2",
+          "address": "Avenida 19 entre as ruas 20 x 22.",
+          "time": "10: 42am"
+        },
+        {
+          "name": "Passarela 777",
+          "address": "Avenida 21, numero 122 entre as ruas 20 x 22.",
+          "time": "10: 37am"
+        }
+      ]
+    ],
+    "color": "red"
+  },
+  "cid03": {
+    "routes": [
+      [
+        {
+          "name": "Viaduto Dutra 2",
+          "address": "Avenida 19 entre as ruas 20 x 22.",
+          "time": "10: 42am"
+        },
+        {
+          "name": "Passarela 99",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 111",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        },
+        {
+          "name": "Passarela 212",
+          "address": "Avenida 34 entre as duas 10 x 12,0446",
+          "time": "9: 47am"
+        }
+      ],
+      [
+        {
+          "name": "Viaduto Dutra 2",
+          "address": "Avenida 19 entre as ruas 20 x 22.",
+          "time": "10: 42am"
+        },
+        {
+          "name": "Passarela 777",
+          "address": "Avenida 21, numero 122 entre as ruas 20 x 22.",
+          "time": "10: 37am"
+        }
+      ]
+    ],
+    "color": "orange"
+  }
+}
