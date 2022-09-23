@@ -1,0 +1,18 @@
+name: Run Unit Tests and Lint Files
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  unit_test-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm ci --prefer-offline --no-audit
+          npm run test
+          npm run lint
