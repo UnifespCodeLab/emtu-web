@@ -87,14 +87,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.the-header__drawer {
-  width: 100%;
-
-  @media (min-width: 1000px) {
-    width: 300px;
-  }
-}
-
 .title-container {
   display: flex;
   justify-content: center;
