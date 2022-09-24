@@ -1,0 +1,373 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages / ReportPage should render the page 1`] = `
+<div
+  class="report-page"
+>
+  <transition-stub
+    class="report-page__alert"
+    name="scale-transition"
+  >
+    <div
+      class="v-alert v-sheet theme--dark error"
+      role="alert"
+      style="display: none;"
+    >
+      <div
+        class="v-alert__wrapper"
+      >
+        <i
+          aria-hidden="true"
+          class="v-icon notranslate v-alert__icon mdi mdi-alert theme--dark"
+        />
+        <div
+          class="v-alert__content"
+        >
+          
+    Erro ao enviar. Tente mais tarde.
+  
+        </div>
+        <button
+          aria-label="Close"
+          class="v-alert__dismissible v-btn v-btn--icon v-btn--round theme--dark v-size--small"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-close-circle theme--dark"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+  </transition-stub>
+   
+  <div
+    class="report-page__form"
+  >
+    <div
+      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-7"
+              style="left: 0px; position: absolute;"
+            >
+              E-mail
+            </label>
+            <input
+              id="input-7"
+              type="text"
+            />
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-10"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-10"
+              style="left: 0px; position: absolute;"
+            >
+              Cidade de origem
+            </label>
+            <input
+              autocomplete="off"
+              id="input-10"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-15"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-15"
+              style="left: 0px; position: absolute;"
+            >
+              Cidade de destino
+            </label>
+            <input
+              autocomplete="off"
+              id="input-15"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-20"
+          class="v-input__slot"
+          role="button"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-20"
+              style="left: 0px; position: absolute;"
+            >
+              Cid
+            </label>
+            <div
+              class="v-select__selections"
+            >
+              <input
+                aria-readonly="false"
+                autocomplete="off"
+                id="input-20"
+                readonly="readonly"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <button
+      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+        enviar
+      
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Pages / ReportPage when user clicks in submit should render updated page 1`] = `
+<div
+  class="report-page"
+>
+  <transition-stub
+    class="report-page__alert"
+    name="scale-transition"
+  >
+    <div
+      class="v-alert v-sheet theme--dark success"
+      role="alert"
+      style=""
+    >
+      <div
+        class="v-alert__wrapper"
+      >
+        <i
+          aria-hidden="true"
+          class="v-icon notranslate v-alert__icon mdi mdi-check-circle theme--dark"
+        />
+        <div
+          class="v-alert__content"
+        >
+          
+    Enviado com sucesso!
+  
+        </div>
+        <button
+          aria-label="Close"
+          class="v-alert__dismissible v-btn v-btn--icon v-btn--round theme--dark v-size--small"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-close-circle theme--dark"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+  </transition-stub>
+   
+  <div
+    class="report-page__form"
+  >
+    <a
+      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg v-btn--router theme--light elevation-2 v-size--large primary"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      voltar para home
+    
+      </span>
+    </a>
+  </div>
+</div>
+`;
