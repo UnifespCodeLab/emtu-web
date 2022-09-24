@@ -1,23 +1,23 @@
 <template>
   <div class="report-page">
-    <v-alert 
+    <v-alert
       class="report-page__alert"
       dismissible
       transition="scale-transition"
       :type="hasSuccess ? 'success' : 'error'"
-      :value="submittedRoute" 
+      :value="submittedRoute"
     >
       {{ alertMessage }}
     </v-alert>
 
     <div class="report-page__form">
-      <v-btn 
+      <v-btn
         v-if="hasSuccess"
-        block 
-        color="primary" 
-        elevation="2" 
+        block
+        color="primary"
+        elevation="2"
         large
-        to="/" 
+        to="/"
       >
         voltar para home
       </v-btn>
@@ -27,44 +27,43 @@
         <v-autocomplete :items="cities" label="Cidade de origem" solo />
         <v-autocomplete :items="cities" label="Cidade de destino" solo />
         <v-select :items="cidList" label="Cid" solo />
-        
-        <v-btn 
-          block 
-          color="primary" 
+
+        <v-btn
+          block
+          color="primary"
           elevation="2"
           large
-          @click="submittedRoute = true; hasSuccess = true"
+          @click="
+            submittedRoute = true
+            hasSuccess = true
+          "
         >
           enviar
         </v-btn>
       </template>
-      
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'ReportPage',
-    data() {
-      return {
-        hasSuccess: false,
-        submittedRoute: false,
-        cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
-        cidList: [
-          'Cid 01', 
-          'Cid 02',
-        ],
-      };
+export default {
+  name: 'ReportPage',
+  data() {
+    return {
+      hasSuccess: false,
+      submittedRoute: false,
+      cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
+      cidList: ['Cid 01', 'Cid 02'],
+    }
+  },
+  computed: {
+    alertMessage() {
+      return this.hasSuccess
+        ? 'Enviado com sucesso!'
+        : 'Erro ao enviar. Tente mais tarde.'
     },
-    computed: {
-      alertMessage() {
-        return this.hasSuccess 
-          ? 'Enviado com sucesso!'
-          : 'Erro ao enviar. Tente mais tarde.';
-      },
-    },
-  };
+  },
+}
 </script>
 
 <style lang="scss" scoped>

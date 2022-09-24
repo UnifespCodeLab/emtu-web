@@ -2,7 +2,9 @@
   <v-card flat height="50px" tile>
     <v-toolbar color="primary" dense dark>
       <v-icon>mdi-bus</v-icon>
-      <v-toolbar-title class="ml-4"> EMTU </v-toolbar-title>
+      <v-toolbar-title class="ml-4">
+        EMTU
+      </v-toolbar-title>
 
       <v-spacer />
 
@@ -17,8 +19,12 @@
         right
       >
         <div class="title-container">
-          <v-icon color="primary" class="title-navigation"> mdi-bus </v-icon>
-          <v-list-item-title class="title-navigation"> EMTU </v-list-item-title>
+          <v-icon color="primary" class="title-navigation">
+            mdi-bus
+          </v-icon>
+          <v-list-item-title class="title-navigation">
+            EMTU
+          </v-list-item-title>
           <v-icon
             color="primary"
             class="title-navigation"
@@ -80,7 +86,7 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .the-header__drawer {
   width: 100%;
 

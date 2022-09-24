@@ -346,7 +346,9 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
       <span
         class="v-btn__content"
       >
-         BUSCAR 
+        
+      BUSCAR
+    
       </span>
     </button>
   </div>

@@ -60,13 +60,15 @@
           </v-date-picker>
         </v-dialog>
       </div>
-      <v-btn block color="primary" elevation="2" large> BUSCAR </v-btn>
+      <v-btn block color="primary" elevation="2" large>
+        BUSCAR
+      </v-btn>
     </div>
     <img
       class="search-page__image"
       src="~/assets/images/woman-hitchhiking.jpg"
       alt="woman-hitchhiking"
-    />
+    >
   </div>
 </template>
 
