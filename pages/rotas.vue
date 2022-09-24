@@ -54,20 +54,20 @@ import api from './mockApi.json'
 
 export default {
   name: 'RoutesPage',
-  data() {
+  data () {
     return {
       cidsRoutes: null,
-      model: 0,
+      model: 0
     }
   },
 
-  async fetch() {
+  async fetch () {
     this.cidsRoutes = await api
     this.selectedCidRoute = Object.keys(this.cidsRoutes)[0]
   },
 
   methods: {
-    updateSelectedCidRoute(index) {
+    updateSelectedCidRoute (index) {
       this.selectedCidRoute = index
       this.model = 0
       this.model = 1
@@ -75,10 +75,10 @@ export default {
       // Até o momento o único jeito que encontrei de fazer o componente atualuzar para o slide certo
     },
 
-    randomColor() {
+    randomColor () {
       return this.colors[Math.floor(Math.random() * this.colors.length)]
-    },
-  },
+    }
+  }
 }
 </script>
 

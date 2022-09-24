@@ -11,7 +11,7 @@ describe('Pages / SearchPage', () => {
       .substr(0, 10),
     modalDate: false,
     time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    modalTime: false,
+    modalTime: false
   }
 
   const localVue = createLocalVue()
@@ -26,9 +26,9 @@ describe('Pages / SearchPage', () => {
       const wrapper = mount(SearchPage, {
         localVue,
         vuetify,
-        data() {
+        data () {
           return defaultData
-        },
+        }
       })
       expect(wrapper.findAll('input').length).toBe(8)
       expect(wrapper.find('.search-page__image').exists()).toBe(true)

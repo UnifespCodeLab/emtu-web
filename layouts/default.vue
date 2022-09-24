@@ -18,8 +18,8 @@ export default {
   name: 'DefaultLayout',
   components: {
     TheFooter,
-    TheHeader,
-  },
+    TheHeader
+  }
 }
 </script>
 

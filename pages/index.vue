@@ -75,7 +75,7 @@
 <script>
 export default {
   name: 'SearchPage',
-  data() {
+  data () {
     return {
       cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
@@ -83,9 +83,9 @@ export default {
         .substr(0, 10),
       modalDate: false,
       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-      modalTime: false,
+      modalTime: false
     }
-  },
+  }
 }
 </script>
 

@@ -53,37 +53,37 @@
 <script>
 export default {
   name: 'TheHeader',
-  data() {
+  data () {
     return {
       drawer: false,
       innerWidth: window.innerWidth,
       items: [
         { title: 'Buscar', icon: 'mdi-magnify' },
         { title: "Lista de CID's", icon: 'mdi-format-list-numbered' },
-        { title: 'Sobre nós', icon: 'mdi-account-group' },
-      ],
+        { title: 'Sobre nós', icon: 'mdi-account-group' }
+      ]
     }
   },
   computed: {
-    sideBarWidth() {
+    sideBarWidth () {
       return this.innerWidth < 1000 ? '100%' : '300'
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('resize', this.onResize)
   },
 
   methods: {
-    onResize() {
+    onResize () {
       this.innerWidth = window.innerWidth
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
