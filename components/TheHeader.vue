@@ -35,7 +35,7 @@
         </div>
 
         <v-list dense>
-          <v-list-item v-for="item in items" :key="item.title" link>
+          <v-list-item v-for="item in items" :key="item.title" router :to="item.route">
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
@@ -58,9 +58,9 @@ export default {
       drawer: false,
       innerWidth: window.innerWidth,
       items: [
-        { title: 'Buscar', icon: 'mdi-magnify' },
-        { title: "Lista de CID's", icon: 'mdi-format-list-numbered' },
-        { title: 'Sobre nós', icon: 'mdi-account-group' },
+        { title: 'Buscar', icon: 'mdi-magnify', route:'/' },
+        { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route:'/lista-cids' },
+        { title: 'Sobre nós', icon: 'mdi-account-group', route:'/sobre-nos' },
       ],
     }
   },
