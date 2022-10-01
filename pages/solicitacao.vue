@@ -48,21 +48,21 @@
 <script>
 export default {
   name: 'ReportPage',
-  data() {
+  data () {
     return {
       hasSuccess: false,
       submittedRoute: false,
       cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
-      cidList: ['Cid 01', 'Cid 02'],
+      cidList: ['Cid 01', 'Cid 02']
     }
   },
   computed: {
-    alertMessage() {
+    alertMessage () {
       return this.hasSuccess
         ? 'Enviado com sucesso!'
         : 'Erro ao enviar. Tente mais tarde.'
-    },
-  },
+    }
+  }
 }
 </script>
 

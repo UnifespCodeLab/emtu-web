@@ -2,18 +2,17 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true,
+    node: true
   },
   parserOptions: {
     parser: '@babel/eslint-parser',
-    requireConfigFile: false,
+    requireConfigFile: false
   },
   extends: [
     '@nuxtjs',
     'plugin:nuxt/recommended',
-    'prettier',
     'plugin:vue-scoped-css/recommended',
-    'plugin:vue/recommended',
+    'plugin:vue/recommended'
   ],
   plugins: ['vue'],
   globals: {
@@ -43,8 +42,8 @@ module.exports = {
     itBehavesLike: 'readonly',
     subject: 'readonly',
     fdescribe: 'readonly',
-    fit: 'readonly',
+    fit: 'readonly'
   },
   // add your custom rules here
-  rules: {},
+  rules: {}
 }

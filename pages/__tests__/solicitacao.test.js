@@ -15,8 +15,8 @@ describe('Pages / ReportPage', () => {
       localVue,
       vuetify,
       stubs: {
-        'router-link': RouterLinkStub,
-      },
+        'router-link': RouterLinkStub
+      }
     })
   })
 
