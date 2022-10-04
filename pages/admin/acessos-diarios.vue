@@ -66,7 +66,7 @@
     </div>
     <div class="daily-access__page-wrapper">
       <VueApexCharts
-        v-if="chartOptions && chartOptions.length"
+        v-if="series && series.length > 0"
         :options="chartOptions"
         :series="series"
       />
