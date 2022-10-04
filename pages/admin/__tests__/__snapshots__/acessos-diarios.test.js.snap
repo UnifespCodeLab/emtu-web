@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages / Admin / AdminDailyAccess should render the page 1`] = `
+<div
+  class="daily-access"
+>
+  <div
+    class="daily-access__time-container"
+  >
+    <div
+      class="v-input daily-acces__input v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <input
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="input-3"
+              role="button"
+              type="text"
+            />
+          </div>
+          <div
+            class="v-input__append-inner"
+          >
+            <div
+              class="v-input__icon v-input__icon--clear"
+            >
+              <button
+                aria-label="clear icon"
+                class="v-icon notranslate v-icon--link mdi mdi-close theme--light"
+                type="button"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="v-dialog__container"
+    >
+      <!---->
+    </div>
+     
+    <div
+      class="v-dialog__container"
+    >
+      <!---->
+    </div>
+    <div
+      class="v-input daily-acces__input v-input--is-label-active v-input--is-dirty v-input--is-readonly theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <input
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="input-8"
+              readonly="readonly"
+              role="button"
+              type="text"
+            />
+          </div>
+          <div
+            class="v-input__append-inner"
+          >
+            <div
+              class="v-input__icon v-input__icon--clear"
+            >
+              <button
+                aria-label="clear icon"
+                class="v-icon notranslate v-icon--link mdi mdi-close theme--light"
+                type="button"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <button
+      class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--large primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      BUSCAR
+    
+      </span>
+    </button>
+  </div>
+   
+  <div
+    class="daily-access__page-wrapper"
+  >
+    <!---->
+  </div>
+</div>
+`;
