@@ -3,6 +3,10 @@ import Vuetify from 'vuetify'
 
 import AdminDailyAccess from '~/pages/admin/acessos-diarios.vue'
 
+const initialDate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+  .toISOString()
+  .substr(0, 10)
+
 const localVue = createLocalVue()
 let vuetify
 let wrapper
@@ -16,6 +20,14 @@ describe('Pages / Admin / AdminDailyAccess', () => {
     wrapper = mount(AdminDailyAccess, {
       localVue,
       vuetify,
+      data: () => {
+        return {
+          series: null
+        }
+      },
+      propsData: {
+        series: null
+      },
       stubs: {
         'router-link': RouterLinkStub
       }
@@ -46,10 +58,18 @@ describe('Pages / Admin / AdminDailyAccess', () => {
       textField.trigger('click')
     })
 
+    it('should render the page', () => {
+      expect(wrapper.element).toMatchSnapshot()
+    })
+
     it('should show the picker', async () => {
+      const textField = wrapper.findAll('.daily-acces__input').at(0)
+      expect(textField.props('value')).toBe(initialDate)
+      textField.trigger('click')
+
       await wrapper.vm.$nextTick()
-      const datePickers = wrapper.findAllComponents({ name: 'v-date-picker' })
-      expect(datePickers.length).toBe(1)
+      const dialog = wrapper.findAllComponents({ name: 'v-dialog' }).at(0)
+      expect(dialog.props('value')).toBe(true)
     })
   })
 })
