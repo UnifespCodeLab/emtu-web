@@ -7,7 +7,7 @@
       </v-toolbar-title>
 
       <v-spacer />
-      <SideBar />
+      <v-app-bar-nav-icon @click="drawer = true" />
     </v-toolbar>
   </v-card>
 </template>

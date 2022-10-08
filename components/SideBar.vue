@@ -1,6 +1,6 @@
 <template>
   <v-sheet>
-    <v-app-bar-nav-icon @click="drawer = true" />
+    <!-- <v-app-bar-nav-icon @click="drawer = true" /> -->
     <v-navigation-drawer
       v-model="drawer"
       :width="sideBarWidth"
@@ -43,7 +43,7 @@ export default {
   name: 'SideBar',
   data() {
     return {
-      drawer: false,
+      drawer: true,
       innerWidth: window.innerWidth,
       items: [
         { title: 'Buscar', icon: 'mdi-magnify', route:'/' },
@@ -91,6 +91,4 @@ export default {
 .item-title {
   font-size: 16px;
 }
-
-
 </style>
