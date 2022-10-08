@@ -8,7 +8,6 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js",
     "lintfix": "npm run lint:js -- --fix",
     "prepare": "husky install",
@@ -39,13 +38,11 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.4.4",
     "eslint": "^8.23.1",
-    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^3.1.0",
     "eslint-plugin-vue": "^8.2.0",
     "eslint-plugin-vue-scoped-css": "^2.2.0",
     "husky": "^7.0.4",
     "jest": "^27.4.4",
-    "prettier": "^2.5.1",
     "vue-jest": "^3.0.4"
   }
 }

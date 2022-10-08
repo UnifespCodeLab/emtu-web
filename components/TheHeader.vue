@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'TheHeader',
-  data() {
+  data () {
     return {
       drawer: false
     }

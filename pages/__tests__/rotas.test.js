@@ -6,7 +6,7 @@ import RoutesPage from '~/pages/rotas.vue'
 describe('Pages / RoutesPage', () => {
   const defaultData = {
     cidsRoutes: null,
-    model: 0,
+    model: 0
   }
 
   const localVue = createLocalVue()
@@ -21,9 +21,9 @@ describe('Pages / RoutesPage', () => {
       const wrapper = mount(RoutesPage, {
         localVue,
         vuetify,
-        data() {
+        data () {
           return defaultData
-        },
+        }
       })
       expect(wrapper.element).toMatchSnapshot()
     })

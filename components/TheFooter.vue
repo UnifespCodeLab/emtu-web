@@ -30,20 +30,20 @@
 <script>
 export default {
   name: 'TheFooter',
-  data() {
+  data () {
     return {
       icons: [
         {
           name: 'mdi-linkedin',
-          link: 'https://www.linkedin.com/company/codelab-unifesp/',
+          link: 'https://www.linkedin.com/company/codelab-unifesp/'
         },
         {
           name: 'mdi-email',
-          link: 'mailto:codelab.unifesp@gmail.com?subject="link HTML"',
+          link: 'mailto:codelab.unifesp@gmail.com?subject="link HTML"'
         },
-        { name: 'mdi-github', link: 'https://github.com/UnifespCodeLab' },
-      ],
+        { name: 'mdi-github', link: 'https://github.com/UnifespCodeLab' }
+      ]
     }
-  },
+  }
 }
 </script>
