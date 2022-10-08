@@ -2,7 +2,7 @@
   <v-sheet>
     <!-- <v-app-bar-nav-icon @click="drawer = true" /> -->
     <v-navigation-drawer
-      v-model="drawer"
+      v-model="openDrawer"
       :width="sideBarWidth"
       absolute
       right
@@ -17,7 +17,7 @@
         <v-icon
           color="primary"
           class="title-navigation"
-          @click="drawer = false"
+          @click="$emit('toggleSideBar')"
         >
           mdi-close
         </v-icon>
@@ -41,6 +41,12 @@
 <script>
 export default {
   name: 'SideBar',
+  props: {
+    isOpen:{
+      required:true,
+      type:Boolean
+    }
+  },
   data() {
     return {
       drawer: true,
@@ -56,6 +62,9 @@ export default {
     sideBarWidth() {
       return this.innerWidth < 1000 ? '100%' : '300'
     },
+    openDrawer(){
+      return this.isOpen
+    }
   },
   mounted() {
     this.$nextTick(() => {

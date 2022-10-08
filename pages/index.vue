@@ -1,6 +1,5 @@
 <template>
   <div>
-    <SideBar />
     <div class="search-page">
       <div class="search-page__form">
         <v-autocomplete :items="cities" label="Origem" solo />
