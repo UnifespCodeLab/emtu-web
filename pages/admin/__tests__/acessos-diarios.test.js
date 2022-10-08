@@ -1,19 +1,18 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 
+import VueApexCharts from 'vue-apexcharts'
 import AdminDailyAccess from '~/pages/admin/acessos-diarios.vue'
-
-const initialDate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-  .toISOString()
-  .substr(0, 10)
 
 const localVue = createLocalVue()
 let vuetify
 let wrapper
 
+localVue.component('VueApexcharts', VueApexCharts)
+
 describe('Pages / Admin / AdminDailyAccess', () => {
   beforeEach(() => {
-    jest.mock('vue-apexcharts', () => {})
+    jest.mock('vue-apexcharts', () => jest.fn())
 
     vuetify = new Vuetify()
 
@@ -52,24 +51,38 @@ describe('Pages / Admin / AdminDailyAccess', () => {
     expect(searchButton.props('color')).toBe('primary')
   })
 
-  describe('when the start date input is clicked', () => {
+  it('should render the correct start date', () => {
+    const textField = wrapper.findAllComponents({ name: 'v-text-field' }).at(0)
+    expect(textField.props('value')).toBe(null)
+  })
+
+  it('should render the correct end date', () => {
+    const endDate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .substr(0, 10)
+
+    const textField = wrapper.findAllComponents({ name: 'v-text-field' }).at(1)
+    expect(textField.props('value')).toBe(endDate)
+  })
+
+  it('should not render the chart container', () => {
+    const container = wrapper.find('.daily-access__graph-wrapper')
+    expect(container.exists()).toBe(false)
+  })
+
+  describe('when search button is clicked', () => {
     beforeEach(() => {
-      const textField = wrapper.findAllComponents({ name: 'v-text-field' }).at(0)
-      textField.trigger('click')
+      const searchButton = wrapper.findAllComponents({ name: 'v-btn' }).at(0)
+      searchButton.trigger('click')
     })
 
-    it('should render the page', () => {
+    it('should render updated page', () => {
       expect(wrapper.element).toMatchSnapshot()
     })
 
-    it('should show the picker', async () => {
-      const textField = wrapper.findAll('.daily-acces__input').at(0)
-      expect(textField.props('value')).toBe(initialDate)
-      textField.trigger('click')
-
-      await wrapper.vm.$nextTick()
-      const dialog = wrapper.findAllComponents({ name: 'v-dialog' }).at(0)
-      expect(dialog.props('value')).toBe(true)
+    it('should render the chart container', () => {
+      const container = wrapper.find('.daily-access__graph-wrapper')
+      expect(container.exists()).toBe(true)
     })
   })
 })
