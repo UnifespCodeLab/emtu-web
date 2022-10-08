@@ -60,13 +60,15 @@
           </v-btn>
         </v-date-picker>
       </v-dialog>
-      <v-btn color="primary" large>
+      <v-btn color="primary" large @click="executeSearch()">
         BUSCAR
       </v-btn>
     </div>
-    <div class="daily-access__page-wrapper">
+    <div
+      v-if="series && series.length > 0"
+      class="daily-access__graph-wrapper"
+    >
       <VueApexCharts
-        v-if="series && series.length > 0"
         :options="chartOptions"
         :series="series"
       />
@@ -82,9 +84,7 @@ export default {
   layout: 'admin',
   data () {
     return {
-      startDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
+      startDate: null,
       startDateDialog: false,
       endDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -92,10 +92,7 @@ export default {
       endDateDialog: false,
 
       // CHART OPTIONS
-      series: [{
-        name: 'Desktops',
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-      }],
+      series: [],
       chartOptions: {
         type: 'line',
         chart: {
@@ -124,6 +121,16 @@ export default {
           categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
         }
       }
+    }
+  },
+  methods: {
+    executeSearch () {
+      this.series = [
+        {
+          name: 'Desktops',
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        }
+      ]
     }
   }
 }
@@ -169,7 +176,7 @@ export default {
   }
 }
 
-.daily-access__page-wrapper {
+.daily-access__graph-wrapper {
   margin-top: 60px;
   width: 100%;
 
