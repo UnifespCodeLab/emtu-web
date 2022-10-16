@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 
-import AdminPage from '~/pages/admin.vue'
+import AdminPage from '~/pages/admin/index.vue'
 
 describe('Pages / AdminPage', () => {
   const localVue = createLocalVue()
