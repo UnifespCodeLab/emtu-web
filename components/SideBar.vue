@@ -2,7 +2,7 @@
   <v-sheet>
     <!-- <v-app-bar-nav-icon @click="drawer = true" /> -->
     <v-navigation-drawer
-      v-model="drawer"
+      v-model="openDrawer"
       :width="sideBarWidth"
       absolute
       right
@@ -17,7 +17,7 @@
         <v-icon
           color="primary"
           class="title-navigation"
-          @click="drawer = false"
+          @click="$emit('toggleSideBar')"
         >
           mdi-close
         </v-icon>
@@ -41,40 +41,48 @@
 <script>
 export default {
   name: 'SideBar',
-  data() {
+  props: {
+    isOpen: {
+      required: true,
+      type: Boolean
+    }
+  },
+  data () {
     return {
       drawer: true,
       innerWidth: window.innerWidth,
       items: [
-        { title: 'Buscar', icon: 'mdi-magnify', route:'/' },
-        { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route:'/lista-cids' },
-        { title: 'Sobre nós', icon: 'mdi-account-group', route:'/sobre-nos' },
-      ],
+        { title: 'Buscar', icon: 'mdi-magnify', route: '/' },
+        { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route: '/lista-cids' },
+        { title: 'Sobre nós', icon: 'mdi-account-group', route: '/sobre-nos' }
+      ]
     }
   },
   computed: {
-    sideBarWidth() {
+    sideBarWidth () {
       return this.innerWidth < 1000 ? '100%' : '300'
     },
+    openDrawer () {
+      return this.isOpen
+    }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('resize', this.onResize)
   },
 
   methods: {
-    onResize() {
+    onResize () {
       this.innerWidth = window.innerWidth
-    },
-  },
+    }
+  }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .title-container {

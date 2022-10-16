@@ -7,18 +7,13 @@
       </v-toolbar-title>
 
       <v-spacer />
-      <v-app-bar-nav-icon @click="drawer = true" />
+      <v-app-bar-nav-icon @click="$emit('toggleSideBar')" />
     </v-toolbar>
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'TheHeader',
-  data () {
-    return {
-      drawer: false
-    }
-  }
+  name: 'TheHeader'
 }
 </script>

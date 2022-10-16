@@ -1,7 +1,8 @@
 <template>
   <v-app>
+    <SideBar :is-open="sidebarOpen" @toggleSideBar="runToggle()" />
     <div class="default-layout">
-      <TheHeader />
+      <TheHeader @toggleSideBar="runToggle()" />
       <div class="default-layout__content">
         <Nuxt />
       </div>
@@ -11,14 +12,26 @@
 </template>
 
 <script>
+import SideBar from '~/components/SideBar.vue'
 import TheHeader from '~/components/TheHeader.vue'
 import TheFooter from '~/components/TheFooter.vue'
 
 export default {
   name: 'DefaultLayout',
   components: {
+    SideBar,
     TheFooter,
     TheHeader
+  },
+  data () {
+    return {
+      sidebarOpen: false
+    }
+  },
+  methods: {
+    runToggle () {
+      this.sidebarOpen = !this.sidebarOpen
+    }
   }
 }
 </script>
