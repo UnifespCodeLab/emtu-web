@@ -1,14 +1,11 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 
-import VueApexCharts from 'vue-apexcharts'
 import AdminDailyAccess from '~/pages/admin/acessos-diarios.vue'
 
 const localVue = createLocalVue()
 let vuetify
 let wrapper
-
-localVue.component('VueApexcharts', VueApexCharts)
 
 describe('Pages / Admin / AdminDailyAccess', () => {
   beforeEach(() => {
@@ -21,6 +18,7 @@ describe('Pages / Admin / AdminDailyAccess', () => {
       vuetify,
       data: () => {
         return {
+          categories: ['a', 'b', 'c', 'd'],
           series: null
         }
       },
@@ -83,6 +81,13 @@ describe('Pages / Admin / AdminDailyAccess', () => {
     it('should render the chart container', () => {
       const container = wrapper.find('.daily-access__graph-wrapper')
       expect(container.exists()).toBe(true)
+    })
+
+    it('should render correct chart', () => {
+      const chart = wrapper.findComponent({ name: 'AdminChart' })
+      expect(chart.props('title')).toBe('Média de acessos diários por mês')
+      expect(chart.props('type')).toBe('line')
+      expect(chart.props('categories')).toEqual(['a', 'b', 'c', 'd'])
     })
   })
 })

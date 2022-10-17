@@ -68,18 +68,23 @@
       v-if="series && series.length > 0"
       class="daily-access__graph-wrapper"
     >
-      <VueApexCharts
-        :options="chartOptions"
+      <AdminChart
+        :categories="categories"
+        title="Média de acessos diários por mês"
+        type="line"
         :series="series"
       />
     </div>
   </div>
 </template>
+
 <script>
+import AdminChart from '~/components/admin/AdminChart.vue'
+
 export default {
   name: 'AdminDailyAccess',
   components: {
-    VueApexCharts: () => import('vue-apexcharts')
+    AdminChart
   },
   layout: 'admin',
   data () {
@@ -90,37 +95,8 @@ export default {
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
-
-      // CHART OPTIONS
-      series: [],
-      chartOptions: {
-        type: 'line',
-        chart: {
-          type: 'line',
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        title: {
-          text: 'Média de acessos diários por mês',
-          align: 'left'
-        },
-        grid: {
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5
-          }
-        },
-        xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
-        }
-      }
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      series: []
     }
   },
   methods: {
