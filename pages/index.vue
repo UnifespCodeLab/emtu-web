@@ -95,33 +95,27 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
   @media (min-width: 1200px) {
     justify-content: space-between;
   }
 }
-
 .search-page__form {
   display: flex;
   flex-direction: column;
   margin-top: 82px;
   width: 300px;
-
   @media (min-width: 1200px) {
     margin: auto;
   }
 }
-
 .search-page__image {
   display: none;
-
   @media (min-width: 1200px) {
     display: flex;
     max-width: 800px;
     object-fit: cover;
   }
 }
-
 .search-page__time-container {
   display: flex;
   flex-direction: row;
