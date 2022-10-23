@@ -1,6 +1,17 @@
 <template>
-  <div class="daily-access">
-    <div class="daily-access__time-container">
+  <div class="line-ranking">
+    <div class="line-ranking__search-container">
+      <v-select v-model="searchResult" :items="['Sucedidas', 'Não Sucedidas']" label="Resultado Buscas" solo />
+      <v-text-field
+        v-model="limit"
+        :rules="[v => v <= 10 || 'Máximo 10']"
+        label="Limite"
+        type="number"
+        max="10"
+        solo
+      />
+      <v-select v-model="selectedCid" :items="['Cid 01', 'Cid 02']" label="Cid" solo />
+
       <v-dialog
         ref="dialogStartDate"
         v-model="startDateDialog"
@@ -13,8 +24,8 @@
             v-model="startDate"
             class="daily-acces__input"
             clearable
-            placeholder="Período de início"
-            label="Período de início"
+            placeholder="Data início"
+            label="Data início"
             v-bind="attrs"
             solo
             v-on="on"
@@ -30,6 +41,7 @@
           </v-btn>
         </v-date-picker>
       </v-dialog>
+
       <v-dialog
         ref="dialogEndDate"
         v-model="endDateDialog"
@@ -42,8 +54,8 @@
             v-model="endDate"
             class="daily-acces__input"
             clearable
-            placeholder="Período final"
-            label="Período final"
+            placeholder="Data fim"
+            label="Data fim"
             readonly
             v-bind="attrs"
             solo
@@ -60,42 +72,45 @@
           </v-btn>
         </v-date-picker>
       </v-dialog>
+
       <v-btn color="primary" large @click="executeSearch()">
         BUSCAR
       </v-btn>
     </div>
     <div
       v-if="series && series.length > 0"
-      class="daily-access__graph-wrapper"
+      class="line-ranking__graph-wrapper"
     >
       <AdminChart
         :categories="categories"
-        title="Média de acessos diários por mês"
-        type="line"
+        title="Ranking de linhas"
+        type="bar"
         :series="series"
       />
     </div>
   </div>
 </template>
-
 <script>
 import AdminChart from '~/components/admin/AdminChart.vue'
 
 export default {
-  name: 'AdminDailyAccess',
+  name: 'AdminLineRanking',
   components: {
     AdminChart
   },
   layout: 'admin',
   data () {
     return {
+      searchResult: null,
+      limit: null,
+      selectedCid: null,
       startDate: null,
       startDateDialog: false,
       endDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      categories: ['linha 1', 'linha 2', 'linha 3', 'linha 4', 'linha 5', 'linha 6'],
       series: []
     }
   },
@@ -103,8 +118,8 @@ export default {
     executeSearch () {
       this.series = [
         {
-          name: 'Desktops',
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+          name: 'Linhas',
+          data: [10, 41, 35, 51, 49, 62]
         }
       ]
     }
@@ -112,7 +127,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.daily-access {
+.line-ranking {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -125,7 +140,7 @@ export default {
     padding-right: 20px;
   }
 }
-.daily-access__time-container {
+.line-ranking__search-container {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -139,20 +154,10 @@ export default {
     display: flex;
     flex-direction: row;
     gap: 16px;
-    width: 500px;
+    width: auto;
   }
 }
-
-.daily-acces__input {
-  width: 100%;
-  height: 36px;
-
-  @media (min-width: 800px) {
-    width: 188px;
-  }
-}
-
-.daily-access__graph-wrapper {
+.line-ranking__graph-wrapper {
   margin-top: 60px;
   width: 100%;
 
