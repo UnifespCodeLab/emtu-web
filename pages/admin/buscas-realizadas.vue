@@ -63,16 +63,32 @@
       <v-autocomplete class="performed-searches__input" :items="['Cidade A', 'Cidade B']" label="Origem" solo />
       <v-autocomplete class="performed-searches__input" :items="['Cidade C', 'Cidade D']" label="Destino" solo />
       <v-autocomplete class="performed-searches__input" :items="['linha 01', 'linha 02']" label="Linha" solo />
-      <v-btn color="primary" large>
+      <v-btn color="primary" large @click="executeSearch()">
         BUSCAR
       </v-btn>
+    </div>
+    <div
+      v-if="series && series.length > 0"
+      class="line-ranking__graph-wrapper"
+    >
+      <AdminChart
+        :categories="categories"
+        title="Ranking de linhas"
+        type="bar"
+        :series="series"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import AdminChart from '~/components/admin/AdminChart.vue'
+
 export default {
   name: 'AdminPerformedSearches',
+  components: {
+    AdminChart
+  },
   layout: 'admin',
   data () {
     return {
@@ -81,7 +97,19 @@ export default {
       endDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
-      endDateDialog: false
+      endDateDialog: false,
+      categories: ['linha 1', 'linha 2', 'linha 3', 'linha 4', 'linha 5', 'linha 6'],
+      series: []
+    }
+  },
+  methods: {
+    executeSearch () {
+      this.series = [
+        {
+          name: 'Linhas',
+          data: [10, 41, 35, 51, 49, 62]
+        }
+      ]
     }
   }
 }
@@ -125,6 +153,17 @@ export default {
 
   @media (min-width: 800px) {
     width: 188px;
+  }
+}
+
+.line-ranking__graph-wrapper {
+  margin-top: 60px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
   }
 }
 </style>
