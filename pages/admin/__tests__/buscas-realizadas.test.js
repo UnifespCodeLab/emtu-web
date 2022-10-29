@@ -1,7 +1,7 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 
-import AdminLineRanking from '~/pages/admin/ranking-linhas.vue'
+import AdminPerformedSearches from '~/pages/admin/buscas-realizadas.vue'
 
 const localVue = createLocalVue()
 let vuetify
@@ -13,7 +13,7 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
 
     vuetify = new Vuetify()
 
-    wrapper = mount(AdminLineRanking, {
+    wrapper = mount(AdminPerformedSearches, {
       localVue,
       vuetify,
       data () {
@@ -32,14 +32,11 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
   })
 
   it('should render the correct elements', () => {
-    const selects = wrapper.findAllComponents({ name: 'v-select' })
-    expect(selects.length).toBe(2)
-
     const dialogs = wrapper.findAllComponents({ name: 'v-dialog' })
     expect(dialogs.length).toBe(2)
 
-    const textFields = wrapper.findAllComponents({ name: 'v-text-field' })
-    expect(textFields.length).toBe(3)
+    const autocompletes = wrapper.findAllComponents({ name: 'v-autocomplete' })
+    expect(autocompletes.length).toBe(3)
 
     const datePickers = wrapper.findAllComponents({ name: 'v-date-picker' })
     expect(datePickers.length).toBe(0)
@@ -58,7 +55,7 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
       .toISOString()
       .substr(0, 10)
 
-    const textField = wrapper.findAllComponents({ name: 'v-text-field' }).at(2)
+    const textField = wrapper.findAllComponents({ name: 'v-text-field' }).at(1)
     expect(textField.props('value')).toBe(endDate)
   })
 
