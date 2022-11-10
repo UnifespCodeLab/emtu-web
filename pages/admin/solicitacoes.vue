@@ -71,7 +71,7 @@
       v-if="reports"
       class="line-ranking__graph-wrapper"
     >
-      <span>{{ numberOfResults }} resultados encontrados</span>
+      <span>{{ reports.length }} resultados encontrados</span>
       <v-card>
         <v-card-title>
           <v-text-field
@@ -116,8 +116,7 @@ export default {
         { text: 'Cidade Destino', value: 'destinationCity' },
         { text: 'Cid', value: 'cid' }
       ],
-      reports: null,
-      numberOfResults: null
+      reports: null
     }
   },
   methods: {
@@ -142,7 +141,6 @@ export default {
           cid: 1
         }
       ]
-      this.numberOfResults = 3
     }
   }
 }
@@ -153,12 +151,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding: 0 4px;
 
   @media (min-width: 1000px) {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px
   }
 }
 
@@ -172,8 +168,6 @@ export default {
   width: 100%;
 
   @media (min-width: 800px) {
-    align-items: flex-start;
-    display: flex;
     flex-direction: row;
     gap: 16px;
     width: 800px;
