@@ -1,0 +1,1000 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
+<div
+  class="reports"
+>
+  <div
+    class="reports__filter"
+  >
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-3"
+              style="left: 0px; position: absolute;"
+            >
+              Período de início
+            </label>
+            <input
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="input-3"
+              role="button"
+              type="text"
+            />
+          </div>
+          <div
+            class="v-input__append-inner"
+          >
+            <div />
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="v-dialog__container"
+    >
+      <!---->
+    </div>
+     
+    <div
+      class="v-dialog__container"
+    >
+      <!---->
+    </div>
+    <div
+      class="v-input reports__input v-input--is-label-active v-input--is-dirty v-input--is-readonly theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <input
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="input-7"
+              readonly="readonly"
+              role="button"
+              type="text"
+            />
+          </div>
+          <div
+            class="v-input__append-inner"
+          >
+            <div
+              class="v-input__icon v-input__icon--clear"
+            >
+              <button
+                aria-label="clear icon"
+                class="v-icon notranslate v-icon--link mdi mdi-close theme--light"
+                type="button"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-11"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-11"
+              style="left: 0px; position: absolute;"
+            >
+              Origem
+            </label>
+            <input
+              autocomplete="off"
+              id="input-11"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-16"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-16"
+              style="left: 0px; position: absolute;"
+            >
+              Destino
+            </label>
+            <input
+              autocomplete="off"
+              id="input-16"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-21"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-21"
+              style="left: 0px; position: absolute;"
+            >
+              Cid
+            </label>
+            <input
+              autocomplete="off"
+              id="input-21"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <button
+      class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--large primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      BUSCAR
+    
+      </span>
+    </button>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Pages / Admin / AdminPerformedSearches when search button is clicked should render updated page 1`] = `
+<div
+  class="reports"
+>
+  <div
+    class="reports__filter"
+  >
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-138"
+              style="left: 0px; position: absolute;"
+            >
+              Período de início
+            </label>
+            <input
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="input-138"
+              role="button"
+              type="text"
+            />
+          </div>
+          <div
+            class="v-input__append-inner"
+          >
+            <div />
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="v-dialog__container"
+    >
+      <!---->
+    </div>
+     
+    <div
+      class="v-dialog__container"
+    >
+      <!---->
+    </div>
+    <div
+      class="v-input reports__input v-input--is-label-active v-input--is-dirty v-input--is-readonly theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <input
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="input-142"
+              readonly="readonly"
+              role="button"
+              type="text"
+            />
+          </div>
+          <div
+            class="v-input__append-inner"
+          >
+            <div
+              class="v-input__icon v-input__icon--clear"
+            >
+              <button
+                aria-label="clear icon"
+                class="v-icon notranslate v-icon--link mdi mdi-close theme--light"
+                type="button"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-146"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-146"
+              style="left: 0px; position: absolute;"
+            >
+              Origem
+            </label>
+            <input
+              autocomplete="off"
+              id="input-146"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-151"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-151"
+              style="left: 0px; position: absolute;"
+            >
+              Destino
+            </label>
+            <input
+              autocomplete="off"
+              id="input-151"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input reports__input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-156"
+          class="v-input__slot"
+          role="combobox"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-156"
+              style="left: 0px; position: absolute;"
+            >
+              Cid
+            </label>
+            <input
+              autocomplete="off"
+              id="input-156"
+              type="text"
+            />
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <button
+      class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--large primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      BUSCAR
+    
+      </span>
+    </button>
+  </div>
+   
+  <div
+    class="line-ranking__graph-wrapper"
+  >
+    <span>
+      3 resultados encontrados
+    </span>
+     
+    <div
+      class="v-card v-sheet theme--light"
+    >
+      <div
+        class="v-card__title"
+      >
+        <div
+          class="v-input v-input--hide-details theme--light v-text-field v-text-field--single-line"
+        >
+          <div
+            class="v-input__control"
+          >
+            <div
+              class="v-input__slot"
+            >
+              <div
+                class="v-text-field__slot"
+              >
+                <label
+                  class="v-label theme--light"
+                  for="input-163"
+                  style="left: 0px; position: absolute;"
+                >
+                  Filtrar por nome
+                </label>
+                <input
+                  id="input-163"
+                  type="text"
+                />
+              </div>
+              <div
+                class="v-input__append-inner"
+              >
+                <div
+                  class="v-input__icon v-input__icon--append"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate mdi mdi-magnify theme--light"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+      <div
+        class="v-data-table v-data-table--has-bottom theme--light"
+      >
+        <div
+          class="v-data-table__wrapper"
+        >
+          <table>
+            <colgroup>
+              <col
+                class=""
+              />
+              <col
+                class=""
+              />
+              <col
+                class=""
+              />
+              <col
+                class=""
+              />
+            </colgroup>
+            <thead
+              class="v-data-table-header"
+            >
+              <tr>
+                <th
+                  aria-label="Email: Not sorted. Activate to sort ascending."
+                  aria-sort="none"
+                  class="text-start sortable"
+                  role="columnheader"
+                  scope="col"
+                >
+                  <span>
+                    Email
+                  </span>
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                    style="font-size: 18px;"
+                  />
+                </th>
+                <th
+                  aria-label="Cidade Origem: Not sorted. Activate to sort ascending."
+                  aria-sort="none"
+                  class="text-start sortable"
+                  role="columnheader"
+                  scope="col"
+                >
+                  <span>
+                    Cidade Origem
+                  </span>
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                    style="font-size: 18px;"
+                  />
+                </th>
+                <th
+                  aria-label="Cidade Destino: Not sorted. Activate to sort ascending."
+                  aria-sort="none"
+                  class="text-start sortable"
+                  role="columnheader"
+                  scope="col"
+                >
+                  <span>
+                    Cidade Destino
+                  </span>
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                    style="font-size: 18px;"
+                  />
+                </th>
+                <th
+                  aria-label="Cid: Not sorted. Activate to sort ascending."
+                  aria-sort="none"
+                  class="text-start sortable"
+                  role="columnheader"
+                  scope="col"
+                >
+                  <span>
+                    Cid
+                  </span>
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                    style="font-size: 18px;"
+                  />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class=""
+              >
+                <td
+                  class="text-start"
+                >
+                  teste1@mail.com
+                </td>
+                <td
+                  class="text-start"
+                >
+                  São José dos Campos
+                </td>
+                <td
+                  class="text-start"
+                >
+                  São Paulo
+                </td>
+                <td
+                  class="text-start"
+                >
+                  1
+                </td>
+              </tr>
+              <tr
+                class=""
+              >
+                <td
+                  class="text-start"
+                >
+                  teste2@mail.com
+                </td>
+                <td
+                  class="text-start"
+                >
+                  São José dos Campos
+                </td>
+                <td
+                  class="text-start"
+                >
+                  Taubaté
+                </td>
+                <td
+                  class="text-start"
+                >
+                  2
+                </td>
+              </tr>
+              <tr
+                class=""
+              >
+                <td
+                  class="text-start"
+                >
+                  teste3@mail.com
+                </td>
+                <td
+                  class="text-start"
+                >
+                  Taubaté
+                </td>
+                <td
+                  class="text-start"
+                >
+                  São Paulo
+                </td>
+                <td
+                  class="text-start"
+                >
+                  1
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="v-data-footer"
+        >
+          <div
+            class="v-data-footer__select"
+          >
+            Rows per page:
+            <div
+              class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-text-field v-select"
+            >
+              <div
+                class="v-input__control"
+              >
+                <div
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-owns="list-174"
+                  class="v-input__slot"
+                  role="button"
+                >
+                  <div
+                    class="v-select__slot"
+                  >
+                    <div
+                      class="v-select__selections"
+                    >
+                      <div
+                        class="v-select__selection v-select__selection--comma"
+                      >
+                        10
+                      </div>
+                      <input
+                        aria-label="Rows per page:"
+                        aria-readonly="false"
+                        autocomplete="off"
+                        id="input-174"
+                        readonly="readonly"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="v-input__append-inner"
+                    >
+                      <div
+                        class="v-input__icon v-input__icon--append"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="v-icon notranslate mdi mdi-menu-down theme--light"
+                        />
+                      </div>
+                    </div>
+                    <input
+                      type="hidden"
+                      value="10"
+                    />
+                  </div>
+                  <div
+                    class="v-menu"
+                  >
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="v-data-footer__pagination"
+          >
+            1-3 of 3
+          </div>
+          <div
+            class="v-data-footer__icons-before"
+          >
+            <button
+              aria-label="Previous page"
+              class="v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+              disabled="disabled"
+              type="button"
+            >
+              <span
+                class="v-btn__content"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-chevron-left theme--light"
+                />
+              </span>
+            </button>
+          </div>
+          <div
+            class="v-data-footer__icons-after"
+          >
+            <button
+              aria-label="Next page"
+              class="v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+              disabled="disabled"
+              type="button"
+            >
+              <span
+                class="v-btn__content"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-chevron-right theme--light"
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
