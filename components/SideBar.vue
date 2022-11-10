@@ -74,7 +74,7 @@ export default {
       return this.isOpen
     },
     routerItems () {
-      return this.$route.name.includes('admin') && this.isUserLogged ? this.adminItems : this.items
+      return this.$route.path.includes('admin') && this.isUserLogged ? this.adminItems : this.items
     }
   },
   mounted () {
