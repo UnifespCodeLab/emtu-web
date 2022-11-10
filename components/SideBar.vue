@@ -23,7 +23,7 @@
       </div>
 
       <v-list dense>
-        <v-list-item v-for="item in items" :key="item.title" router :to="item.route">
+        <v-list-item v-for="item in routerItems" :key="item.title" router :to="item.route">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -44,6 +44,10 @@ export default {
     isOpen: {
       required: true,
       type: Boolean
+    },
+    isUserLogged: {
+      required: false,
+      type: Boolean
     }
   },
   data () {
@@ -53,6 +57,12 @@ export default {
         { title: 'Buscar', icon: 'mdi-magnify', route: '/' },
         { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route: '/lista-cids' },
         { title: 'Sobre nós', icon: 'mdi-account-group', route: '/sobre-nos' }
+      ],
+      adminItems: [
+        { title: 'Buscas realizadas', icon: '', route: '/admin/buscas-realizadas' },
+        { title: 'Acessos diários', icon: '', route: '/admin/acessos-diarios' },
+        { title: 'Ranking de Linhas', icon: '', route: '/admin/ranking-linhas' },
+        { title: 'Solicitações', icon: '', route: '/admin/solicitacoes' }
       ]
     }
   },
@@ -62,6 +72,9 @@ export default {
     },
     openDrawer () {
       return this.isOpen
+    },
+    routerItems () {
+      return this.$route.name.includes('admin') && this.isUserLogged ? this.adminItems : this.items
     }
   },
   mounted () {

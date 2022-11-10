@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <div class="admin-layout">
-      <TheHeader />
+      <SideBar :is-open="sidebarOpen" :is-user-logged="isUserLogged" @toggleSideBar="runToggle()" />
+      <TheHeader @toggleSideBar="runToggle()" />
       <div class="admin-layout__content">
         <Nuxt />
       </div>
@@ -11,11 +12,29 @@
 
 <script>
 import TheHeader from '~/components/TheHeader.vue'
+import SideBar from '~/components/SideBar.vue'
 
 export default {
   name: 'AdminLayout',
   components: {
-    TheHeader
+    TheHeader,
+    SideBar
+  },
+  data () {
+    return {
+      sidebarOpen: false
+    }
+  },
+  computed: {
+    // ToDo - Modificar quando tivermos o state de usuário logado
+    isUserLogged () {
+      return true
+    }
+  },
+  methods: {
+    runToggle () {
+      this.sidebarOpen = !this.sidebarOpen
+    }
   }
 }
 </script>
