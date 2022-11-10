@@ -68,27 +68,33 @@
       </v-btn>
     </div>
     <div
-      v-if="series && series.length > 0"
+      v-if="reports"
       class="line-ranking__graph-wrapper"
     >
-      <AdminChart
-        :categories="categories"
-        title="Ranking de linhas"
-        type="bar"
-        :series="series"
-      />
+      <span>{{ numberOfResults }} resultados encontrados</span>
+      <v-card>
+        <v-card-title>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Filtrar por nome"
+            single-line
+            hide-details
+          />
+        </v-card-title>
+        <v-data-table
+          :headers="headers"
+          :items="reports"
+          :search="search"
+        />
+      </v-card>
     </div>
   </div>
 </template>
 
 <script>
-import AdminChart from '~/components/admin/AdminChart.vue'
-
 export default {
   name: 'AdminReports',
-  components: {
-    AdminChart
-  },
   layout: 'admin',
   data () {
     return {
@@ -98,18 +104,45 @@ export default {
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
-      categories: ['linha 1', 'linha 2', 'linha 3', 'linha 4', 'linha 5', 'linha 6'],
-      series: []
+      search: '',
+      headers: [
+        {
+          text: 'Email',
+          align: 'start',
+          filterable: true,
+          value: 'email'
+        },
+        { text: 'Cidade Origem', value: 'originCity' },
+        { text: 'Cidade Destino', value: 'destinationCity' },
+        { text: 'Cid', value: 'cid' }
+      ],
+      reports: null,
+      numberOfResults: null
     }
   },
   methods: {
     executeSearch () {
-      this.series = [
+      this.reports = [
         {
-          name: 'Linhas',
-          data: [10, 41, 35, 51, 49, 62]
+          email: 'teste1@mail.com',
+          originCity: 'São José dos Campos',
+          destinationCity: 'São Paulo',
+          cid: 1
+        },
+        {
+          email: 'teste2@mail.com',
+          originCity: 'São José dos Campos',
+          destinationCity: 'Taubaté',
+          cid: 2
+        },
+        {
+          email: 'teste3@mail.com',
+          originCity: 'Taubaté',
+          destinationCity: 'São Paulo',
+          cid: 1
         }
       ]
+      this.numberOfResults = 3
     }
   }
 }
@@ -158,6 +191,7 @@ export default {
 
 .line-ranking__graph-wrapper {
   margin-top: 60px;
+  margin-bottom: 60px;
   width: 100%;
 
   @media (min-width: 800px) {
