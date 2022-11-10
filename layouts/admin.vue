@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="admin-layout">
-      <SideBar :is-open="sidebarOpen" @toggleSideBar="runToggle()" />
+      <SideBar :is-open="sidebarOpen" :is-user-logged="isUserLogged" @toggleSideBar="runToggle()" />
       <TheHeader @toggleSideBar="runToggle()" />
       <div class="admin-layout__content">
         <Nuxt />
@@ -23,6 +23,12 @@ export default {
   data () {
     return {
       sidebarOpen: false
+    }
+  },
+  computed: {
+    // ToDo - Modificar quando tivermos o state de usuário logado
+    isUserLogged () {
+      return true
     }
   },
   methods: {

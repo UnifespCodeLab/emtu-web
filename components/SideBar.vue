@@ -44,6 +44,10 @@ export default {
     isOpen: {
       required: true,
       type: Boolean
+    },
+    isUserLogged: {
+      required: false,
+      type: Boolean
     }
   },
   data () {
@@ -70,7 +74,7 @@ export default {
       return this.isOpen
     },
     routerItems () {
-      return this.$route.name.includes('admin') ? this.adminItems : this.items
+      return this.$route.name.includes('admin') && this.isUserLogged ? this.adminItems : this.items
     }
   },
   mounted () {
