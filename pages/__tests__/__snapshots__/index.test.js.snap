@@ -246,7 +246,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
                   for="input-18"
                   style="left: 0px; position: absolute;"
                 >
-                  Picker in dialog
+                  Selecione o horário
                 </label>
                 <input
                   aria-expanded="false"
@@ -308,7 +308,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
                   for="input-23"
                   style="left: 0px; position: absolute;"
                 >
-                  Picker in dialog
+                  Selecione a data
                 </label>
                 <input
                   aria-expanded="false"
@@ -339,9 +339,8 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
       </div>
     </div>
      
-    <button
-      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
-      type="button"
+    <router-link
+      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg v-btn--router theme--light elevation-2 v-size--large primary"
     >
       <span
         class="v-btn__content"
@@ -350,7 +349,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
       BUSCAR
     
       </span>
-    </button>
+    </router-link>
   </div>
    
   <img
