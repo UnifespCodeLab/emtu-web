@@ -15,7 +15,7 @@
           <template #activator="{ on, attrs }">
             <v-text-field
               v-model="time"
-              label="Picker in dialog"
+              label="Selecione o horário"
               prepend-icon="mdi-clock-time-four-outline"
               readonly
               v-bind="attrs"
@@ -42,7 +42,7 @@
           <template #activator="{ on, attrs }">
             <v-text-field
               v-model="date"
-              label="Picker in dialog"
+              label="Selecione a data"
               prepend-icon="mdi-calendar"
               readonly
               v-bind="attrs"
@@ -60,7 +60,7 @@
           </v-date-picker>
         </v-dialog>
       </div>
-      <v-btn block color="primary" elevation="2" large>
+      <v-btn block color="primary" elevation="2" large to="/rotas">
         BUSCAR
       </v-btn>
     </div>
