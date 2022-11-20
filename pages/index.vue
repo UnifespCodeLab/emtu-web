@@ -73,11 +73,12 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'SearchPage',
   data () {
     return {
-      cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
@@ -85,6 +86,17 @@ export default {
       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
       modalTime: false
     }
+  },
+  computed: {
+    ...mapState('city', ['cities'])
+  },
+  created () {
+    if (!this.cities.length) {
+      this.fetchCities()
+    }
+  },
+  methods: {
+    ...mapActions('city', ['fetchCities'])
   }
 }
 </script>

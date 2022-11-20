@@ -1,20 +1,23 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 
+import Vuex from 'vuex'
 import SearchPage from '~/pages/index.vue'
+import * as cityStore from '~/store/city'
+
+const localVue = createLocalVue()
+localVue.use(Vuex)
+
+const store = new Vuex.Store({
+  modules: {
+    city: {
+      namespaced: true,
+      ...cityStore
+    }
+  }
+})
 
 describe('Pages / SearchPage', () => {
-  const defaultData = {
-    cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-      .toISOString()
-      .substr(0, 10),
-    modalDate: false,
-    time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    modalTime: false
-  }
-
-  const localVue = createLocalVue()
   let vuetify
 
   beforeEach(() => {
@@ -26,9 +29,7 @@ describe('Pages / SearchPage', () => {
       const wrapper = mount(SearchPage, {
         localVue,
         vuetify,
-        data () {
-          return defaultData
-        }
+        store
       })
       expect(wrapper.findAll('input').length).toBe(8)
       expect(wrapper.find('.search-page__image').exists()).toBe(true)
