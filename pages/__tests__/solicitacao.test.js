@@ -1,10 +1,23 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
+import Vuex from 'vuex'
+import * as cityStore from '~/store/city'
 
 import ReportPage from '~/pages/solicitacao'
 
+const localVue = createLocalVue()
+localVue.use(Vuex)
+
+const store = new Vuex.Store({
+  modules: {
+    city: {
+      namespaced: true,
+      ...cityStore
+    }
+  }
+})
+
 describe('Pages / ReportPage', () => {
-  const localVue = createLocalVue()
   let vuetify
   let wrapper
 
@@ -14,6 +27,7 @@ describe('Pages / ReportPage', () => {
     wrapper = mount(ReportPage, {
       localVue,
       vuetify,
+      store,
       stubs: {
         'router-link': RouterLinkStub
       }

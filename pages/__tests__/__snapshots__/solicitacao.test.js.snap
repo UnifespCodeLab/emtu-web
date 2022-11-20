@@ -62,13 +62,13 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-7"
+              for="input-9"
               style="left: 0px; position: absolute;"
             >
               E-mail
             </label>
             <input
-              id="input-7"
+              id="input-9"
               type="text"
             />
           </div>
@@ -98,7 +98,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-10"
+          aria-owns="list-12"
           class="v-input__slot"
           role="combobox"
         >
@@ -107,14 +107,14 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-10"
+              for="input-12"
               style="left: 0px; position: absolute;"
             >
               Cidade de origem
             </label>
             <input
               autocomplete="off"
-              id="input-10"
+              id="input-12"
               type="text"
             />
             <div
@@ -164,7 +164,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-15"
+          aria-owns="list-17"
           class="v-input__slot"
           role="combobox"
         >
@@ -173,14 +173,14 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-15"
+              for="input-17"
               style="left: 0px; position: absolute;"
             >
               Cidade de destino
             </label>
             <input
               autocomplete="off"
-              id="input-15"
+              id="input-17"
               type="text"
             />
             <div
@@ -230,7 +230,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-20"
+          aria-owns="list-22"
           class="v-input__slot"
           role="button"
         >
@@ -239,7 +239,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-20"
+              for="input-22"
               style="left: 0px; position: absolute;"
             >
               Cid
@@ -250,7 +250,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
               <input
                 aria-readonly="false"
                 autocomplete="off"
-                id="input-20"
+                id="input-22"
                 readonly="readonly"
                 type="text"
               />
