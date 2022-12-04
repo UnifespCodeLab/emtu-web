@@ -26,7 +26,7 @@
         color="primary"
         elevation="2"
         large
-        @click="error = true"
+        @click="userLogin"
       >
         enviar
       </v-btn>
@@ -45,6 +45,25 @@ export default {
       error: false,
       email: null,
       password: null
+    }
+  },
+  methods: {
+    userLogin () {
+      try {
+        // await this.$auth.loginWith('local', {
+        //   data: {
+        //     email: this.email,
+        //     password: this.password
+        //   }
+        // })
+        this.$auth.setUser({
+          email: 'Teste',
+          password: 'aas222e'
+        })
+        this.$router.push('/admin/solicitacoes')
+      } catch (err) {
+        this.error = true
+      }
     }
   }
 }
