@@ -1,7 +1,7 @@
 <template>
   <v-sheet>
     <v-navigation-drawer
-      v-model="openDrawer"
+      :value="openDrawer"
       :width="sideBarWidth"
       absolute
       right
