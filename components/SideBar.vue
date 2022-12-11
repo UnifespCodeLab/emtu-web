@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import adminItems from '~/assets/js/adminItems'
+
 export default {
   name: 'SideBar',
   props: {
@@ -58,12 +60,7 @@ export default {
         { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route: '/lista-cids' },
         { title: 'Sobre nós', icon: 'mdi-account-group', route: '/sobre-nos' }
       ],
-      adminItems: [
-        { title: 'Buscas realizadas', icon: '', route: '/admin/buscas-realizadas' },
-        { title: 'Acessos diários', icon: '', route: '/admin/acessos-diarios' },
-        { title: 'Ranking de Linhas', icon: '', route: '/admin/ranking-linhas' },
-        { title: 'Solicitações', icon: '', route: '/admin/solicitacoes' }
-      ]
+      adminItems
     }
   },
   computed: {
