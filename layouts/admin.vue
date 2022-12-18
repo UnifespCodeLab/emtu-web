@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TheHeader from '~/components/TheHeader.vue'
+import TheHeader from '~/components/admin/TheHeader.vue'
 import SideBar from '~/components/SideBar.vue'
 
 export default {
