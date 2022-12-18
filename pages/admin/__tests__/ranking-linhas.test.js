@@ -6,10 +6,15 @@ import AdminLineRanking from '~/pages/admin/ranking-linhas.vue'
 const localVue = createLocalVue()
 let vuetify
 let wrapper
+class ResizeObserver {
+  observe () {}
+  unobserve () {}
+}
 
 describe('Pages / Admin / AdminLineRanking', () => {
   beforeEach(() => {
     jest.mock('vue-apexcharts', () => jest.fn())
+    window.ResizeObserver = ResizeObserver
 
     vuetify = new Vuetify()
 

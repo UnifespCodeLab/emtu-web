@@ -7,8 +7,14 @@ const localVue = createLocalVue()
 let vuetify
 let wrapper
 
+class ResizeObserver {
+  observe () {}
+  unobserve () {}
+}
+
 describe('Pages / Admin / AdminDailyAccess', () => {
   beforeEach(() => {
+    window.ResizeObserver = ResizeObserver
     jest.mock('vue-apexcharts', () => jest.fn())
 
     vuetify = new Vuetify()
