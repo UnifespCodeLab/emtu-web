@@ -21,9 +21,9 @@ module.exports = {
     '<rootDir>/pages/**/*.vue',
     '<rootDir>/pages/*.vue',
     '<rootDir>/middleware/**/*',
-    '<rootDir>/assets/js/**/*'
+    '<rootDir>/assets/js/**/*',
+    '!<rootDir>/assets/js/**/*.json'
   ],
-  coverageDirectory: '<rootDir>/test/coverage',
   coverageReporters: [
     'html',
     'json',
