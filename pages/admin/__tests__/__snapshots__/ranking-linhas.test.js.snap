@@ -645,8 +645,8 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
       style="min-height: NaNpx;"
     >
       <div
-        class="apexcharts-canvas apexchartsrnt01hghl apexcharts-theme-light"
-        id="apexchartsrnt01hghl"
+        class="apexcharts-canvas apexchartslq3n683v apexcharts-theme-light"
+        id="apexchartslq3n683v"
       >
         <svg
           class="apexcharts-svg"
@@ -696,7 +696,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                 />
               </lineargradient>
               <clippath
-                id="gridRectMaskrnt01hghl"
+                id="gridRectMasklq3n683v"
               >
                 <rect
                   fill="#fff"
@@ -714,13 +714,13 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                 />
               </clippath>
               <clippath
-                id="forecastMaskrnt01hghl"
+                id="forecastMasklq3n683v"
               />
               <clippath
-                id="nonForecastMaskrnt01hghl"
+                id="nonForecastMasklq3n683v"
               />
               <clippath
-                id="gridRectMarkerMaskrnt01hghl"
+                id="gridRectMarkerMasklq3n683v"
               >
                 <rect
                   fill="#fff"
@@ -958,7 +958,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskrnt01hghl)"
+                clip-path="url(#gridRectMasklq3n683v)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1103"
@@ -974,7 +974,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskrnt01hghl)"
+                clip-path="url(#gridRectMasklq3n683v)"
                 fill="transparent"
                 height="0"
                 id="SvgjsRect1106"
@@ -990,7 +990,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskrnt01hghl)"
+                clip-path="url(#gridRectMasklq3n683v)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1109"
@@ -1006,7 +1006,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskrnt01hghl)"
+                clip-path="url(#gridRectMasklq3n683v)"
                 fill="transparent"
                 height="0"
                 id="SvgjsRect1112"
@@ -1056,7 +1056,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskrnt01hghl)"
+                  clip-path="url(#gridRectMasklq3n683v)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1077,7 +1077,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskrnt01hghl)"
+                  clip-path="url(#gridRectMasklq3n683v)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1098,7 +1098,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskrnt01hghl)"
+                  clip-path="url(#gridRectMasklq3n683v)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1119,7 +1119,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskrnt01hghl)"
+                  clip-path="url(#gridRectMasklq3n683v)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1140,7 +1140,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskrnt01hghl)"
+                  clip-path="url(#gridRectMasklq3n683v)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1161,7 +1161,7 @@ exports[`Pages / Admin / AdminLineRanking when search button is clicked should r
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskrnt01hghl)"
+                  clip-path="url(#gridRectMasklq3n683v)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"

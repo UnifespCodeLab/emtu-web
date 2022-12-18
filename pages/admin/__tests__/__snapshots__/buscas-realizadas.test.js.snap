@@ -669,8 +669,8 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
       style="min-height: NaNpx;"
     >
       <div
-        class="apexcharts-canvas apexchartsn80xvtad apexcharts-theme-light"
-        id="apexchartsn80xvtad"
+        class="apexcharts-canvas apexchartst1p35ten apexcharts-theme-light"
+        id="apexchartst1p35ten"
       >
         <svg
           class="apexcharts-svg"
@@ -720,7 +720,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                 />
               </lineargradient>
               <clippath
-                id="gridRectMaskn80xvtad"
+                id="gridRectMaskt1p35ten"
               >
                 <rect
                   fill="#fff"
@@ -738,13 +738,13 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                 />
               </clippath>
               <clippath
-                id="forecastMaskn80xvtad"
+                id="forecastMaskt1p35ten"
               />
               <clippath
-                id="nonForecastMaskn80xvtad"
+                id="nonForecastMaskt1p35ten"
               />
               <clippath
-                id="gridRectMarkerMaskn80xvtad"
+                id="gridRectMarkerMaskt1p35ten"
               >
                 <rect
                   fill="#fff"
@@ -982,7 +982,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskn80xvtad)"
+                clip-path="url(#gridRectMaskt1p35ten)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1103"
@@ -998,7 +998,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskn80xvtad)"
+                clip-path="url(#gridRectMaskt1p35ten)"
                 fill="transparent"
                 height="0"
                 id="SvgjsRect1106"
@@ -1014,7 +1014,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskn80xvtad)"
+                clip-path="url(#gridRectMaskt1p35ten)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1109"
@@ -1030,7 +1030,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskn80xvtad)"
+                clip-path="url(#gridRectMaskt1p35ten)"
                 fill="transparent"
                 height="0"
                 id="SvgjsRect1112"
@@ -1080,7 +1080,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskn80xvtad)"
+                  clip-path="url(#gridRectMaskt1p35ten)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1101,7 +1101,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskn80xvtad)"
+                  clip-path="url(#gridRectMaskt1p35ten)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1122,7 +1122,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskn80xvtad)"
+                  clip-path="url(#gridRectMaskt1p35ten)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1143,7 +1143,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskn80xvtad)"
+                  clip-path="url(#gridRectMaskt1p35ten)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1164,7 +1164,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskn80xvtad)"
+                  clip-path="url(#gridRectMaskt1p35ten)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
@@ -1185,7 +1185,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                   barHeight="0"
                   barWidth="0"
                   class="apexcharts-bar-area"
-                  clip-path="url(#gridRectMaskn80xvtad)"
+                  clip-path="url(#gridRectMaskt1p35ten)"
                   cx="0"
                   cy="0"
                   d="M 0 NaN"
