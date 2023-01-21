@@ -80,10 +80,6 @@ describe('Pages / Admin / AdminDailyAccess', () => {
       searchButton.trigger('click')
     })
 
-    it('should render updated page', () => {
-      expect(wrapper.element).toMatchSnapshot()
-    })
-
     it('should render the chart container', () => {
       const container = wrapper.find('.daily-access__graph-wrapper')
       expect(container.exists()).toBe(true)

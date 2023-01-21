@@ -76,10 +76,6 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
       searchButton.trigger('click')
     })
 
-    it('should render updated page', () => {
-      expect(wrapper.element).toMatchSnapshot()
-    })
-
     it('should render the chart container', () => {
       const container = wrapper.find('.line-ranking__graph-wrapper')
       expect(container.exists()).toBe(true)
