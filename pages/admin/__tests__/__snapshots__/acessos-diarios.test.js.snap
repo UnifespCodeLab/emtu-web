@@ -273,8 +273,8 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
       style="min-height: NaNpx;"
     >
       <div
-        class="apexcharts-canvas apexchartsb32gdjd2 apexcharts-theme-light"
-        id="apexchartsb32gdjd2"
+        class="apexcharts-canvas apexchartsq93kexef apexcharts-theme-light"
+        id="apexchartsq93kexef"
       >
         <svg
           class="apexcharts-svg"
@@ -298,7 +298,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
               id="SvgjsDefs1002"
             >
               <clippath
-                id="gridRectMaskb32gdjd2"
+                id="gridRectMaskq93kexef"
               >
                 <rect
                   fill="#fff"
@@ -316,13 +316,13 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
                 />
               </clippath>
               <clippath
-                id="forecastMaskb32gdjd2"
+                id="forecastMaskq93kexef"
               />
               <clippath
-                id="nonForecastMaskb32gdjd2"
+                id="nonForecastMaskq93kexef"
               />
               <clippath
-                id="gridRectMarkerMaskb32gdjd2"
+                id="gridRectMarkerMaskq93kexef"
               >
                 <rect
                   fill="#fff"
@@ -695,7 +695,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskb32gdjd2)"
+                clip-path="url(#gridRectMaskq93kexef)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1124"
@@ -711,7 +711,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskb32gdjd2)"
+                clip-path="url(#gridRectMaskq93kexef)"
                 fill="transparent"
                 height="0"
                 id="SvgjsRect1127"
@@ -727,7 +727,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskb32gdjd2)"
+                clip-path="url(#gridRectMaskq93kexef)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1130"
@@ -743,7 +743,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskb32gdjd2)"
+                clip-path="url(#gridRectMaskq93kexef)"
                 fill="transparent"
                 height="0"
                 id="SvgjsRect1133"
@@ -759,7 +759,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
               />
               <rect
                 class="apexcharts-grid-row"
-                clip-path="url(#gridRectMaskb32gdjd2)"
+                clip-path="url(#gridRectMaskq93kexef)"
                 fill="#f3f3f3"
                 height="0"
                 id="SvgjsRect1136"
@@ -815,7 +815,7 @@ exports[`Pages / Admin / AdminDailyAccess when search button is clicked should r
                     class="apexcharts-series-markers"
                   >
                     <circle
-                      class="apexcharts-marker wnms6pxvh no-pointer-events"
+                      class="apexcharts-marker wzkk95u56h no-pointer-events"
                       cx="0"
                       cy="0"
                       default-marker-size="0"
