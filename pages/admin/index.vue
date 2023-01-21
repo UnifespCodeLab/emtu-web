@@ -48,19 +48,20 @@ export default {
     }
   },
   methods: {
-    userLogin () {
+    async userLogin () {
       try {
-        // await this.$auth.loginWith('local', {
-        //   data: {
-        //     email: this.email,
-        //     password: this.password
-        //   }
-        // })
-        this.$auth.setUser({
-          email: 'Teste',
-          password: 'aas222e'
+        const logged = await this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password
+          }
         })
-        this.$router.push('/admin/solicitacoes')
+        if (logged) {
+          this.$auth.setUser({
+            email: this.email
+          })
+          this.$router.push('/admin/solicitacoes')
+        }
       } catch (err) {
         this.error = true
       }
