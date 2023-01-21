@@ -1,10 +1,8 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
-import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 
 import SearchPage from '~/pages/index.vue'
-RouterLinkStub
 
 describe('Pages / SearchPage', () => {
   const defaultData = {
