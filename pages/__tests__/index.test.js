@@ -1,5 +1,6 @@
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
+import VueRouter from 'vue-router'
 
 import SearchPage from '~/pages/index.vue'
 
@@ -16,9 +17,11 @@ describe('Pages / SearchPage', () => {
 
   const localVue = createLocalVue()
   let vuetify
+  let router
 
   beforeEach(() => {
     vuetify = new Vuetify()
+    router = new VueRouter()
   })
 
   describe('when all data is correct', () => {
@@ -26,6 +29,10 @@ describe('Pages / SearchPage', () => {
       const wrapper = mount(SearchPage, {
         localVue,
         vuetify,
+        router,
+        components: {
+          RouterLinkStub
+        },
         data () {
           return defaultData
         }

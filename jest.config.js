@@ -17,13 +17,8 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '!**/node_modules/**',
-    '<rootDir>/components/**/*.vue',
-    '<rootDir>/pages/**/*.vue',
-    '<rootDir>/pages/*.vue',
-    '<rootDir>/middleware/**/*',
-    '<rootDir>/assets/js/**/*'
+    '<rootDir>/components/**/*.vue'
   ],
-  coverageDirectory: '<rootDir>/test/coverage',
   coverageReporters: [
     'html',
     'json',
