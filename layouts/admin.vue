@@ -33,7 +33,7 @@ export default {
   },
   beforeMount () {
     if (!this.$auth.user) {
-      this.$router.push('/')
+      this.$router.push('/admin')
     }
   },
   methods: {
