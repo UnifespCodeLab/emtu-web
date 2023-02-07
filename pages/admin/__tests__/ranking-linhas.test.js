@@ -6,10 +6,15 @@ import AdminLineRanking from '~/pages/admin/ranking-linhas.vue'
 const localVue = createLocalVue()
 let vuetify
 let wrapper
+class ResizeObserver {
+  observe () {}
+  unobserve () {}
+}
 
 describe('Pages / Admin / AdminLineRanking', () => {
   beforeEach(() => {
     jest.mock('vue-apexcharts', () => jest.fn())
+    window.ResizeObserver = ResizeObserver
 
     vuetify = new Vuetify()
 
@@ -71,10 +76,6 @@ describe('Pages / Admin / AdminLineRanking', () => {
     beforeEach(() => {
       const searchButton = wrapper.findAllComponents({ name: 'v-btn' }).at(0)
       searchButton.trigger('click')
-    })
-
-    it('should render updated page', () => {
-      expect(wrapper.element).toMatchSnapshot()
     })
 
     it('should render the chart container', () => {

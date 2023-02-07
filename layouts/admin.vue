@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="admin-layout">
+    <div v-if="$auth.user" class="admin-layout">
       <SideBar :is-open="sidebarOpen" :is-user-logged="isUserLogged" @toggleSideBar="runToggle()" />
       <TheHeader @toggleSideBar="runToggle()" />
       <div class="admin-layout__content">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TheHeader from '~/components/TheHeader.vue'
+import TheHeader from '~/components/admin/TheHeader.vue'
 import SideBar from '~/components/SideBar.vue'
 
 export default {
@@ -29,6 +29,11 @@ export default {
     // ToDo - Modificar quando tivermos o state de usuário logado
     isUserLogged () {
       return true
+    }
+  },
+  beforeMount () {
+    if (!this.$auth.user) {
+      this.$router.push('/admin')
     }
   },
   methods: {

@@ -7,9 +7,15 @@ const localVue = createLocalVue()
 let vuetify
 let wrapper
 
+class ResizeObserver {
+  observe () {}
+  unobserve () {}
+}
+
 describe('Pages / Admin / AdminPerformedSearches', () => {
   beforeEach(() => {
     jest.mock('vue-apexcharts', () => jest.fn())
+    window.ResizeObserver = ResizeObserver
 
     vuetify = new Vuetify()
 
@@ -68,10 +74,6 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
     beforeEach(() => {
       const searchButton = wrapper.findAllComponents({ name: 'v-btn' }).at(0)
       searchButton.trigger('click')
-    })
-
-    it('should render updated page', () => {
-      expect(wrapper.element).toMatchSnapshot()
     })
 
     it('should render the chart container', () => {

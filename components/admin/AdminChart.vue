@@ -6,10 +6,12 @@
 </template>
 
 <script>
+import VueApexCharts from 'vue-apexcharts'
+
 export default {
   name: 'AdminChart',
   components: {
-    VueApexCharts: () => import('vue-apexcharts')
+    VueApexCharts
   },
   props: {
     categories: {
