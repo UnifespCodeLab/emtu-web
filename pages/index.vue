@@ -1,8 +1,8 @@
 <template>
   <div class="search-page">
     <div class="search-page__form">
-      <v-autocomplete :items="cities" label="Origem" solo />
-      <v-autocomplete :items="cities" label="Destino" solo />
+      <v-autocomplete :items="formattedCities" label="Origem" solo />
+      <v-autocomplete :items="formattedCities" label="Destino" solo />
       <v-select :items="['Cid 01', 'Cid 02']" label="Cid" solo />
       <div class="search-page__time-container">
         <v-dialog
@@ -88,7 +88,13 @@ export default {
     }
   },
   computed: {
-    ...mapState('city', ['cities'])
+    ...mapState('city', ['cities']),
+    formattedCities () {
+      return this.cities.map(({ id, name }) => ({
+        text: name,
+        value: id
+      }))
+    }
   },
   created () {
     if (!this.cities.length) {

@@ -1,4 +1,4 @@
-// import emtuApi from 'assets/services/emtu-api'
+import emtuApi from 'assets/services/emtu-api'
 
 export const state = () => ({
   cities: []
@@ -11,12 +11,11 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchCities ({ commit }) {
+  async fetchCities ({ commit }) {
     try {
-      // const { cities } = await emtuApi.get('/city')
-      const cities = ['São José dos Campos', 'Jacareí', 'Taubaté']
+      const { data } = await emtuApi.get('/city')
 
-      commit('setCities', cities)
+      commit('setCities', data)
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error)
