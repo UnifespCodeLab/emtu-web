@@ -1,8 +1,6 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 import Vuex from 'vuex'
-import * as cityStore from '~/store/city'
-
 import ReportPage from '~/pages/solicitacao'
 
 const localVue = createLocalVue()
@@ -12,7 +10,12 @@ const store = new Vuex.Store({
   modules: {
     city: {
       namespaced: true,
-      ...cityStore
+      state: {
+        cities: []
+      },
+      actions: {
+        fetchCities: () => []
+      }
     }
   }
 })
