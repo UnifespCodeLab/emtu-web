@@ -1,8 +1,8 @@
 <template>
   <div class="search-page">
     <div class="search-page__form">
-      <v-autocomplete :items="cities" label="Origem" solo />
-      <v-autocomplete :items="cities" label="Destino" solo />
+      <v-autocomplete :items="formattedCities" label="Origem" solo />
+      <v-autocomplete :items="formattedCities" label="Destino" solo />
       <v-select :items="['Cid 01', 'Cid 02']" label="Cid" solo />
       <div class="search-page__time-container">
         <v-dialog
@@ -73,11 +73,12 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'SearchPage',
   data () {
     return {
-      cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
@@ -85,6 +86,23 @@ export default {
       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
       modalTime: false
     }
+  },
+  computed: {
+    ...mapState('city', ['cities']),
+    formattedCities () {
+      return this.cities.map(({ id, name }) => ({
+        text: name,
+        value: id
+      }))
+    }
+  },
+  created () {
+    if (!this.cities.length) {
+      this.fetchCities()
+    }
+  },
+  methods: {
+    ...mapActions('city', ['fetchCities'])
   }
 }
 </script>

@@ -46,22 +46,32 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'ReportPage',
   data () {
     return {
       hasSuccess: false,
       submittedRoute: false,
-      cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
       cidList: ['Cid 01', 'Cid 02']
     }
   },
   computed: {
+    ...mapState('city', ['cities']),
     alertMessage () {
       return this.hasSuccess
         ? 'Enviado com sucesso!'
         : 'Erro ao enviar. Tente mais tarde.'
     }
+  },
+  created () {
+    if (!this.cities.length) {
+      this.fetchCities()
+    }
+  },
+  methods: {
+    ...mapActions('city', ['fetchCities'])
   }
 }
 </script>

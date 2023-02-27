@@ -1,21 +1,27 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
-
+import Vuex from 'vuex'
 import SearchPage from '~/pages/index.vue'
 
-describe('Pages / SearchPage', () => {
-  const defaultData = {
-    cities: ['São José dos Campos', 'Jacareí', 'Taubaté'],
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-      .toISOString()
-      .substr(0, 10),
-    modalDate: false,
-    time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    modalTime: false
-  }
+const localVue = createLocalVue()
+localVue.use(Vuex)
 
-  const localVue = createLocalVue()
+const store = new Vuex.Store({
+  modules: {
+    city: {
+      namespaced: true,
+      state: {
+        cities: []
+      },
+      actions: {
+        fetchCities: () => []
+      }
+    }
+  }
+})
+
+describe('Pages / SearchPage', () => {
   let vuetify
   let router
 
@@ -29,12 +35,10 @@ describe('Pages / SearchPage', () => {
       const wrapper = mount(SearchPage, {
         localVue,
         vuetify,
+        store,
         router,
         components: {
           RouterLinkStub
-        },
-        data () {
-          return defaultData
         }
       })
       expect(wrapper.findAll('input').length).toBe(8)
