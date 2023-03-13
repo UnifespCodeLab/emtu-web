@@ -24,9 +24,35 @@
 
       <template v-else>
         <v-text-field label="E-mail" solo />
-        <v-autocomplete :items="cities" label="Cidade de origem" solo />
-        <v-autocomplete :items="cities" label="Cidade de destino" solo />
-        <v-select :items="cidList" label="Cid" solo />
+        <v-autocomplete
+          :items="cities"
+          label="Cidade de origem"
+          item-value="id"
+          item-text="name"
+          solo
+        />
+        <v-autocomplete
+          :items="cities"
+          label="Cidade de destino"
+          item-text="name"
+          item-value="id"
+          solo
+        />
+        <v-select
+          :items="cids"
+          label="Cid"
+          solo
+          item-text="cod"
+          item-value="id"
+          :menu-props="{
+            maxHeight: 304,
+            maxWidth: 300,
+            offsetY: true,
+            offsetOverflow: true,
+            offsetOverflowX: true,
+            transition: true
+          }"
+        />
 
         <v-btn
           block
@@ -59,6 +85,7 @@ export default {
   },
   computed: {
     ...mapState('city', ['cities']),
+    ...mapState('cid', ['cids']),
     alertMessage () {
       return this.hasSuccess
         ? 'Enviado com sucesso!'
@@ -69,9 +96,13 @@ export default {
     if (!this.cities.length) {
       this.fetchCities()
     }
+    if (!this.cids.length) {
+      this.fetchCids()
+    }
   },
   methods: {
-    ...mapActions('city', ['fetchCities'])
+    ...mapActions('city', ['fetchCities']),
+    ...mapActions('cid', ['fetchCids'])
   }
 }
 </script>
