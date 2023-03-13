@@ -339,8 +339,9 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
       </div>
     </div>
      
-    <router-link
-      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg v-btn--router theme--light elevation-2 v-size--large primary"
+    <button
+      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
+      type="button"
     >
       <span
         class="v-btn__content"
@@ -349,7 +350,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
       BUSCAR
     
       </span>
-    </router-link>
+    </button>
   </div>
    
   <img

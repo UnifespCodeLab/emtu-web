@@ -16,6 +16,15 @@ const store = new Vuex.Store({
       actions: {
         fetchCities: () => []
       }
+    },
+    cid: {
+      namespaced: true,
+      state: {
+        cids: []
+      },
+      actions: {
+        fetchCids: () => []
+      }
     }
   }
 })
