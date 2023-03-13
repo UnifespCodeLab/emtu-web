@@ -1,20 +1,36 @@
 <template>
   <div class="search-page">
     <div class="search-page__form">
-      <v-autocomplete :items="formattedCities" label="Origem" solo />
-      <v-autocomplete :items="formattedCities" label="Destino" solo />
-      <v-select :items="['Cid 01', 'Cid 02']" label="Cid" solo />
+      <v-autocomplete
+        v-model="searchBody.originCity"
+        :items="cities"
+        label="Origem"
+        solo
+      />
+      <v-autocomplete
+        v-model="searchBody.destinationCity"
+        :items="cities"
+        label="Destino"
+        solo
+      />
+      <v-select
+        v-model="searchBody.cid"
+        :items="cids"
+        label="Cid"
+        solo
+      />
+
       <div class="search-page__time-container">
         <v-dialog
           ref="dialogTime"
           v-model="modalTime"
-          :return-value.sync="time"
+          :return-value.sync="searchBody.time"
           persistent
           width="290px"
         >
           <template #activator="{ on, attrs }">
             <v-text-field
-              v-model="time"
+              v-model="searchBody.time"
               label="Selecione o horário"
               prepend-icon="mdi-clock-time-four-outline"
               readonly
@@ -22,12 +38,12 @@
               v-on="on"
             />
           </template>
-          <v-time-picker v-if="modalTime" v-model="time" full-width>
+          <v-time-picker v-if="modalTime" v-model="searchBody.time" full-width>
             <v-spacer />
             <v-btn text color="primary" @click="modalTime = false">
               Cancelar
             </v-btn>
-            <v-btn text color="primary" @click="$refs.dialogTime.save(time)">
+            <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.time)">
               OK
             </v-btn>
           </v-time-picker>
@@ -35,13 +51,13 @@
         <v-dialog
           ref="dialogDate"
           v-model="modalDate"
-          :return-value.sync="date"
+          :return-value.sync="searchBody.date"
           persistent
           width="290px"
         >
           <template #activator="{ on, attrs }">
             <v-text-field
-              v-model="date"
+              v-model="searchBody.date"
               label="Selecione a data"
               prepend-icon="mdi-calendar"
               readonly
@@ -49,12 +65,12 @@
               v-on="on"
             />
           </template>
-          <v-date-picker v-model="date" scrollable>
+          <v-date-picker v-model="searchBody.date" scrollable>
             <v-spacer />
             <v-btn text color="primary" @click="modalDate = false">
               Cancelar
             </v-btn>
-            <v-btn text color="primary" @click="$refs.dialogDate.save(date)">
+            <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.date)">
               OK
             </v-btn>
           </v-date-picker>
@@ -74,37 +90,45 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+// import emtuApi from 'assets/services/emtu-api'
 
 export default {
   name: 'SearchPage',
   data () {
     return {
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
       modalDate: false,
-      time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-      modalTime: false
+      modalTime: false,
+      searchBody: {
+        originCity: '',
+        destinationCity: '',
+        cid: '',
+        date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+          .toISOString()
+          .substr(0, 10),
+        time: `${new Date().getHours()}:${new Date().getMinutes()}`
+      }
     }
   },
   computed: {
     ...mapState('city', ['cities']),
-    formattedCities () {
-      return this.cities.map(({ id, name }) => ({
-        text: name,
-        value: id
-      }))
-    }
+    ...mapState('cid', ['cids'])
   },
   created () {
     if (!this.cities.length) {
       this.fetchCities()
     }
+
+    if (!this.cids.length) {
+      this.fetchCids()
+    }
   },
   methods: {
     ...mapActions('city', ['fetchCities']),
+    ...mapActions('cid', ['fetchCids']),
     performSearch () {
       this.$router.push('/rotas')
+      console.log(this.searchBody)
+      // const response = await emtuApi.post('search', this.searchBody)
     }
   }
 }
