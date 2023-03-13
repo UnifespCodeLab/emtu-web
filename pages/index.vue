@@ -60,7 +60,7 @@
           </v-date-picker>
         </v-dialog>
       </div>
-      <v-btn block color="primary" elevation="2" large to="/rotas">
+      <v-btn block color="primary" elevation="2" large @click="performSearch">
         BUSCAR
       </v-btn>
     </div>
@@ -102,7 +102,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions('city', ['fetchCities'])
+    ...mapActions('city', ['fetchCities']),
+    performSearch () {
+      this.$router.push('/rotas')
+    }
   }
 }
 </script>
