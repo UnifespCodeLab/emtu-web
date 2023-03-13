@@ -28,16 +28,12 @@
           v-model="requestRouteBody.originCity"
           :items="cities"
           label="Cidade de origem"
-          item-value="id"
-          item-text="name"
           solo
         />
         <v-autocomplete
           v-model="requestRouteBody.destinationCity"
           :items="cities"
           label="Cidade de destino"
-          item-text="name"
-          item-value="id"
           solo
         />
         <v-select
@@ -45,16 +41,6 @@
           :items="cids"
           label="Cid"
           solo
-          item-text="cod"
-          item-value="id"
-          :menu-props="{
-            maxHeight: 304,
-            maxWidth: 300,
-            offsetY: true,
-            offsetOverflow: true,
-            offsetOverflowX: true,
-            transition: true
-          }"
         />
 
         <v-btn
@@ -62,7 +48,7 @@
           color="primary"
           elevation="2"
           large
-          @click="submmit()"
+          @click="submit"
         >
           enviar
         </v-btn>
@@ -109,7 +95,7 @@ export default {
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
-    submmit () {
+    submit () {
       console.log(this.requestRouteBody)
       // const response = await emtuApi.post('requestRoute')
 
