@@ -110,11 +110,11 @@ export default {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
     submmit () {
-      alert(JSON.stringify(this.requestRouteBody))
+      console.log(this.requestRouteBody)
       // const response = await emtuApi.post('requestRoute')
 
-      // this.submittedRoute = true
-      // this.hasSuccess = true
+      this.submittedRoute = true
+      this.hasSuccess = true
     }
   }
 }
