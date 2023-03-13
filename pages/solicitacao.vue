@@ -23,20 +23,46 @@
       </v-btn>
 
       <template v-else>
-        <v-text-field label="E-mail" solo />
-        <v-autocomplete :items="cities" label="Cidade de origem" solo />
-        <v-autocomplete :items="cities" label="Cidade de destino" solo />
-        <v-select :items="cidList" label="Cid" solo />
+        <v-text-field v-model="requestRouteBody.email" label="E-mail" solo />
+        <v-autocomplete
+          v-model="requestRouteBody.originCity"
+          :items="cities"
+          label="Cidade de origem"
+          item-value="id"
+          item-text="name"
+          solo
+        />
+        <v-autocomplete
+          v-model="requestRouteBody.destinationCity"
+          :items="cities"
+          label="Cidade de destino"
+          item-text="name"
+          item-value="id"
+          solo
+        />
+        <v-select
+          v-model="requestRouteBody.cid"
+          :items="cids"
+          label="Cid"
+          solo
+          item-text="cod"
+          item-value="id"
+          :menu-props="{
+            maxHeight: 304,
+            maxWidth: 300,
+            offsetY: true,
+            offsetOverflow: true,
+            offsetOverflowX: true,
+            transition: true
+          }"
+        />
 
         <v-btn
           block
           color="primary"
           elevation="2"
           large
-          @click="
-            submittedRoute = true
-            hasSuccess = true
-          "
+          @click="submmit()"
         >
           enviar
         </v-btn>
@@ -47,6 +73,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+// import emtuApi from 'assets/services/emtu-api'
 
 export default {
   name: 'ReportPage',
@@ -54,11 +81,17 @@ export default {
     return {
       hasSuccess: false,
       submittedRoute: false,
-      cidList: ['Cid 01', 'Cid 02']
+      requestRouteBody: {
+        email: '',
+        originCity: '',
+        destinationCity: '',
+        cid: ''
+      }
     }
   },
   computed: {
     ...mapState('city', ['cities']),
+    ...mapState('cid', ['cids']),
     alertMessage () {
       return this.hasSuccess
         ? 'Enviado com sucesso!'
@@ -69,9 +102,20 @@ export default {
     if (!this.cities.length) {
       this.fetchCities()
     }
+    if (!this.cids.length) {
+      this.fetchCids()
+    }
   },
   methods: {
-    ...mapActions('city', ['fetchCities'])
+    ...mapActions('city', ['fetchCities']),
+    ...mapActions('cid', ['fetchCids']),
+    submmit () {
+      console.log(this.requestRouteBody)
+      // const response = await emtuApi.post('requestRoute')
+
+      this.submittedRoute = true
+      this.hasSuccess = true
+    }
   }
 }
 </script>
