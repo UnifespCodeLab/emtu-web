@@ -23,8 +23,9 @@
       </v-btn>
 
       <template v-else>
-        <v-text-field label="E-mail" solo />
+        <v-text-field v-model="requestRouteBody.email" label="E-mail" solo />
         <v-autocomplete
+          v-model="requestRouteBody.originCity"
           :items="cities"
           label="Cidade de origem"
           item-value="id"
@@ -32,6 +33,7 @@
           solo
         />
         <v-autocomplete
+          v-model="requestRouteBody.destinationCity"
           :items="cities"
           label="Cidade de destino"
           item-text="name"
@@ -39,6 +41,7 @@
           solo
         />
         <v-select
+          v-model="requestRouteBody.cid"
           :items="cids"
           label="Cid"
           solo
@@ -59,10 +62,7 @@
           color="primary"
           elevation="2"
           large
-          @click="
-            submittedRoute = true
-            hasSuccess = true
-          "
+          @click="submmit()"
         >
           enviar
         </v-btn>
@@ -73,6 +73,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+// import emtuApi from 'assets/services/emtu-api'
 
 export default {
   name: 'ReportPage',
@@ -80,7 +81,12 @@ export default {
     return {
       hasSuccess: false,
       submittedRoute: false,
-      cidList: ['Cid 01', 'Cid 02']
+      requestRouteBody: {
+        email: '',
+        originCity: '',
+        destinationCity: '',
+        cid: ''
+      }
     }
   },
   computed: {
@@ -102,7 +108,14 @@ export default {
   },
   methods: {
     ...mapActions('city', ['fetchCities']),
-    ...mapActions('cid', ['fetchCids'])
+    ...mapActions('cid', ['fetchCids']),
+    submmit () {
+      alert(JSON.stringify(this.requestRouteBody))
+      // const response = await emtuApi.post('requestRoute')
+
+      // this.submittedRoute = true
+      // this.hasSuccess = true
+    }
   }
 }
 </script>
