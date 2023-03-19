@@ -15,7 +15,15 @@ export const actions = {
     try {
       const { data } = await emtuApi.get('/city')
 
-      commit('setCities', data)
+      const formattedCities =
+       data
+         ? data.map(({ id, name }) => ({
+           text: name,
+           value: id
+         }))
+         : []
+
+      commit('setCities', formattedCities)
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error)
