@@ -71,3 +71,5 @@ More information about the usage of this directory in [the documentation](https:
 
 Caso receber o erro "ERR_OSSL_EVP_UNSUPPORTED" execute:
 `export NODE_OPTIONS=--openssl-legacy-provider`
+
+Preciso documentar melhor
