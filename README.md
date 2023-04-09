@@ -1,27 +1,31 @@
 # emtu-web
 
-## Build Setup
+## Requisitos
+
+- [node](https://nodejs.org/en)
+- [git](https://git-scm.com/)
+
+## Clonando o repositório
 
 ```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+$ git clone https://github.com/UnifespCodeLab/emtu-web
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Setup
 
-## Special Directories
+```bash
+# instalando dependências
+$ npm install
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+# executa a aplicação no endereço localhost:3000
+$ npm run dev
+```
+
+Para mais detalhes confira a [doc](https://nuxtjs.org) do nuxt.
+
+## Desenvolvimento
+
+No nuxt apenas o diretório de `pages` é obrigatório. Os outros possuem comportamentos específicos.
 
 ### `assets`
 
@@ -67,9 +71,8 @@ This directory contains your Vuex store files. Creating a file in this directory
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
 
-### Problemas
+## Troubleshooting
 
-Caso receber o erro "ERR_OSSL_EVP_UNSUPPORTED" execute:
-`export NODE_OPTIONS=--openssl-legacy-provider`
-
-Preciso documentar melhor
+- Versão do `node`:
+  - Utilizando versões acima da <b>16</b> é possível que o erro `ERR_OSSL_EVP_UNSUPPORTED` apareça em sua tela. Como solução é possível passar uma _env_ que fará com que o projeto utilize a versão legado do _ssl provider_:
+  - Em seu terminal execute: `export NODE_OPTIONS=--openssl-legacy-provider`
