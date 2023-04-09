@@ -71,6 +71,21 @@ This directory contains your Vuex store files. Creating a file in this directory
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
 
+## Fluxo de desenvolvimento
+
+- (opcional) Dê uma olhada em como funcionam os [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Vá até o board do github e encontre o [_emtu-api_](https://github.com/orgs/UnifespCodeLab/projects/5/views/1)
+- Encontre a issue desejada
+- Atribua a si mesmo
+- Mude para a coluna _In Progress_
+- Com o projeto já clonado em sua pasta desejada, crie uma branch baseada no que está fazendo. Por exemplo:
+  - `git checkout -b issue-10`
+- Uma boa prática é sempre deixar seus commits o mais '_atômicos_' possível
+- Quando todo o desenvolvimento estiver finalizado abra um [pull request](https://github.com/UnifespCodeLab/emtu-api/compare). Lembrando precisa ser nesse sentido: `base: main` <- `compare: issue-10`
+- Marque os revisores para que os mesmos recebam notificação e revisem o seu pr
+- Vincule a issue aberta com o seu pr
+- Corra pro abraço
+
 ## Troubleshooting
 
 - Versão do `node`:
