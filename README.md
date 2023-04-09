@@ -74,7 +74,7 @@ More information about the usage of this directory in [the documentation](https:
 ## Fluxo de desenvolvimento
 
 - (opcional) Dê uma olhada em como funcionam os [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- Vá até o board do github e encontre o [_emtu-api_](https://github.com/orgs/UnifespCodeLab/projects/5/views/1)
+- Vá até o board do github e encontre o [_emtu-web_](https://github.com/orgs/UnifespCodeLab/projects/4)
 - Encontre a issue desejada
 - Atribua a si mesmo
 - Mude para a coluna _In Progress_
