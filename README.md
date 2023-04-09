@@ -23,7 +23,7 @@ $ npm run dev
 
 Para mais detalhes confira a [doc](https://nuxtjs.org) do nuxt.
 
-## Desenvolvimento
+## Sobre o estruturamento do projeto
 
 No nuxt apenas o diretório de `pages` é obrigatório. Os outros possuem comportamentos específicos.
 
