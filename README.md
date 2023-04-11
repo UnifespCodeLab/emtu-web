@@ -1,27 +1,31 @@
 # emtu-web
 
-## Build Setup
+## Requisitos
+
+- [node](https://nodejs.org/en)
+- [git](https://git-scm.com/)
+
+## Clonando o repositório
 
 ```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+$ git clone https://github.com/UnifespCodeLab/emtu-web
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Setup
 
-## Special Directories
+```bash
+# instalando dependências
+$ npm install
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+# executa a aplicação no endereço localhost:3000
+$ npm run dev
+```
+
+Para mais detalhes confira a [doc](https://nuxtjs.org) do nuxt.
+
+## Sobre o estruturamento do projeto
+
+No nuxt apenas o diretório de `pages` é obrigatório. Os outros possuem comportamentos específicos.
 
 ### `assets`
 
@@ -67,7 +71,23 @@ This directory contains your Vuex store files. Creating a file in this directory
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
 
-### Problemas
+## Fluxo de desenvolvimento
 
-Caso receber o erro "ERR_OSSL_EVP_UNSUPPORTED" execute:
-`export NODE_OPTIONS=--openssl-legacy-provider`
+- (opcional) Dê uma olhada em como funcionam os [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Vá até o board do github e encontre o [_emtu-web_](https://github.com/orgs/UnifespCodeLab/projects/4)
+- Encontre a issue desejada
+- Atribua a si mesmo
+- Mude para a coluna _In Progress_
+- Com o projeto já clonado em sua pasta desejada, crie uma branch baseada no que está fazendo. Por exemplo:
+  - `git checkout -b issue-10`
+- Uma boa prática é sempre deixar seus commits o mais '_atômicos_' possível
+- Quando todo o desenvolvimento estiver finalizado abra um [pull request](https://github.com/UnifespCodeLab/emtu-api/compare). Lembrando precisa ser nesse sentido: `base: main` <- `compare: issue-10`
+- Marque os revisores para que os mesmos recebam notificação e revisem o seu pr
+- Vincule a issue aberta com o seu pr
+- Corra pro abraço
+
+## Troubleshooting
+
+- Versão do `node`:
+  - Utilizando versões acima da <b>16</b> é possível que o erro `ERR_OSSL_EVP_UNSUPPORTED` apareça em sua tela. Como solução é possível passar uma _env_ que fará com que o projeto utilize a versão legado do _ssl provider_:
+  - Em seu terminal execute: `export NODE_OPTIONS=--openssl-legacy-provider`
