@@ -142,6 +142,7 @@ export default {
   justify-content: center;
   @media (min-width: 1200px) {
     justify-content: space-between;
+    height: 100%;
   }
 }
 .search-page__form {
@@ -158,6 +159,7 @@ export default {
   @media (min-width: 1200px) {
     display: flex;
     max-width: 800px;
+    height: 100%;
     object-fit: cover;
   }
 }
