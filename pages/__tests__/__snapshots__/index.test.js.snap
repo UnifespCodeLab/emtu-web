@@ -340,7 +340,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
     </div>
      
     <button
-      class="search-page__submit v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
+      class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
       type="button"
     >
       <span
