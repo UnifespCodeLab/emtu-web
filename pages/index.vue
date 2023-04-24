@@ -32,13 +32,13 @@
             <v-text-field
               v-model="searchBody.horaViagem"
               label="Selecione o horário"
-              prepend-icon="mdi-clock-horaViagem-four-outline"
+              prepend-icon="mdi-clock-time-four-outline"
               readonly
               v-bind="attrs"
               v-on="on"
             />
           </template>
-          <v-horaViagem-picker v-if="modalTime" v-model="searchBody.horaViagem" full-width>
+          <v-time-picker v-if="modalTime" v-model="searchBody.horaViagem" full-width>
             <v-spacer />
             <v-btn text color="primary" @click="modalTime = false">
               Cancelar
@@ -46,7 +46,7 @@
             <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.horaViagem)">
               OK
             </v-btn>
-          </v-horaViagem-picker>
+          </v-time-picker>
         </v-dialog>
         <v-dialog
           ref="dialogDate"
@@ -65,7 +65,7 @@
               v-on="on"
             />
           </template>
-          <v-dataViagem-picker v-model="searchBody.dataViagem" scrollable>
+          <v-date-picker v-model="searchBody.dataViagem" scrollable>
             <v-spacer />
             <v-btn text color="primary" @click="modalDate = false">
               Cancelar
@@ -73,7 +73,7 @@
             <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.dataViagem)">
               OK
             </v-btn>
-          </v-dataViagem-picker>
+          </v-date-picker>
         </v-dialog>
       </div>
       <v-btn block color="primary" elevation="2" large @click="performSearch">
