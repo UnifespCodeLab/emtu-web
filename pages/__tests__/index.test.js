@@ -66,11 +66,11 @@ describe('Pages / SearchPage', () => {
     beforeEach(() => {
       wrapper.setData({
         searchBody: {
-          originCity: 1,
-          destinationCity: 2,
-          cid: 3,
-          date: '2023-10-22',
-          time: '21:45'
+          idCidadeOrigem: 1,
+          idCidadeDestino: 2,
+          idCid: 3,
+          dataViagem: '2023-10-22',
+          horaViagem: '21:45'
         }
       })
 

@@ -225,7 +225,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
           >
             <i
               aria-hidden="true"
-              class="v-icon notranslate mdi mdi-clock-time-four-outline theme--light"
+              class="v-icon notranslate mdi mdi-clock-horaViagem-four-outline theme--light"
             />
           </div>
         </div>
