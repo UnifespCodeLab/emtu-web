@@ -2,19 +2,19 @@
   <div class="search-page">
     <div class="search-page__form">
       <v-autocomplete
-        v-model="searchBody.originCity"
+        v-model="searchBody.idCidadeOrigem"
         :items="cities"
         label="Origem"
         solo
       />
       <v-autocomplete
-        v-model="searchBody.destinationCity"
+        v-model="searchBody.idCidadeDestino"
         :items="cities"
         label="Destino"
         solo
       />
       <v-select
-        v-model="searchBody.cid"
+        v-model="searchBody.idCid"
         :items="cids"
         label="Cid"
         solo
@@ -24,13 +24,13 @@
         <v-dialog
           ref="dialogTime"
           v-model="modalTime"
-          :return-value.sync="searchBody.time"
+          :return-value.sync="searchBody.horaViagem"
           persistent
           width="290px"
         >
           <template #activator="{ on, attrs }">
             <v-text-field
-              v-model="searchBody.time"
+              v-model="searchBody.horaViagem"
               label="Selecione o horário"
               prepend-icon="mdi-clock-time-four-outline"
               readonly
@@ -38,12 +38,12 @@
               v-on="on"
             />
           </template>
-          <v-time-picker v-if="modalTime" v-model="searchBody.time" full-width>
+          <v-time-picker v-if="modalTime" v-model="searchBody.horaViagem" full-width>
             <v-spacer />
             <v-btn text color="primary" @click="modalTime = false">
               Cancelar
             </v-btn>
-            <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.time)">
+            <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.horaViagem)">
               OK
             </v-btn>
           </v-time-picker>
@@ -51,13 +51,13 @@
         <v-dialog
           ref="dialogDate"
           v-model="modalDate"
-          :return-value.sync="searchBody.date"
+          :return-value.sync="searchBody.dataViagem"
           persistent
           width="290px"
         >
           <template #activator="{ on, attrs }">
             <v-text-field
-              v-model="searchBody.date"
+              v-model="searchBody.dataViagem"
               label="Selecione a data"
               prepend-icon="mdi-calendar"
               readonly
@@ -65,12 +65,12 @@
               v-on="on"
             />
           </template>
-          <v-date-picker v-model="searchBody.date" scrollable>
+          <v-date-picker v-model="searchBody.dataViagem" scrollable>
             <v-spacer />
             <v-btn text color="primary" @click="modalDate = false">
               Cancelar
             </v-btn>
-            <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.date)">
+            <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.dataViagem)">
               OK
             </v-btn>
           </v-date-picker>
@@ -90,7 +90,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-// import emtuApi from 'assets/services/emtu-api'
+import emtuApi from '~/assets/services/emtu-api'
 
 export default {
   name: 'SearchPage',
@@ -99,13 +99,13 @@ export default {
       modalDate: false,
       modalTime: false,
       searchBody: {
-        originCity: '',
-        destinationCity: '',
-        cid: '',
-        date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        idCidadeOrigem: null,
+        idCidadeDestino: null,
+        idCid: null,
+        dataViagem: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
           .toISOString()
           .substr(0, 10),
-        time: `${new Date().getHours()}:${new Date().getMinutes()}`
+        horaViagem: `${new Date().getHours()}:${new Date().getMinutes()}`
       }
     }
   },
@@ -125,10 +125,15 @@ export default {
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
-    performSearch () {
+    async performSearch () {
       this.$router.push('/rotas')
-      console.log(this.searchBody)
-      // const response = await emtuApi.post('search', this.searchBody)
+
+      try {
+        await emtuApi.post('searches', this.searchBody)
+      } catch (_err) {
+        // eslint-disable-next-line no-console
+        console.error('Falha ao salvar busca no banco de dados!')
+      }
     }
   }
 }
