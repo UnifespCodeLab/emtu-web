@@ -1,4 +1,4 @@
-import emtuApi from 'assets/services/emtu-api'
+import emtuApi from '~/assets/services/emtu-api'
 
 export const state = () => ({
   busRoutes: []
@@ -11,10 +11,11 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchBusRoutes ({ commit }, searchBody) {
+  async fetchBusRoutes ({ commit, dispatch }, searchBody) {
+    await dispatch('saveSearch', searchBody)
+
     try {
       const { data } = await emtuApi.post('/bus', searchBody)
-
       const formattedResult = []
 
       data.forEach((line) => {
@@ -36,6 +37,22 @@ export const actions = {
       // eslint-disable-next-line no-console
       console.error(error)
       commit('setBusRoutes', null)
+    }
+  },
+  async saveSearch ({ commit }, searchBody) {
+    try {
+      const { originCityId, destinationCityId, cid, data: dataInput, hora } = searchBody
+
+      await emtuApi.post('searches', {
+        idCidadeOrigem: originCityId,
+        idCidadeDestino: destinationCityId,
+        idCid: cid,
+        dataViagem: dataInput,
+        horaViagem: hora
+      })
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error('Falha ao salvar busca no banco de dados!')
     }
   }
 }
