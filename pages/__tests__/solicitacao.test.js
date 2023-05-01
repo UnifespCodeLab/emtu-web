@@ -1,12 +1,13 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
-import Vuex from 'vuex'
+import Vuex, { Store } from 'vuex'
 import ReportPage from '~/pages/solicitacao'
+import emtuApi from '~/assets/services/emtu-api'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-const store = new Vuex.Store({
+const store = new Store({
   modules: {
     city: {
       namespaced: true,
@@ -59,9 +60,38 @@ describe('Pages / ReportPage', () => {
   })
 
   describe('when user clicks in submit', () => {
+    beforeAll(() => {
+      emtuApi.post = jest.fn(() => Promise.resolve({}))
+    })
+
     beforeEach(() => {
+      wrapper.setData({
+        reportData: {
+          email: 'test@mail.com',
+          originCityId: 1,
+          destinationCityId: 2,
+          cidId: 3
+        }
+      })
+
       const submitButton = wrapper.findAllComponents({ name: 'v-btn' }).at(1)
       submitButton.trigger('click')
+    })
+
+    it('calls emtu-api to save report', () => {
+      expect(emtuApi.post).toHaveBeenCalledWith('reports', {
+        email: 'test@mail.com',
+        idCidadeOrigem: 1,
+        idCidadeDestino: 2,
+        idCid: 3
+      })
+    })
+
+    it('shows alert with success message', () => {
+      const alert = wrapper.findComponent({ name: 'v-alert' })
+
+      expect(alert.text()).toBe('Solicitação enviada com sucesso!')
+      expect(alert.props('type')).toBe('success')
     })
 
     it('should render updated page', () => {
@@ -74,6 +104,35 @@ describe('Pages / ReportPage', () => {
 
       expect(alert.props('value')).toBe(true)
       expect(homeButton.text()).toBe('voltar para home')
+    })
+
+    describe('when report creation goes wrong', () => {
+      describe('and a custom error message is present', () => {
+        beforeAll(() => {
+          // eslint-disable-next-line prefer-promise-reject-errors
+          emtuApi.post = jest.fn(() => Promise.reject({ response: { data: { message: 'Deu Ruim' } } }))
+        })
+
+        it('shows alert with custom error message', () => {
+          const alert = wrapper.findComponent({ name: 'v-alert' })
+
+          expect(alert.text()).toBe('Deu Ruim')
+          expect(alert.props('type')).toBe('error')
+        })
+      })
+
+      describe('and a custom error message is not present', () => {
+        beforeAll(() => {
+          emtuApi.post = jest.fn(() => Promise.reject(Error))
+        })
+
+        it('shows alert with default error message', () => {
+          const alert = wrapper.findComponent({ name: 'v-alert' })
+
+          expect(alert.text()).toBe('Ocorreu um erro ao enviar a solicitação')
+          expect(alert.props('type')).toBe('error')
+        })
+      })
     })
   })
 })
