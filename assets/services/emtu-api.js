@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const apiHost = 'http://localhost:3333'
+export const apiHost = process.env.EMTU_API || 'http://localhost:3333'
 
 const axiosClient = axios.create({
   baseURL: apiHost,
