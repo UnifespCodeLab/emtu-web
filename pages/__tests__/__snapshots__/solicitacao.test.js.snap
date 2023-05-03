@@ -24,7 +24,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
           class="v-alert__content"
         >
           
-    Erro ao enviar. Tente mais tarde.
+    
   
         </div>
         <button
@@ -333,7 +333,7 @@ exports[`Pages / ReportPage when user clicks in submit should render updated pag
           class="v-alert__content"
         >
           
-    Enviado com sucesso!
+    Solicitação enviada com sucesso!
   
         </div>
         <button
