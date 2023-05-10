@@ -81,11 +81,6 @@
           BUSCAR
         </v-btn>
       </div>
-      <img
-        class="search-page__image"
-        src="~/assets/images/woman-hitchhiking.jpg"
-        alt="woman-hitchhiking"
-      >
     </div>
 
     <v-alert
@@ -167,6 +162,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-page {
+  margin-top: 50px;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -182,16 +178,8 @@ export default {
   margin-top: 82px;
   width: 300px;
   @media (min-width: 1200px) {
+    justify-content: center;
     margin: auto;
-  }
-}
-.search-page__image {
-  display: none;
-  @media (min-width: 1200px) {
-    display: flex;
-    max-width: 800px;
-    height: 100%;
-    object-fit: cover;
   }
 }
 .search-page__time-container {
