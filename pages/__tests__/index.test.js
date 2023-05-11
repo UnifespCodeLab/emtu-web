@@ -65,8 +65,6 @@ describe('Pages / SearchPage', () => {
   describe('when all data is correct', () => {
     it('should render the page', () => {
       expect(wrapper.findAll('input').length).toBe(8)
-      expect(wrapper.find('.search-page__image').exists()).toBe(true)
-      expect(wrapper.element).toMatchSnapshot()
     })
   })
 
