@@ -39,7 +39,11 @@
           <v-carousel-item>
             <img src="../assets/images/about-us-image2.png">
           </v-carousel-item>
+          <v-carousel-item>
+            <img src="../assets/images/about-us-image3.jpg">
+          </v-carousel-item>
         </v-carousel>
+        <legend>Equipes de 2019 e 2022.</legend>
         <span>
           "A extensão universitária tem de se aproximar mais de sua comunidade visando a
           ampliação do conhecimento e automatização de suas tarefas."
@@ -148,6 +152,13 @@ $color-primary: #1976d2;
         width: 100%;
         height: 100%;
         object-fit: contain;
+      }
+
+      legend {
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
       }
 
       span {
