@@ -14,7 +14,7 @@
           parceira deste projeto de extensão.
         </p>
         <p class="about-us__container-content-paragraph">
-          O software  relaciona os CID dos passageiros PcD com suas necessidades
+          O software  relaciona os CID (Código Internacional de Doenças) dos passageiros PcD com suas necessidades
           em termos de adequações nos veículos de transporte e a própria oferta do transporte
           público metropolitano. Espera-se que o software desenvolvido seja capaz de orientar o usuário no seu dia-a-dia,
           assim como gere informações para que a empresa possa atendê-lo da melhor forma possível.
