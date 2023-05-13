@@ -64,6 +64,7 @@ describe('Pages / SearchPage', () => {
 
   describe('when all data is correct', () => {
     it('should render the page', () => {
+      expect(wrapper.element).toMatchSnapshot()
       expect(wrapper.findAll('input').length).toBe(8)
     })
   })

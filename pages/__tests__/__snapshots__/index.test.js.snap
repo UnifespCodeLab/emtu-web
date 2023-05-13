@@ -73,7 +73,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
           </div>
         </div>
       </div>
-
+       
       <div
         class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
       >
@@ -139,7 +139,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
           </div>
         </div>
       </div>
-
+       
       <div
         class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
       >
@@ -205,7 +205,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
           </div>
         </div>
       </div>
-
+       
       <div
         class="search-page__time-container"
       >
@@ -270,7 +270,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
         >
           <!---->
         </div>
-
+         
         <div
           class="v-dialog__container"
         >
@@ -333,7 +333,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
           </div>
         </div>
       </div>
-
+       
       <button
         class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
         type="button"
@@ -341,14 +341,14 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
         <span
           class="v-btn__content"
         >
-
+          
         BUSCAR
-
+      
         </span>
       </button>
     </div>
   </div>
-
+   
   <transition-stub
     class="search-page__alert"
     name="scale-transition"
@@ -368,9 +368,9 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
         <div
           class="v-alert__content"
         >
-
+          
     Não foi possível realizar a busca, tente novamente.
-
+  
         </div>
         <button
           aria-label="Close"
