@@ -2,19 +2,19 @@
   <div class="search-page">
     <div class="search-page__form">
       <v-autocomplete
-        v-model="searchBody.idCidadeOrigem"
+        v-model="searchBody.originCityId"
         :items="cities"
         label="Origem"
         solo
       />
       <v-autocomplete
-        v-model="searchBody.idCidadeDestino"
+        v-model="searchBody.destinationCityId"
         :items="cities"
         label="Destino"
         solo
       />
-      <v-select
-        v-model="searchBody.idCid"
+      <v-autocomplete
+        v-model="searchBody.cid"
         :items="cids"
         label="Cid"
         solo
@@ -24,13 +24,13 @@
         <v-dialog
           ref="dialogTime"
           v-model="modalTime"
-          :return-value.sync="searchBody.horaViagem"
+          :return-value.sync="searchBody.hora"
           persistent
           width="290px"
         >
           <template #activator="{ on, attrs }">
             <v-text-field
-              v-model="searchBody.horaViagem"
+              v-model="searchBody.hora"
               label="Selecione o horário"
               prepend-icon="mdi-clock-time-four-outline"
               readonly
@@ -38,12 +38,12 @@
               v-on="on"
             />
           </template>
-          <v-time-picker v-if="modalTime" v-model="searchBody.horaViagem" full-width>
+          <v-time-picker v-if="modalTime" v-model="searchBody.hora" full-width>
             <v-spacer />
             <v-btn text color="primary" @click="modalTime = false">
               Cancelar
             </v-btn>
-            <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.horaViagem)">
+            <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.hora)">
               OK
             </v-btn>
           </v-time-picker>
@@ -51,13 +51,13 @@
         <v-dialog
           ref="dialogDate"
           v-model="modalDate"
-          :return-value.sync="searchBody.dataViagem"
+          :return-value.sync="searchBody.data"
           persistent
           width="290px"
         >
           <template #activator="{ on, attrs }">
             <v-text-field
-              v-model="searchBody.dataViagem"
+              v-model="searchBody.data"
               label="Selecione a data"
               prepend-icon="mdi-calendar"
               readonly
@@ -65,12 +65,12 @@
               v-on="on"
             />
           </template>
-          <v-date-picker v-model="searchBody.dataViagem" scrollable>
+          <v-date-picker v-model="searchBody.data" scrollable>
             <v-spacer />
             <v-btn text color="primary" @click="modalDate = false">
               Cancelar
             </v-btn>
-            <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.dataViagem)">
+            <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.data)">
               OK
             </v-btn>
           </v-date-picker>
@@ -80,38 +80,51 @@
         BUSCAR
       </v-btn>
     </div>
-    <img
-      class="search-page__image"
-      src="~/assets/images/woman-hitchhiking.jpg"
-      alt="woman-hitchhiking"
+
+    <v-alert
+      class="search-page__alert"
+      dismissible
+      transition="scale-transition"
+      :type="alertType"
+      :value="hasError"
     >
+      {{ alertMessage }}
+    </v-alert>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import emtuApi from '~/assets/services/emtu-api'
 
 export default {
   name: 'SearchPage',
   data () {
     return {
+      alertType: 'error',
+      hasError: false,
       modalDate: false,
       modalTime: false,
       searchBody: {
-        idCidadeOrigem: null,
-        idCidadeDestino: null,
-        idCid: null,
-        dataViagem: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        originCityId: '',
+        destinationCityId: '',
+        cid: '',
+        data: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
           .toISOString()
           .substr(0, 10),
-        horaViagem: `${new Date().getHours()}:${new Date().getMinutes()}`
+        hora: `${new Date().getHours()}:${new Date().getMinutes()}`
       }
     }
   },
   computed: {
     ...mapState('city', ['cities']),
-    ...mapState('cid', ['cids'])
+    ...mapState('cid', ['cids']),
+    ...mapState('bus', ['busRoutes']),
+    alertMessage () {
+      return {
+        error: 'Não foi possível realizar a busca, tente novamente.',
+        warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
+      }[this.alertType]
+    }
   },
   created () {
     if (!this.cities.length) {
@@ -125,14 +138,20 @@ export default {
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
+    ...mapActions('bus', ['fetchBusRoutes']),
     async performSearch () {
-      this.$router.push('/rotas')
+      this.hasError = false
 
-      try {
-        await emtuApi.post('searches', this.searchBody)
-      } catch (_err) {
-        // eslint-disable-next-line no-console
-        console.error('Falha ao salvar busca no banco de dados!')
+      await this.fetchBusRoutes(this.searchBody)
+
+      if (!this.busRoutes) {
+        this.hasError = true
+        this.alertType = 'error'
+      } else if (this.busRoutes.length === 0) {
+        this.hasError = true
+        this.alertType = 'warning'
+      } else {
+        this.$router.push('/rotas')
       }
     }
   }
@@ -141,6 +160,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-page {
+  margin-top: 50px;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -156,16 +176,8 @@ export default {
   margin-top: 82px;
   width: 300px;
   @media (min-width: 1200px) {
+    justify-content: center;
     margin: auto;
-  }
-}
-.search-page__image {
-  display: none;
-  @media (min-width: 1200px) {
-    display: flex;
-    max-width: 800px;
-    height: 100%;
-    object-fit: cover;
   }
 }
 .search-page__time-container {
@@ -173,5 +185,15 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+}
+
+.search-page__alert {
+  margin: 20px;
+  width: -webkit-fill-available;
+
+  @media (min-width: 800px) {
+    margin: 20px auto;
+    width: 700px;
+  }
 }
 </style>

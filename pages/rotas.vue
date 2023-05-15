@@ -1,36 +1,52 @@
 <template>
-  <div v-if="cidsRoutes" class="routes-page__container">
+  <div v-if="busRoutes.length" class="routes-page__container">
     <div class="routes-page__chips-container">
       <v-chip
-        v-for="(item, index) in cidsRoutes"
+        v-for="(item, index) in busRoutes"
         :key="index"
         class="routes-page__chip"
         close
         close-icon="mdi-close"
-        :color="item.color"
+        :color="colors[index]"
         text-color="white"
-        @click="updateSelectedCidRoute(index)"
+        @click="selectedCid = index"
       >
-        {{ index }}
+        {{ item.group }}
       </v-chip>
     </div>
     <div class="routes-page__steps">
-      <v-carousel v-model="model">
+      <v-carousel v-model="selectedCidRoute">
         <v-carousel-item
-          v-for="(route, index) in cidsRoutes[selectedCidRoute].routes"
+          v-for="(route, index) in busRoutes[selectedCid].routes"
           :key="index"
         >
-          <v-card class="routes-page__card" height="90%">
+          <v-card class="routes-page__card" height="100%">
             <v-card-text>
               <div class="font-weight-bold ml-8 mb-2">
-                Itinerário {{ index + 1 }}
+                Itinerário {{ route.code }}
+              </div>
+
+              <div class="font-weight-bold ml-8 mb-2">
+                {{ route.origin }} - {{ route.destination }}
+              </div>
+
+              <div class="font-weight-bold ml-8 mb-2">
+                Horários:
+              </div>
+
+              <div class="ml-8 mb-2">
+                {{ getLineHours(route.lineHours) }}
+              </div>
+
+              <div class="font-weight-bold ml-8 mb-2">
+                Pontos:
               </div>
 
               <v-timeline align-top dense>
                 <v-timeline-item
-                  v-for="(step, indexStep) in route"
+                  v-for="(step, indexStep) in route.points"
                   :key="indexStep"
-                  :color="cidsRoutes[selectedCidRoute].color"
+                  :color="colors[selectedCid]"
                   small
                 >
                   <div>
@@ -50,33 +66,35 @@
 </template>
 
 <script>
-import api from './mockApi.json'
+import { mapState } from 'vuex'
 
 export default {
   name: 'RoutesPage',
   data () {
     return {
-      cidsRoutes: null,
+      colors: ['blue', 'red', 'yellow'],
+      selectedCid: 0,
+      selectedCidRoute: 0,
       model: 0
     }
   },
-
-  async fetch () {
-    this.cidsRoutes = await api
-    this.selectedCidRoute = Object.keys(this.cidsRoutes)[0]
+  computed: {
+    ...mapState('bus', ['busRoutes'])
   },
-
   methods: {
-    updateSelectedCidRoute (index) {
-      this.selectedCidRoute = index
-      this.model = 0
-      this.model = 1
-      this.model = 0
-      // Até o momento o único jeito que encontrei de fazer o componente atualuzar para o slide certo
+    getLineHours (lineHours) {
+      return lineHours.map(date =>
+        this.formatHour(new Date(date).toTimeString())
+      ).join(' - ')
     },
 
-    randomColor () {
-      return this.colors[Math.floor(Math.random() * this.colors.length)]
+    formatHour (hour) {
+      // Input example: 21:50:00 GMT-0200 (Brasilia Summer Time)
+      // Output: 21:50
+
+      return hour.split(' ')[0]
+        .split(':').splice(0, 2)
+        .join(':')
     }
   }
 }
@@ -89,8 +107,6 @@ export default {
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  margin-top: 16px;
-  padding: 0 5px;
 
   @media (min-width: 800px) {
     justify-content: center;
@@ -104,10 +120,9 @@ export default {
 .routes-page__steps {
   width: 360px;
   margin-top: 16px;
-  margin-bottom: 16px;
 
   @media (min-width: 800px) {
-    width: 600px;
+    width: 700px;
   }
 }
 
