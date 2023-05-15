@@ -1,91 +1,84 @@
 <template>
-  <div>
-    <div class="search-page">
-      <div class="search-page__form">
-        <v-autocomplete
-          v-model="searchBody.originCityId"
-          :items="cities"
-          label="Origem"
-          solo
-        />
-        <v-autocomplete
-          v-model="searchBody.destinationCityId"
-          :items="cities"
-          label="Destino"
-          solo
-        />
-        <v-autocomplete
-          v-model="searchBody.cid"
-          :items="cids"
-          label="Cid"
-          solo
-        />
+  <div class="search-page">
+    <div class="search-page__form">
+      <v-autocomplete
+        v-model="searchBody.originCityId"
+        :items="cities"
+        label="Origem"
+        solo
+      />
+      <v-autocomplete
+        v-model="searchBody.destinationCityId"
+        :items="cities"
+        label="Destino"
+        solo
+      />
+      <v-autocomplete
+        v-model="searchBody.cid"
+        :items="cids"
+        label="Cid"
+        solo
+      />
 
-        <div class="search-page__time-container">
-          <v-dialog
-            ref="dialogTime"
-            v-model="modalTime"
-            :return-value.sync="searchBody.hora"
-            persistent
-            width="290px"
-          >
-            <template #activator="{ on, attrs }">
-              <v-text-field
-                v-model="searchBody.hora"
-                label="Selecione o horário"
-                prepend-icon="mdi-clock-time-four-outline"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-              />
-            </template>
-            <v-time-picker v-if="modalTime" v-model="searchBody.hora" full-width>
-              <v-spacer />
-              <v-btn text color="primary" @click="modalTime = false">
-                Cancelar
-              </v-btn>
-              <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.hora)">
-                OK
-              </v-btn>
-            </v-time-picker>
-          </v-dialog>
-          <v-dialog
-            ref="dialogDate"
-            v-model="modalDate"
-            :return-value.sync="searchBody.data"
-            persistent
-            width="290px"
-          >
-            <template #activator="{ on, attrs }">
-              <v-text-field
-                v-model="searchBody.data"
-                label="Selecione a data"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-              />
-            </template>
-            <v-date-picker v-model="searchBody.data" scrollable>
-              <v-spacer />
-              <v-btn text color="primary" @click="modalDate = false">
-                Cancelar
-              </v-btn>
-              <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.data)">
-                OK
-              </v-btn>
-            </v-date-picker>
-          </v-dialog>
-        </div>
-        <v-btn block color="primary" elevation="2" large @click="performSearch">
-          BUSCAR
-        </v-btn>
+      <div class="search-page__time-container">
+        <v-dialog
+          ref="dialogTime"
+          v-model="modalTime"
+          :return-value.sync="searchBody.hora"
+          persistent
+          width="290px"
+        >
+          <template #activator="{ on, attrs }">
+            <v-text-field
+              v-model="searchBody.hora"
+              label="Selecione o horário"
+              prepend-icon="mdi-clock-time-four-outline"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            />
+          </template>
+          <v-time-picker v-if="modalTime" v-model="searchBody.hora" full-width>
+            <v-spacer />
+            <v-btn text color="primary" @click="modalTime = false">
+              Cancelar
+            </v-btn>
+            <v-btn text color="primary" @click="$refs.dialogTime.save(searchBody.hora)">
+              OK
+            </v-btn>
+          </v-time-picker>
+        </v-dialog>
+        <v-dialog
+          ref="dialogDate"
+          v-model="modalDate"
+          :return-value.sync="searchBody.data"
+          persistent
+          width="290px"
+        >
+          <template #activator="{ on, attrs }">
+            <v-text-field
+              v-model="searchBody.data"
+              label="Selecione a data"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            />
+          </template>
+          <v-date-picker v-model="searchBody.data" scrollable>
+            <v-spacer />
+            <v-btn text color="primary" @click="modalDate = false">
+              Cancelar
+            </v-btn>
+            <v-btn text color="primary" @click="$refs.dialogDate.save(searchBody.data)">
+              OK
+            </v-btn>
+          </v-date-picker>
+        </v-dialog>
       </div>
-      <img
-        class="search-page__image"
-        src="~/assets/images/woman-hitchhiking.jpg"
-        alt="woman-hitchhiking"
-      >
+      <v-btn block color="primary" elevation="2" large @click="performSearch">
+        BUSCAR
+      </v-btn>
     </div>
 
     <v-alert
@@ -167,6 +160,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-page {
+  margin-top: 50px;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -182,16 +176,8 @@ export default {
   margin-top: 82px;
   width: 300px;
   @media (min-width: 1200px) {
+    justify-content: center;
     margin: auto;
-  }
-}
-.search-page__image {
-  display: none;
-  @media (min-width: 1200px) {
-    display: flex;
-    max-width: 800px;
-    height: 100%;
-    object-fit: cover;
   }
 }
 .search-page__time-container {
