@@ -20,7 +20,7 @@
     "@nuxtjs/vuetify": "^1.12.3",
     "apexcharts": "^3.35.5",
     "bdd-lazy-var": "^2.6.1",
-    "core-js": "^3.19.3",
+    "core-js": "^3.30.2",
     "jest-jasmine2": "^29.0.1",
     "nuxt": "^2.15.8",
     "sass": "^1.54.3",
