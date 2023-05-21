@@ -1,10 +1,8 @@
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 import Vuex, { Store } from 'vuex'
 import RoutesPage from '~/pages/rotas.vue'
 import * as bus from '~/store/bus'
-
-jest.requireActual('~/assets/services/emtu-api')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -28,12 +26,42 @@ describe('Pages / RoutesPage', () => {
     wrapper = mount(RoutesPage, {
       localVue,
       vuetify,
-      store
+      store,
+      stubs: {
+        'router-link': RouterLinkStub
+      }
     })
   })
 
   describe('when all data is correct', () => {
+    beforeEach(() => {
+      store.commit('bus/setBusRoutes', [{
+        group: 'G1',
+        routes: [{
+          code: '244',
+          destination: 'COTIA (RODOVIA RAPOSO TAVARES - KM 21)',
+          origin: 'OSASCO (CENTRO)',
+          points: [],
+          lineHours: [
+            '1999-01-01T14:16:00.000Z',
+            '1999-01-01T14:50:00.000Z',
+            '1999-01-01T15:16:00.000Z'
+          ]
+        }]
+      }])
+    })
+
     it('should render the page', () => {
+      expect(wrapper.element).toMatchSnapshot()
+    })
+  })
+
+  describe('when busRoutes is empty', () => {
+    beforeEach(() => {
+      store.commit('bus/setBusRoutes', [])
+    })
+
+    it('should render the page with empty state message', () => {
       expect(wrapper.element).toMatchSnapshot()
     })
   })
