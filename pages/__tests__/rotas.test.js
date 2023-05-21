@@ -3,6 +3,7 @@ import Vuetify from 'vuetify'
 import Vuex, { Store } from 'vuex'
 import RoutesPage from '~/pages/rotas.vue'
 import * as bus from '~/store/bus'
+import 'core-js'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)

@@ -102,15 +102,16 @@ export default {
   methods: {
     getLineHours (lineHours) {
       return lineHours.map(date =>
-        this.formatHour(new Date(date).toTimeString())
+        this.formatHour(new Date(date).toUTCString())
       ).join(' - ')
     },
 
     formatHour (hour) {
-      // Input example: 21:50:00 GMT-0200 (Brasilia Summer Time)
-      // Output: 21:50
+      // Input example: Fri, 01 Jan 1999 14:16:00 GMT
+      // Output: 14:16
+      // After slit, -2 gets the penultimate value
 
-      return hour.split(' ')[0]
+      return hour.split(' ').at(-2)
         .split(':').splice(0, 2)
         .join(':')
     }
