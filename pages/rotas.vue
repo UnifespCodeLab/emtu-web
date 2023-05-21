@@ -1,66 +1,84 @@
 <template>
-  <div v-if="busRoutes.length" class="routes-page__container">
-    <div class="routes-page__chips-container">
-      <v-chip
-        v-for="(item, index) in busRoutes"
-        :key="index"
-        class="routes-page__chip"
-        close
-        close-icon="mdi-close"
-        :color="colors[index]"
-        text-color="white"
-        @click="selectedCid = index"
-      >
-        {{ item.group }}
-      </v-chip>
-    </div>
-    <div class="routes-page__steps">
-      <v-carousel v-model="selectedCidRoute">
-        <v-carousel-item
-          v-for="(route, index) in busRoutes[selectedCid].routes"
+  <div class="routes-page__container">
+    <template v-if="busRoutes.length">
+      <div class="routes-page__chips-container">
+        <v-chip
+          v-for="(item, index) in busRoutes"
           :key="index"
+          class="routes-page__chip"
+          close
+          close-icon="mdi-close"
+          :color="colors[index]"
+          text-color="white"
+          @click="selectedCid = index"
         >
-          <v-card class="routes-page__card" height="100%">
-            <v-card-text>
-              <div class="font-weight-bold ml-8 mb-2">
-                Itinerário {{ route.code }}
-              </div>
+          {{ item.group }}
+        </v-chip>
+      </div>
+      <div class="routes-page__steps">
+        <v-carousel v-model="selectedCidRoute">
+          <v-carousel-item
+            v-for="(route, index) in busRoutes[selectedCid].routes"
+            :key="index"
+          >
+            <v-card class="routes-page__card" height="100%">
+              <v-card-text>
+                <div class="font-weight-bold ml-8 mb-2">
+                  Itinerário {{ route.code }}
+                </div>
 
-              <div class="font-weight-bold ml-8 mb-2">
-                {{ route.origin }} - {{ route.destination }}
-              </div>
+                <div class="font-weight-bold ml-8 mb-2">
+                  {{ route.origin }} - {{ route.destination }}
+                </div>
 
-              <div class="font-weight-bold ml-8 mb-2">
-                Horários:
-              </div>
+                <div class="font-weight-bold ml-8 mb-2">
+                  Horários:
+                </div>
 
-              <div class="ml-8 mb-2">
-                {{ getLineHours(route.lineHours) }}
-              </div>
+                <div class="ml-8 mb-2">
+                  {{ getLineHours(route.lineHours) }}
+                </div>
 
-              <div class="font-weight-bold ml-8 mb-2">
-                Pontos:
-              </div>
+                <div class="font-weight-bold ml-8 mb-2">
+                  Pontos:
+                </div>
 
-              <v-timeline align-top dense>
-                <v-timeline-item
-                  v-for="(step, indexStep) in route.points"
-                  :key="indexStep"
-                  :color="colors[selectedCid]"
-                  small
-                >
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>{{ step.name }}</strong> @{{ step.time }}
+                <v-timeline align-top dense>
+                  <v-timeline-item
+                    v-for="(step, indexStep) in route.points"
+                    :key="indexStep"
+                    :color="colors[selectedCid]"
+                    small
+                  >
+                    <div>
+                      <div class="font-weight-normal">
+                        <strong>{{ step.name }}</strong> @{{ step.time }}
+                      </div>
+                      <div>{{ step.address }}</div>
                     </div>
-                    <div>{{ step.address }}</div>
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-card-text>
-          </v-card>
-        </v-carousel-item>
-      </v-carousel>
+                  </v-timeline-item>
+                </v-timeline>
+              </v-card-text>
+            </v-card>
+          </v-carousel-item>
+        </v-carousel>
+      </div>
+    </template>
+
+    <div v-else class="routes-page__empty">
+      <v-img alt="Ícone representativo de uma busca">
+        <v-icon color="primary" size="140">
+          mdi-home-search
+        </v-icon>
+      </v-img>
+
+      <h1 class="text-lg-h6">
+        Não foi possível encontrar as rotas, tente realizar a busca novamente.
+      </h1>
+
+      <v-btn color="primary" to="/">
+        Voltar para página principal
+      </v-btn>
     </div>
   </div>
 </template>
@@ -128,5 +146,12 @@ export default {
 
 .routes-page__card {
   overflow: auto;
+}
+
+.routes-page__empty {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 </style>
