@@ -139,8 +139,10 @@ export default {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
     ...mapActions('bus', ['fetchBusRoutes']),
+    ...mapActions('loading', ['changeStatusLoading']),
     async performSearch () {
       this.hasError = false
+      this.changeStatusLoading(true)
 
       await this.fetchBusRoutes(this.searchBody)
 
@@ -153,6 +155,7 @@ export default {
       } else {
         this.$router.push('/rotas')
       }
+      this.changeStatusLoading(false)
     }
   }
 }
