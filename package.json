@@ -13,6 +13,9 @@
     "prepare": "husky install",
     "test": "jest"
   },
+  "engines": {
+    "node": "16.16.0"
+  },
   "dependencies": {
     "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
     "@nuxtjs/axios": "^5.13.6",
