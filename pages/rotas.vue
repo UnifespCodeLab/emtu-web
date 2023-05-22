@@ -101,19 +101,13 @@ export default {
   },
   methods: {
     getLineHours (lineHours) {
-      return lineHours.map(date =>
-        this.formatHour(new Date(date).toUTCString())
-      ).join(' - ')
+      return lineHours.map(this.formatHour).join(' - ')
     },
 
-    formatHour (hour) {
-      // Input example: Fri, 01 Jan 1999 14:16:00 GMT
+    formatHour (date) {
+      // Input example: 1999-01-01T14:16:00.000Z
       // Output: 14:16
-      // After slit, -2 gets the penultimate value
-
-      return hour.split(' ').at(-2)
-        .split(':').splice(0, 2)
-        .join(':')
+      return date.substr(11, 5)
     }
   }
 }
