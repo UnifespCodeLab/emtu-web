@@ -21,7 +21,7 @@
             v-for="(route, index) in busRoutes[selectedCid].routes"
             :key="index"
           >
-            <v-card class="routes-page__card" height="100%">
+            <v-card class="routes-page__card" height="90%">
               <v-card-text>
                 <div class="font-weight-bold ml-8 mb-2">
                   Itinerário {{ route.code }}
@@ -45,16 +45,20 @@
 
                 <v-timeline align-top dense>
                   <v-timeline-item
-                    v-for="(step, indexStep) in route.points"
-                    :key="indexStep"
+                    v-for="(stop, indexStop) in route.busStops"
+                    :key="indexStop"
                     :color="colors[selectedCid]"
                     small
+                    fill-dot
                   >
+                    <template #icon>
+                      <span class="white--text">{{ indexStop + 1 }}</span>
+                    </template>
                     <div>
                       <div class="font-weight-normal">
-                        <strong>{{ step.name }}</strong> @{{ step.time }}
+                        <strong>{{ getStopAddressTitle(stop) }}</strong>
                       </div>
-                      <div>{{ step.address }}</div>
+                      <div>{{ getStopAddressText(stop) }}</div>
                     </div>
                   </v-timeline-item>
                 </v-timeline>
@@ -104,6 +108,20 @@ export default {
       return lineHours.map(this.formatHour).join(' - ')
     },
 
+    getStopAddressTitle (stop) {
+      // Input example: Av. João Batista, 278 - Centro, Osasco - SP, 06097-090, Brasil
+      // Output: Av. João Batista, 278
+      return stop.endereco.split(' - ')[0]
+    },
+
+    getStopAddressText ({ endereco }) {
+      // Input example: Av. João Batista, 278 - Centro, Osasco - SP, 06097-090, Brasil
+      // Centro, Osasco - SP, 06097-090, Brasil
+      return endereco.split(' - ').length > 1
+        ? endereco.substring(endereco.indexOf(' - ') + 2)
+        : ''
+    },
+
     formatHour (date) {
       // Input example: 1999-01-01T14:16:00.000Z
       // Output: 14:16
@@ -141,6 +159,7 @@ export default {
 
 .routes-page__card {
   overflow: auto;
+  padding: 0 12px;
 }
 
 .routes-page__empty {
