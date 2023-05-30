@@ -1,3 +1,299 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pages / RoutesPage when all data is correct should render the page 1`] = `<!---->`;
+exports[`Pages / RoutesPage when all data is correct should render the page 1`] = `
+<div
+  class="routes-page__container"
+>
+  <div
+    class="routes-page__chips-container"
+  >
+    <span
+      class="routes-page__chip v-chip v-chip--clickable v-chip--removable theme--light v-size--default blue white--text"
+    >
+      <span
+        class="v-chip__content"
+      >
+        
+        G1
+      
+        <button
+          aria-label="Close"
+          class="v-icon notranslate v-chip__close v-icon--link v-icon--right mdi mdi-close theme--light"
+          style="font-size: 18px;"
+          type="button"
+        />
+      </span>
+    </span>
+  </div>
+   
+  <div
+    class="routes-page__steps"
+  >
+    <div
+      class="v-window v-item-group theme--dark v-carousel"
+      style="height: 500px;"
+    >
+      <div
+        class="v-window__container"
+      >
+        <transition-stub
+          name=""
+        >
+          <div
+            class="v-window-item"
+          >
+            <div
+              class="v-image v-responsive v-carousel__item theme--light"
+              style="height: 500px;"
+            >
+              <div
+                class="v-responsive__content"
+              >
+                <div
+                  class="routes-page__card v-card v-sheet theme--light"
+                  style="height: 90%;"
+                >
+                  <div
+                    class="v-card__text"
+                  >
+                    <div
+                      class="font-weight-bold ml-8 mb-2"
+                    >
+                      
+                Itinerário 244
+              
+                    </div>
+                     
+                    <div
+                      class="font-weight-bold ml-8 mb-2"
+                    >
+                      
+                OSASCO (CENTRO) - COTIA (RODOVIA RAPOSO TAVARES - KM 21)
+              
+                    </div>
+                     
+                    <div
+                      class="font-weight-bold ml-8 mb-2"
+                    >
+                      
+                Horários:
+              
+                    </div>
+                     
+                    <div
+                      class="ml-8 mb-2"
+                    >
+                      
+                14:16 - 14:50 - 15:16
+              
+                    </div>
+                     
+                    <div
+                      class="font-weight-bold ml-8 mb-2"
+                    >
+                      
+                Pontos:
+              
+                    </div>
+                     
+                    <div
+                      class="v-timeline v-timeline--align-top v-timeline--dense theme--light"
+                    >
+                      <div
+                        class="v-timeline-item v-timeline-item--fill-dot theme--light"
+                      >
+                        <div
+                          class="v-timeline-item__body"
+                        >
+                           
+                          <div>
+                            <div
+                              class="font-weight-normal"
+                            >
+                              <strong>
+                                Av. João Batista, 278
+                              </strong>
+                            </div>
+                             
+                            <div>
+                               Centro, Osasco - SP, 06097-090, Brasil
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="v-timeline-item__divider"
+                        >
+                          <div
+                            class="v-timeline-item__dot v-timeline-item__dot--small"
+                          >
+                            <div
+                              class="v-timeline-item__inner-dot blue"
+                            >
+                              <span
+                                class="white--text"
+                              >
+                                1
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="v-timeline-item v-timeline-item--fill-dot theme--light"
+                      >
+                        <div
+                          class="v-timeline-item__body"
+                        >
+                           
+                          <div>
+                            <div
+                              class="font-weight-normal"
+                            >
+                              <strong>
+                                Rua Doutor Mariano Jatati Marcondes Ferraz, 405
+                              </strong>
+                            </div>
+                             
+                            <div>
+                               Centro, Osasco - SP, 06097-010, Brasil
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="v-timeline-item__divider"
+                        >
+                          <div
+                            class="v-timeline-item__dot v-timeline-item__dot--small"
+                          >
+                            <div
+                              class="v-timeline-item__inner-dot blue"
+                            >
+                              <span
+                                class="white--text"
+                              >
+                                2
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+        <div
+          class="v-window__prev"
+        >
+          <button
+            aria-label="Previous visual"
+            class="v-btn v-btn--icon v-btn--round theme--dark v-size--default"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-left theme--dark"
+                style="font-size: 36px;"
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          class="v-window__next"
+        >
+          <button
+            aria-label="Next visual"
+            class="v-btn v-btn--icon v-btn--round theme--dark v-size--default"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-right theme--dark"
+                style="font-size: 36px;"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="v-carousel__controls"
+      >
+        <div
+          class="v-item-group theme--dark"
+        >
+          <button
+            aria-label="Carousel slide 1 of 1"
+            class="v-carousel__controls__item v-btn v-item--active v-btn--active v-btn--icon v-btn--round theme--dark v-size--small"
+            type="button"
+            value="0"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-circle theme--dark"
+                style="font-size: 18px;"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pages / RoutesPage when busRoutes is empty should render the page with empty state message 1`] = `
+<div
+  class="routes-page__container"
+>
+  <div
+    class="routes-page__empty"
+  >
+    <div
+      aria-label="Ícone representativo de uma busca"
+      class="v-image v-responsive theme--light"
+      role="img"
+    >
+      <div
+        class="v-responsive__content"
+      >
+        <i
+          aria-hidden="true"
+          class="v-icon notranslate mdi mdi-home-search theme--light primary--text"
+          style="font-size: 140px;"
+        />
+      </div>
+    </div>
+     
+    <h1
+      class="text-lg-h6"
+    >
+      
+      Não foi possível encontrar as rotas, tente realizar a busca novamente.
+    
+    </h1>
+     
+    <a
+      class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--light v-size--default primary"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      Voltar para página principal
+    
+      </span>
+    </a>
+  </div>
+</div>
+`;

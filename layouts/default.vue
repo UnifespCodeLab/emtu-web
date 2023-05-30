@@ -8,25 +8,32 @@
       </div>
       <TheFooter />
     </div>
+    <Loading v-if="isActive" />
   </v-app>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import SideBar from '~/components/SideBar.vue'
 import TheHeader from '~/components/TheHeader.vue'
 import TheFooter from '~/components/TheFooter.vue'
+import Loading from '~/components/LoadingAbsolute.vue'
 
 export default {
   name: 'DefaultLayout',
   components: {
     SideBar,
     TheFooter,
-    TheHeader
+    TheHeader,
+    Loading
   },
   data () {
     return {
       sidebarOpen: false
     }
+  },
+  computed: {
+    ...mapState('loading', ['isActive'])
   },
   methods: {
     runToggle () {
@@ -37,6 +44,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+:deep(.v-application--wrap) {
+  overflow: hidden;
+}
+
 .default-layout {
   display: flex;
   flex-direction: column;
