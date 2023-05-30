@@ -47,7 +47,12 @@ describe('Pages / RoutesPage', () => {
             '1999-01-01T14:16:00.000Z',
             '1999-01-01T14:50:00.000Z',
             '1999-01-01T15:16:00.000Z'
-          ]
+          ],
+          busStops: [{
+            endereco: 'Av. João Batista, 278 - Centro, Osasco - SP, 06097-090, Brasil'
+          }, {
+            endereco: 'Rua Doutor Mariano Jatati Marcondes Ferraz, 405 - Centro, Osasco - SP, 06097-010, Brasil'
+          }]
         }]
       }])
     })

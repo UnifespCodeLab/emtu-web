@@ -38,6 +38,10 @@ const store = new Store({
       mutations: {
         setBusRoutes
       }
+    },
+    loading: {
+      namespaced: true,
+      actions: { changeStatusLoading: jest.fn() }
     }
   }
 })
