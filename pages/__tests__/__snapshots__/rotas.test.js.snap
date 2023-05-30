@@ -51,7 +51,7 @@ exports[`Pages / RoutesPage when all data is correct should render the page 1`] 
               >
                 <div
                   class="routes-page__card v-card v-sheet theme--light"
-                  style="height: 100%;"
+                  style="height: 90%;"
                 >
                   <div
                     class="v-card__text"
@@ -98,7 +98,86 @@ exports[`Pages / RoutesPage when all data is correct should render the page 1`] 
                      
                     <div
                       class="v-timeline v-timeline--align-top v-timeline--dense theme--light"
-                    />
+                    >
+                      <div
+                        class="v-timeline-item v-timeline-item--fill-dot theme--light"
+                      >
+                        <div
+                          class="v-timeline-item__body"
+                        >
+                           
+                          <div>
+                            <div
+                              class="font-weight-normal"
+                            >
+                              <strong>
+                                Av. João Batista, 278
+                              </strong>
+                            </div>
+                             
+                            <div>
+                               Centro, Osasco - SP, 06097-090, Brasil
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="v-timeline-item__divider"
+                        >
+                          <div
+                            class="v-timeline-item__dot v-timeline-item__dot--small"
+                          >
+                            <div
+                              class="v-timeline-item__inner-dot blue"
+                            >
+                              <span
+                                class="white--text"
+                              >
+                                1
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="v-timeline-item v-timeline-item--fill-dot theme--light"
+                      >
+                        <div
+                          class="v-timeline-item__body"
+                        >
+                           
+                          <div>
+                            <div
+                              class="font-weight-normal"
+                            >
+                              <strong>
+                                Rua Doutor Mariano Jatati Marcondes Ferraz, 405
+                              </strong>
+                            </div>
+                             
+                            <div>
+                               Centro, Osasco - SP, 06097-010, Brasil
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="v-timeline-item__divider"
+                        >
+                          <div
+                            class="v-timeline-item__dot v-timeline-item__dot--small"
+                          >
+                            <div
+                              class="v-timeline-item__inner-dot blue"
+                            >
+                              <span
+                                class="white--text"
+                              >
+                                2
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
