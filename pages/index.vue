@@ -80,16 +80,6 @@
         BUSCAR
       </v-btn>
     </div>
-
-    <v-alert
-      class="search-page__alert"
-      dismissible
-      transition="scale-transition"
-      :type="alertType"
-      :value="hasError"
-    >
-      {{ alertMessage }}
-    </v-alert>
   </div>
 </template>
 
@@ -100,6 +90,10 @@ export default {
   name: 'SearchPage',
   data () {
     return {
+      alertMessage: {
+        error: 'Não foi possível realizar a busca, tente novamente.',
+        warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
+      },
       alertType: 'error',
       hasError: false,
       modalDate: false,
@@ -118,13 +112,7 @@ export default {
   computed: {
     ...mapState('city', ['cities']),
     ...mapState('cid', ['cids']),
-    ...mapState('bus', ['busRoutes']),
-    alertMessage () {
-      return {
-        error: 'Não foi possível realizar a busca, tente novamente.',
-        warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
-      }[this.alertType]
-    }
+    ...mapState('bus', ['busRoutes'])
   },
   created () {
     if (!this.cities.length) {
@@ -135,23 +123,28 @@ export default {
       this.fetchCids()
     }
   },
+
+  destroyed () {
+    this.hideAlert()
+  },
+
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
     ...mapActions('bus', ['fetchBusRoutes']),
     ...mapActions('loading', ['changeStatusLoading']),
+    ...mapActions('alert', ['showAlert', 'hideAlert']),
+
     async performSearch () {
-      this.hasError = false
+      this.hideAlert()
       this.changeStatusLoading(true)
 
       await this.fetchBusRoutes(this.searchBody)
 
       if (!this.busRoutes) {
-        this.hasError = true
-        this.alertType = 'error'
+        this.showAlert({ alertMessage: this.alertMessage.error, alertType: 'error' })
       } else if (this.busRoutes.length === 0) {
-        this.hasError = true
-        this.alertType = 'warning'
+        this.showAlert({ alertMessage: this.alertMessage.warning, alertType: 'warning' })
       } else {
         this.$router.push('/rotas')
       }
