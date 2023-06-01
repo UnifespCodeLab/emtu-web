@@ -4,47 +4,6 @@ exports[`Pages / ReportPage should render the page 1`] = `
 <div
   class="report-page"
 >
-  <transition-stub
-    class="report-page__alert"
-    name="scale-transition"
-  >
-    <div
-      class="v-alert v-sheet theme--dark error"
-      role="alert"
-      style="display: none;"
-    >
-      <div
-        class="v-alert__wrapper"
-      >
-        <i
-          aria-hidden="true"
-          class="v-icon notranslate v-alert__icon mdi mdi-alert theme--dark"
-        />
-        <div
-          class="v-alert__content"
-        >
-          
-    
-  
-        </div>
-        <button
-          aria-label="Close"
-          class="v-alert__dismissible v-btn v-btn--icon v-btn--round theme--dark v-size--small"
-          type="button"
-        >
-          <span
-            class="v-btn__content"
-          >
-            <i
-              aria-hidden="true"
-              class="v-icon notranslate mdi mdi-close-circle theme--dark"
-            />
-          </span>
-        </button>
-      </div>
-    </div>
-  </transition-stub>
-   
   <div
     class="report-page__form"
   >
@@ -62,13 +21,13 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-9"
+              for="input-4"
               style="left: 0px; position: absolute;"
             >
               E-mail
             </label>
             <input
-              id="input-9"
+              id="input-4"
               type="text"
             />
           </div>
@@ -98,7 +57,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-12"
+          aria-owns="list-7"
           class="v-input__slot"
           role="combobox"
         >
@@ -107,14 +66,14 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-12"
+              for="input-7"
               style="left: 0px; position: absolute;"
             >
               Cidade de origem
             </label>
             <input
               autocomplete="off"
-              id="input-12"
+              id="input-7"
               type="text"
             />
             <div
@@ -164,7 +123,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-17"
+          aria-owns="list-12"
           class="v-input__slot"
           role="combobox"
         >
@@ -173,14 +132,14 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-17"
+              for="input-12"
               style="left: 0px; position: absolute;"
             >
               Cidade de destino
             </label>
             <input
               autocomplete="off"
-              id="input-17"
+              id="input-12"
               type="text"
             />
             <div
@@ -230,7 +189,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-22"
+          aria-owns="list-17"
           class="v-input__slot"
           role="button"
         >
@@ -239,7 +198,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-22"
+              for="input-17"
               style="left: 0px; position: absolute;"
             >
               Cid
@@ -250,7 +209,7 @@ exports[`Pages / ReportPage should render the page 1`] = `
               <input
                 aria-readonly="false"
                 autocomplete="off"
-                id="input-22"
+                id="input-17"
                 readonly="readonly"
                 type="text"
               />
@@ -313,47 +272,6 @@ exports[`Pages / ReportPage when user clicks in submit should render updated pag
 <div
   class="report-page"
 >
-  <transition-stub
-    class="report-page__alert"
-    name="scale-transition"
-  >
-    <div
-      class="v-alert v-sheet theme--dark success"
-      role="alert"
-      style=""
-    >
-      <div
-        class="v-alert__wrapper"
-      >
-        <i
-          aria-hidden="true"
-          class="v-icon notranslate v-alert__icon mdi mdi-check-circle theme--dark"
-        />
-        <div
-          class="v-alert__content"
-        >
-          
-    Solicitação enviada com sucesso!
-  
-        </div>
-        <button
-          aria-label="Close"
-          class="v-alert__dismissible v-btn v-btn--icon v-btn--round theme--dark v-size--small"
-          type="button"
-        >
-          <span
-            class="v-btn__content"
-          >
-            <i
-              aria-hidden="true"
-              class="v-icon notranslate mdi mdi-close-circle theme--dark"
-            />
-          </span>
-        </button>
-      </div>
-    </div>
-  </transition-stub>
-   
   <div
     class="report-page__form"
   >

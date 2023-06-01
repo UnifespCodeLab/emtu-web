@@ -7,6 +7,9 @@ import emtuApi from '~/assets/services/emtu-api'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
+const showAlert = jest.fn()
+const hideAlert = jest.fn()
+
 const store = new Store({
   modules: {
     city: {
@@ -26,6 +29,10 @@ const store = new Store({
       actions: {
         fetchCids: () => []
       }
+    },
+    alert: {
+      namespaced: true,
+      actions: { showAlert, hideAlert }
     }
   }
 })
@@ -52,10 +59,7 @@ describe('Pages / ReportPage', () => {
   })
 
   it('should render correct elements', () => {
-    const alert = wrapper.findComponent({ name: 'v-alert' })
-    expect(alert.props('value')).toBe(false)
-
-    const homeButton = wrapper.findAllComponents({ name: 'v-btn' }).at(1)
+    const homeButton = wrapper.findComponent({ name: 'v-btn' })
     expect(homeButton.text()).toBe('enviar')
   })
 
@@ -74,7 +78,7 @@ describe('Pages / ReportPage', () => {
         }
       })
 
-      const submitButton = wrapper.findAllComponents({ name: 'v-btn' }).at(1)
+      const submitButton = wrapper.findComponent({ name: 'v-btn' })
       submitButton.trigger('click')
     })
 
@@ -88,10 +92,11 @@ describe('Pages / ReportPage', () => {
     })
 
     it('shows alert with success message', () => {
-      const alert = wrapper.findComponent({ name: 'v-alert' })
-
-      expect(alert.text()).toBe('Solicitação enviada com sucesso!')
-      expect(alert.props('type')).toBe('success')
+      expect(showAlert).toHaveBeenCalledWith(expect.anything(),
+        {
+          alertMessage: 'Solicitação enviada com sucesso!',
+          alertType: 'success'
+        })
     })
 
     it('should render updated page', () => {
@@ -99,10 +104,7 @@ describe('Pages / ReportPage', () => {
     })
 
     it('should render correct elements', () => {
-      const alert = wrapper.findComponent({ name: 'v-alert' })
-      const homeButton = wrapper.findAllComponents({ name: 'v-btn' }).at(1)
-
-      expect(alert.props('value')).toBe(true)
+      const homeButton = wrapper.findComponent({ name: 'v-btn' })
       expect(homeButton.text()).toBe('voltar para home')
     })
 
@@ -114,10 +116,11 @@ describe('Pages / ReportPage', () => {
         })
 
         it('shows alert with custom error message', () => {
-          const alert = wrapper.findComponent({ name: 'v-alert' })
-
-          expect(alert.text()).toBe('Deu Ruim')
-          expect(alert.props('type')).toBe('error')
+          expect(showAlert).toHaveBeenCalledWith(expect.anything(),
+            {
+              alertMessage: 'Deu Ruim',
+              alertType: 'error'
+            })
         })
       })
 
@@ -127,10 +130,11 @@ describe('Pages / ReportPage', () => {
         })
 
         it('shows alert with default error message', () => {
-          const alert = wrapper.findComponent({ name: 'v-alert' })
-
-          expect(alert.text()).toBe('Ocorreu um erro ao enviar a solicitação')
-          expect(alert.props('type')).toBe('error')
+          expect(showAlert).toHaveBeenCalledWith(expect.anything(),
+            {
+              alertMessage: 'Ocorreu um erro ao enviar a solicitação',
+              alertType: 'error'
+            })
         })
       })
     })
