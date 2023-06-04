@@ -1,7 +1,14 @@
 <template>
   <div class="container">
     <ul class="filters">
-      <v-text-field label="Pesquisar" placeholder="Pesquisar" solo dense class="input" />
+      <v-text-field
+        v-model="search"
+        label="Pesquisar"
+        placeholder="Pesquisar"
+        solo
+        dense
+        class="input"
+      />
       <v-select :items="items" label="Companhia" solo dense class="input" />
       <v-select :items="items" label="Grupo" solo dense class="input" />
       <v-btn color="primary">
@@ -9,7 +16,14 @@
       </v-btn>
     </ul>
     <div class="table-container">
-      <v-data-table :headers="headers" :items="cids" :items-per-page="5" class="elevation-1 table" />
+      <v-data-table
+        :headers="headers"
+        :items="cids"
+        :items-per-page="5"
+        :search="search"
+        :custom-filter="tableQuery"
+        class="elevation-1 table"
+      />
     </div>
   </div>
 </template>
@@ -20,6 +34,7 @@ import axiosClient from '~/assets/services/emtu-api'
 export default {
   data () {
     return {
+      search: '',
       headers: [
         { text: 'Código', value: 'cod' },
         { text: 'Diagnóstico', value: 'diagnostic' },
@@ -38,6 +53,16 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+  },
+  methods: {
+    tableQuery (value, search, item) {
+      console.log(item)
+      return (item.cod && item.cod.toLowerCase().includes(search.toLowerCase())) ||
+        (item.diagnostic && item.diagnostic.toLowerCase().includes(search.toLowerCase())) ||
+        (item.observations && item.observations.toLowerCase().includes(search.toLowerCase())) ||
+        (item.companion && item.companion.toLowerCase().includes(search.toLowerCase())) ||
+        (item.group && item.group.toLowerCase().includes(search.toLowerCase()))
+    }
   }
 }
 </script>
