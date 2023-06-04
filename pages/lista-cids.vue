@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-data-table :headers="headers" :items="cids" :items-per-page="5" class="elevation-1" />
+  <div class="container">
+    <v-data-table :headers="headers" :items="cids" :items-per-page="5" class="elevation-1 table" />
   </div>
 </template>
 
@@ -53,5 +53,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
+.table {
+  width: 75%;
+  height: 75%;
+  margin: 0 auto;
+}
 </style>
