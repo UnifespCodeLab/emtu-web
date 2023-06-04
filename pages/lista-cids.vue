@@ -8,7 +8,9 @@
         Buscar
       </v-btn>
     </ul>
-    <v-data-table :headers="headers" :items="cids" :items-per-page="5" class="elevation-1 table" />
+    <div class="table-container">
+      <v-data-table :headers="headers" :items="cids" :items-per-page="5" class="elevation-1 table" />
+    </div>
   </div>
 </template>
 
@@ -46,6 +48,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .filters {
@@ -54,6 +57,12 @@ export default {
   padding: 0;
 }
 
+.table-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .input {
   width: fit-content;
   padding: 0 15px 0 0;
@@ -61,6 +70,7 @@ export default {
 
 .table {
   width: 75%;
-  margin: 0 auto;
+  height: min-content;
+  margin: auto;
 }
 </style>
