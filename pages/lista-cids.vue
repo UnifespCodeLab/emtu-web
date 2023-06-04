@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <ul class="filters">
+      <v-text-field label="Pesquisar" placeholder="Pesquisar" solo dense class="input" />
+      <v-select :items="items" label="Companhia" solo dense class="input" />
+      <v-select :items="items" label="Grupo" solo dense class="input" />
+      <v-btn color="primary" >Buscar</v-btn>
+    </ul>
     <v-data-table :headers="headers" :items="cids" :items-per-page="5" class="elevation-1 table" />
   </div>
 </template>
@@ -57,12 +63,23 @@ export default {
   max-width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.filters {
+  display: flex;
+  width: fit-content;
+  padding: 0;
+}
+
+.input {
+  width: fit-content;
+  padding: 0 15px 0 0;
 }
 
 .table {
   width: 75%;
-  height: 75%;
+  max-height: 75%;
   margin: 0 auto;
 }
 </style>
