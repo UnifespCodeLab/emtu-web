@@ -31,6 +31,9 @@
         Buscar
       </v-btn>
     </ul>
+    <v-alert v-if="errorMessage" type="error" class="error-message">
+      {{ errorMessage }}
+    </v-alert>
     <div class="table-container">
       <v-data-table
         :headers="headers"
@@ -60,7 +63,8 @@ export default {
         { text: 'Companhia', value: 'companion' },
         { text: 'Grupo', value: 'group' }
       ],
-      cids: []
+      cids: [],
+      errorMessage: null
     }
   },
   computed: {
@@ -83,9 +87,10 @@ export default {
     axiosClient.get('/cids')
       .then((response) => {
         this.cids = response.data
+        this.errorMessage = null
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        this.errorMessage = 'Ocorreu um erro ao buscar os CIDs.'
       })
   }
 }
@@ -121,5 +126,10 @@ export default {
   width: 75%;
   height: min-content;
   margin: auto;
+}
+
+.error-message {
+  margin: 1em auto;
+  width: 50%;
 }
 </style>
