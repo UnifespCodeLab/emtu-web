@@ -40,6 +40,7 @@
         :items="filteredCids"
         :items-per-page="5"
         class="elevation-1 table"
+        dense
       />
     </div>
   </div>
@@ -118,8 +119,8 @@ export default {
   align-items: center;
 }
 .input {
-  width: fit-content;
   padding: 0 15px 0 0;
+  min-width: 40px;
 }
 
 .table {
@@ -130,6 +131,18 @@ export default {
 
 .error-message {
   margin: 1em auto;
-  width: 50%;
+  width: 60%;
+}
+
+@media (max-width: 600px) {
+  .filters {
+    flex-wrap: wrap;
+  }
+  .table {
+    width: 100%;
+  }
+  .error-message {
+    width: 100%;
+  }
 }
 </style>
