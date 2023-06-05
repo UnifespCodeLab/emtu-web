@@ -2,15 +2,31 @@
   <div class="container">
     <ul class="filters">
       <v-text-field
-        v-model="search"
+        v-model="search.text"
         label="Pesquisar"
         placeholder="Pesquisar"
         solo
         dense
         class="input"
       />
-      <v-select :items="items" label="Companhia" solo dense class="input" />
-      <v-select :items="items" label="Grupo" solo dense class="input" />
+      <v-select
+        v-model="search.companion"
+        :items="['Sim', 'Não']"
+        label="Companhia"
+        solo
+        dense
+        class="input"
+        clearable
+      />
+      <v-select
+        v-model="search.group"
+        :items="['G1', 'G2', 'G3']"
+        label="Grupo"
+        solo
+        dense
+        class="input"
+        clearable
+      />
       <v-btn color="primary">
         Buscar
       </v-btn>
@@ -18,10 +34,8 @@
     <div class="table-container">
       <v-data-table
         :headers="headers"
-        :items="cids"
+        :items="filteredCids"
         :items-per-page="5"
-        :search="search"
-        :custom-filter="tableQuery"
         class="elevation-1 table"
       />
     </div>
@@ -34,7 +48,11 @@ import axiosClient from '~/assets/services/emtu-api'
 export default {
   data () {
     return {
-      search: '',
+      search: {
+        text: '',
+        companion: null,
+        group: null
+      },
       headers: [
         { text: 'Código', value: 'cod' },
         { text: 'Diagnóstico', value: 'diagnostic' },
@@ -45,6 +63,22 @@ export default {
       cids: []
     }
   },
+  computed: {
+    filteredCids () {
+      if (!this.search.text && !this.search.companion && !this.search.group) {
+        return this.cids
+      }
+      return this.cids.filter((item) => {
+        return ((item.cod && item.cod.toLowerCase().includes(this.search.text.toLowerCase())) ||
+        (item.diagnostic && item.diagnostic.toLowerCase().includes(this.search.text.toLowerCase())) ||
+        (item.observations && item.observations.toLowerCase().includes(this.search.text.toLowerCase())) ||
+        (item.companion && item.companion.toLowerCase().includes(this.search.text.toLowerCase())) ||
+        (item.group && item.group.toLowerCase().includes(this.search.text.toLowerCase()))) &&
+        (!this.search.group || (item.group && item.group.toLowerCase().includes(this.search.group.toLowerCase()))) &&
+        (!this.search.companion || (item.companion && item.companion.toLowerCase().includes(this.search.companion.toLowerCase())))
+      })
+    }
+  },
   created () {
     axiosClient.get('/cids')
       .then((response) => {
@@ -53,16 +87,6 @@ export default {
       .catch((error) => {
         console.log(error)
       })
-  },
-  methods: {
-    tableQuery (value, search, item) {
-      console.log(item)
-      return (item.cod && item.cod.toLowerCase().includes(search.toLowerCase())) ||
-        (item.diagnostic && item.diagnostic.toLowerCase().includes(search.toLowerCase())) ||
-        (item.observations && item.observations.toLowerCase().includes(search.toLowerCase())) ||
-        (item.companion && item.companion.toLowerCase().includes(search.toLowerCase())) ||
-        (item.group && item.group.toLowerCase().includes(search.toLowerCase()))
-    }
   }
 }
 </script>
