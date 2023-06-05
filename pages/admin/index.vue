@@ -1,15 +1,5 @@
 <template>
   <div class="admin-page">
-    <v-alert
-      class="admin-page__alert"
-      dismissible
-      transition="scale-transition"
-      type="error"
-      :value="error"
-    >
-      Não foi possível realizar o Login, tente novamente mais tarde.
-    </v-alert>
-
     <div class="admin-page__form">
       <v-icon class="mb-6" color="primary" x-large>
         mdi-bus
@@ -37,6 +27,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'AdminPage',
   layout: 'login',
@@ -47,8 +39,17 @@ export default {
       password: null
     }
   },
+
+  destroyed () {
+    this.hideAlert()
+  },
+
   methods: {
+    ...mapActions('alert', ['showAlert', 'hideAlert']),
+
     async userLogin () {
+      this.hideAlert()
+
       try {
         const logged = await this.$auth.loginWith('local', {
           data: {
@@ -63,7 +64,10 @@ export default {
           this.$router.push('/admin/solicitacoes')
         }
       } catch (err) {
-        this.error = true
+        this.showAlert({
+          alertMessage: 'Não foi possível realizar o Login, tente novamente mais tarde.',
+          alertType: 'error'
+        })
       }
     }
   }
@@ -78,16 +82,6 @@ export default {
 
   @media (min-width: 800px) {
     align-items: center;
-  }
-}
-
-.admin-page__alert {
-  position: absolute;
-  width: -webkit-fill-available;
-  z-index: 1;
-
-  @media (min-width: 800px) {
-    width: 500px;
   }
 }
 

@@ -4,6 +4,7 @@
     <div class="default-layout">
       <TheHeader @toggleSideBar="runToggle()" />
       <div class="default-layout__content">
+        <GlobalAlert />
         <Nuxt />
       </div>
       <TheFooter />
@@ -18,6 +19,7 @@ import SideBar from '~/components/SideBar.vue'
 import TheHeader from '~/components/TheHeader.vue'
 import TheFooter from '~/components/TheFooter.vue'
 import Loading from '~/components/LoadingAbsolute.vue'
+import GlobalAlert from '~/components/GlobalAlert.vue'
 
 export default {
   name: 'DefaultLayout',
@@ -25,7 +27,8 @@ export default {
     SideBar,
     TheFooter,
     TheHeader,
-    Loading
+    Loading,
+    GlobalAlert
   },
   data () {
     return {
@@ -35,6 +38,7 @@ export default {
   computed: {
     ...mapState('loading', ['isActive'])
   },
+
   methods: {
     runToggle () {
       this.sidebarOpen = !this.sidebarOpen

@@ -2,6 +2,7 @@
   <v-app>
     <div class="login-layout">
       <v-card rounded class="login-layout__content">
+        <GlobalAlert />
         <Nuxt />
       </v-card>
     </div>
@@ -9,8 +10,13 @@
 </template>
 
 <script>
+import GlobalAlert from '~/components/GlobalAlert.vue'
+
 export default {
-  name: 'LoginLayout'
+  name: 'LoginLayout',
+  components: {
+    GlobalAlert
+  }
 }
 </script>
 

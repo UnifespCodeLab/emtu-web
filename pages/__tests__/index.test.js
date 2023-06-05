@@ -42,6 +42,13 @@ const store = new Store({
     loading: {
       namespaced: true,
       actions: { changeStatusLoading: jest.fn() }
+    },
+    alert: {
+      namespaced: true,
+      actions: {
+        showAlert: jest.fn(),
+        hideAlert: jest.fn()
+      }
     }
   }
 })
