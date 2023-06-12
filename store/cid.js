@@ -17,8 +17,8 @@ export const actions = {
 
       const formattedCids =
        data
-         ? data.map(({ id, cod }) => ({
-           text: cod,
+         ? data.map(({ id, cod, group }) => ({
+           text: `${cod} - ${group}`,
            value: id
          }))
          : []

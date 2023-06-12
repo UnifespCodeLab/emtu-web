@@ -4,47 +4,6 @@ exports[`Pages / AdminPage should render the page 1`] = `
 <div
   class="admin-page"
 >
-  <transition-stub
-    class="admin-page__alert"
-    name="scale-transition"
-  >
-    <div
-      class="v-alert v-sheet theme--dark error"
-      role="alert"
-      style="display: none;"
-    >
-      <div
-        class="v-alert__wrapper"
-      >
-        <i
-          aria-hidden="true"
-          class="v-icon notranslate v-alert__icon mdi mdi-alert theme--dark"
-        />
-        <div
-          class="v-alert__content"
-        >
-          
-    Não foi possível realizar o Login, tente novamente mais tarde.
-  
-        </div>
-        <button
-          aria-label="Close"
-          class="v-alert__dismissible v-btn v-btn--icon v-btn--round theme--dark v-size--small"
-          type="button"
-        >
-          <span
-            class="v-btn__content"
-          >
-            <i
-              aria-hidden="true"
-              class="v-icon notranslate mdi mdi-close-circle theme--dark"
-            />
-          </span>
-        </button>
-      </div>
-    </div>
-  </transition-stub>
-   
   <div
     class="admin-page__form"
   >
@@ -74,13 +33,13 @@ exports[`Pages / AdminPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-8"
+              for="input-3"
               style="left: 0px; position: absolute;"
             >
               E-mail
             </label>
             <input
-              id="input-8"
+              id="input-3"
               type="text"
             />
           </div>
@@ -115,13 +74,13 @@ exports[`Pages / AdminPage should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-11"
+              for="input-6"
               style="left: 0px; position: absolute;"
             >
               Senha
             </label>
             <input
-              id="input-11"
+              id="input-6"
               type="password"
             />
           </div>

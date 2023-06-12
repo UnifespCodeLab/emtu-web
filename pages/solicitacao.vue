@@ -1,15 +1,5 @@
 <template>
   <div class="report-page">
-    <v-alert
-      class="report-page__alert"
-      dismissible
-      transition="scale-transition"
-      :type="hasSuccess ? 'success' : 'error'"
-      :value="showAlert"
-    >
-      {{ alertMessage }}
-    </v-alert>
-
     <div class="report-page__form">
       <v-btn
         v-if="hasSuccess"
@@ -66,7 +56,6 @@ export default {
   data () {
     return {
       hasSuccess: false,
-      showAlert: false,
       errorMessage: '',
       successMessage: 'Solicitação enviada com sucesso!',
       reportData: {
@@ -102,11 +91,17 @@ export default {
       this.fetchCids()
     }
   },
+
+  destroyed () {
+    this.hideAlert()
+  },
+
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
+    ...mapActions('alert', ['showAlert', 'hideAlert']),
     async submit () {
-      this.showAlert = false
+      this.hideAlert()
 
       try {
         await emtuApi.post('reports', this.reportParams)
@@ -115,7 +110,10 @@ export default {
         this.errorMessage = error?.response?.data?.message || 'Ocorreu um erro ao enviar a solicitação'
         this.hasSuccess = false
       } finally {
-        this.showAlert = true
+        this.showAlert({
+          alertMessage: this.alertMessage,
+          alertType: this.hasSuccess ? 'success' : 'error'
+        })
       }
     }
   }
@@ -132,17 +130,6 @@ export default {
     align-items: center;
   }
 }
-
-.report-page__alert {
-  position: absolute;
-  width: -webkit-fill-available;
-  z-index: 1;
-
-  @media (min-width: 800px) {
-    width: 500px;
-  }
-}
-
 .report-page__form {
   display: flex;
   flex-direction: column;

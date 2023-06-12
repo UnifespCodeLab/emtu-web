@@ -19,7 +19,6 @@
         label="Cid"
         solo
       />
-
       <div class="search-page__time-container">
         <v-dialog
           ref="dialogTime"
@@ -80,16 +79,6 @@
         BUSCAR
       </v-btn>
     </div>
-
-    <v-alert
-      class="search-page__alert"
-      dismissible
-      transition="scale-transition"
-      :type="alertType"
-      :value="hasError"
-    >
-      {{ alertMessage }}
-    </v-alert>
   </div>
 </template>
 
@@ -100,6 +89,10 @@ export default {
   name: 'SearchPage',
   data () {
     return {
+      alertMessage: {
+        error: 'Não foi possível realizar a busca, tente novamente.',
+        warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
+      },
       alertType: 'error',
       hasError: false,
       modalDate: false,
@@ -119,43 +112,47 @@ export default {
     ...mapState('city', ['cities']),
     ...mapState('cid', ['cids']),
     ...mapState('bus', ['busRoutes']),
-    alertMessage () {
-      return {
-        error: 'Não foi possível realizar a busca, tente novamente.',
-        warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
-      }[this.alertType]
+    formIsEmpty () {
+      return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
     }
   },
   created () {
     if (!this.cities.length) {
       this.fetchCities()
     }
-
     if (!this.cids.length) {
       this.fetchCids()
     }
+  },
+  destroyed () {
+    this.hideAlert()
   },
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
     ...mapActions('bus', ['fetchBusRoutes']),
     ...mapActions('loading', ['changeStatusLoading']),
+    ...mapActions('alert', ['showAlert', 'hideAlert']),
     async performSearch () {
-      this.hasError = false
-      this.changeStatusLoading(true)
-
-      await this.fetchBusRoutes(this.searchBody)
-
-      if (!this.busRoutes) {
-        this.hasError = true
-        this.alertType = 'error'
-      } else if (this.busRoutes.length === 0) {
-        this.hasError = true
-        this.alertType = 'warning'
+      this.hideAlert()
+      if (this.formIsEmpty) {
+        const propsAlert = {
+          alertMessage: 'Todos os campos devem ser preenchidos',
+          alertType: 'error'
+        }
+        this.showAlert(propsAlert)
       } else {
-        this.$router.push('/rotas')
+        this.changeStatusLoading(true)
+        await this.fetchBusRoutes(this.searchBody)
+        if (!this.busRoutes) {
+          this.showAlert({ alertMessage: this.alertMessage.error, alertType: 'error' })
+        } else if (this.busRoutes.length === 0) {
+          this.showAlert({ alertMessage: this.alertMessage.warning, alertType: 'warning' })
+        } else {
+          this.$router.push('/rotas')
+        }
+        this.changeStatusLoading(false)
       }
-      this.changeStatusLoading(false)
     }
   }
 }

@@ -4,6 +4,7 @@
       <SideBar :is-open="sidebarOpen" :is-user-logged="isUserLogged" @toggleSideBar="runToggle()" />
       <TheHeader @toggleSideBar="runToggle()" />
       <div class="admin-layout__content">
+        <GlobalAlert />
         <Nuxt />
       </div>
     </div>
@@ -13,12 +14,14 @@
 <script>
 import TheHeader from '~/components/admin/TheHeader.vue'
 import SideBar from '~/components/SideBar.vue'
+import GlobalAlert from '~/components/GlobalAlert.vue'
 
 export default {
   name: 'AdminLayout',
   components: {
     TheHeader,
-    SideBar
+    SideBar,
+    GlobalAlert
   },
   data () {
     return {
