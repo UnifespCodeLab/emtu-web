@@ -111,7 +111,10 @@ export default {
   computed: {
     ...mapState('city', ['cities']),
     ...mapState('cid', ['cids']),
-    ...mapState('bus', ['busRoutes'])
+    ...mapState('bus', ['busRoutes']),
+    formIsEmpty () {
+      return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
+    }
   },
   created () {
     if (!this.cities.length) {
@@ -151,9 +154,6 @@ export default {
         this.changeStatusLoading(false)
       }
     },
-    formIsEmpty () {
-      return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
-    }
   }
 }
 </script>
