@@ -153,7 +153,7 @@ export default {
         }
         this.changeStatusLoading(false)
       }
-    },
+    }
   }
 }
 </script>
