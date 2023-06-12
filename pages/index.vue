@@ -19,7 +19,6 @@
         label="Cid"
         solo
       />
-
       <div class="search-page__time-container">
         <v-dialog
           ref="dialogTime"
@@ -112,43 +111,48 @@ export default {
   computed: {
     ...mapState('city', ['cities']),
     ...mapState('cid', ['cids']),
-    ...mapState('bus', ['busRoutes'])
+    ...mapState('bus', ['busRoutes']),
+    formIsEmpty () {
+      return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
+    }
   },
   created () {
     if (!this.cities.length) {
       this.fetchCities()
     }
-
     if (!this.cids.length) {
       this.fetchCids()
     }
   },
-
   destroyed () {
     this.hideAlert()
   },
-
   methods: {
     ...mapActions('city', ['fetchCities']),
     ...mapActions('cid', ['fetchCids']),
     ...mapActions('bus', ['fetchBusRoutes']),
     ...mapActions('loading', ['changeStatusLoading']),
     ...mapActions('alert', ['showAlert', 'hideAlert']),
-
     async performSearch () {
       this.hideAlert()
-      this.changeStatusLoading(true)
-
-      await this.fetchBusRoutes(this.searchBody)
-
-      if (!this.busRoutes) {
-        this.showAlert({ alertMessage: this.alertMessage.error, alertType: 'error' })
-      } else if (this.busRoutes.length === 0) {
-        this.showAlert({ alertMessage: this.alertMessage.warning, alertType: 'warning' })
+      if (this.formIsEmpty) {
+        const propsAlert = {
+          alertMessage: 'Todos os campos devem ser preenchidos',
+          alertType: 'error'
+        }
+        this.showAlert(propsAlert)
       } else {
-        this.$router.push('/rotas')
+        this.changeStatusLoading(true)
+        await this.fetchBusRoutes(this.searchBody)
+        if (!this.busRoutes) {
+          this.showAlert({ alertMessage: this.alertMessage.error, alertType: 'error' })
+        } else if (this.busRoutes.length === 0) {
+          this.showAlert({ alertMessage: this.alertMessage.warning, alertType: 'warning' })
+        } else {
+          this.$router.push('/rotas')
+        }
+        this.changeStatusLoading(false)
       }
-      this.changeStatusLoading(false)
     }
   }
 }
