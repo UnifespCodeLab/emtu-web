@@ -57,7 +57,7 @@ export default {
     return {
       hasSuccess: false,
       errorMessage: '',
-      successMessage: 'Solicitação enviada com sucesso!',
+      successMessage: 'Informação enviada com sucesso!',
       reportData: {
         email: null,
         originCityId: null,
@@ -107,7 +107,7 @@ export default {
         await emtuApi.post('reports', this.reportParams)
         this.hasSuccess = true
       } catch (error) {
-        this.errorMessage = error?.response?.data?.message || 'Ocorreu um erro ao enviar a solicitação'
+        this.errorMessage = error?.response?.data?.message || 'Ocorreu um erro ao enviar a informação'
         this.hasSuccess = false
       } finally {
         this.showAlert({
