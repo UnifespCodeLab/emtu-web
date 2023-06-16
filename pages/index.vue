@@ -18,6 +18,7 @@
         :items="cids"
         label="Cid"
         solo
+        multiple
       />
       <div class="search-page__time-container">
         <v-dialog
@@ -113,7 +114,7 @@ export default {
     ...mapState('cid', ['cids']),
     ...mapState('bus', ['busRoutes']),
     formIsEmpty () {
-      return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
+      return !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
     }
   },
   created () {
@@ -137,7 +138,7 @@ export default {
       this.hideAlert()
       if (this.formIsEmpty) {
         const propsAlert = {
-          alertMessage: 'Todos os campos devem ser preenchidos',
+          alertMessage: 'Informe todos os campos necessários (origem, destino, data e horário)',
           alertType: 'error'
         }
         this.showAlert(propsAlert)
