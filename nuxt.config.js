@@ -1,6 +1,7 @@
 export default {
   server: {
-    port: process.env.PORT || 3000 // default: 3000
+    port: process.env.PORT || 3000,
+    host: '0.0.0.0'
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
