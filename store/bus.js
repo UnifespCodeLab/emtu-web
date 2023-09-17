@@ -12,8 +12,6 @@ export const mutations = {
 
 export const actions = {
   async fetchBusRoutes ({ commit, dispatch }, searchBody) {
-    await dispatch('saveSearch', searchBody)
-
     try {
       const { data } = await emtuApi.post('/bus', searchBody)
       const formattedResult = []
@@ -37,22 +35,6 @@ export const actions = {
       // eslint-disable-next-line no-console
       console.error(error)
       commit('setBusRoutes', null)
-    }
-  },
-  async saveSearch ({ commit }, searchBody) {
-    try {
-      const { originCityId, destinationCityId, cid, data: dataInput, hora } = searchBody
-
-      await emtuApi.post('searches', {
-        idCidadeOrigem: originCityId,
-        idCidadeDestino: destinationCityId,
-        idCid: cid,
-        dataViagem: dataInput,
-        horaViagem: hora
-      })
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error('Falha ao salvar busca no banco de dados!')
     }
   }
 }
