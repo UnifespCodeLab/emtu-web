@@ -1,6 +1,6 @@
 <template>
   <VueApexCharts
-    :options="chartOptions"
+    :options="options ? options : chartOptions"
     :series="series"
   />
 </template>
@@ -37,6 +37,10 @@ export default {
     zoom: {
       type: Boolean,
       default: false
+    },
+    options: {
+      type: Object,
+      required: false
     }
   },
   computed: {
