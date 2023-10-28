@@ -152,12 +152,12 @@ export default {
         xaxis: {
           categories: [],
           title: {
-            text: 'day'
+            text: 'Dias'
           }
         },
         yaxis: {
           title: {
-            text: 'Temperature'
+            text: 'Quantidade de buscas'
           },
           min: 0
         },
