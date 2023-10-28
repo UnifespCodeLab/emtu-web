@@ -60,9 +60,24 @@
           </v-btn>
         </v-date-picker>
       </v-dialog>
-      <v-autocomplete class="performed-searches__input" :items="['Cidade A', 'Cidade B']" label="Origem" solo />
-      <v-autocomplete class="performed-searches__input" :items="['Cidade C', 'Cidade D']" label="Destino" solo />
-      <v-autocomplete class="performed-searches__input" :items="['linha 01', 'linha 02']" label="Linha" solo />
+      <v-autocomplete
+        v-model="originCity"
+        class="performed-searches__input"
+        :items="cities"
+        item-text="name"
+        item-value="id"
+        label="Origem"
+        solo
+      />
+      <v-autocomplete
+        v-model="destinationCity"
+        class="performed-searches__input"
+        :items="cities"
+        item-text="name"
+        item-value="id"
+        label="Destino"
+        solo
+      />
       <v-btn color="primary" large @click="executeSearch()">
         BUSCAR
       </v-btn>
@@ -76,6 +91,7 @@
         title="Ranking de linhas"
         type="bar"
         :series="series"
+        :options="chartOptions"
       />
     </div>
   </div>
@@ -83,6 +99,7 @@
 
 <script>
 import AdminChart from '~/components/admin/AdminChart.vue'
+import emtuApi from '~/assets/services/emtu-api'
 
 export default {
   name: 'AdminPerformedSearches',
@@ -99,17 +116,204 @@ export default {
         .substr(0, 10),
       endDateDialog: false,
       categories: ['linha 1', 'linha 2', 'linha 3', 'linha 4', 'linha 5', 'linha 6'],
-      series: []
+      originCity: null,
+      destinationCity: null,
+      series: [],
+      cities: [],
+      chartOptions: {
+        chart: {
+          height: 350,
+          type: 'line',
+          toolbar: {
+            show: true
+          }
+        },
+        colors: ['#77B6EA', '#545454'],
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        title: {
+          text: 'Buscas realizadas no período',
+          align: 'left'
+        },
+        grid: {
+          borderColor: '#e7e7e7',
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          }
+        },
+        markers: {
+          size: 1
+        },
+        xaxis: {
+          categories: [],
+          title: {
+            text: 'day'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Temperature'
+          },
+          min: 0
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right',
+          floating: true,
+          offsetY: -25,
+          offsetX: -5
+        }
+      }
     }
   },
+  // eslint-disable-next-line require-await
+  async fetch () {
+    const [citiesResponse, searchesResponse] = await Promise.all([
+      emtuApi.get('/city'),
+      emtuApi.get('/searches/?startDate=2022-01-01&endDate=2023-12-12')
+    ])
+
+    this.cities = citiesResponse.data
+    console.log({ citiesResponse, searchesResponse })
+  },
   methods: {
-    executeSearch () {
-      this.series = [
+    async executeSearch () {
+      const requestParams = {
+        startDate: this.startDate,
+        endDate: this.endDate,
+        origin: this.originCity,
+        destination: this.destinationCity
+      }
+
+      const searchResponse = await emtuApi.get('/searches', {
+        params: requestParams
+      })
+
+      searchResponse.data.data.push(
         {
-          name: 'Linhas',
-          data: [10, 41, 35, 51, 49, 62]
+          id: 2,
+          idCidadeOrigem: 77,
+          idCidadeDestino: 86,
+          idLinha: null,
+          sucedida: true,
+          idCid: 1,
+          dataViagem: '2023-10-25',
+          horaViagem: '21:24',
+          dataCriacao: '2023-11-26T00:24:45.635Z'
+        },
+        {
+          id: 2,
+          idCidadeOrigem: 77,
+          idCidadeDestino: 86,
+          idLinha: null,
+          sucedida: true,
+          idCid: 1,
+          dataViagem: '2023-10-25',
+          horaViagem: '21:24',
+          dataCriacao: '2023-11-26T00:24:45.635Z'
+        },
+        {
+          id: 2,
+          idCidadeOrigem: 77,
+          idCidadeDestino: 86,
+          idLinha: null,
+          sucedida: true,
+          idCid: 1,
+          dataViagem: '2023-10-25',
+          horaViagem: '21:24',
+          dataCriacao: '2023-11-26T00:24:45.635Z'
+        },
+        {
+          id: 2,
+          idCidadeOrigem: 77,
+          idCidadeDestino: 86,
+          idLinha: null,
+          sucedida: true,
+          idCid: 1,
+          dataViagem: '2023-10-25',
+          horaViagem: '21:24',
+          dataCriacao: '2023-11-26T00:24:45.635Z'
+        },
+
+        {
+          id: 2,
+          idCidadeOrigem: 77,
+          idCidadeDestino: 86,
+          idLinha: null,
+          sucedida: true,
+          idCid: 1,
+          dataViagem: '2023-10-25',
+          horaViagem: '21:24',
+          dataCriacao: '2023-10-26T00:24:45.635Z'
         }
-      ]
+      )
+
+      // Ordenar o array por dataCriacao
+      searchResponse.data.data.sort((a, b) => new Date(a.dataCriacao) - new Date(b.dataCriacao))
+
+      const groupedArray = searchResponse.data.data.reduce((result, item) => {
+        const formattedDate = new Date(item.dataCriacao).toISOString().split('T')[0]
+
+        if (item.sucedida) {
+          if (!result.success) {
+            result.success = {}
+          }
+          if (!result.success[formattedDate]) {
+            result.success[formattedDate] = 0
+          }
+          result.success[formattedDate]++
+        } else {
+          if (!result.notSuccess) {
+            result.notSuccess = {}
+          }
+          if (!result.notSuccess[formattedDate]) {
+            result.notSuccess[formattedDate] = 0
+          }
+          result.notSuccess[formattedDate]++
+        }
+        return result
+      }, {})
+
+      const uniqueDates = Array.from(
+        new Set(
+          searchResponse.data.data.map(item => new Date(item.dataCriacao).toISOString().split('T')[0])
+        )
+      )
+
+      const tempSeries = []
+
+      // Convertendo os objetos em arrays
+      if (groupedArray.success) {
+        groupedArray.success = Object.values(groupedArray.success)
+        tempSeries.push(
+          {
+            name: 'Sucedidas',
+            data: groupedArray.success
+          }
+        )
+      }
+
+      if (groupedArray.notSuccess) {
+        groupedArray.notSuccess = Object.values(groupedArray.notSuccess)
+        tempSeries.push(
+          {
+            name: 'Não sucedidas',
+            data: groupedArray.notSuccess
+          }
+        )
+      }
+
+      console.log(uniqueDates)
+
+      console.log(groupedArray)
+
+      this.series = tempSeries
+      this.chartOptions.xaxis.categories = uniqueDates
     }
   }
 }
