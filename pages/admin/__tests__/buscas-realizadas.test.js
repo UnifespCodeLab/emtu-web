@@ -114,9 +114,6 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
     })
 
     it('should render the chart container', async () => {
-      // const searchButton = wrapper.findAllComponents({ name: 'v-btn' }).at(0)
-      // searchButton.trigger('click')
-
       await wrapper.vm.$nextTick()
       await wrapper.vm.$nextTick()
 
@@ -125,9 +122,6 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
     })
 
     it('should render correct chart', async () => {
-      // const searchButton = wrapper.findAllComponents({ name: 'v-btn' }).at(0)
-      // searchButton.trigger('click')
-
       await wrapper.vm.$nextTick()
       await wrapper.vm.$nextTick()
 
