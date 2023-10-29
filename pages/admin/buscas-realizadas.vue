@@ -173,13 +173,11 @@ export default {
   },
   // eslint-disable-next-line require-await
   async fetch () {
-    const [citiesResponse, searchesResponse] = await Promise.all([
-      emtuApi.get('/city'),
-      emtuApi.get('/searches/?startDate=2022-01-01&endDate=2023-12-12')
+    const [citiesResponse] = await Promise.all([
+      emtuApi.get('/city')
     ])
 
     this.cities = citiesResponse.data
-    console.log({ citiesResponse, searchesResponse })
   },
   methods: {
     async executeSearch () {
@@ -307,10 +305,6 @@ export default {
           }
         )
       }
-
-      console.log(uniqueDates)
-
-      console.log(groupedArray)
 
       this.series = tempSeries
       this.chartOptions.xaxis.categories = uniqueDates
