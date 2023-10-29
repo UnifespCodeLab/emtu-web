@@ -87,9 +87,9 @@
       class="line-ranking__graph-wrapper"
     >
       <AdminChart
-        :categories="categories"
-        title="Ranking de linhas"
-        type="bar"
+        :categories="[]"
+        title="Buscas realizadas no período"
+        type="line"
         :series="series"
         :options="chartOptions"
       />
@@ -115,7 +115,6 @@ export default {
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
-      categories: ['linha 1', 'linha 2', 'linha 3', 'linha 4', 'linha 5', 'linha 6'],
       originCity: null,
       destinationCity: null,
       series: [],
@@ -150,7 +149,6 @@ export default {
           size: 1
         },
         xaxis: {
-          categories: [],
           title: {
             text: 'Dias'
           }
@@ -192,66 +190,10 @@ export default {
         params: requestParams
       })
 
-      searchResponse.data.data.push(
-        {
-          id: 2,
-          idCidadeOrigem: 77,
-          idCidadeDestino: 86,
-          idLinha: null,
-          sucedida: true,
-          idCid: 1,
-          dataViagem: '2023-10-25',
-          horaViagem: '21:24',
-          dataCriacao: '2023-11-26T00:24:45.635Z'
-        },
-        {
-          id: 2,
-          idCidadeOrigem: 77,
-          idCidadeDestino: 86,
-          idLinha: null,
-          sucedida: true,
-          idCid: 1,
-          dataViagem: '2023-10-25',
-          horaViagem: '21:24',
-          dataCriacao: '2023-11-26T00:24:45.635Z'
-        },
-        {
-          id: 2,
-          idCidadeOrigem: 77,
-          idCidadeDestino: 86,
-          idLinha: null,
-          sucedida: true,
-          idCid: 1,
-          dataViagem: '2023-10-25',
-          horaViagem: '21:24',
-          dataCriacao: '2023-11-26T00:24:45.635Z'
-        },
-        {
-          id: 2,
-          idCidadeOrigem: 77,
-          idCidadeDestino: 86,
-          idLinha: null,
-          sucedida: true,
-          idCid: 1,
-          dataViagem: '2023-10-25',
-          horaViagem: '21:24',
-          dataCriacao: '2023-11-26T00:24:45.635Z'
-        },
+      if (!searchResponse) {
+        return
+      }
 
-        {
-          id: 2,
-          idCidadeOrigem: 77,
-          idCidadeDestino: 86,
-          idLinha: null,
-          sucedida: true,
-          idCid: 1,
-          dataViagem: '2023-10-25',
-          horaViagem: '21:24',
-          dataCriacao: '2023-10-26T00:24:45.635Z'
-        }
-      )
-
-      // Ordenar o array por dataCriacao
       searchResponse.data.data.sort((a, b) => new Date(a.dataCriacao) - new Date(b.dataCriacao))
 
       const groupedArray = searchResponse.data.data.reduce((result, item) => {
