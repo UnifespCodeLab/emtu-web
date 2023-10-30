@@ -163,8 +163,6 @@ export default {
           position: 'bottom',
           horizontalAlign: 'right',
           floating: true
-          // offsetY: -25,
-          // offsetX: -5
         }
       }
     }
