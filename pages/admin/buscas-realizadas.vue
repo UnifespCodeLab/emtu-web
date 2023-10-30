@@ -160,11 +160,11 @@ export default {
           min: 0
         },
         legend: {
-          position: 'top',
+          position: 'bottom',
           horizontalAlign: 'right',
-          floating: true,
-          offsetY: -25,
-          offsetX: -5
+          floating: true
+          // offsetY: -25,
+          // offsetX: -5
         }
       }
     }
