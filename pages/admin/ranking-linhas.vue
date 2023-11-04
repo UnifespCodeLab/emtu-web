@@ -1,7 +1,16 @@
 <template>
   <div class="line-ranking">
     <div class="line-ranking__search-container">
-      <v-select v-model="searchResult" :items="['Sucedidas', 'Não Sucedidas']" label="Resultado Buscas" solo />
+      <v-select
+        v-model="searchResult"
+        :items="[
+          { text: 'Todas', value: null },
+          { text: 'Sucedidas', value: true },
+          { text: 'Não Sucedidas', value: false }]"
+        label="Resultado Buscas"
+        solo
+      />
+
       <v-text-field
         v-model="limit"
         :rules="[v => v <= 10 || 'Máximo 10']"
@@ -10,7 +19,7 @@
         max="10"
         solo
       />
-      <v-select v-model="selectedCid" :items="['Cid 01', 'Cid 02']" label="Cid" solo />
+      <v-select v-model="selectedCid" :items="cids" label="Cid" solo />
 
       <v-dialog
         ref="dialogStartDate"
@@ -91,6 +100,8 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import emtuApi from '~/assets/services/emtu-api'
 import AdminChart from '~/components/admin/AdminChart.vue'
 
 export default {
@@ -114,14 +125,32 @@ export default {
       series: []
     }
   },
+  computed: {
+    ...mapState('cid', ['cids'])
+  },
   methods: {
-    executeSearch () {
-      this.series = [
-        {
-          name: 'Linhas',
-          data: [10, 41, 35, 51, 49, 62]
-        }
-      ]
+    async executeSearch () {
+      if (!this.startDate && !this.endDate) {
+        alert('Selecione pelo menos uma Data de Início ou Fim')
+        return
+      }
+
+      const params = {
+        sucedida: this.searchResult,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        idCid: this.selectedCid,
+        limite: this.limit
+      }
+
+      const { data } = await emtuApi.get('searches/ranking', { params })
+      console.log(data)
+      // this.series = [
+      //   {
+      //     name: 'Linhas',
+      //     data: [10, 41, 35, 51, 49, 62]
+      //   }
+      // ]
     }
   }
 }
