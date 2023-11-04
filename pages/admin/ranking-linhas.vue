@@ -121,7 +121,7 @@ export default {
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
-      categories: ['linha 1', 'linha 2', 'linha 3', 'linha 4', 'linha 5', 'linha 6'],
+      categories: [],
       series: []
     }
   },
@@ -144,13 +144,18 @@ export default {
       }
 
       const { data } = await emtuApi.get('searches/ranking', { params })
-      console.log(data)
-      // this.series = [
-      //   {
-      //     name: 'Linhas',
-      //     data: [10, 41, 35, 51, 49, 62]
-      //   }
-      // ]
+      const result = data.data
+
+      this.categories = result.map((item) => {
+        return item.idLinha ?? 'Linha não encontrada'
+      })
+
+      this.series = [
+        {
+          name: 'Quantidade de buscas',
+          data: result.map(item => item.searchCount)
+        }
+      ]
     }
   }
 }
