@@ -61,7 +61,7 @@ export default {
           this.$auth.setUser({
             email: this.email
           })
-          this.$router.push('/admin/solicitacoes')
+          this.$router.push('/admin/home')
         }
       } catch (err) {
         this.showAlert({
