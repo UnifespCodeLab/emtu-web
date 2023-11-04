@@ -1,6 +1,7 @@
 export default {
   server: {
-    port: process.env.PORT || 3000 // default: 3000
+    port: process.env.PORT || 3000,
+    host: '0.0.0.0'
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -41,12 +42,19 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://auth.nuxtjs.org/guide/setup
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/dotenv'
   ],
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
+    baseURL: process.env.EMTU_API || process.env.NUXT_ENV_EMTU_API || process.env.NUXT_ENV_BASE_URL || 'http://localhost:3333/'
+  },
 
   publicRuntimeConfig: {
     axios: {
-      baseURL: 'http://localhost:3333/'
+      baseURL: process.env.EMTU_API || process.env.NUXT_ENV_EMTU_API || process.env.NUXT_ENV_BASE_URL || 'http://localhost:3333/'
     }
   },
 
