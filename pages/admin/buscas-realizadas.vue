@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import AdminChart from '~/components/admin/AdminChart.vue'
 import emtuApi from '~/assets/services/emtu-api'
 
@@ -176,6 +177,7 @@ export default {
     this.cities = citiesResponse.data
   },
   methods: {
+    ...mapActions('alert', ['showAlert', 'hideAlert']),
     async executeSearch () {
       const requestParams = {
         startDate: this.startDate,
@@ -184,17 +186,21 @@ export default {
         destination: this.destinationCity
       }
 
-      const searchResponse = await emtuApi.get('/searches', {
+      const { data: { data: searchResponse } } = await emtuApi.get('/searches', {
         params: requestParams
       })
 
-      if (!searchResponse) {
+      if (!searchResponse || searchResponse.length <= 0) {
+        this.showAlert({
+          alertMessage: 'Não foi possível encontrar buscas nesse período',
+          alertType: 'error'
+        })
         return
       }
 
-      searchResponse.data.data.sort((a, b) => new Date(a.dataCriacao) - new Date(b.dataCriacao))
+      searchResponse.sort((a, b) => new Date(a.dataCriacao) - new Date(b.dataCriacao))
 
-      const groupedArray = searchResponse.data.data.reduce((result, item) => {
+      const groupedArray = searchResponse.reduce((result, item) => {
         const formattedDate = new Date(item.dataCriacao).toISOString().split('T')[0]
 
         if (item.sucedida) {
@@ -219,7 +225,7 @@ export default {
 
       const uniqueDates = Array.from(
         new Set(
-          searchResponse.data.data.map(item => new Date(item.dataCriacao).toISOString().split('T')[0])
+          searchResponse.map(item => new Date(item.dataCriacao).toISOString().split('T')[0])
         )
       )
 
