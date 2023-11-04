@@ -100,7 +100,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import emtuApi from '~/assets/services/emtu-api'
 import AdminChart from '~/components/admin/AdminChart.vue'
 
@@ -128,10 +128,20 @@ export default {
   computed: {
     ...mapState('cid', ['cids'])
   },
+  created () {
+    if (!this.cids.length) {
+      this.fetchCids()
+    }
+  },
   methods: {
+    ...mapActions('cid', ['fetchCids']),
+    ...mapActions('alert', ['showAlert']),
     async executeSearch () {
       if (!this.startDate && !this.endDate) {
-        alert('Selecione pelo menos uma Data de Início ou Fim')
+        this.showAlert({
+          alertMessage: 'Selecione pelo menos uma Data de Início ou Fim',
+          alertType: 'warning'
+        })
         return
       }
 
@@ -143,7 +153,7 @@ export default {
         limite: this.limit
       }
 
-      const { data } = await emtuApi.get('searches/ranking', { params })
+      const { data } = await emtuApi.get('/searches/ranking', { params })
       const result = data.data
 
       this.categories = result.map((item) => {
