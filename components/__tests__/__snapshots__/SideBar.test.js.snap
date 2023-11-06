@@ -439,6 +439,31 @@ exports[`Components / Sidebar when user is logged should render admin items 1`] 
             <span
               class="item-title"
             >
+              Home
+            </span>
+          </div>
+        </a>
+        <a
+          class="v-list-item v-list-item--link theme--light"
+          role="listitem"
+          router=""
+          tabindex="0"
+        >
+          <div
+            class="v-list-item__icon"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate material-icons theme--light"
+            />
+          </div>
+           
+          <div
+            class="v-list-item__content"
+          >
+            <span
+              class="item-title"
+            >
               Buscas realizadas
             </span>
           </div>
@@ -515,6 +540,31 @@ exports[`Components / Sidebar when user is logged should render admin items 1`] 
               class="item-title"
             >
               Solicitações
+            </span>
+          </div>
+        </a>
+        <a
+          class="v-list-item v-list-item--link theme--light"
+          role="listitem"
+          router=""
+          tabindex="0"
+        >
+          <div
+            class="v-list-item__icon"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate material-icons theme--light"
+            />
+          </div>
+           
+          <div
+            class="v-list-item__content"
+          >
+            <span
+              class="item-title"
+            >
+              Fazer uma busca
             </span>
           </div>
         </a>

@@ -1,6 +1,8 @@
 [
+  { "title": "Home", "icon": "", "route": "/admin/home" },
   { "title": "Buscas realizadas", "icon": "", "route": "/admin/buscas-realizadas" },
   { "title": "Acessos diários", "icon": "", "route": "/admin/acessos-diarios" },
   { "title": "Ranking de Linhas", "icon": "", "route": "/admin/ranking-linhas" },
-  { "title": "Solicitações", "icon": "", "route": "/admin/solicitacoes" }
+  { "title": "Solicitações", "icon": "", "route": "/admin/solicitacoes" },
+  { "title": "Fazer uma busca", "icon": "", "route": "/" }
 ]
