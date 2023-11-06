@@ -1,5 +1,5 @@
 <template>
-  <div class="daily-access">
+  <div class="admin-home">
     <div v-for="card in cards" :key="card.id" class="card" @click="$router.push(card.route)">
       <div class="card-content">
         {{ card.title }}
@@ -20,13 +20,11 @@ export default {
   },
   created () {
     this.cards = adminItems
-  },
-  methods: {
   }
 }
 </script>
 <style scoped lang="scss">
-.daily-access {
+.admin-home {
   display: flex;
   flex-direction: column;
   padding-left: 20px;
