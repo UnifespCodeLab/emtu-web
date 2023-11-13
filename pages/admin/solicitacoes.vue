@@ -134,16 +134,11 @@ export default {
       selectedCid: null,
       search: '',
       headers: [
-        {
-          text: 'Email',
-          align: 'start',
-          filterable: true,
-          value: 'email'
-        },
-        { text: 'Cidade Origem', value: 'originCity' },
-        { text: 'Cidade Destino', value: 'destinationCity' },
-        { text: 'Cid', value: 'cid' },
-        { text: 'Data Solicitação', value: 'creationDate' }
+        { text: 'Email', filterable: true, value: 'email' },
+        { text: 'Cidade Origem', value: 'originCity', filterable: true },
+        { text: 'Cidade Destino', value: 'destinationCity', filterable: true },
+        { text: 'Cid', value: 'cid', filterable: true },
+        { text: 'Data Solicitação', value: 'creationDate', filterable: true }
       ],
       reports: null
     }
