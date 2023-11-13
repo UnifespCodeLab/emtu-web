@@ -96,7 +96,7 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
               id_cidade_origem: 1,
               id_cidade_destino: 2,
               id_cid: 1,
-              data_criacao: '2023-11-12T04:57:28.924-03:00',
+              data_criacao: '2023-11-12T04:57:28.924+00:00',
               id: 1
             },
             {
@@ -104,7 +104,7 @@ describe('Pages / Admin / AdminPerformedSearches', () => {
               id_cidade_origem: 1,
               id_cidade_destino: 13,
               id_cid: 71,
-              data_criacao: '2023-11-12T04:58:06.926-03:00',
+              data_criacao: '2023-11-12T04:58:06.926+00:00',
               id: 2
             }
           ]
