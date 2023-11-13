@@ -60,9 +60,31 @@
           </v-btn>
         </v-date-picker>
       </v-dialog>
-      <v-autocomplete class="reports__input" :items="['Cidade A', 'Cidade B']" label="Origem" solo />
-      <v-autocomplete class="reports__input" :items="['Cidade C', 'Cidade D']" label="Destino" solo />
-      <v-autocomplete class="reports__input" :items="['Cid 01', 'Cid 02']" label="Cid" solo />
+
+      <v-autocomplete
+        v-model="originCity"
+        class="reports__input"
+        :items="cities"
+        label="Origem"
+        solo
+      />
+
+      <v-autocomplete
+        v-model="destinationCity"
+        class="reports__input"
+        :items="cities"
+        label="Destino"
+        solo
+      />
+
+      <v-autocomplete
+        v-model="selectedCid"
+        class="reports__input"
+        :items="cid"
+        label="Cid"
+        solo
+      />
+
       <v-btn color="primary" large @click="executeSearch()">
         BUSCAR
       </v-btn>
@@ -93,6 +115,9 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import emtuApi from '~/assets/services/emtu-api'
+
 export default {
   name: 'AdminReports',
   layout: 'admin',
@@ -104,6 +129,9 @@ export default {
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
+      originCity: null,
+      destinationCity: null,
+      selectedCid: null,
       search: '',
       headers: [
         {
@@ -114,33 +142,47 @@ export default {
         },
         { text: 'Cidade Origem', value: 'originCity' },
         { text: 'Cidade Destino', value: 'destinationCity' },
-        { text: 'Cid', value: 'cid' }
+        { text: 'Cid', value: 'cid' },
+        { text: 'Data Solicitação', value: 'creationDate' }
       ],
       reports: null
     }
   },
+  computed: {
+    ...mapState('city', ['cities']),
+    ...mapState('cid', ['cids'])
+  },
+  created () {
+    if (!this.cities.length) {
+      this.fetchCities()
+    }
+    if (!this.cids.length) {
+      this.fetchCids()
+    }
+  },
   methods: {
-    executeSearch () {
-      this.reports = [
-        {
-          email: 'teste1@mail.com',
-          originCity: 'São José dos Campos',
-          destinationCity: 'São Paulo',
-          cid: 1
-        },
-        {
-          email: 'teste2@mail.com',
-          originCity: 'São José dos Campos',
-          destinationCity: 'Taubaté',
-          cid: 2
-        },
-        {
-          email: 'teste3@mail.com',
-          originCity: 'Taubaté',
-          destinationCity: 'São Paulo',
-          cid: 1
-        }
-      ]
+    ...mapActions('city', ['fetchCities']),
+    ...mapActions('cid', ['fetchCids']),
+    findCity (id) {
+      return this.cities.find(city => city.value === id)?.text
+    },
+    async executeSearch () {
+      const params = {
+        origin: this.originCity,
+        destination: this.destinationCity,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        idCid: this.selectedCid
+      }
+
+      const { data } = await emtuApi.get('/reports/getReports', { params })
+      this.reports = data.data.map(item => ({
+        email: item.email,
+        originCity: this.findCity(item.id_cidade_origem),
+        destinationCity: this.findCity(item.id_cidade_destino),
+        cid: this.cids.find(cid => cid.value === item.id_cid)?.text,
+        creationDate: new Date(item.data_criacao).toLocaleString('pt-BR')
+      }))
     }
   }
 }
