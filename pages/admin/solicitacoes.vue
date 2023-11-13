@@ -181,7 +181,7 @@ export default {
         originCity: this.findCity(item.id_cidade_origem),
         destinationCity: this.findCity(item.id_cidade_destino),
         cid: this.cids.find(cid => cid.value === item.id_cid)?.text,
-        creationDate: new Date(item.data_criacao).toLocaleString('pt-BR')
+        creationDate: new Date(item.data_criacao).toLocaleDateString('pt-BR')
       }))
     }
   }
