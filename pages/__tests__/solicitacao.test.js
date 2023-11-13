@@ -94,7 +94,7 @@ describe('Pages / ReportPage', () => {
     it('shows alert with success message', () => {
       expect(showAlert).toHaveBeenCalledWith(expect.anything(),
         {
-          alertMessage: 'Solicitação enviada com sucesso!',
+          alertMessage: 'Informação enviada com sucesso!',
           alertType: 'success'
         })
     })
@@ -132,7 +132,7 @@ describe('Pages / ReportPage', () => {
         it('shows alert with default error message', () => {
           expect(showAlert).toHaveBeenCalledWith(expect.anything(),
             {
-              alertMessage: 'Ocorreu um erro ao enviar a solicitação',
+              alertMessage: 'Ocorreu um erro ao enviar a informação',
               alertType: 'error'
             })
         })

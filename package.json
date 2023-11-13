@@ -11,7 +11,7 @@
     "lint": "npm run lint:js",
     "lintfix": "npm run lint:js -- --fix",
     "prepare": "husky install",
-    "test": "jest",
+    "test": "TZ=UTC jest",
     "heroku:cache:clear": "heroku builds:cache:purge --app emtu-web"
   },
   "engines": {

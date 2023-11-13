@@ -8,7 +8,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
     class="line-ranking__search-container"
   >
     <div
-      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
+      class="v-input v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
     >
       <div
         class="v-input__control"
@@ -16,27 +16,25 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-2"
+          aria-owns="list-4"
           class="v-input__slot"
           role="button"
         >
           <div
             class="v-select__slot"
           >
-            <label
-              class="v-label theme--light"
-              for="input-2"
-              style="left: 0px; position: absolute;"
-            >
-              Resultado Buscas
-            </label>
             <div
               class="v-select__selections"
             >
+              <div
+                class="v-select__selection v-select__selection--comma"
+              >
+                Todas
+              </div>
               <input
                 aria-readonly="false"
                 autocomplete="off"
-                id="input-2"
+                id="input-4"
                 readonly="readonly"
                 type="text"
               />
@@ -93,13 +91,13 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-7"
+              for="input-9"
               style="left: 0px; position: absolute;"
             >
               Limite
             </label>
             <input
-              id="input-7"
+              id="input-9"
               max="10"
               type="number"
             />
@@ -130,7 +128,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-10"
+          aria-owns="list-12"
           class="v-input__slot"
           role="button"
         >
@@ -139,7 +137,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-10"
+              for="input-12"
               style="left: 0px; position: absolute;"
             >
               Cid
@@ -150,7 +148,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
               <input
                 aria-readonly="false"
                 autocomplete="off"
-                id="input-10"
+                id="input-12"
                 readonly="readonly"
                 type="text"
               />
@@ -212,7 +210,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-16"
+              for="input-18"
               style="left: 0px; position: absolute;"
             >
               Data início
@@ -220,7 +218,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
             <input
               aria-expanded="false"
               aria-haspopup="true"
-              id="input-16"
+              id="input-18"
               role="button"
               type="text"
             />
@@ -267,7 +265,7 @@ exports[`Pages / Admin / AdminLineRanking should render the page 1`] = `
             <input
               aria-expanded="false"
               aria-haspopup="true"
-              id="input-20"
+              id="input-22"
               readonly="readonly"
               role="button"
               type="text"

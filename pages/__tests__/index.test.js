@@ -109,18 +109,8 @@ describe('Pages / SearchPage', () => {
       searchButton.trigger('click')
     })
 
-    it('calls emtu-api to save route search', () => {
-      expect(emtuApi.post).toHaveBeenNthCalledWith(1, 'searches', {
-        idCidadeOrigem: 1,
-        idCidadeDestino: 2,
-        idCid: 3,
-        dataViagem: '2023-10-22',
-        horaViagem: '21:45'
-      })
-    })
-
     it('calls emtu-api to execute bus search', () => {
-      expect(emtuApi.post).toHaveBeenNthCalledWith(2, '/bus', {
+      expect(emtuApi.post).toHaveBeenNthCalledWith(1, '/bus', {
         originCityId: 1,
         destinationCityId: 2,
         cid: 3,
@@ -143,19 +133,6 @@ describe('Pages / SearchPage', () => {
         routes: [
           { code: '420', vehicle: [{ group: 'G1' }, { group: 'G2' }] }]
       }])
-    })
-
-    describe('when route search saving goes wrong', () => {
-      let consoleError
-
-      beforeAll(() => {
-        consoleError = jest.spyOn(console, 'error')
-        emtuApi.post.mockRejectedValueOnce('error')
-      })
-
-      it('calls console.error', () => {
-        expect(consoleError).toHaveBeenCalledWith('Falha ao salvar busca no banco de dados!')
-      })
     })
 
     describe('when bus search goes wrong', () => {

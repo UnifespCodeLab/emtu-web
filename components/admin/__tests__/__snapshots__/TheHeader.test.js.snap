@@ -22,7 +22,7 @@ exports[`Components / TheHeader should render title correctly 1`] = `
         class="v-toolbar__title ml-4"
       >
         
-      Buscas realizadas
+      Home
     
       </div>
        

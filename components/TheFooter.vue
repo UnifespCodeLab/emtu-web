@@ -20,7 +20,7 @@
 
       <v-card-text>
         <v-btn color="white" to="/solicitacao" small text>
-          Não encontrou sua rota? Solicite uma aqui!
+          Não encontrou sua rota? Nos informe aqui!
         </v-btn>
       </v-card-text>
     </v-card>

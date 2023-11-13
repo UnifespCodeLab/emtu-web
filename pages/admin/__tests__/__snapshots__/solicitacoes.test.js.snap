@@ -21,7 +21,7 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-3"
+              for="input-5"
               style="left: 0px; position: absolute;"
             >
               Período de início
@@ -29,7 +29,7 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
             <input
               aria-expanded="false"
               aria-haspopup="true"
-              id="input-3"
+              id="input-5"
               role="button"
               type="text"
             />
@@ -81,7 +81,7 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
             <input
               aria-expanded="false"
               aria-haspopup="true"
-              id="input-7"
+              id="input-9"
               readonly="readonly"
               role="button"
               type="text"
@@ -126,7 +126,7 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-11"
+          aria-owns="list-13"
           class="v-input__slot"
           role="combobox"
         >
@@ -135,14 +135,14 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-11"
+              for="input-13"
               style="left: 0px; position: absolute;"
             >
               Origem
             </label>
             <input
               autocomplete="off"
-              id="input-11"
+              id="input-13"
               type="text"
             />
             <div
@@ -192,7 +192,7 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-16"
+          aria-owns="list-18"
           class="v-input__slot"
           role="combobox"
         >
@@ -201,14 +201,14 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-16"
+              for="input-18"
               style="left: 0px; position: absolute;"
             >
               Destino
             </label>
             <input
               autocomplete="off"
-              id="input-16"
+              id="input-18"
               type="text"
             />
             <div
@@ -258,7 +258,7 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-21"
+          aria-owns="list-23"
           class="v-input__slot"
           role="combobox"
         >
@@ -267,14 +267,14 @@ exports[`Pages / Admin / AdminPerformedSearches should render the page 1`] = `
           >
             <label
               class="v-label theme--light"
-              for="input-21"
+              for="input-23"
               style="left: 0px; position: absolute;"
             >
               Cid
             </label>
             <input
               autocomplete="off"
-              id="input-21"
+              id="input-23"
               type="text"
             />
             <div
@@ -354,7 +354,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
           >
             <label
               class="v-label theme--light"
-              for="input-138"
+              for="input-187"
               style="left: 0px; position: absolute;"
             >
               Período de início
@@ -362,7 +362,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
             <input
               aria-expanded="false"
               aria-haspopup="true"
-              id="input-138"
+              id="input-187"
               role="button"
               type="text"
             />
@@ -414,7 +414,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
             <input
               aria-expanded="false"
               aria-haspopup="true"
-              id="input-142"
+              id="input-191"
               readonly="readonly"
               role="button"
               type="text"
@@ -459,7 +459,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-146"
+          aria-owns="list-195"
           class="v-input__slot"
           role="combobox"
         >
@@ -468,14 +468,14 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
           >
             <label
               class="v-label theme--light"
-              for="input-146"
+              for="input-195"
               style="left: 0px; position: absolute;"
             >
               Origem
             </label>
             <input
               autocomplete="off"
-              id="input-146"
+              id="input-195"
               type="text"
             />
             <div
@@ -525,7 +525,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-151"
+          aria-owns="list-200"
           class="v-input__slot"
           role="combobox"
         >
@@ -534,14 +534,14 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
           >
             <label
               class="v-label theme--light"
-              for="input-151"
+              for="input-200"
               style="left: 0px; position: absolute;"
             >
               Destino
             </label>
             <input
               autocomplete="off"
-              id="input-151"
+              id="input-200"
               type="text"
             />
             <div
@@ -591,7 +591,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-owns="list-156"
+          aria-owns="list-205"
           class="v-input__slot"
           role="combobox"
         >
@@ -600,14 +600,14 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
           >
             <label
               class="v-label theme--light"
-              for="input-156"
+              for="input-205"
               style="left: 0px; position: absolute;"
             >
               Cid
             </label>
             <input
               autocomplete="off"
-              id="input-156"
+              id="input-205"
               type="text"
             />
             <div
@@ -666,7 +666,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
     class="line-ranking__graph-wrapper"
   >
     <span>
-      3 resultados encontrados
+      2 resultados encontrados
     </span>
      
     <div
@@ -689,13 +689,13 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
               >
                 <label
                   class="v-label theme--light"
-                  for="input-163"
+                  for="input-212"
                   style="left: 0px; position: absolute;"
                 >
                   Filtrar por nome
                 </label>
                 <input
-                  id="input-163"
+                  id="input-212"
                   type="text"
                 />
               </div>
@@ -724,6 +724,9 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
         >
           <table>
             <colgroup>
+              <col
+                class=""
+              />
               <col
                 class=""
               />
@@ -805,6 +808,22 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                     style="font-size: 18px;"
                   />
                 </th>
+                <th
+                  aria-label="Data Solicitação: Not sorted. Activate to sort ascending."
+                  aria-sort="none"
+                  class="text-start sortable"
+                  role="columnheader"
+                  scope="col"
+                >
+                  <span>
+                    Data Solicitação
+                  </span>
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                    style="font-size: 18px;"
+                  />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -814,46 +833,21 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                 <td
                   class="text-start"
                 >
-                  teste1@mail.com
+                  daniel@mail.com
                 </td>
                 <td
                   class="text-start"
-                >
-                  São José dos Campos
-                </td>
+                />
+                <td
+                  class="text-start"
+                />
+                <td
+                  class="text-start"
+                />
                 <td
                   class="text-start"
                 >
-                  São Paulo
-                </td>
-                <td
-                  class="text-start"
-                >
-                  1
-                </td>
-              </tr>
-              <tr
-                class=""
-              >
-                <td
-                  class="text-start"
-                >
-                  teste2@mail.com
-                </td>
-                <td
-                  class="text-start"
-                >
-                  São José dos Campos
-                </td>
-                <td
-                  class="text-start"
-                >
-                  Taubaté
-                </td>
-                <td
-                  class="text-start"
-                >
-                  2
+                  12/11/2023
                 </td>
               </tr>
               <tr
@@ -862,22 +856,21 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                 <td
                   class="text-start"
                 >
-                  teste3@mail.com
+                  milena@mail.com
                 </td>
                 <td
                   class="text-start"
-                >
-                  Taubaté
-                </td>
+                />
+                <td
+                  class="text-start"
+                />
+                <td
+                  class="text-start"
+                />
                 <td
                   class="text-start"
                 >
-                  São Paulo
-                </td>
-                <td
-                  class="text-start"
-                >
-                  1
+                  12/11/2023
                 </td>
               </tr>
             </tbody>
@@ -899,7 +892,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
-                  aria-owns="list-174"
+                  aria-owns="list-224"
                   class="v-input__slot"
                   role="button"
                 >
@@ -918,7 +911,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
                         aria-label="Rows per page:"
                         aria-readonly="false"
                         autocomplete="off"
-                        id="input-174"
+                        id="input-224"
                         readonly="readonly"
                         type="text"
                       />
@@ -952,7 +945,7 @@ exports[`Pages / Admin / AdminPerformedSearches when search button is clicked sh
           <div
             class="v-data-footer__pagination"
           >
-            1-3 of 3
+            1-2 of 2
           </div>
           <div
             class="v-data-footer__icons-before"
