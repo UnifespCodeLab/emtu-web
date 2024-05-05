@@ -9,15 +9,15 @@ describe('Components / TheHeader', () => {
   let wrapper
 
   beforeEach(() => {
-      vuetify = new Vuetify()
+    vuetify = new Vuetify()
 
-      wrapper = mount(TheHeader, {
-        localVue,
-        vuetify,
-        mocks: {
-          $route: { }
-        }
-      })
+    wrapper = mount(TheHeader, {
+      localVue,
+      vuetify,
+      mocks: {
+        $route: { }
+      }
+    })
   })
 
   it('matches the screenshot', () => {
