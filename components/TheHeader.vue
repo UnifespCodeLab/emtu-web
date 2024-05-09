@@ -1,11 +1,10 @@
 <template>
   <v-card flat height="50px" tile>
     <v-toolbar color="primary" dense dark>
-      <v-icon id="bus-icon">mdi-bus</v-icon>
+      <v-icon id="bus-icon" @click="redirectToHomePage">mdi-bus</v-icon>
       <v-toolbar-title class="ml-4">
         EMTU
       </v-toolbar-title>
-
       <v-spacer />
       <v-app-bar-nav-icon id="menu-icon" @click="$emit('toggleSideBar')" />
     </v-toolbar>
@@ -14,6 +13,11 @@
 
 <script>
 export default {
+  methods: {
+    redirectToHomePage () {
+      this.$router.push('/')
+    }
+  },
   name: 'TheHeader'
 }
 </script>

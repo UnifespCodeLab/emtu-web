@@ -1,13 +1,12 @@
 <template>
   <v-card flat height="50px" tile>
     <v-toolbar dense>
-      <v-icon color="primary">
+      <v-icon id="bus-icon" color="primary" @click="redirectToHomePage">
         mdi-bus
       </v-icon>
       <v-toolbar-title class="ml-4">
         {{ routeTitle }}
       </v-toolbar-title>
-
       <v-spacer />
       <v-app-bar-nav-icon color="primary" @click="$emit('toggleSideBar')" />
     </v-toolbar>
@@ -24,6 +23,11 @@ export default {
       const currentItem = adminItems.find(item => item.route === this.$route.path)
 
       return currentItem.title
+    }
+  },
+  methods: {
+    redirectToHomePage () {
+      this.$router.push('/admin/home')
     }
   }
 }
