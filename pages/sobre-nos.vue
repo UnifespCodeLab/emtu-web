@@ -22,7 +22,7 @@
         </p>
       </div>
       <div class="about-us__container-content-emtu-details">
-        <v-icon size="300" class="about-us__container-content-emtu-details-icon">
+        <v-icon size="300" class="about-us__container-content-emtu-details-icon" ref="mdi-bus">
           mdi-bus
         </v-icon>
         <span class="about-us__container-content-emtu-details-text">
