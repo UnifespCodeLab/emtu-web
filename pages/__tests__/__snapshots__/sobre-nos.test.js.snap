@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages / AboutUsPage matches the snapshot 1`] = `
+<div
+  class="about-us__container"
+>
+  <div
+    class="about-us__container-content"
+  >
+    <div
+      class="about-us__container-content-emtu"
+    >
+      <h2
+        class="about-us__container-content-title"
+      >
+        
+        Sobre o 
+        <span>
+          projeto
+        </span>
+      </h2>
+       
+      <p
+        class="about-us__container-content-paragraph"
+      >
+        
+        O software proposto faz o mapeamento entre as classificações dos níveis de
+        deficiência dos passageiros e as adequações necessárias para que esses passageiros
+        utilizem o sistema de transporte público metropolitano da melhor forma possível.
+        Os dados e informações a serem utilizados neste projeto serão da Região Metropolitana do Vale do
+        Paraíba e Litoral Norte de São Paulo (RMVPLN) e da Empresa Metropolitana de Transportes Urbanos de São Paulo (EMTU),
+        parceira deste projeto de extensão.
+      
+      </p>
+       
+      <p
+        class="about-us__container-content-paragraph"
+      >
+        
+        O software  relaciona os CID (Código Internacional de Doenças) dos passageiros PcD com suas necessidades
+        em termos de adequações nos veículos de transporte e a própria oferta do transporte
+        público metropolitano. Espera-se que o software desenvolvido seja capaz de orientar o usuário no seu dia-a-dia,
+        assim como gere informações para que a empresa possa atendê-lo da melhor forma possível.
+        Ao final, o software será disponibilizado de forma aberta e gratuita.
+      
+      </p>
+    </div>
+     
+    <div
+      class="about-us__container-content-emtu-details"
+    >
+      <i
+        aria-hidden="true"
+        class="v-icon notranslate about-us__container-content-emtu-details-icon mdi mdi-bus theme--light"
+        style="font-size: 300px;"
+      />
+       
+      <span
+        class="about-us__container-content-emtu-details-text"
+      >
+        
+        Site desenvolvido e mantido pelo grupo de extensão CodeLab da Universidade Federal de São Paulo (UNIFESP).
+      
+      </span>
+    </div>
+  </div>
+   
+  <div
+    class="about-us__container-content"
+  >
+    <div
+      class="about-us__container-content-codelab-images"
+    >
+      <div
+        class="v-window v-item-group theme--dark v-carousel"
+        style="height: 300px;"
+      >
+        <div
+          class="v-window__container"
+        >
+          <transition-stub
+            name=""
+          >
+            <div
+              class="v-window-item"
+            >
+              <div
+                class="v-image v-responsive v-carousel__item theme--light"
+                style="height: 300px;"
+              >
+                <div
+                  class="v-responsive__content"
+                >
+                  <img
+                    src="../assets/images/about-us-image1.png"
+                  />
+                </div>
+              </div>
+            </div>
+          </transition-stub>
+           
+          <transition-stub
+            name=""
+          >
+            <!---->
+          </transition-stub>
+           
+          <transition-stub
+            name=""
+          >
+            <!---->
+          </transition-stub>
+          <div
+            class="v-window__prev"
+          >
+            <button
+              aria-label="Previous visual"
+              class="v-btn v-btn--icon v-btn--round theme--dark v-size--default"
+              type="button"
+            >
+              <span
+                class="v-btn__content"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-chevron-left theme--dark"
+                  style="font-size: 36px;"
+                />
+              </span>
+            </button>
+          </div>
+          <div
+            class="v-window__next"
+          >
+            <button
+              aria-label="Next visual"
+              class="v-btn v-btn--icon v-btn--round theme--dark v-size--default"
+              type="button"
+            >
+              <span
+                class="v-btn__content"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-chevron-right theme--dark"
+                  style="font-size: 36px;"
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+       
+      <legend>
+        Equipes de 2019 e 2022.
+      </legend>
+       
+      <span>
+        
+        "A extensão universitária tem de se aproximar mais de sua comunidade visando a
+        ampliação do conhecimento e automatização de suas tarefas."
+      
+      </span>
+    </div>
+     
+    <div
+      class="about-us__container-content-codelab-details"
+    >
+      <h2
+        class="about-us__container-content-title"
+      >
+        
+        Sobre o 
+        <span>
+           CodeLab 
+        </span>
+      </h2>
+       
+      <p
+        class="about-us__container-content-paragraph"
+      >
+        
+        O CodeLab-Unifesp é um projeto formado por um grupo de estudantes com uma ideia revolucionária,
+        a qual acreditamos que contribuirá para o desenvolvimento social. Ele é idealizado e coordenado pela
+        Profa. Dra. Denise Stringhini.
+      
+      </p>
+       
+      <p
+        class="about-us__container-content-paragraph"
+      >
+        
+        Oferecemos soluções inteligentes para duas ONG's de nossa região e nos orgulhamos da nossa atitude.
+        Sempre buscamos o feedback construtivo dos nossos clientes a fim de melhorar e expandir o nosso projeto.
+      
+      </p>
+       
+      <p
+        class="about-us__container-content-paragraph"
+      >
+        
+        Soluções inteligentes estão no centro do que fazemos no CodeLab-Unifesp. Nosso principal objetivo é
+        encontrar formas inteligentes de usar a tecnologia a nosso favor para ajudar a construir um futuro
+        melhor para todos, em todo lugar.
+      
+      </p>
+       
+      <p
+        class="about-us__container-content-paragraph"
+      >
+        
+        Estamos sempre abertos a novas ideias e trabalhamos em conjunto para obter contínuamente o melhor.
+      
+      </p>
+       
+      <span
+        class="about-us__container-content-paragraph"
+      >
+        Para saber mais 
+        <a
+          href="https://www.codelab-unifesp.org/"
+          target="_blank"
+        >
+          acesse nosso site.
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
+`;
