@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components / LoadingAbsolute matches the snapshot 1`] = `
+<div
+  class="v-overlay v-overlay--active theme--dark"
+  style="z-index: 5;"
+>
+  <div
+    class="v-overlay__scrim"
+    style="opacity: 0.46; background-color: rgb(33, 33, 33); border-color: #212121;"
+  />
+  <div
+    class="v-overlay__content"
+  >
+    <div
+      aria-valuemax="100"
+      aria-valuemin="0"
+      class="v-progress-circular v-progress-circular--visible v-progress-circular--indeterminate primary--text"
+      role="progressbar"
+      style="height: 50px; width: 50px;"
+    >
+      <svg
+        style="transform: rotate(0deg);"
+        viewBox="21.73913043478261 21.73913043478261 43.47826086956522 43.47826086956522"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          class="v-progress-circular__overlay"
+          cx="43.47826086956522"
+          cy="43.47826086956522"
+          fill="transparent"
+          r="20"
+          stroke-dasharray="125.664"
+          stroke-dashoffset="125.66370614359172px"
+          stroke-width="3.4782608695652177"
+        />
+      </svg>
+      <div
+        class="v-progress-circular__info"
+      />
+    </div>
+  </div>
+</div>
+`;
