@@ -26,7 +26,7 @@ describe('Components / LoadingAbsolute', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('has a loading icon with the correct props', () => {
+  it('has a loading icon with the correct properties', () => {
     const icon = wrapper.findComponent({ name: 'v-progress-circular' })
     expect(icon.exists()).toBeTruthy()
     expect(icon.props().color).toBe('primary')
