@@ -23,7 +23,7 @@ describe('GlobalAlert', () => {
           state: {
             isVisible: true,
             alertMessage: 'Teste',
-            alertType: 'warning',
+            alertType: 'warning'
           },
           actions
         }
@@ -52,8 +52,8 @@ describe('GlobalAlert', () => {
   })
 
   it('should call hideAlert method directly', async () => {
-    wrapper.vm.hideAlert();
-    await wrapper.vm.$nextTick();
-    expect(actions.hideAlert).toHaveBeenCalled();
+    wrapper.vm.hideAlert()
+    await wrapper.vm.$nextTick()
+    expect(actions.hideAlert).toHaveBeenCalled()
   })
 })
