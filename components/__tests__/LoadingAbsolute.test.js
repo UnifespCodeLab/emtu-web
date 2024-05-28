@@ -3,7 +3,7 @@ import Vuetify from 'vuetify'
 import LoadingAbsolute from '~/components/LoadingAbsolute'
 
 const localVue = createLocalVue()
-localVue.use(Vuetify);
+localVue.use(Vuetify)
 
 describe('Components / LoadingAbsolute', () => {
   let vuetify
