@@ -1,0 +1,995 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages / ListaCids when all data is correct should render correct elements 1`] = `
+<div
+  class="container"
+>
+  <ul
+    class="filters"
+  >
+    <div
+      class="v-input input v-input--dense theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-35"
+              style="left: 0px; position: absolute;"
+            >
+              Pesquisar
+            </label>
+            <input
+              id="input-35"
+              type="text"
+            />
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input input v-input--dense theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-38"
+          class="v-input__slot"
+          role="button"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-38"
+              style="left: 0px; position: absolute;"
+            >
+              Companhia
+            </label>
+            <div
+              class="v-select__selections"
+            >
+              <input
+                aria-readonly="false"
+                autocomplete="off"
+                id="input-38"
+                readonly="readonly"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input input v-input--dense theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-43"
+          class="v-input__slot"
+          role="button"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-43"
+              style="left: 0px; position: absolute;"
+            >
+              Grupo
+            </label>
+            <div
+              class="v-select__selections"
+            >
+              <input
+                aria-readonly="false"
+                autocomplete="off"
+                id="input-43"
+                readonly="readonly"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <button
+      class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      Buscar
+    
+      </span>
+    </button>
+  </ul>
+   
+  <!---->
+   
+  <div
+    class="table-container"
+  >
+    <div
+      class="v-data-table elevation-1 table v-data-table--dense v-data-table--has-bottom theme--light"
+    >
+      <div
+        class="v-data-table__wrapper"
+      >
+        <table>
+          <colgroup>
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+          </colgroup>
+          <thead
+            class="v-data-table-header"
+          >
+            <tr>
+              <th
+                aria-label="Código: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Código
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Diagnóstico: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Diagnóstico
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Observações: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Observações
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Companhia: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Companhia
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Grupo: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Grupo
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class=""
+            >
+              <td
+                class="text-start"
+              >
+                M151
+              </td>
+              <td
+                class="text-start"
+              >
+                Nódulos de Heberden (com artropatia)
+              </td>
+              <td
+                class="text-start"
+              >
+                Com comprometimento importante da deambulação
+              </td>
+              <td
+                class="text-start"
+              >
+                Não
+              </td>
+              <td
+                class="text-start"
+              >
+                G1
+              </td>
+            </tr>
+            <tr
+              class=""
+            >
+              <td
+                class="text-start"
+              >
+                H54.2
+              </td>
+              <td
+                class="text-start"
+              >
+                Visão subnormal em ambos os olhos
+              </td>
+              <td
+                class="text-start"
+              >
+                Que melhora com correção
+              </td>
+              <td
+                class="text-start"
+              >
+                Sim
+              </td>
+              <td
+                class="text-start"
+              >
+                G2
+              </td>
+            </tr>
+            <tr
+              class=""
+            >
+              <td
+                class="text-start"
+              >
+                G30
+              </td>
+              <td
+                class="text-start"
+              >
+                Doença de Alzheimer
+              </td>
+              <td
+                class="text-start"
+              />
+              <td
+                class="text-start"
+              >
+                Sim
+              </td>
+              <td
+                class="text-start"
+              >
+                G3
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="v-data-footer"
+      >
+        <div
+          class="v-data-footer__select"
+        >
+          Rows per page:
+          <div
+            class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-text-field v-select"
+          >
+            <div
+              class="v-input__control"
+            >
+              <div
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-59"
+                class="v-input__slot"
+                role="button"
+              >
+                <div
+                  class="v-select__slot"
+                >
+                  <div
+                    class="v-select__selections"
+                  >
+                    <div
+                      class="v-select__selection v-select__selection--comma"
+                    >
+                      5
+                    </div>
+                    <input
+                      aria-label="Rows per page:"
+                      aria-readonly="false"
+                      autocomplete="off"
+                      id="input-59"
+                      readonly="readonly"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="v-icon notranslate mdi mdi-menu-down theme--light"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    value="5"
+                  />
+                </div>
+                <div
+                  class="v-menu"
+                >
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-data-footer__pagination"
+        >
+          1-3 of 3
+        </div>
+        <div
+          class="v-data-footer__icons-before"
+        >
+          <button
+            aria-label="Previous page"
+            class="v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-left theme--light"
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          class="v-data-footer__icons-after"
+        >
+          <button
+            aria-label="Next page"
+            class="v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-right theme--light"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pages / ListaCids when the page is empty should render the page 1`] = `
+<div
+  class="container"
+>
+  <ul
+    class="filters"
+  >
+    <div
+      class="v-input input v-input--dense theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          class="v-input__slot"
+        >
+          <div
+            class="v-text-field__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-2"
+              style="left: 0px; position: absolute;"
+            >
+              Pesquisar
+            </label>
+            <input
+              id="input-2"
+              type="text"
+            />
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input input v-input--dense theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-5"
+          class="v-input__slot"
+          role="button"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-5"
+              style="left: 0px; position: absolute;"
+            >
+              Companhia
+            </label>
+            <div
+              class="v-select__selections"
+            >
+              <input
+                aria-readonly="false"
+                autocomplete="off"
+                id="input-5"
+                readonly="readonly"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-input input v-input--dense theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select"
+    >
+      <div
+        class="v-input__control"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-owns="list-10"
+          class="v-input__slot"
+          role="button"
+        >
+          <div
+            class="v-select__slot"
+          >
+            <label
+              class="v-label theme--light"
+              for="input-10"
+              style="left: 0px; position: absolute;"
+            >
+              Grupo
+            </label>
+            <div
+              class="v-select__selections"
+            >
+              <input
+                aria-readonly="false"
+                autocomplete="off"
+                id="input-10"
+                readonly="readonly"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-menu-down theme--light"
+                />
+              </div>
+            </div>
+            <input
+              type="hidden"
+            />
+          </div>
+          <div
+            class="v-menu"
+          >
+            <!---->
+          </div>
+        </div>
+        <div
+          class="v-text-field__details"
+        >
+          <div
+            class="v-messages theme--light"
+          >
+            <transition-group-stub
+              class="v-messages__wrapper"
+              name="message-transition"
+              tag="div"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <button
+      class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        
+      Buscar
+    
+      </span>
+    </button>
+  </ul>
+   
+  <!---->
+   
+  <div
+    class="table-container"
+  >
+    <div
+      class="v-data-table elevation-1 table v-data-table--dense v-data-table--has-bottom theme--light"
+    >
+      <div
+        class="v-data-table__wrapper"
+      >
+        <table>
+          <colgroup>
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+          </colgroup>
+          <thead
+            class="v-data-table-header"
+          >
+            <tr>
+              <th
+                aria-label="Código: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Código
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Diagnóstico: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Diagnóstico
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Observações: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Observações
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Companhia: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Companhia
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Grupo: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Grupo
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="v-data-table__empty-wrapper"
+            >
+              <td
+                colspan="5"
+              >
+                No data available
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="v-data-footer"
+      >
+        <div
+          class="v-data-footer__select"
+        >
+          Rows per page:
+          <div
+            class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-text-field v-select"
+          >
+            <div
+              class="v-input__control"
+            >
+              <div
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-26"
+                class="v-input__slot"
+                role="button"
+              >
+                <div
+                  class="v-select__slot"
+                >
+                  <div
+                    class="v-select__selections"
+                  >
+                    <div
+                      class="v-select__selection v-select__selection--comma"
+                    >
+                      5
+                    </div>
+                    <input
+                      aria-label="Rows per page:"
+                      aria-readonly="false"
+                      autocomplete="off"
+                      id="input-26"
+                      readonly="readonly"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="v-icon notranslate mdi mdi-menu-down theme--light"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    value="5"
+                  />
+                </div>
+                <div
+                  class="v-menu"
+                >
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-data-footer__pagination"
+        >
+          –
+        </div>
+        <div
+          class="v-data-footer__icons-before"
+        >
+          <button
+            aria-label="Previous page"
+            class="v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-left theme--light"
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          class="v-data-footer__icons-after"
+        >
+          <button
+            aria-label="Next page"
+            class="v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-right theme--light"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
