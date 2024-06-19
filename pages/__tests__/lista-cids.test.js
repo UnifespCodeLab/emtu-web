@@ -18,7 +18,7 @@ describe('Pages / ListaCids', () => {
     wrapper = mount(ListaCids, {
       localVue,
       vuetify
-    })    
+    })
   })
 
   describe('when the page is empty', () => {
@@ -36,29 +36,28 @@ describe('Pages / ListaCids', () => {
             diagnostic: 'Nódulos de Heberden (com artropatia)',
             observations: 'Com comprometimento importante da deambulação',
             companion: 'Não',
-            "group": 'G1'
+            group: 'G1'
           },
           {
             cod: 'H54.2',
             diagnostic: 'Visão subnormal em ambos os olhos',
             observations: 'Que melhora com correção',
             companion: 'Sim',
-            "group": 'G2'
+            group: 'G2'
           },
           {
             cod: 'G30',
             diagnostic: 'Doença de Alzheimer',
             observations: '',
             companion: 'Sim',
-            "group": 'G3'
-          },
-        ] 
+            group: 'G3'
+          }
+        ]
       })
     })
 
     it('should render correct elements', () => {
       expect(wrapper.element).toMatchSnapshot()
     })
-
   })
 })
