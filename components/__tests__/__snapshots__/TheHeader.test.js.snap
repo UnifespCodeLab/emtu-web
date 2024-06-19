@@ -14,6 +14,7 @@ exports[`Components / TheHeader matches the screenshot 1`] = `
       style="height: 48px;"
     >
       <button
+        aria-label="Volte para a página inicial"
         class="v-icon notranslate v-icon--link mdi mdi-bus theme--dark"
         id="bus-icon"
         type="button"
@@ -32,6 +33,7 @@ exports[`Components / TheHeader matches the screenshot 1`] = `
       />
        
       <button
+        aria-label="Abrir menu de navegação"
         class="v-app-bar__nav-icon v-btn v-btn--icon v-btn--round theme--dark v-size--default"
         id="menu-icon"
         type="button"

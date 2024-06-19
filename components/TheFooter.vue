@@ -6,6 +6,7 @@
           v-for="icon in icons"
           :key="icon.name"
           :href="icon.link"
+          :aria-label="icon.label"
           class="mx-4"
           target="_blank"
           icon
@@ -35,13 +36,19 @@ export default {
       icons: [
         {
           name: 'mdi-linkedin',
+          label: 'Veja nosso linkedIn',
           link: 'https://www.linkedin.com/company/codelab-unifesp/'
         },
         {
           name: 'mdi-email',
+          label: 'Entre em contato por email',
           link: 'mailto:codelab.unifesp@gmail.com?subject="link HTML"'
         },
-        { name: 'mdi-github', link: 'https://github.com/UnifespCodeLab' }
+        {
+          name: 'mdi-github',
+          label: 'Veja nosso github',
+          link: 'https://github.com/UnifespCodeLab'
+        }
       ]
     }
   }
