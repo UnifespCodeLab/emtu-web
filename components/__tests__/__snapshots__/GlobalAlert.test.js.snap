@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GlobalAlert matches the snapshot 1`] = `
+<transition-stub
+  class="global-alert"
+  name="scale-transition"
+>
+  <div
+    class="v-alert v-sheet theme--dark warning"
+    role="alert"
+  >
+    <div
+      class="v-alert__wrapper"
+    >
+      <i
+        aria-hidden="true"
+        class="v-icon notranslate v-alert__icon mdi mdi-exclamation theme--dark"
+      />
+      <div
+        class="v-alert__content"
+      >
+        
+  Teste
+
+      </div>
+      <button
+        aria-label="Close"
+        class="v-alert__dismissible v-btn v-btn--icon v-btn--round theme--dark v-size--small"
+        type="button"
+      >
+        <span
+          class="v-btn__content"
+        >
+          <i
+            aria-hidden="true"
+            class="v-icon notranslate mdi mdi-close-circle theme--dark"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+</transition-stub>
+`;
