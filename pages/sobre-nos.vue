@@ -10,45 +10,35 @@
           deficiência dos passageiros e as adequações necessárias para que esses passageiros
           utilizem o sistema de transporte público metropolitano da melhor forma possível.
           Os dados e informações a serem utilizados neste projeto serão da Região Metropolitana do Vale do
-          Paraíba e Litoral Norte de São Paulo (RMVPLN) e da Empresa Metropolitana de Transportes Urbanos de São Paulo (EMTU),
+          Paraíba e Litoral Norte de São Paulo (RMVPLN) e da Empresa Metropolitana de Transportes Urbanos de São Paulo
+          (EMTU),
           parceira deste projeto de extensão.
         </p>
         <p class="about-us__container-content-paragraph">
-          O software  relaciona os CID (Código Internacional de Doenças) dos passageiros PcD com suas necessidades
+          O software relaciona os CID (Código Internacional de Doenças) dos passageiros PcD com suas necessidades
           em termos de adequações nos veículos de transporte e a própria oferta do transporte
-          público metropolitano. Espera-se que o software desenvolvido seja capaz de orientar o usuário no seu dia-a-dia,
+          público metropolitano. Espera-se que o software desenvolvido seja capaz de orientar o usuário no seu
+          dia-a-dia,
           assim como gere informações para que a empresa possa atendê-lo da melhor forma possível.
           Ao final, o software será disponibilizado de forma aberta e gratuita.
         </p>
       </div>
       <div class="about-us__container-content-emtu-details">
-        <v-icon size="300" class="about-us__container-content-emtu-details-icon">
-          mdi-bus
-        </v-icon>
-        <span class="about-us__container-content-emtu-details-text">
-          Site desenvolvido e mantido pelo grupo de extensão CodeLab da Universidade Federal de São Paulo (UNIFESP).
-        </span>
+        <div class="about-us__container-content">
+          <div class="about-us__container-content-emtu-details">
+            <v-icon size="300" class="about-us__container-content-emtu-details-icon">
+              mdi-bus
+            </v-icon>
+          </div>
+          <div class="about-us__container-content-title">
+            <h2>
+              <span>EMTU</span>
+            </h2>
+          </div>
+        </div>
       </div>
     </div>
     <div class="about-us__container-content">
-      <div class="about-us__container-content-codelab-images">
-        <v-carousel cycle hide-delimiters height="300">
-          <v-carousel-item>
-            <img src="../assets/images/about-us-image1.png">
-          </v-carousel-item>
-          <v-carousel-item>
-            <img src="../assets/images/about-us-image2.png">
-          </v-carousel-item>
-          <v-carousel-item>
-            <img src="../assets/images/about-us-image3.jpg">
-          </v-carousel-item>
-        </v-carousel>
-        <legend>Equipes de 2019 e 2022.</legend>
-        <span>
-          "A extensão universitária tem de se aproximar mais de sua comunidade visando a
-          ampliação do conhecimento e automatização de suas tarefas."
-        </span>
-      </div>
       <div class="about-us__container-content-codelab-details">
         <h2 class="about-us__container-content-title">
           Sobre o <span> CodeLab </span>
@@ -70,7 +60,17 @@
         <p class="about-us__container-content-paragraph">
           Estamos sempre abertos a novas ideias e trabalhamos em conjunto para obter contínuamente o melhor.
         </p>
-        <span class="about-us__container-content-paragraph">Para saber mais <a href="https://www.codelab-unifesp.org/" target="_blank">acesse nosso site.</a> </span>
+        <span class="about-us__container-content-paragraph">Para saber mais <a href="https://www.codelab-unifesp.org/"
+            target="_blank">acesse nosso site.</a> </span>
+      </div>
+      <div class="about-us__container-content-codelab-details">
+        <div class="about-us__container-content-codelab-images">
+          <img src="../assets/images/logo-codelab.png">
+        </div>
+        <span class="about-us__container-content-emtu-details-text">
+          Site desenvolvido e mantido pelo grupode extensão CodeLab da Universidade Federal do Estado de São Paulo
+          (UNIFESP)
+        </span>
       </div>
     </div>
   </div>
@@ -78,6 +78,7 @@
 
 <style lang="scss" scoped>
 $color-primary: #1976d2;
+
 .about-us__container {
   width: 100%;
   padding: 1rem;
@@ -107,10 +108,10 @@ $color-primary: #1976d2;
 
       color: #000000;
 
-    span {
-      color: $color-primary;
-      opacity: 0.5;
-    }
+      span {
+        color: $color-primary;
+        opacity: 0.5;
+      }
 
     }
 
@@ -148,8 +149,10 @@ $color-primary: #1976d2;
     }
 
     &-codelab-images {
+      align-items: center;
+      text-align: center;
       img {
-        width: 100%;
+        width: 80%;
         height: 100%;
         object-fit: contain;
       }
@@ -182,4 +185,4 @@ $color-primary: #1976d2;
     }
   }
 }
-  </style>
+</style>
