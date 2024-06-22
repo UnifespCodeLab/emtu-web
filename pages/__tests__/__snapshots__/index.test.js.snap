@@ -140,7 +140,7 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
     </div>
      
     <div
-      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-autocomplete"
+      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-select--is-multi v-autocomplete"
     >
       <div
         class="v-input__control"
@@ -162,11 +162,15 @@ exports[`Pages / SearchPage when all data is correct should render the page 1`] 
             >
               Cid
             </label>
-            <input
-              autocomplete="off"
-              id="input-14"
-              type="text"
-            />
+            <div
+              class="v-select__selections"
+            >
+              <input
+                autocomplete="off"
+                id="input-14"
+                type="text"
+              />
+            </div>
             <div
               class="v-input__append-inner"
             >
