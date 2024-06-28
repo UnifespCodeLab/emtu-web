@@ -69,6 +69,7 @@ exports[`Pages / TheFooter when the page render should matches the screenshot 1`
     >
       <a
         class="v-btn v-btn--router v-btn--text theme--light v-size--small white--text"
+        id="btn-solicitacao"
       >
         <span
           class="v-btn__content"

@@ -46,9 +46,9 @@ describe('Pages / TheFooter', () => {
       expect(logo.exists()).toBe(true)
     })
   
-    it('should render text button correctly', () => {
-      const text = wrapper.text()
-      expect(text).toBe('Não encontrou sua rota? Nos informe aqui!')
+    it('should render route button correctly', () => {
+      let button = wrapper.find('#btn-solicitacao')
+      expect(button.props('to')).toBe('/solicitacao')
     })
   })
 })
