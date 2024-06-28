@@ -21,32 +21,34 @@ describe('Pages / TheFooter', () => {
     })
   })
 
-  it('matches the screenshot', () => {
-    expect(wrapper.element).toMatchSnapshot()
-  })
+  describe('when the page render', () => {
+    it('should matches the screenshot', () => {
+      expect(wrapper.element).toMatchSnapshot()
+    })
 
-  it('should render buttons correctly', () => {
-    const button = wrapper.findAllComponents('.v-btn')
-    expect(button).toHaveLength(4)
-  })
-
-  it('should render linkedin icon correctly', () => {
-    const logo = wrapper.find('.mdi-linkedin')
-    expect(logo.exists()).toBe(true)
-  })
-
-  it('should render email icon correctly', () => {
-    const logo = wrapper.find('.mdi-email')
-    expect(logo.exists()).toBe(true)
-  })
-
-  it('should render github icon correctly', () => {
-    const logo = wrapper.find('.mdi-github')
-    expect(logo.exists()).toBe(true)
-  })
-
-  it('should render text button correctly', () => {
-    const text = wrapper.text()
-    expect(text).toBe('Não encontrou sua rota? Nos informe aqui!')
+    it('should render buttons correctly', () => {
+      const button = wrapper.findAllComponents('.v-btn')
+      expect(button).toHaveLength(4)
+    })
+  
+    it('should render linkedin icon correctly', () => {
+      const logo = wrapper.find('.mdi-linkedin')
+      expect(logo.exists()).toBe(true)
+    })
+  
+    it('should render email icon correctly', () => {
+      const logo = wrapper.find('.mdi-email')
+      expect(logo.exists()).toBe(true)
+    })
+  
+    it('should render github icon correctly', () => {
+      const logo = wrapper.find('.mdi-github')
+      expect(logo.exists()).toBe(true)
+    })
+  
+    it('should render text button correctly', () => {
+      const text = wrapper.text()
+      expect(text).toBe('Não encontrou sua rota? Nos informe aqui!')
+    })
   })
 })
