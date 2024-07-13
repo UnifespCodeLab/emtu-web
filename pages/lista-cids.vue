@@ -12,7 +12,7 @@
       <v-select
         v-model="search.companion"
         :items="['Sim', 'Não']"
-        label="Companhia"
+        label="Acompanhante"
         solo
         dense
         class="input"
