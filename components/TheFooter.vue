@@ -20,7 +20,7 @@
       <v-divider />
 
       <v-card-text>
-        <v-btn color="white" to="/solicitacao" small text>
+        <v-btn id="btn-solicitacao" color="white" to="/solicitacao" small text>
           Não encontrou sua rota? Nos informe aqui!
         </v-btn>
       </v-card-text>
