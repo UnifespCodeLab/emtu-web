@@ -236,9 +236,7 @@ export default {
       return this.cids.filter((item) => {
         return ((item.cod && item.cod.toLowerCase().includes(this.search.text.toLowerCase())) ||
         (item.diagnostic && item.diagnostic.toLowerCase().includes(this.search.text.toLowerCase())) ||
-        (item.observations && item.observations.toLowerCase().includes(this.search.text.toLowerCase())) ||
-        (item.companion && item.companion.toLowerCase().includes(this.search.text.toLowerCase())) ||
-        (item.group && item.group.toLowerCase().includes(this.search.text.toLowerCase()))) &&
+        (item.slugdiagnostic && item.slugdiagnostic.toLowerCase().includes(this.search.text.toLowerCase()))) &&
         (!this.search.group || (item.group && item.group.toLowerCase().includes(this.search.group.toLowerCase()))) &&
         (!this.search.companion || (item.companion && item.companion.toLowerCase().includes(this.search.companion.toLowerCase())))
       })
