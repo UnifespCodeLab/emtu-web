@@ -1,89 +1,5 @@
 <template>
   <div class="container">
-    <!-- <ul class="filters">
-      <v-text-field
-        v-model="search.text"
-        label="Pesquisar"
-        placeholder="Pesquisar"
-        solo
-        dense
-        class="input"
-      />
-      <v-select
-        v-model="search.companion"
-        :items="['Sim', 'Não']"
-        label="Acompanhante"
-        solo
-        dense
-        class="input"
-        clearable
-      />
-      <v-select
-        v-model="search.group"
-        :items="['G1', 'G2', 'G3']"
-        label="Grupo"
-        solo
-        dense
-        class="input"
-        clearable
-      />
-      <v-btn class="button" color="primary">
-        Buscar
-      </v-btn>
-      <v-btn class="button group-button" @click="dialog = true">
-        O que são os grupos?
-      </v-btn>
-      <v-dialog v-model="dialog" class="v-dialog" max-width="80vw">
-        <v-card>
-          <v-card-title class="headline" />
-          <v-card-text>
-            <div class="dialog-container">
-              <v-card class="dialog-card">
-                <v-card-title class="dialog-title">
-                  <v-icon class="dialog-icon">
-                    mdi-wheelchair-accessibility
-                  </v-icon>
-                  G1
-                </v-card-title>
-                <v-card-text class="dialog-text">
-                  Pessoas com deficiência que necessitam de um alto nível de acessibilidade, por exemplo, a utilização de elevador.
-                </v-card-text>
-              </v-card>
-              <v-card class="dialog-card">
-                <v-card-title class="dialog-title">
-                  <v-icon class="dialog-icon">
-                    mdi-human-white-cane
-                  </v-icon>
-                  G2
-                </v-card-title>
-                <v-card-text class="dialog-text">
-                  Pessoas com necessidades de acessibilidade que não tenham interferência direta no ônibus, por exemplo, a presença de piso tátil.
-                </v-card-text>
-              </v-card>
-              <v-card class="dialog-card">
-                <v-card-title class="dialog-title">
-                  <v-icon class="dialog-icon">
-                    mdi-human-male
-                  </v-icon>
-                  G3
-                </v-card-title>
-                <v-card-text class="dialog-text">
-                  Pessoas que não necessitam de adaptações no ônibus para seu deslocamento de forma segura.
-                </v-card-text>
-              </v-card>
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn color="primary" class="ml-auto" @click="dialog = false">
-              Fechar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </ul>
-    <v-alert v-if="errorMessage" type="error" class="error-message">
-      {{ errorMessage }}
-    </v-alert> -->
     <div class="table-container">
       <v-card class="table-card">
         <div class="upper-container">
@@ -100,14 +16,6 @@
           >
           </v-text-field>
           <ul class="filters">
-            <!-- <v-text-field
-              v-model="search.text"
-              label="Pesquisar"
-              placeholder="Pesquisar"
-              solo
-              dense
-              class="input"
-            /> -->
             <v-select
               v-model="search.companion"
               :items="['Sim', 'Não']"
@@ -126,9 +34,6 @@
               class="input"
               clearable
             />
-            <!-- <v-btn class="button" color="primary">
-              Buscar
-            </v-btn> -->
             <v-btn class="button group-button" @click="dialog = true">
               O que são os grupos?
             </v-btn>
@@ -179,10 +84,10 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-            <v-alert v-if="errorMessage" type="error" class="error-message">
-              {{ errorMessage }}
-            </v-alert>
           </ul>
+          <v-alert v-if="errorMessage" type="error" class="error-message">
+            {{ errorMessage }}
+          </v-alert>
         </div>
         <v-data-table
           :headers="headers"
@@ -204,7 +109,7 @@
     </div>
   </div>
 </template>
-<!--Companhia -> Acompanhante-->
+
 <script>
 import axiosClient from '~/assets/services/emtu-api'
 
@@ -216,6 +121,7 @@ export default {
         companion: null,
         group: null
       },
+      slugifiedText: '',
       headers: [
         { text: 'Código', align: 'start', value: 'cod' },
         { text: 'Diagnóstico', align: 'start', value: 'diagnostic' },
@@ -230,16 +136,22 @@ export default {
   },
   computed: {
     filteredCids () {
-      if (!this.search.text && !this.search.companion && !this.search.group) {
+      if (!this.slugifiedText && !this.search.companion && !this.search.group) {
         return this.cids
       }
       return this.cids.filter((item) => {
-        return ((item.cod && item.cod.toLowerCase().includes(this.search.text.toLowerCase())) ||
-        (item.diagnostic && item.diagnostic.toLowerCase().includes(this.search.text.toLowerCase())) ||
-        (item.slugdiagnostic && item.slugdiagnostic.toLowerCase().includes(this.search.text.toLowerCase()))) &&
+        return ((item.cod && item.cod.toLowerCase().includes(this.slugifiedText.toLowerCase())) ||
+        (item.diagnostic && item.diagnostic.toLowerCase().includes(this.slugifiedText.toLowerCase())) ||
+        (item.slugdiagnostic && item.slugdiagnostic.toLowerCase().includes(this.slugifiedText.toLowerCase()))) &&
         (!this.search.group || (item.group && item.group.toLowerCase().includes(this.search.group.toLowerCase()))) &&
         (!this.search.companion || (item.companion && item.companion.toLowerCase().includes(this.search.companion.toLowerCase())))
       })
+    }
+  },
+  watch: {
+    'search.text' (newText) {
+      this.slugifiedText = this.slugify(newText)
+      console.log(this.slugifiedText)
     }
   },
   created () {
@@ -261,6 +173,23 @@ export default {
       } else {
         return 'blue'
       }
+    },
+    slugify (text) {
+      const original = 'áàãâäéèêëíìîïóòõôöúùûüçñ'
+      const newFormat = 'aaaaaeeeeiiiiooooouuuucn'
+
+      return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .split('')
+        .map((char) => {
+          const index = original.indexOf(char)
+          return index !== -1 ? newFormat[index] : char
+        })
+        .join('')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
     }
   }
 }
