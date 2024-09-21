@@ -126,7 +126,7 @@ export default {
         { text: 'Código', align: 'start', value: 'cod' },
         { text: 'Diagnóstico', align: 'start', value: 'diagnostic' },
         { text: 'Observações', align: 'start', value: 'observations' },
-        { text: 'Acompanhante', align: 'start', value: 'companion' },
+        { text: 'Direito a Acompanhante', align: 'start', value: 'companion' },
         { text: 'Grupo', align: 'center', value: 'group' }
       ],
       cids: [],
