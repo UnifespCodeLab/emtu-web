@@ -78,6 +78,7 @@ describe('Components / Sidebar', () => {
       expect(wrapper.vm.routerItems).toEqual([
         { title: 'Buscar', icon: 'mdi-magnify', route: '/' },
         { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route: '/lista-cids' },
+        { title: 'Não encontrei minha rota', icon: 'mdi-bus-alert', route: '/solicitacao' },
         { title: 'Sobre nós', icon: 'mdi-account-group', route: '/sobre-nos' }
       ])
       expect(wrapper.element).toMatchSnapshot()

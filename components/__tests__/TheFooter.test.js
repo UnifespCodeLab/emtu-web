@@ -28,7 +28,7 @@ describe('Pages / TheFooter', () => {
 
     it('should render buttons correctly', () => {
       const button = wrapper.findAllComponents('.v-btn')
-      expect(button).toHaveLength(4)
+      expect(button).toHaveLength(3)
     })
 
     it('should render linkedin icon correctly', () => {
@@ -47,8 +47,8 @@ describe('Pages / TheFooter', () => {
     })
 
     it('should render route button correctly', () => {
-      const button = wrapper.find('#btn-solicitacao')
-      expect(button.props('to')).toBe('/solicitacao')
+      const button = wrapper.find('#btn-codelab')
+      expect(button.props('to')).toBe(true)
     })
   })
 })

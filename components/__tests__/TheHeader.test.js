@@ -26,7 +26,7 @@ describe('Components / TheHeader', () => {
 
   it('should render title correctly', () => {
     const title = wrapper.findComponent({ name: 'v-toolbar-title' })
-    expect(title.text()).toBe('EMTU')
+    expect(title.text()).toBe('VApt')
   })
 
   it('should render bus icon correctly', () => {
