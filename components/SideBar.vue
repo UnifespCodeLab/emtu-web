@@ -5,24 +5,25 @@
       :width="sideBarWidth"
       absolute
       right
+      style="z-index: 1000;"
     >
       <div class="title-container">
-        <v-icon color="primary" class="title-navigation">
+        <v-icon color="#0099F0" class="title-navigation pr-2">
           mdi-bus
         </v-icon>
         <v-list-item-title class="title-navigation">
-          EMTU
+          VApt
         </v-list-item-title>
         <v-icon
-          color="primary"
-          class="title-navigation"
+          color="#1D1D1F"
+          class="title-navigation close-icon"
           @click="$emit('toggleSideBar')"
         >
           mdi-close
         </v-icon>
       </div>
 
-      <v-list dense>
+      <v-list dense nav>
         <v-list-item v-for="item in routerItems" :key="item.title" router :to="item.route">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -58,6 +59,7 @@ export default {
       items: [
         { title: 'Buscar', icon: 'mdi-magnify', route: '/' },
         { title: "Lista de CID's", icon: 'mdi-format-list-numbered', route: '/lista-cids' },
+        { title: 'Não encontrei minha rota', icon: 'mdi-bus-alert', route: '/solicitacao' },
         { title: 'Sobre nós', icon: 'mdi-account-group', route: '/sobre-nos' }
       ],
       adminItems
@@ -96,15 +98,49 @@ export default {
 .title-container {
   display: flex;
   justify-content: center;
-  margin: 15px 0 15px 10px;
+  align-items: center;
+  margin: 24px 15px 15px 15px;
 }
 
 .title-navigation {
-  color: #1976d2;
-  margin-right: 25px;
+  font-family: "Lexend", "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #1D1D1F;
+  font-weight: 700;
+}
+
+.close-icon {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
 }
 
 .item-title {
   font-size: 16px;
+}
+
+:deep(.v-list-item) {
+  border-radius: 10px !important;
+  margin-bottom: 4px;
+}
+
+:deep(.v-list-item--active) {
+  border-radius: 10px !important;
+  color: #0099F0 !important;
+  background-color: rgba(0, 153, 240, 0.1) !important;
+}
+
+:deep(.v-list-item:before) {
+  border-radius: 10px !important;
+}
+
+:deep(.v-list-item:hover) {
+  background-color: rgba(0, 0, 0, 0.04) !important;
 }
 </style>

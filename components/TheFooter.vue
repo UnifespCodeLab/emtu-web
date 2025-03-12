@@ -1,28 +1,36 @@
 <template>
   <v-footer padless>
-    <v-card flat tile width="100%" class="primary text-center">
-      <v-card-text>
-        <v-btn
-          v-for="icon in icons"
-          :key="icon.name"
-          :href="icon.link"
-          :aria-label="icon.label"
-          class="mx-4"
-          target="_blank"
-          icon
-        >
-          <v-icon color="white" size="24px">
-            {{ icon.name }}
-          </v-icon>
-        </v-btn>
-      </v-card-text>
-
-      <v-divider />
-
-      <v-card-text>
-        <v-btn id="btn-solicitacao" color="white" to="/solicitacao" small text>
-          Não encontrou sua rota? Nos informe aqui!
-        </v-btn>
+    <v-card flat tile width="100%" class="text-center">
+      <v-card-text class="main-container">
+        <div class="codelab-container">
+          <v-btn
+            href="https://www.codelab-unifesp.org/"
+            aria-label="Confira nosso Website"
+            class="mx-4 website-btn"
+            target="_blank"
+            text
+            id="btn-codelab"
+            :ripple="false"
+          >
+            <img src="/LogoEstendidoPretoCodeLab.png" class="desktop-logo" alt="Logo do CodeLab" height="120" />
+            <img src="/LogoPretoCodeLab.png" class="mobile-logo" alt="Logo do CodeLab" height="32" />
+          </v-btn>
+        </div>
+        <div class="buttons-container">
+          <v-btn
+            v-for="icon in icons"
+            :key="icon.name"
+            :href="icon.link"
+            :aria-label="icon.label"
+            class="mx-3"
+            target="_blank"
+            icon
+          >
+            <v-icon color="#1D1D1F" size="24px">
+              {{ icon.name }}
+            </v-icon>
+          </v-btn>
+        </div>
       </v-card-text>
     </v-card>
   </v-footer>
@@ -54,3 +62,31 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.main-container{
+  display: flex;
+  background: #0A9CF0;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#btn-codelab::before {
+   background-color: transparent !important;
+   image-rendering: crisp-edges;
+}
+.desktop-logo {
+  display: none;
+}
+.mobile-logo {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .desktop-logo {
+    display: block;
+  }
+  .mobile-logo {
+    display: none;
+  }
+}
+</style>
