@@ -65,10 +65,12 @@ describe('Pages / SearchPage', () => {
       vuetify,
       store,
       mocks: {
-        $router: { push: jest.fn() }
+        $router: { push: jest.fn() },
+        $nuxt: { $route: { path: '/' }}
       },
-      components: {
-        RouterLinkStub
+      stubs: {
+        RouterLink: RouterLinkStub,
+        NuxtLink: RouterLinkStub
       }
     })
   })
@@ -145,6 +147,19 @@ describe('Pages / SearchPage', () => {
 
       it('calls console.error', () => {
         expect(consoleError).toHaveBeenCalledWith('error ocurred')
+      })
+      afterAll(() => {
+        jest.resetAllMocks()
+        emtuApi.post = jest.fn().mockResolvedValue({
+          data: [{
+            code: '244',
+            vehicle: [{ group: 'G1' }]
+          },
+          {
+            code: '420',
+            vehicle: [{ group: 'G1' }, { group: 'G2' }]
+          }]
+        })
       })
     })
   })
