@@ -1,7 +1,7 @@
 ---
 name: Relatório de Bug
 about: Template para reportar um bug no sistema
-title: "[Bug] - "
+title: "[Bug] -"
 labels: bug
 assignees: ''
 
