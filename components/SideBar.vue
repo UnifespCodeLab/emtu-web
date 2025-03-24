@@ -1,5 +1,5 @@
 <template>
-  <v-sheet>
+  <v-sheet class="side-bar">
     <v-navigation-drawer
       :value="openDrawer"
       :width="sideBarWidth"
@@ -93,6 +93,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.side-bar{
+  z-index: 5;
+}
+
 .title-container {
   display: flex;
   justify-content: center;
