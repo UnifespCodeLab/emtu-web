@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 #bus-icon{
-  color: #0099F0;
+  color: #017BFD;
 }
 .navbar-title{
   font-family: "Lexend", "Roboto", sans-serif;

@@ -12,8 +12,8 @@
             id="btn-codelab"
             :ripple="false"
           >
-            <img src="/LogoEstendidoPretoCodeLab.png" class="desktop-logo" alt="Logo do CodeLab" height="120" />
-            <img src="/LogoPretoCodeLab.png" class="mobile-logo" alt="Logo do CodeLab" height="32" />
+            <img src="/LogoEstendidoBrancoCodeLab.png" class="desktop-logo" alt="Logo do CodeLab" height="32" />
+            <img src="/LogoBrancoCodeLab.png" class="mobile-logo" alt="Logo do CodeLab" height="32" />
           </v-btn>
         </div>
         <div class="buttons-container">
@@ -26,7 +26,7 @@
             target="_blank"
             icon
           >
-            <v-icon color="#1D1D1F" size="24px">
+            <v-icon color="#ffffff" size="24px">
               {{ icon.name }}
             </v-icon>
           </v-btn>
@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 .main-container{
   display: flex;
-  background: #0A9CF0;
+  background: #017BFD;
   flex-direction: row;
   justify-content: space-between;
 }

@@ -8,7 +8,7 @@
       style="z-index: 1000;"
     >
       <div class="title-container">
-        <v-icon color="#0099F0" class="title-navigation pr-2">
+        <v-icon color="#017BFD" class="title-navigation pr-2">
           mdi-bus
         </v-icon>
         <v-list-item-title class="title-navigation">

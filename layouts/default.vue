@@ -65,4 +65,8 @@ export default {
   flex: 1;
   background-color: #f0f0f0;
 }
+
+.v-autocomplete__content.v-menu__content{
+  border-radius: 0 0 12px 12px;
+}
 </style>
