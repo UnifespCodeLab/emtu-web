@@ -1,23 +1,23 @@
-jest.mock('vue2-leaflet', () => ({ // Mock temporário do Vue2-leaflet
-  LMap: {
-    render(h) { return h('div', { class: 'mock-map' }) }
-  },
-  LTileLayer: {
-    render(h) { return h('div') }
-  },
-  LControl: {
-    render(h) { return h('div') }
-  },
-  LMarker: {
-    render(h) { return h('div') }
-  }
-}));
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 import Vuex, { Store } from 'vuex'
 import SearchPage from '~/pages/index.vue'
 import emtuApi from '~/assets/services/emtu-api'
 import * as bus from '~/store/bus'
+jest.mock('vue2-leaflet', () => ({ // Mock temporário do Vue2-leaflet
+  LMap: {
+    render (h) { return h('div', { class: 'mock-map' }) }
+  },
+  LTileLayer: {
+    render (h) { return h('div') }
+  },
+  LControl: {
+    render (h) { return h('div') }
+  },
+  LMarker: {
+    render (h) { return h('div') }
+  }
+}))
 
 jest.requireActual('~/assets/services/emtu-api')
 
@@ -80,7 +80,7 @@ describe('Pages / SearchPage', () => {
       store,
       mocks: {
         $router: { push: jest.fn() },
-        $nuxt: { $route: { path: '/' }}
+        $nuxt: { $route: { path: '/' } }
       },
       stubs: {
         RouterLink: RouterLinkStub,
