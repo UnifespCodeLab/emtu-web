@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages / TheFooter when the page render should matches the screenshot 1`] = `
+<footer
+  class="v-footer v-sheet theme--light v-footer--padless"
+>
+  <div
+    class="text-center v-card v-card--flat v-sheet theme--light rounded-0"
+    style="width: 100%;"
+  >
+    <div
+      class="v-card__text main-container"
+    >
+      <div
+        class="codelab-container"
+      >
+        <a
+          aria-label="Confira nosso Website"
+          class="mx-4 website-btn v-btn v-btn--text theme--light v-size--default"
+          href="https://www.codelab-unifesp.org/"
+          id="btn-codelab"
+          target="_blank"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <img
+              alt="Logo do CodeLab"
+              class="desktop-logo"
+              height="32"
+              src="/LogoEstendidoBrancoCodeLab.png"
+            />
+             
+            <img
+              alt="Logo do CodeLab"
+              class="mobile-logo"
+              height="32"
+              src="/LogoBrancoCodeLab.png"
+            />
+          </span>
+        </a>
+      </div>
+       
+      <div
+        class="buttons-container"
+      >
+        <a
+          aria-label="Veja nosso linkedIn"
+          class="mx-3 v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          href="https://www.linkedin.com/company/codelab-unifesp/"
+          target="_blank"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-linkedin theme--light"
+              style="font-size: 24px; color: rgb(255, 255, 255); caret-color: #ffffff;"
+            />
+          </span>
+        </a>
+        <a
+          aria-label="Entre em contato por email"
+          class="mx-3 v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          href="mailto:codelab.unifesp@gmail.com?subject=\\"link HTML\\""
+          target="_blank"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-email theme--light"
+              style="font-size: 24px; color: rgb(255, 255, 255); caret-color: #ffffff;"
+            />
+          </span>
+        </a>
+        <a
+          aria-label="Veja nosso github"
+          class="mx-3 v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          href="https://github.com/UnifespCodeLab"
+          target="_blank"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-github theme--light"
+              style="font-size: 24px; color: rgb(255, 255, 255); caret-color: #ffffff;"
+            />
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+`;
