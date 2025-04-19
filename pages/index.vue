@@ -97,9 +97,47 @@
           Não encontrei minha rota
         </v-btn>
       </div>
-      <!-- <div class="image-container">
-        <img src="../static/Teste.png" class="image" alt="Mapa de São José dos Campos" />
-      </div> -->
+      <div class="map-container">
+        <l-map
+          v-if="isMounted"
+          :zoom="zoom"
+          :center="center"
+          :options="mapOptions"
+          @moveend="onMapMove"
+          @zoomend="onMapMove"
+        >
+          <l-tile-layer :url="activeMapUrl" :attribution="activeAttribution" />
+          <!-- <l-marker :lat-lng="markerLatLng"/> -->
+          <l-control position="topright">
+            <div class="leaflet-control-zoom-buttons">
+              <button class="zoom-btn" @click="zoomIn">
+                +
+              </button>
+              <button class="zoom-btn" @click="zoomOut">
+                −
+              </button>
+            </div>
+          </l-control>
+          <l-control position="bottomleft">
+            <div class="map-type-control">
+              <button class="map-type-btn" @click="toggleMapType">
+                <div class="preview-container">
+                  <img
+                    :src="previewImageUrl"
+                    alt="Preview"
+                    class="map-preview"
+                    :class="{ 'map-preview-fade': isImageTransitioning }"
+                    @load="onImageLoaded"
+                  ></img>
+                  <div class="preview-label">
+                    {{ activeMapType === 'streetMap' ? 'Satélite' : 'Mapa' }}
+                  </div>
+                </div>
+              </button>
+            </div>
+          </l-control>
+        </l-map>
+      </div>
     </div>
     <div v-if="recentSearches && recentSearches.length > 0" class="search-page-recents mb-4">
       <h2 class="recents-title">
@@ -114,14 +152,14 @@
           @click="useRecentSearch(search)"
         >
           <v-card-title class="recentRoute-title">
+            {{ search.routeInfo }}
+          </v-card-title>
+          <v-card-text v-if="search.routeInfo" class="recentRoute-text">
             {{ getCityName(search.originCityId) }}
             <v-icon color="#017BFD" small class="mx-1">
               mdi-arrow-right
             </v-icon>
             {{ getCityName(search.destinationCityId) }}
-          </v-card-title>
-          <v-card-text v-if="search.routeInfo" class="recentRoute-text">
-            {{ search.routeInfo }}
           </v-card-text>
           <v-card-actions>
             <v-chip
@@ -148,38 +186,30 @@
             </v-chip>
           </v-card-actions>
         </v-card>
-      <!-- <v-card class="recentRoute-card" elevation="0">
-        <v-card-title class="recentRoute-title">São José dos Campos <v-icon color="#017BFD" small class="mx-1">mdi-arrow-right</v-icon> Jacareí</v-card-title>
-        <v-card-text class="recentRoute-text">
-          5114 - Jacareí (Via Dutra)<br>
-        </v-card-text>
-        <v-card-actions>
-          <v-chip
-            class="ma-1 recentRoute-chip"
-            color="#74C3F8"
-            small
-          >
-            12:30
-          </v-chip>
-          <v-chip
-            class="ma-1 recentRoute-chip"
-            color="#74C3F8"
-            small
-          >
-            23/03/25
-          </v-chip>
-        </v-card-actions>
-      </v-card> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { LMap, LTileLayer } from 'vue2-leaflet'
+import 'leaflet/dist/leaflet.css'
 import { mapState, mapActions } from 'vuex'
+import { Icon } from 'leaflet'
+
+delete Icon.Default.prototype._getIconUrl
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+})
 
 export default {
   name: 'SearchPage',
+  components: {
+    LMap,
+    LTileLayer
+  },
   data () {
     return {
       alertMessage: {
@@ -197,7 +227,31 @@ export default {
         data: '',
         hora: ''
       },
-      recentSearches: []
+      recentSearches: [],
+      mapOptions: {
+        zoomControl: false,
+        attributionControl: true,
+        scrollWheelZoom: true
+      },
+      activeMapType: 'streetMap',
+      mapLayers: {
+        streetMap: {
+          url: 'https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
+          attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        },
+        satelliteMap: {
+          url: 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png',
+          attribution: '&copy; CNES, © Airbus DS, © PlanetObserver, Copernicus | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }
+      },
+      mapUpdateTrigger: 0,
+      isImageTransitioning: false,
+      mapMoveTimeout: null,
+      previousCenter: null,
+      zoom: 15,
+      center: [-23.5505, -46.6333], // Coordenadas de São Paulo
+      markerLatLng: [-23.5505, -46.6333], // Posição inicial do marcador
+      isMounted: false
     }
   },
   computed: {
@@ -223,7 +277,31 @@ export default {
           this.searchBody.data = `${year}-${month}-${day}`
         }
       }
+    },
+    previewImageUrl () {
+      // Mostra o preview do tipo oposto ao que está ativo
+      const previewType = this.activeMapType === 'streetMap' ? 'satelliteMap' : 'streetMap'
+      const url = this.mapLayers[previewType].url
+      // Calcula o zoom e as coordenadas do tile para o preview
+      const zoom = Math.max(this.zoom, 1)
+      const x = this.getTileX(this.center[1], zoom)
+      const y = this.getTileY(this.center[0], zoom)
+      return url
+        .replace('{z}', zoom)
+        .replace('{x}', x)
+        .replace('{y}', y)
+        .replace('{r}', '')
+    },
+    activeMapUrl () {
+      return this.mapLayers[this.activeMapType].url
+    },
+    activeAttribution () {
+      return this.mapLayers[this.activeMapType].attribution
     }
+  },
+  mounted () {
+    this.isMounted = true
+    this.previousCenter = [...this.center]
   },
   created () {
     if (!this.cities.length) {
@@ -243,6 +321,77 @@ export default {
     ...mapActions('bus', ['fetchBusRoutes']),
     ...mapActions('loading', ['changeStatusLoading']),
     ...mapActions('alert', ['showAlert', 'hideAlert']),
+    zoomIn () {
+      if (this.zoom < 18) {
+        this.zoom += 1
+      }
+    },
+    zoomOut () {
+      if (this.zoom > 2) {
+        this.zoom -= 1
+      }
+    },
+    toggleMapType () {
+      this.isImageTransitioning = true
+      setTimeout(() => {
+        this.activeMapType = this.activeMapType === 'streetMap' ? 'satelliteMap' : 'streetMap'
+      }, 300)
+    },
+    onImageLoaded () {
+      setTimeout(() => {
+        this.isImageTransitioning = false
+      }, 50)
+    },
+    getTileX (lng, zoom) {
+      return Math.floor((lng + 180) / 360 * Math.pow(2, zoom))
+    },
+    getTileY (lat, zoom) {
+      return Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom))
+    },
+    onMapMove (event) {
+      // Atualiza as coordenadas do centro
+      if (event.target && event.target.getCenter) {
+        const center = event.target.getCenter()
+        const newCenter = [center.lat, center.lng]
+        // Obtém o zoom atual
+        let newZoom = this.zoom
+        if (event.target.getZoom) {
+          newZoom = event.target.getZoom()
+        }
+
+        // Verifica se a posição mudou significativamente
+        const hasSignificantChange =
+          !this.previousCenter ||
+          Math.abs(this.previousCenter[0] - newCenter[0]) > 0.005 ||
+          Math.abs(this.previousCenter[1] - newCenter[1]) > 0.005 ||
+          this.zoom !== newZoom
+
+        if (this.mapMoveTimeout) {
+          clearTimeout(this.mapMoveTimeout)
+        }
+        // Apenas aplica a transição se houver mudança significativa
+        if (hasSignificantChange) {
+          // Inicia a transição
+          this.isImageTransitioning = true
+
+          // Agenda a atualização dos dados após um pequeno delay
+          this.mapMoveTimeout = setTimeout(() => {
+            this.center = newCenter
+            this.zoom = newZoom
+            this.previousCenter = [...newCenter]
+
+            // Incrementa o contador para forçar a atualização do preview
+            this.mapUpdateTrigger++
+          }, 150) // Delay menor que a transição para começar a carregar a nova imagem
+        } else {
+          // Se a mudança for pequena, apenas atualiza os valores sem transição
+          this.center = newCenter
+          this.zoom = newZoom
+          this.previousCenter = [...newCenter]
+          this.mapUpdateTrigger++
+        }
+      }
+    },
     loadRecentSearches () {
       try {
         const savedSearches = localStorage.getItem('recentSearches')
@@ -335,9 +484,19 @@ export default {
           // Pesquisa bem-sucedida - salvar com informações da primeira rota encontrada
           let routeInfo = null
 
-          if (this.busRoutes[0] && this.busRoutes[0].routes && this.busRoutes[0].routes[0]) {
-            const firstRoute = this.busRoutes[0].routes[0]
-            routeInfo = `${firstRoute.code} - ${firstRoute.origin.split('(')[1]?.replace(')', '') || firstRoute.origin}`
+          if (this.busRoutes[0] && this.busRoutes[0].routes && this.busRoutes[0].routes.length) {
+            // Se houver apenas uma rota, mostrar apenas seu código
+            if (this.busRoutes[0].routes.length === 1) {
+              routeInfo = this.busRoutes[0].routes[0].code
+            } else if (this.busRoutes[0].routes.length > 4) {
+              // Se houver mais de 3 rotas, mostrar os 3 primeiros códigos e "..." no final
+              const lineCodes = this.busRoutes[0].routes.map(route => route.code)
+              routeInfo = `Linhas: ${lineCodes.slice(0, 3).join(' | ')} | ...`
+            } else {
+              // Se houver 3 ou menos rotas, mostrar todos os códigos
+              const lineCodes = this.busRoutes[0].routes.map(route => route.code)
+              routeInfo = `Linhas: ${lineCodes.join(' | ')}`
+            }
           }
           this.saveRecentSearch(routeInfo)
           this.$router.push('/rotas')
@@ -353,30 +512,151 @@ export default {
 .home {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 .search-page {
-  background-color: white;
-  border-radius: 14px;
-  padding: 1rem;
-  margin: 1rem auto;
-  margin-top: 50px;
-  align-items: center;
   display: flex;
   flex-direction: row;
+  margin: 1rem 1rem;
+  width: webkit-fill-available;
+  background-color: white;
+  border-radius: 14px;
+  margin-top: 35px;
+  align-items: stretch;
   justify-content: center;
-  width: fit-content;
+  overflow: hidden;
+
   @media (min-width: 1200px) {
-    justify-content: center;
+    min-height: 500px;
   }
 }
+.map-container {
+  flex: 1;
+  height: auto;
+  display: none;
+  z-index: 0;
+
+  @media (min-width: 800px){
+    display: block;
+  }
+
+  .leaflet-container {
+    height: 100%;
+    min-height: 500px;
+    border-radius: 0 7px 7px 0;
+    overflow: hidden;
+  }
+}
+.zoom-btn {
+  width: 30px;
+  height: 30px;
+  background: white;
+  border: 1px solid #ccc;
+  display: block;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+
+  &:first-child {
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  &:hover {
+    background-color: #f4f4f4;
+  }
+}
+.leaflet-control-zoom-buttons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+.map-type-control {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+}
+.map-type-btn {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+
+  &:hover {
+    background-color: #f4f4f4;
+  }
+
+  span {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.preview-container {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.preview-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  text-align: center;
+  padding: 12px 0 4px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.map-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.map-preview-fade {
+  opacity: 0;
+}
+
 .search-page__form {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  @media (min-width: 1200px) {
+  width: 100%;
+  padding: 2.5rem;
+
+  @media (min-width: 800px) {
+    width: 430px;
+    min-width: 430px;
     justify-content: center;
     margin: auto;
   }
@@ -404,6 +684,7 @@ export default {
   text-transform: none !important;
   font-size: 15px;
 }
+
 .v-text-field {
   border-radius: 10px;
 }
@@ -426,7 +707,7 @@ export default {
   padding: 1.5rem;
   width: 100%;
   @media (min-width: 800px) {
-    padding: 3.25rem;
+    padding: 1rem;
   }
 }
 .recents-title{
@@ -434,18 +715,15 @@ export default {
   font-weight: 500;
   color: #1D1D1F;
 }
-.recentRoutesSearched-container{
+.recentRoutesSearched-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
   width: 100%;
 
   @media (min-width: 800px) {
-    flex-direction: row;
-    justify-content: left;
-    align-self: start;
+    justify-content: flex-start;
+    align-items: stretch;
   }
 }
 .recentRoute-title{
@@ -453,13 +731,32 @@ export default {
   font-weight: 400;
   color: #1D1D1F;
 }
-.recentRoute-card{
+.recentRoute-card {
   border-radius: 14px;
   box-shadow: none;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   @media (min-width: 800px) {
-    width: 300px;
+    width: calc(50% - 8px); /* 2 cards por linha, ajustando o gap */
+    min-height: 140px; /* Altura mínima */
   }
+  @media (min-width: 1200px) {
+    width: calc(25% - 12px); /* 4 cards por linha em telas maiores */
+  }
+}
+
+/* Estes seletores ajudam a estruturar o conteúdo dentro do card */
+:deep(.v-card__title) {
+  flex-shrink: 0; /* Impede que o título encolha */
+}
+
+:deep(.v-card__text) {
+  flex-grow: 1; /* Permite que o texto ocupe o espaço disponível */
+}
+
+:deep(.v-card__actions) {
+  margin-top: auto; /* Empurra as ações para o final do card */
 }
 .recentRoute-text{
   font-size: 16px;

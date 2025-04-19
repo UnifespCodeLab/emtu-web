@@ -26,7 +26,7 @@ exports[`Components / Sidebar when component renders when is desktop should rend
         <i
           aria-hidden="true"
           class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
-          style="color: rgb(0, 153, 240); caret-color: #0099F0;"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
@@ -183,7 +183,7 @@ exports[`Components / Sidebar when component renders when is mobile should rende
         <i
           aria-hidden="true"
           class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
-          style="color: rgb(0, 153, 240); caret-color: #0099F0;"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
@@ -331,7 +331,7 @@ exports[`Components / Sidebar when is not logged should render default items 1`]
         <i
           aria-hidden="true"
           class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
-          style="color: rgb(0, 153, 240); caret-color: #0099F0;"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
@@ -479,7 +479,7 @@ exports[`Components / Sidebar when user is logged should render admin items 1`] 
         <i
           aria-hidden="true"
           class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
-          style="color: rgb(0, 153, 240); caret-color: #0099F0;"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
