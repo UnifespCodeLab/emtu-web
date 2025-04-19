@@ -487,7 +487,7 @@ export default {
           if (this.busRoutes[0] && this.busRoutes[0].routes && this.busRoutes[0].routes.length) {
             // Se houver apenas uma rota, mostrar apenas seu código
             if (this.busRoutes[0].routes.length === 1) {
-              routeInfo = this.busRoutes[0].routes[0].code
+              routeInfo = `Linhas: ${this.busRoutes[0].routes[0].code}`
             } else if (this.busRoutes[0].routes.length > 4) {
               // Se houver mais de 3 rotas, mostrar os 3 primeiros códigos e "..." no final
               const lineCodes = this.busRoutes[0].routes.map(route => route.code)
