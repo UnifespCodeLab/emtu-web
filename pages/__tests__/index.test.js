@@ -4,6 +4,20 @@ import Vuex, { Store } from 'vuex'
 import SearchPage from '~/pages/index.vue'
 import emtuApi from '~/assets/services/emtu-api'
 import * as bus from '~/store/bus'
+jest.mock('vue2-leaflet', () => ({ // Mock temporário do Vue2-leaflet
+  LMap: {
+    render (h) { return h('div', { class: 'mock-map' }) }
+  },
+  LTileLayer: {
+    render (h) { return h('div') }
+  },
+  LControl: {
+    render (h) { return h('div') }
+  },
+  LMarker: {
+    render (h) { return h('div') }
+  }
+}))
 
 jest.requireActual('~/assets/services/emtu-api')
 
@@ -65,10 +79,12 @@ describe('Pages / SearchPage', () => {
       vuetify,
       store,
       mocks: {
-        $router: { push: jest.fn() }
+        $router: { push: jest.fn() },
+        $nuxt: { $route: { path: '/' } }
       },
-      components: {
-        RouterLinkStub
+      stubs: {
+        RouterLink: RouterLinkStub,
+        NuxtLink: RouterLinkStub
       }
     })
   })
@@ -145,6 +161,19 @@ describe('Pages / SearchPage', () => {
 
       it('calls console.error', () => {
         expect(consoleError).toHaveBeenCalledWith('error ocurred')
+      })
+      afterAll(() => {
+        jest.resetAllMocks()
+        emtuApi.post = jest.fn().mockResolvedValue({
+          data: [{
+            code: '244',
+            vehicle: [{ group: 'G1' }]
+          },
+          {
+            code: '420',
+            vehicle: [{ group: 'G1' }, { group: 'G2' }]
+          }]
+        })
       })
     })
   })

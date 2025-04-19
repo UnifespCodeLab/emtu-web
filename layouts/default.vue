@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Readex+Pro:wght@160..700&display=swap');
 
 :deep(.v-application--wrap) {
   overflow: hidden;
@@ -57,10 +58,15 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 .default-layout__content {
   flex: 1;
-  background-color: #e5e5e5;
+  background-color: #f0f0f0;
+}
+
+.v-autocomplete__content.v-menu__content{
+  border-radius: 0 0 12px 12px;
 }
 </style>

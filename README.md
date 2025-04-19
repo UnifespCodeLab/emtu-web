@@ -90,4 +90,4 @@ More information about the usage of this directory in [the documentation](https:
 
 - Versão do `node`:
   - Utilizando versões acima da <b>16</b> é possível que o erro `ERR_OSSL_EVP_UNSUPPORTED` apareça em sua tela. Como solução é possível passar uma _env_ que fará com que o projeto utilize a versão legado do _ssl provider_:
-  - Em seu terminal execute: `export NODE_OPTIONS=--openssl-legacy-provider`
+  - Em seu terminal execute: `export NODE_OPTIONS=--openssl-legacy-provider` (Linux) ou `$env:NODE_OPTIONS="--openssl-legacy-provider"` (Windows)

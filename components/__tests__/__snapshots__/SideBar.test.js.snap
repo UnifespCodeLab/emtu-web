@@ -15,7 +15,7 @@ exports[`Components / Sidebar when component renders when is desktop should rend
   </div>
   <aside
     class="v-navigation-drawer v-navigation-drawer--absolute v-navigation-drawer--is-mobile v-navigation-drawer--open v-navigation-drawer--right theme--light"
-    style="height: 100%; top: 0px; transform: translateX(0%); width: 300px;"
+    style="height: 100%; top: 0px; transform: translateX(0%); width: 300px; z-index: 1000;"
   >
     <div
       class="v-navigation-drawer__content"
@@ -25,25 +25,27 @@ exports[`Components / Sidebar when component renders when is desktop should rend
       >
         <i
           aria-hidden="true"
-          class="v-icon notranslate title-navigation mdi mdi-bus theme--light primary--text"
+          class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
           class="v-list-item__title title-navigation"
         >
           
-        EMTU
+        VApt
       
         </div>
          
         <button
-          class="v-icon notranslate title-navigation v-icon--link mdi mdi-close theme--light primary--text"
+          class="v-icon notranslate title-navigation close-icon v-icon--link mdi mdi-close theme--light"
+          style="color: rgb(29, 29, 31); caret-color: #1D1D1F;"
           type="button"
         />
       </div>
        
       <div
-        class="v-list v-sheet theme--light v-list--dense"
+        class="v-list v-sheet theme--light v-list--dense v-list--nav"
         role="list"
       >
         <a
@@ -93,6 +95,31 @@ exports[`Components / Sidebar when component renders when is desktop should rend
               class="item-title"
             >
               Lista de CID's
+            </span>
+          </div>
+        </a>
+        <a
+          class="v-list-item v-list-item--link theme--light"
+          role="listitem"
+          router=""
+          tabindex="0"
+        >
+          <div
+            class="v-list-item__icon"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-bus-alert theme--light"
+            />
+          </div>
+           
+          <div
+            class="v-list-item__content"
+          >
+            <span
+              class="item-title"
+            >
+              Não encontrei minha rota
             </span>
           </div>
         </a>
@@ -145,7 +172,7 @@ exports[`Components / Sidebar when component renders when is mobile should rende
   </div>
   <aside
     class="v-navigation-drawer v-navigation-drawer--absolute v-navigation-drawer--is-mobile v-navigation-drawer--open v-navigation-drawer--right theme--light"
-    style="height: 100%; top: 0px; transform: translateX(0%); width: 100%;"
+    style="height: 100%; top: 0px; transform: translateX(0%); width: 100%; z-index: 1000;"
   >
     <div
       class="v-navigation-drawer__content"
@@ -155,25 +182,27 @@ exports[`Components / Sidebar when component renders when is mobile should rende
       >
         <i
           aria-hidden="true"
-          class="v-icon notranslate title-navigation mdi mdi-bus theme--light primary--text"
+          class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
           class="v-list-item__title title-navigation"
         >
           
-        EMTU
+        VApt
       
         </div>
          
         <button
-          class="v-icon notranslate title-navigation v-icon--link mdi mdi-close theme--light primary--text"
+          class="v-icon notranslate title-navigation close-icon v-icon--link mdi mdi-close theme--light"
+          style="color: rgb(29, 29, 31); caret-color: #1D1D1F;"
           type="button"
         />
       </div>
        
       <div
-        class="v-list v-sheet theme--light v-list--dense"
+        class="v-list v-sheet theme--light v-list--dense v-list--nav"
         role="list"
       >
         <a
@@ -223,6 +252,31 @@ exports[`Components / Sidebar when component renders when is mobile should rende
               class="item-title"
             >
               Lista de CID's
+            </span>
+          </div>
+        </a>
+        <a
+          class="v-list-item v-list-item--link theme--light"
+          role="listitem"
+          router=""
+          tabindex="0"
+        >
+          <div
+            class="v-list-item__icon"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-bus-alert theme--light"
+            />
+          </div>
+           
+          <div
+            class="v-list-item__content"
+          >
+            <span
+              class="item-title"
+            >
+              Não encontrei minha rota
             </span>
           </div>
         </a>
@@ -266,7 +320,7 @@ exports[`Components / Sidebar when is not logged should render default items 1`]
 >
   <aside
     class="v-navigation-drawer v-navigation-drawer--absolute v-navigation-drawer--is-mobile v-navigation-drawer--open v-navigation-drawer--right theme--light"
-    style="height: 100%; top: 0px; transform: translateX(0%); width: 100%;"
+    style="height: 100%; top: 0px; transform: translateX(0%); width: 100%; z-index: 1000;"
   >
     <div
       class="v-navigation-drawer__content"
@@ -276,25 +330,27 @@ exports[`Components / Sidebar when is not logged should render default items 1`]
       >
         <i
           aria-hidden="true"
-          class="v-icon notranslate title-navigation mdi mdi-bus theme--light primary--text"
+          class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
           class="v-list-item__title title-navigation"
         >
           
-        EMTU
+        VApt
       
         </div>
          
         <button
-          class="v-icon notranslate title-navigation v-icon--link mdi mdi-close theme--light primary--text"
+          class="v-icon notranslate title-navigation close-icon v-icon--link mdi mdi-close theme--light"
+          style="color: rgb(29, 29, 31); caret-color: #1D1D1F;"
           type="button"
         />
       </div>
        
       <div
-        class="v-list v-sheet theme--light v-list--dense"
+        class="v-list v-sheet theme--light v-list--dense v-list--nav"
         role="list"
       >
         <a
@@ -358,6 +414,31 @@ exports[`Components / Sidebar when is not logged should render default items 1`]
           >
             <i
               aria-hidden="true"
+              class="v-icon notranslate mdi mdi-bus-alert theme--light"
+            />
+          </div>
+           
+          <div
+            class="v-list-item__content"
+          >
+            <span
+              class="item-title"
+            >
+              Não encontrei minha rota
+            </span>
+          </div>
+        </a>
+        <a
+          class="v-list-item v-list-item--link theme--light"
+          role="listitem"
+          router=""
+          tabindex="0"
+        >
+          <div
+            class="v-list-item__icon"
+          >
+            <i
+              aria-hidden="true"
               class="v-icon notranslate mdi mdi-account-group theme--light"
             />
           </div>
@@ -387,7 +468,7 @@ exports[`Components / Sidebar when user is logged should render admin items 1`] 
 >
   <aside
     class="v-navigation-drawer v-navigation-drawer--absolute v-navigation-drawer--is-mobile v-navigation-drawer--open v-navigation-drawer--right theme--light"
-    style="height: 100%; top: 0px; transform: translateX(0%); width: 100%;"
+    style="height: 100%; top: 0px; transform: translateX(0%); width: 100%; z-index: 1000;"
   >
     <div
       class="v-navigation-drawer__content"
@@ -397,25 +478,27 @@ exports[`Components / Sidebar when user is logged should render admin items 1`] 
       >
         <i
           aria-hidden="true"
-          class="v-icon notranslate title-navigation mdi mdi-bus theme--light primary--text"
+          class="v-icon notranslate title-navigation pr-2 mdi mdi-bus theme--light"
+          style="color: rgb(1, 123, 253); caret-color: #017BFD;"
         />
          
         <div
           class="v-list-item__title title-navigation"
         >
           
-        EMTU
+        VApt
       
         </div>
          
         <button
-          class="v-icon notranslate title-navigation v-icon--link mdi mdi-close theme--light primary--text"
+          class="v-icon notranslate title-navigation close-icon v-icon--link mdi mdi-close theme--light"
+          style="color: rgb(29, 29, 31); caret-color: #1D1D1F;"
           type="button"
         />
       </div>
        
       <div
-        class="v-list v-sheet theme--light v-list--dense"
+        class="v-list v-sheet theme--light v-list--dense v-list--nav"
         role="list"
       >
         <a

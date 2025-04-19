@@ -46,9 +46,9 @@ describe('Pages / TheFooter', () => {
       expect(logo.exists()).toBe(true)
     })
 
-    it('should render route button correctly', () => {
-      const button = wrapper.find('#btn-solicitacao')
-      expect(button.props('to')).toBe('/solicitacao')
+    it('should render codelab icon correctly', () => {
+      const logo = wrapper.find('#btn-codelab')
+      expect(logo.exists()).toBe(true)
     })
   })
 })
