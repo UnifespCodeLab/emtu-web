@@ -3,39 +3,15 @@
     <div class="search-page">
       <div class="search-page__form">
         <span class="header-text">Para onde você quer ir?</span>
-        <v-autocomplete
-          v-model="searchBody.originCityId"
-          :items="cities"
-          label="Origem"
-          prepend-inner-icon="mdi-map-marker"
-          solo
-        />
-        <v-autocomplete
-          v-model="searchBody.destinationCityId"
-          :items="cities"
-          label="Destino"
-          prepend-inner-icon="mdi-map-marker-radius"
-          solo
-        />
+        <v-autocomplete v-model="searchBody.originCityId" :items="cities" label="Origem"
+          prepend-inner-icon="mdi-map-marker" solo />
+        <v-autocomplete v-model="searchBody.destinationCityId" :items="cities" label="Destino"
+          prepend-inner-icon="mdi-map-marker-radius" solo />
         <div class="search-page__time-container">
-          <v-dialog
-            ref="dialogTime"
-            v-model="modalTime"
-            :return-value.sync="searchBody.hora"
-            persistent
-            width="290px"
-          >
+          <v-dialog ref="dialogTime" v-model="modalTime" :return-value.sync="searchBody.hora" persistent width="290px">
             <template #activator="{ on, attrs }">
-              <v-text-field
-                v-model="searchBody.hora"
-                label="Horário"
-                prepend-inner-icon="mdi-clock-time-four-outline"
-                readonly
-                v-bind="attrs"
-                solo
-                class="custom-input"
-                v-on="on"
-              />
+              <v-text-field v-model="searchBody.hora" label="Horário" prepend-inner-icon="mdi-clock-time-four-outline"
+                readonly v-bind="attrs" solo class="custom-input" v-on="on" />
             </template>
             <v-time-picker v-if="modalTime" v-model="searchBody.hora" locale="pt-br" full-width>
               <v-spacer />
@@ -47,24 +23,10 @@
               </v-btn>
             </v-time-picker>
           </v-dialog>
-          <v-dialog
-            ref="dialogDate"
-            v-model="modalDate"
-            :return-value.sync="searchBody.data"
-            persistent
-            width="290px"
-          >
+          <v-dialog ref="dialogDate" v-model="modalDate" :return-value.sync="searchBody.data" persistent width="290px">
             <template #activator="{ on, attrs }">
-              <v-text-field
-                v-model="displayDate"
-                label="Data"
-                prepend-inner-icon="mdi-calendar"
-                solo
-                readonly
-                v-bind="attrs"
-                class="custom-input"
-                v-on="on"
-              />
+              <v-text-field v-model="displayDate" label="Data" prepend-inner-icon="mdi-calendar" solo readonly
+                v-bind="attrs" class="custom-input" v-on="on" />
             </template>
             <v-date-picker v-model="searchBody.data" scrollable locale="pt-br">
               <v-spacer />
@@ -77,35 +39,17 @@
             </v-date-picker>
           </v-dialog>
         </div>
-        <v-autocomplete
-          v-model="searchBody.cid"
-          :items="cids"
-          label="Código Cid"
-          solo
-        />
+        <v-autocomplete v-model="searchBody.cid" :items="cids" label="Código Cid" solo />
         <v-btn block color="#01193D" elevation="2" large @click="performSearch">
           Buscar
         </v-btn>
-        <v-btn
-          id="btn-solicitacao"
-          to="/solicitacao"
-          class="mt-4"
-          :ripple="false"
-          small
-          text
-        >
+        <v-btn id="btn-solicitacao" to="/solicitacao" class="mt-4" :ripple="false" small text>
           Não encontrei minha rota
         </v-btn>
       </div>
       <div class="map-container">
-        <l-map
-          v-if="isMounted"
-          :zoom="zoom"
-          :center="center"
-          :options="mapOptions"
-          @moveend="onMapMove"
-          @zoomend="onMapMove"
-        >
+        <l-map v-if="isMounted" :zoom="zoom" :center="center" :options="mapOptions" @moveend="onMapMove"
+          @zoomend="onMapMove">
           <l-tile-layer :url="activeMapUrl" :attribution="activeAttribution" />
           <!-- <l-marker :lat-lng="markerLatLng"/> -->
           <l-control position="topright">
@@ -122,13 +66,8 @@
             <div class="map-type-control">
               <button class="map-type-btn" @click="toggleMapType">
                 <div class="preview-container">
-                  <img
-                    :src="previewImageUrl"
-                    alt="Preview"
-                    class="map-preview"
-                    :class="{ 'map-preview-fade': isImageTransitioning }"
-                    @load="onImageLoaded"
-                  ></img>
+                  <img :src="previewImageUrl" alt="Preview" class="map-preview"
+                    :class="{ 'map-preview-fade': isImageTransitioning }" @load="onImageLoaded"></img>
                   <div class="preview-label">
                     {{ activeMapType === 'streetMap' ? 'Satélite' : 'Mapa' }}
                   </div>
@@ -144,13 +83,8 @@
         Recentes
       </h2>
       <div class="recentRoutesSearched-container">
-        <v-card
-          v-for="(search, index) in recentSearches"
-          :key="index"
-          class="recentRoute-card"
-          elevation="0"
-          @click="useRecentSearch(search)"
-        >
+        <v-card v-for="(search, index) in recentSearches" :key="index" class="recentRoute-card" elevation="0"
+          @click="useRecentSearch(search)">
           <v-card-title class="recentRoute-title">
             {{ search.routeInfo }}
           </v-card-title>
@@ -162,26 +96,13 @@
             {{ getCityName(search.destinationCityId) }}
           </v-card-text>
           <v-card-actions>
-            <v-chip
-              class="ma-1 recentRoute-chip"
-              color="#74C3F8"
-              small
-            >
+            <v-chip class="ma-1 recentRoute-chip" color="#74C3F8" small>
               {{ formatTime(search.hora) }}
             </v-chip>
-            <v-chip
-              class="ma-1 recentRoute-chip"
-              color="#74C3F8"
-              small
-            >
+            <v-chip class="ma-1 recentRoute-chip" color="#74C3F8" small>
               {{ formatDate(search.data) }}
             </v-chip>
-            <v-chip
-              v-if="search.cid"
-              class="ma-1 recentRoute-chip"
-              color="#74C3F8"
-              small
-            >
+            <v-chip v-if="search.cid" class="ma-1 recentRoute-chip" color="#74C3F8" small>
               {{ getCIDText(search.cid) }}
             </v-chip>
           </v-card-actions>
@@ -258,6 +179,7 @@ export default {
     ...mapState('city', ['cities']),
     ...mapState('cid', ['cids']),
     ...mapState('bus', ['busRoutes']),
+    ...mapState('search', ['searches']),
     formIsEmpty () {
       return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
     },
@@ -310,6 +232,9 @@ export default {
     if (!this.cids.length) {
       this.fetchCids()
     }
+    if (this.$route.query.parametro) {
+      this.searchBody = { ...this.searches }
+    }
     this.loadRecentSearches()
   },
   destroyed () {
@@ -321,6 +246,7 @@ export default {
     ...mapActions('bus', ['fetchBusRoutes']),
     ...mapActions('loading', ['changeStatusLoading']),
     ...mapActions('alert', ['showAlert', 'hideAlert']),
+    ...mapActions('search', ['changeSearch']),
     zoomIn () {
       if (this.zoom < 18) {
         this.zoom += 1
@@ -482,6 +408,7 @@ export default {
           this.showAlert({ alertMessage: this.alertMessage.warning, alertType: 'warning' })
         } else {
           // Pesquisa bem-sucedida - salvar com informações da primeira rota encontrada
+          this.changeSearch(this.searchBody)
           let routeInfo = null
 
           if (this.busRoutes[0] && this.busRoutes[0].routes && this.busRoutes[0].routes.length) {
