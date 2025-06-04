@@ -34,6 +34,17 @@ describe('Pages / RoutesPage', () => {
     })
   })
 
+  describe('when busRoutes is empty', () => {
+    beforeEach(() => {
+      store.commit('bus/setBusRoutes', [])
+    })
+
+    it('should render the page with empty state message', () => {
+      console.log(wrapper.html())
+      expect(wrapper.element).toMatchSnapshot()
+    })
+  })
+
   describe('when all data is correct', () => {
     beforeEach(() => {
       store.commit('bus/setBusRoutes', [{
@@ -58,16 +69,6 @@ describe('Pages / RoutesPage', () => {
     })
 
     it('should render the page', () => {
-      expect(wrapper.element).toMatchSnapshot()
-    })
-  })
-
-  describe('when busRoutes is empty', () => {
-    beforeEach(() => {
-      store.commit('bus/setBusRoutes', [])
-    })
-
-    it('should render the page with empty state message', () => {
       expect(wrapper.element).toMatchSnapshot()
     })
   })
