@@ -1,93 +1,137 @@
-# emtu-web
+# **VApt**
 
-## Requisitos
+## **Objetivo**
 
-- [node](https://nodejs.org/en)
-- [git](https://git-scm.com/)
+O projeto VApt tem como objetivo melhorar a adequação do transporte público para usuários com deficiência por meio de análise e classificação dos dados de buscas realizadas pelos usuários.
 
-## Clonando o repositório
+- ### *Gerais:*
 
-```bash
-$ git clone https://github.com/UnifespCodeLab/emtu-web
-```
+  - Promoção de maior acessibilidade e autonomia para pessoas com deficiência no transporte público intermunicipal;
 
-## Setup
+  - Fornecimento de dados estruturados para tomada de decisão e melhorias no serviço.
 
-```bash
-# instalando dependências
-$ npm install
+- ### *Específicos:*
+  - Coleta e classificação de demandas dos usuários com deficiência;
 
-# executa a aplicação no endereço localhost:3000
-$ npm run dev
-```
+  - Identificação de padrões de uso e gargalos no atendimento;
 
-Para mais detalhes confira a [doc](https://nuxtjs.org) do nuxt.
+  - Facilitar o acesso à informação sobre linhas e condições de acessibilidade;
 
-## Sobre o estruturamento do projeto
+  - Proposição de melhorias com base em evidências extraídas dos dados coletados.
 
-No nuxt apenas o diretório de `pages` é obrigatório. Os outros possuem comportamentos específicos.
+## **Público Alvo**
 
-### `assets`
+Usuários com deficiência que utilizam o transporte público intermunicipal, especialmente no estado de São Paulo
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+## **Tecnologias Utilizadas**
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+- **Front-end:** Vue, Vuex, Jest
 
-### `components`
+- **Modelagem de UI:** Figma
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+- **Back-end:** TypeScript, PostgreSQL
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+- **Orquestração de deploy:** Docker, GitHub Actions
 
-### `layouts`
+## **Como Rodar o Projeto:**
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+- ### **Requisitos**:
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+  - [node](https://nodejs.org/en)
 
-### `pages`
+  - [git](https://git-scm.com/)
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+- ### **Clone o repositório**:
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+  - CodeLab Loader: https://github.com/UnifespCodeLab/codelab-loader
 
-### `plugins`
+- ### **Em seguida, clone estes repositórios dentro das pastas vazias do Loader**:
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+  - **Front-end:** https://github.com/UnifespCodeLab/emtu-web
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+  - **Back-end:** https://github.com/UnifespCodeLab/emtu-api
 
-### `static`
+- ### Setup das envs: 
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+  - Execute ./boot.sh (este passo é obrigatório)
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+  - (Serão criadas todas as envs baseadas no .env.sample de cada service)
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+- ### Configure o Ambiente:
+  - Tenha Docker instalado
 
-### `store`
+  - Na raiz do projeto execute os comandos:
+``docker compose up nome_do_service`` (exemplo: ``docker compose up emtu-web`` para subir o container do emtu-web, faça a mesma coisa substituindo por emtu-api e ``docker compose up postgres`` para o banco de dados)
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+- ### O docker começará a construir os containers de cada parte (o que deverá criar instâncias locais):
+  - Acesso padrão para o front-end em http://localhost:3000
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+  - Acesso padrão para a API em http://localhost:3333
 
-## Fluxo de desenvolvimento
+- ### Documentação mais detalhada (com formas alternativas de rodar) está disponível nos READMEs de cada repositório:
+  - https://github.com/UnifespCodeLab/codelab-loader
+
+  - https://github.com/UnifespCodeLab/emtu-api
+
+- ### Para mais detalhes confira a [doc](https://nuxtjs.org) do nuxt.
+
+## **Protótipo**
+
+[Link do figma](https://www.figma.com/design/MY9TVu5Y4G94IdIafPZB5d/Redesenho-EMTU%2FVApt?node-id=420-436&p=f&t=eIvQQTEjAMbaNI6P-0)
+
+## **Fluxo de desenvolvimento**
 
 - (opcional) Dê uma olhada em como funcionam os [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
 - Vá até o board do github e encontre o [_emtu-web_](https://github.com/orgs/UnifespCodeLab/projects/4)
+
 - Encontre a issue desejada
+
 - Atribua a si mesmo
+
 - Mude para a coluna _In Progress_
+
 - Com o projeto já clonado em sua pasta desejada, crie uma branch baseada no que está fazendo. Por exemplo:
   - `git checkout -b issue-10`
+
 - Uma boa prática é sempre deixar seus commits o mais '_atômicos_' possível
+
 - Quando todo o desenvolvimento estiver finalizado abra um [pull request](https://github.com/UnifespCodeLab/emtu-api/compare). Lembrando precisa ser nesse sentido: `base: main` <- `compare: issue-10`
+
 - Marque os revisores para que os mesmos recebam notificação e revisem o seu pr
+
 - Vincule a issue aberta com o seu pr
+
 - Corra pro abraço
 
-## Troubleshooting
+## **Imagens do Protótipo**
+
+![inicio_desktop](static/Imagem1_prototipo.jpeg)
+*Tela inicial - desktop*
+
+![rotas](static/Imagem3_prototipo.jpeg)
+*Tela de rotas - desktop*
+
+![nao_encontrei_minha_rota](static/Imagem4_prototipo.jpeg)
+*"Não encontrei minha rota"*
+
+![inicio_mobile](static/Imagem5_prototipo.jpeg)
+*Tela inicial - mobile*
+
+![sobre](static/Imagem2_prototipo.jpeg)
+*Sobre o projeto*
+
+
+## **Troubleshooting**
 
 - Versão do `node`:
   - Utilizando versões acima da <b>16</b> é possível que o erro `ERR_OSSL_EVP_UNSUPPORTED` apareça em sua tela. Como solução é possível passar uma _env_ que fará com que o projeto utilize a versão legado do _ssl provider_:
   - Em seu terminal execute: `export NODE_OPTIONS=--openssl-legacy-provider` (Linux) ou `$env:NODE_OPTIONS="--openssl-legacy-provider"` (Windows)
+
+## **Status**
+
+- [ ]  Em ideação
+- [x]  Em desenvolvimento
+- [ ]  Testando com usuário
+- [ ]  Em uso
+- [ ]  Descontinuado
