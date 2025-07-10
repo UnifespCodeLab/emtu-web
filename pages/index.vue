@@ -3,15 +3,33 @@
     <div class="search-page">
       <div class="search-page__form">
         <span class="header-text">Para onde você quer ir?</span>
-        <v-autocomplete v-model="searchBody.originCityId" :items="cities" label="Origem"
-          prepend-inner-icon="mdi-map-marker" solo />
-        <v-autocomplete v-model="searchBody.destinationCityId" :items="cities" label="Destino"
-          prepend-inner-icon="mdi-map-marker-radius" solo />
+        <v-autocomplete
+          v-model="searchBody.originCityId"
+          :items="cities"
+          label="Origem"
+          prepend-inner-icon="mdi-map-marker"
+          solo
+        />
+        <v-autocomplete
+          v-model="searchBody.destinationCityId"
+          :items="cities"
+          label="Destino"
+          prepend-inner-icon="mdi-map-marker-radius"
+          solo
+        />
         <div class="search-page__time-container">
           <v-dialog ref="dialogTime" v-model="modalTime" :return-value.sync="searchBody.hora" persistent width="290px">
             <template #activator="{ on, attrs }">
-              <v-text-field v-model="searchBody.hora" label="Horário" prepend-inner-icon="mdi-clock-time-four-outline"
-                readonly v-bind="attrs" solo class="custom-input" v-on="on" />
+              <v-text-field
+                v-model="searchBody.hora"
+                label="Horário"
+                prepend-inner-icon="mdi-clock-time-four-outline"
+                readonly
+                v-bind="attrs"
+                solo
+                class="custom-input"
+                v-on="on"
+              />
             </template>
             <v-time-picker v-if="modalTime" v-model="searchBody.hora" locale="pt-br" full-width>
               <v-spacer />
@@ -25,8 +43,16 @@
           </v-dialog>
           <v-dialog ref="dialogDate" v-model="modalDate" :return-value.sync="searchBody.data" persistent width="290px">
             <template #activator="{ on, attrs }">
-              <v-text-field v-model="displayDate" label="Data" prepend-inner-icon="mdi-calendar" solo readonly
-                v-bind="attrs" class="custom-input" v-on="on" />
+              <v-text-field
+                v-model="displayDate"
+                label="Data"
+                prepend-inner-icon="mdi-calendar"
+                solo
+                readonly
+                v-bind="attrs"
+                class="custom-input"
+                v-on="on"
+              />
             </template>
             <v-date-picker v-model="searchBody.data" scrollable locale="pt-br">
               <v-spacer />
@@ -39,17 +65,116 @@
             </v-date-picker>
           </v-dialog>
         </div>
-        <v-autocomplete v-model="searchBody.cid" :items="cids" label="Código Cid" solo />
+        <v-dialog ref="dialogCid" v-model="modalCid" persistent max-width="600px">
+          <template #activator="{ on, attrs }">
+            <v-text-field
+              v-model="displayCid"
+              label="Código Cid"
+              prepend-inner-icon="mdi-medical-bag"
+              solo
+              readonly
+              v-bind="attrs"
+              class="custom-input"
+              @click="openCidModal"
+              v-on="on"
+            />
+          </template>
+          <v-card class="cid-modal">
+            <v-card-title class="cid-modal__title">
+              Lista de CID's
+            </v-card-title>
+            <v-card-text class="cid-modal__content">
+              <v-text-field
+                v-model="cidSearch"
+                label="Pesquisar CID"
+                prepend-inner-icon="mdi-magnify"
+                solo
+                clearable
+                hide-details
+                class="mb-4"
+              />
+              <div class="cid-table-container">
+                <div v-for="cid in filteredCids" :key="cid.value" class="cid-item" @click="toggleCidSelection(cid.value)">
+                  <div class="cid-item__info">
+                    <div class="cid-item__code">
+                      Código: {{ getCidCode(cid.text) }}
+                    </div>
+                    <div class="cid-item__name">
+                      Diagnóstico: {{ getCidDiagnostic(cid.diagnostic) }}
+                    </div>
+                  </div>
+                  <div class="cid-item__tags">
+                    <v-chip :class="getAdaptationChipClass(cid.text)" small>
+                      Adaptação: {{ getAdaptationLevel(cid.text) }}
+                    </v-chip>
+                    <v-chip v-if="hasCompanion(cid)" class="cid-chip cid-chip--acompanhamento" small>
+                      <v-icon
+                        small
+                        class="mr-1"
+                      >
+                        mdi-account-plus
+                      </v-icon>
+                      Acompanhante
+                    </v-chip>
+                  </div>
+                  <div class="cid-item__checkbox">
+                    <v-checkbox
+                      :value="tempSelectedCids.includes(cid.value)"
+                      hide-details
+                      class="mt-0"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="cid-modal__footer">
+                <span class="cid-selected-count">
+                  {{ tempSelectedCids.length }} CID's selecionadas
+                </span>
+                <v-btn
+                  v-if="tempSelectedCids.length > 0"
+                  text
+                  color="primary"
+                  small
+                  @click="clearAllCidSelections"
+                >
+                  Limpar Todas
+                </v-btn>
+              </div>
+            </v-card-text>
+            <v-card-actions class="cid-modal__actions">
+              <v-btn text color="primary" @click="cancelCidSelection">
+                Cancelar
+              </v-btn>
+              <v-btn color="primary" @click="confirmCidSelection">
+                Confirmar
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
         <v-btn block color="#01193D" elevation="2" large @click="performSearch">
           Buscar
         </v-btn>
-        <v-btn id="btn-solicitacao" to="/solicitacao" class="mt-4" :ripple="false" small text>
+        <v-btn
+          id="btn-solicitacao"
+          to="/solicitacao"
+          class="mt-4"
+          :ripple="false"
+          small
+          text
+        >
           Não encontrei minha rota
         </v-btn>
       </div>
       <div class="map-container">
-        <l-map v-if="isMounted" :zoom="zoom" :center="center" :options="mapOptions" @moveend="onMapMove"
-          @zoomend="onMapMove">
+        <l-map
+          v-if="isMounted"
+          :zoom="zoom"
+          :center="center"
+          :options="mapOptions"
+          @moveend="onMapMove"
+          @zoomend="onMapMove"
+        >
           <l-tile-layer :url="activeMapUrl" :attribution="activeAttribution" />
           <!-- <l-marker :lat-lng="markerLatLng"/> -->
           <l-control position="topright">
@@ -60,14 +185,32 @@
               <button class="zoom-btn" @click="zoomOut">
                 −
               </button>
+              <button
+                class="zoom-btn location-btn"
+                :disabled="isLocating"
+                :title="isLocating ? 'Obtendo localização...' : 'Centralizar no meu local'"
+                @click="centerMapOnCurrentLocation"
+              >
+                <v-icon
+                  small
+                >
+                  {{ isLocating ? 'mdi-loading mdi-spin' : 'mdi-crosshairs-gps' }}
+                </v-icon>
+              </button>
             </div>
           </l-control>
           <l-control position="bottomleft">
             <div class="map-type-control">
               <button class="map-type-btn" @click="toggleMapType">
                 <div class="preview-container">
-                  <img :src="previewImageUrl" alt="Preview" class="map-preview"
-                    :class="{ 'map-preview-fade': isImageTransitioning }" @load="onImageLoaded"></img>
+                  <img
+                    :src="previewImageUrl"
+                    alt="Preview"
+                    class="map-preview"
+                    :class="{ 'map-preview-fade': isImageTransitioning }"
+                    @load="onImageLoaded"
+                  >
+                  </img>
                   <div class="preview-label">
                     {{ activeMapType === 'streetMap' ? 'Satélite' : 'Mapa' }}
                   </div>
@@ -83,8 +226,13 @@
         Recentes
       </h2>
       <div class="recentRoutesSearched-container">
-        <v-card v-for="(search, index) in recentSearches" :key="index" class="recentRoute-card" elevation="0"
-          @click="useRecentSearch(search)">
+        <v-card
+          v-for="(search, index) in recentSearches"
+          :key="index"
+          class="recentRoute-card"
+          elevation="0"
+          @click="useRecentSearch(search)"
+        >
           <v-card-title class="recentRoute-title">
             {{ search.routeInfo }}
           </v-card-title>
@@ -113,7 +261,7 @@
 </template>
 
 <script>
-import { LMap, LTileLayer } from 'vue2-leaflet'
+import { LMap, LTileLayer, LControl } from 'vue2-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { mapState, mapActions } from 'vuex'
 import { Icon } from 'leaflet'
@@ -129,7 +277,8 @@ export default {
   name: 'SearchPage',
   components: {
     LMap,
-    LTileLayer
+    LTileLayer,
+    LControl
   },
   data () {
     return {
@@ -141,10 +290,13 @@ export default {
       hasError: false,
       modalDate: false,
       modalTime: false,
+      modalCid: false,
+      cidSearch: '',
+      tempSelectedCids: [],
       searchBody: {
         originCityId: '',
         destinationCityId: '',
-        cid: '',
+        cid: [],
         data: '',
         hora: ''
       },
@@ -172,7 +324,9 @@ export default {
       zoom: 15,
       center: [-23.5505, -46.6333], // Coordenadas de São Paulo
       markerLatLng: [-23.5505, -46.6333], // Posição inicial do marcador
-      isMounted: false
+      isMounted: false,
+      isLocating: false,
+      locationError: null
     }
   },
   computed: {
@@ -181,7 +335,9 @@ export default {
     ...mapState('bus', ['busRoutes']),
     ...mapState('search', ['searches']),
     formIsEmpty () {
-      return !this.searchBody.cid || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
+      const cidIsEmpty = !this.searchBody.cid || (Array.isArray(this.searchBody.cid) && this.searchBody.cid.length === 0) || this.searchBody.cid === ''
+
+      return cidIsEmpty || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
     },
     displayDate: {
       get () {
@@ -199,6 +355,30 @@ export default {
           this.searchBody.data = `${year}-${month}-${day}`
         }
       }
+    },
+    displayCid () {
+      if (!this.searchBody.cid || this.searchBody.cid.length === 0) {
+        return ''
+      }
+      const cidArray = Array.isArray(this.searchBody.cid) ? this.searchBody.cid : [this.searchBody.cid]
+      const cidCodes = cidArray.map((cidValue) => {
+        const cidItem = this.cids.find(item => item.value === cidValue)
+        return cidItem ? this.getCidCode(cidItem.text) : cidValue
+      })
+      if (cidCodes.length === 1) {
+        return cidCodes[0]
+      } else {
+        return `${cidCodes.length} CIDs selecionados`
+      }
+    },
+    filteredCids () {
+      if (!this.cidSearch) {
+        return this.cids
+      }
+      return this.cids.filter(cid =>
+        cid.text.toLowerCase().includes(this.cidSearch.toLowerCase()) ||
+        String(cid.value).toLowerCase().includes(this.cidSearch.toLowerCase())
+      )
     },
     previewImageUrl () {
       // Mostra o preview do tipo oposto ao que está ativo
@@ -224,6 +404,7 @@ export default {
   mounted () {
     this.isMounted = true
     this.previousCenter = [...this.center]
+    this.getCurrentLocation()
   },
   created () {
     if (!this.cities.length) {
@@ -232,9 +413,9 @@ export default {
     if (!this.cids.length) {
       this.fetchCids()
     }
-    if (this.$route.query.parametro) {
-      this.searchBody = { ...this.searches }
-    }
+    // if (this.$route.query.parametro) {
+    //   this.searchBody = { ...this.searches }
+    // }
     this.loadRecentSearches()
   },
   destroyed () {
@@ -247,6 +428,54 @@ export default {
     ...mapActions('loading', ['changeStatusLoading']),
     ...mapActions('alert', ['showAlert', 'hideAlert']),
     ...mapActions('search', ['changeSearch']),
+    getCurrentLocation () {
+      if (!navigator.geolocation) {
+        this.locationError = 'Geolocalização não é suportada pelo seu navegador.'
+        // console.warn(this.locationError)
+        return
+      }
+
+      this.isLocating = true
+
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords
+        this.center = [latitude, longitude]
+        this.markerLatLng = [latitude, longitude]
+        this.previousCenter = [latitude, longitude]
+        this.isLocating = false
+        this.locationError = null
+      },
+      (error) => {
+        this.isLocating = false
+        let errorMessage = 'Erro ao obter localização.'
+
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage = 'Permissão negada para acessar a localização.'
+            break
+          case error.POSITION_UNAVAILABLE:
+            errorMessage = 'Localização indisponível.'
+            break
+          case error.TIMEOUT:
+            errorMessage = 'Tempo limite excedido ao tentar obter a localização.'
+            break
+          case error.UNKNOWN_ERROR:
+            errorMessage = 'Erro desconhecido ao tentar obter a localização.'
+            break
+        }
+
+        this.locationError = errorMessage
+        // console.warn(errorMessage)
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 10000
+      })
+    },
+    centerMapOnCurrentLocation () {
+      this.getCurrentLocation()
+    },
     zoomIn () {
       if (this.zoom < 18) {
         this.zoom += 1
@@ -325,7 +554,7 @@ export default {
           this.recentSearches = JSON.parse(savedSearches)
         }
       } catch (error) {
-        console.error('Erro ao carregar pesquisas recentes:', error)
+        // console.error('Erro ao carregar pesquisas recentes:', error)
         this.recentSearches = []
       }
     },
@@ -343,16 +572,108 @@ export default {
       const [year, month, day] = date.split('-')
       return `${day}/${month}/${year}`
     },
+    openCidModal () {
+      if (!Array.isArray(this.searchBody.cid)) {
+        this.searchBody.cid = this.searchBody.cid ? [this.searchBody.cid] : []
+      }
+      this.tempSelectedCids = [...this.searchBody.cid]
+      this.modalCid = true
+    },
     getCIDText (cid) {
-      if (!cid) {
+      if (!cid || (Array.isArray(cid) && cid.length === 0)) {
         return ''
       }
+
+      if (Array.isArray(cid)) {
+        if (cid.length === 1) {
+          const CIDItem = this.cids.find(item => item.value === cid[0])
+          if (!CIDItem) {
+            return ''
+          }
+          const Grupo = CIDItem.text.match(/- (G\d+)$/)
+          return Grupo ? Grupo[1] : ''
+        } else {
+          return `${cid.length} CIDs`
+        }
+      }
+
       const CIDItem = this.cids.find(item => item.value === cid)
       if (!CIDItem) {
         return ''
       }
       const Grupo = CIDItem.text.match(/- (G\d+)$/)
       return Grupo ? Grupo[1] : ''
+    },
+    getCidCode (fullText) {
+      // Extrai apenas o código do CID (primeira parte antes do " - ")
+      const parts = fullText.split(' - ')
+      return parts[0] ? parts[0].trim() : fullText.trim()
+    },
+    getCidGroup (fullText) {
+      // Extrai o grupo (parte após o " - ")
+      const parts = fullText.split(' - ')
+      return parts[1] ? parts[1].trim() : ''
+    },
+    getCidName (fullText) {
+      // Remove o código do grupo (ex: "- G123") do final
+      return fullText.replace(/\s*-\s*G\d+\s*$/, '').trim()
+    },
+    getCidDiagnostic (fullText) {
+      // Remove o código do grupo (ex: "- G123") do final para mostrar apenas o diagnóstico
+      return fullText.replace(/\s*-\s*G\d+\s*$/, '').trim()
+    },
+    getAdaptationLevel (fullText) {
+      const groupMatch = fullText.match(/- (G\d+)$/)
+      if (!groupMatch) {
+        return 'N/A'
+      }
+      const group = groupMatch[1]
+      switch (group) {
+        case 'G1': return 'Alto'
+        case 'G2': return 'Médio'
+        case 'G3': return 'Baixo'
+        default: return 'N/A'
+      }
+    },
+    getAdaptationChipClass (fullText) {
+      const groupMatch = fullText.match(/- (G\d+)$/)
+      if (!groupMatch) {
+        return 'cid-chip cid-chip--adaptacao-na'
+      }
+      const group = groupMatch[1]
+      switch (group) {
+        case 'G1': return 'cid-chip cid-chip--adaptacao-alto'
+        case 'G2': return 'cid-chip cid-chip--adaptacao-medio'
+        case 'G3': return 'cid-chip cid-chip--adaptacao-baixo'
+        default: return 'cid-chip cid-chip--adaptacao-na'
+      }
+    },
+    hasCompanion (cid) {
+      // Verifica se o CID tem acompanhamento
+      return cid.text.includes('Acompanhante') || cid.text.includes('Acompanhamento')
+    },
+    toggleCidSelection (cidValue) {
+      const index = this.tempSelectedCids.indexOf(cidValue)
+      if (index > -1) {
+        this.tempSelectedCids.splice(index, 1)
+      } else {
+        this.tempSelectedCids.push(cidValue)
+      }
+    },
+    clearAllCidSelections () {
+      this.tempSelectedCids = []
+    },
+    cancelCidSelection () {
+      this.tempSelectedCids = [...this.searchBody.cid] // Restaura valor original
+      this.cidSearch = ''
+      this.modalCid = false
+    },
+    confirmCidSelection () {
+      // console.log('Confirmando CIDs:', this.tempSelectedCids)
+      this.$set(this.searchBody, 'cid', [...this.tempSelectedCids])
+      // console.log('searchBody.cid após atribuição:', this.searchBody.cid)
+      this.cidSearch = ''
+      this.modalCid = false
     },
     saveRecentSearch (routeInfo = null) {
       try {
@@ -366,7 +687,7 @@ export default {
         const existingIndex = this.recentSearches.findIndex(search =>
           search.originCityId === searchCopy.originCityId &&
           search.destinationCityId === searchCopy.destinationCityId &&
-          search.cid === searchCopy.cid
+          JSON.stringify(search.cid) === JSON.stringify(searchCopy.cid)
         )
         // Se existir, remover para adicionar atualizada no início
         if (existingIndex !== -1) {
@@ -381,18 +702,36 @@ export default {
         // Salvar no localStorage
         localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches))
       } catch (error) {
-        console.error('Erro ao salvar pesquisa recente:', error)
+        // console.error('Erro ao salvar pesquisa recente:', error)
       }
     },
     useRecentSearch (search) {
       // Preencher o formulário com os dados da pesquisa salva
       this.searchBody = { ...search }
-      // Opcional: executar a pesquisa automaticamente
+      if (!Array.isArray(this.searchBody.cid)) {
+        this.searchBody.cid = this.searchBody.cid ? [this.searchBody.cid] : []
+      }
+      // Executar a pesquisa automaticamente
       this.performSearch()
     },
     async performSearch () {
       this.hideAlert()
-      if (this.formIsEmpty) {
+
+      // console.log('searchBody:', this.searchBody)
+      // console.log('cid:', this.searchBody.cid)
+      // console.log('cid length:', this.searchBody.cid?.length)
+
+      const cidIsEmpty = !this.searchBody.cid || (Array.isArray(this.searchBody.cid) && this.searchBody.cid.length === 0) || this.searchBody.cid === ''
+
+      const formIsEmpty = cidIsEmpty || !this.searchBody.data || !this.searchBody.destinationCityId || !this.searchBody.hora || !this.searchBody.originCityId
+      if (formIsEmpty) {
+        // console.log('Form validation:', {
+        //   cidIsEmpty,
+        //   data: this.searchBody.data,
+        //   destinationCityId: this.searchBody.destinationCityId,
+        //   hora: this.searchBody.hora,
+        //   originCityId: this.searchBody.originCityId
+        // })
         const propsAlert = {
           alertMessage: 'Todos os campos devem ser preenchidos',
           alertType: 'error'
@@ -504,6 +843,30 @@ export default {
     background-color: #f4f4f4;
   }
 }
+.location-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .v-icon {
+    font-size: 16px;
+  }
+}
+
+.mdi-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .leaflet-control-zoom-buttons {
   display: flex;
   flex-direction: column;
@@ -600,6 +963,123 @@ export default {
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
+}
+.cid-modal {
+  .cid-modal__title {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px 24px 16px;
+  }
+
+  .cid-modal__content {
+    padding: 0 24px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .cid-modal__actions {
+    padding: 16px 24px 20px;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}
+
+.cid-table-container {
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.cid-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .cid-item__info {
+    flex: 1;
+    margin-right: 16px;
+
+    .cid-item__code {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .cid-item__name {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.4;
+    }
+  }
+
+  .cid-item__tags {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-right: 16px;
+    align-items: flex-end;
+  }
+
+  .cid-item__checkbox {
+    flex-shrink: 0;
+  }
+}
+
+.cid-chip {
+  font-size: 12px;
+  height: 24px;
+
+  &.cid-chip--adaptacao-alto {
+    background-color: #ffcdd2 !important;
+    color: #c62828 !important;
+  }
+
+  &.cid-chip--adaptacao-medio {
+    background-color: #fff3e0 !important;
+    color: #f57c00 !important;
+  }
+
+  &.cid-chip--adaptacao-baixo {
+    background-color: #e8f5e8 !important;
+    color: #2e7d32 !important;
+  }
+
+  &.cid-chip--adaptacao-na {
+    background-color: #f5f5f5 !important;
+    color: #757575 !important;
+  }
+
+  &.cid-chip--acompanhamento {
+    background-color: #e3f2fd !important;
+    color: #1565c0 !important;
+  }
+}
+
+.cid-modal__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 0;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 16px;
+
+  .cid-selected-count {
+    font-size: 14px;
+    color: #666;
+  }
 }
 .v-btn{
   color: white;
