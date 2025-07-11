@@ -1,12 +1,14 @@
 import emtuApi from '~/assets/services/emtu-api'
 
 export const state = () => ({
-  busRoutes: []
+  busRoutes: [],
+  primaryCid: null
 })
 
 export const mutations = {
-  setBusRoutes (state, value) {
-    state.busRoutes = value
+  setBusRoutes (state, { routes, primaryCid }) {
+    state.busRoutes = routes
+    state.primaryCid = primaryCid
   }
 }
 
@@ -16,7 +18,8 @@ export const actions = {
       const { data } = await emtuApi.post('/bus', searchBody)
       const formattedResult = []
 
-      data.forEach((line) => {
+      const lines = data.lines || []
+      lines.forEach((line) => {
         line.vehicle.forEach(({ group }) => {
           if (!formattedResult.find(item => item.group === group)) {
             formattedResult.push({ group, routes: [line] })
@@ -30,7 +33,7 @@ export const actions = {
         })
       })
 
-      commit('setBusRoutes', formattedResult)
+      commit('setBusRoutes', { routes: formattedResult, primaryCid: data.primaryCid })
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error)
