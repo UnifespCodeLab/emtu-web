@@ -45,25 +45,27 @@
             </span>
           </div>
           <span class="text-lg-h7" style="font-weight: bold;">Paradas</span>
-          <v-timeline align-top dense>
-            <v-timeline-item
-              v-for="(stop, indexStop) in busRoutes[selectedCid].routes[selectedCidRoute].busStops"
-              :key="indexStop"
-              :color="'#01193D'"
-              small
-              fill-dot
-            >
-              <template #icon>
-                <span class="white--text">{{ indexStop + 1 }}</span>
-              </template>
-              <div>
-                <div class="font-weight-normal">
-                  <strong>{{ getStopAddressTitle(stop) }}</strong>
+          <div class="routes-page__timeline-scroll">
+            <v-timeline align-top dense>
+              <v-timeline-item
+                v-for="(stop, indexStop) in busRoutes[selectedCid].routes[selectedCidRoute].busStops"
+                :key="indexStop"
+                :color="'#017BFD'"
+                small
+                fill-dot
+              >
+                <template #icon>
+                  <!-- <span class="white--text">{{ indexStop + 1 }}</span> -->
+                </template>
+                <div>
+                  <div class="font-weight-normal">
+                    <strong>{{ getStopAddressTitle(stop) }}</strong>
+                  </div>
+                  <div>{{ getStopAddressText(stop) }}</div>
                 </div>
-                <div>{{ getStopAddressText(stop) }}</div>
-              </div>
-            </v-timeline-item>
-          </v-timeline>
+              </v-timeline-item>
+            </v-timeline>
+          </div>
         </div>
 
         <div class="routes-page__right">
@@ -563,6 +565,7 @@ export default {
   min-height: 300px;
   overflow: hidden;
   position: relative;
+  z-index: 0;
 
   @media(min-width: 768px) {
     flex: 0.6;
@@ -586,7 +589,7 @@ export default {
   background: white;
   border: 1px solid #ccc;
   display: block;
-  z-index: 10000;
+  z-index: 100;
   align-items: center;
   justify-content: center;
   font-size: 20px;
@@ -619,7 +622,7 @@ export default {
   position: absolute;
   bottom: 20px;
   left: 20px;
-  z-index: 10000;
+  z-index: 100;
 }
 .map-type-btn {
   background: white;
@@ -630,7 +633,7 @@ export default {
   align-items: center;
   cursor: pointer;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 100;
 
   &:hover {
     background-color: #f4f4f4;
@@ -695,6 +698,51 @@ export default {
 
 .bold-hour {
   font-weight: bold;
+}
+
+.v-application--is-ltr .v-timeline--dense:not(.v-timeline--reverse)::before{
+  left: calc(48px - 8px);
+  right: auto;
+  right: initial;
+}
+
+.theme--light.v-timeline::before{
+  background: #B4D3F3;
+}
+
+.v-timeline::before{
+  border-radius: 50px;
+  width: 16px;
+}
+
+.routes-page__timeline-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 8px;
+
+  // Scrollbar estilizado para navegadores baseados em Webkit (Chrome, Edge, Safari)
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #8ebff0;
+    border-radius: 8px;
+    border: 2px solid #f0f0f0;
+    min-height: 40px;
+    transition: background 0.2s;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #8ebff0;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+  }
+
+  // Scrollbar estilizado para Firefox
+  scrollbar-width: thin;
+  scrollbar-color: #8ebff0 #f0f0f0;
 }
 
 .routes-page__empty {
