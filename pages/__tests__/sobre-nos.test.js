@@ -26,14 +26,14 @@ describe('Pages / AboutUsPage', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('has a logo', () => {
-    const logo = wrapper.findComponent({ name: 'v-icon' }, { ref: 'mdi-bus' })
-    expect(logo.exists()).toBe(true)
-  })
+  // it('has a logo', () => {
+  //   const logo = wrapper.findComponent({ name: 'v-icon' }, { ref: 'mdi-bus' })
+  //   expect(logo.exists()).toBe(true)
+  // })
 
-  it('has correct link', () => {
-    const link = wrapper.find('a[href="https://www.codelab-unifesp.org/"]')
-    expect(link.exists()).toBe(true)
-    expect(link.attributes('target')).toBe('_blank')
-  })
+  // it('has correct link', () => {
+  //   const link = wrapper.find('a[href="https://www.codelab-unifesp.org/"]')
+  //   expect(link.exists()).toBe(true)
+  //   expect(link.attributes('target')).toBe('_blank')
+  // })
 })

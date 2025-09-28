@@ -32,13 +32,22 @@
           </div>
           <div class="about-us__container-content-title">
             <h2>
-              <span>EMTU</span>
+              <span>VApt</span>
             </h2>
           </div>
         </div>
       </div>
     </div>
     <div class="about-us__container-content">
+      <div class="about-us__container-content-codelab-details">
+        <div class="about-us__container-content-codelab-images">
+          <img src="../assets/images/logo-codelab.png">
+        </div>
+        <span class="about-us__container-content-emtu-details-text">
+          Site desenvolvido e mantido pelo grupode extensão CodeLab da Universidade Federal do Estado de São Paulo
+          (UNIFESP)
+        </span>
+      </div>
       <div class="about-us__container-content-codelab-details">
         <h2 class="about-us__container-content-title">
           Sobre o <span> CodeLab </span>
@@ -62,15 +71,6 @@
         </p>
         <span class="about-us__container-content-paragraph">Para saber mais <a href="https://www.codelab-unifesp.org/"
             target="_blank">acesse nosso site.</a> </span>
-      </div>
-      <div class="about-us__container-content-codelab-details">
-        <div class="about-us__container-content-codelab-images">
-          <img src="../assets/images/logo-codelab.png">
-        </div>
-        <span class="about-us__container-content-emtu-details-text">
-          Site desenvolvido e mantido pelo grupode extensão CodeLab da Universidade Federal do Estado de São Paulo
-          (UNIFESP)
-        </span>
       </div>
     </div>
   </div>
