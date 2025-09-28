@@ -93,92 +93,92 @@ describe('Pages / SearchPage', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-//   describe('when all data is correct', () => {
-//     it('should render the page', () => {
-//       expect(wrapper.element).toMatchSnapshot()
-//       expect(wrapper.findAll('input').length).toBe(8)
-//     })
-//   })
+  //   describe('when all data is correct', () => {
+  //     it('should render the page', () => {
+  //       expect(wrapper.element).toMatchSnapshot()
+  //       expect(wrapper.findAll('input').length).toBe(8)
+  //     })
+  //   })
 
-//   describe('when search button is clicked', () => {
-//     beforeAll(() => {
-//       emtuApi.post = jest.fn().mockResolvedValue({
-//         data: [{
-//           code: '244',
-//           vehicle: [{ group: 'G1' }]
-//         },
-//         {
-//           code: '420',
-//           vehicle: [{ group: 'G1' }, { group: 'G2' }]
-//         }]
-//       })
-//     })
+  //   describe('when search button is clicked', () => {
+  //     beforeAll(() => {
+  //       emtuApi.post = jest.fn().mockResolvedValue({
+  //         data: [{
+  //           code: '244',
+  //           vehicle: [{ group: 'G1' }]
+  //         },
+  //         {
+  //           code: '420',
+  //           vehicle: [{ group: 'G1' }, { group: 'G2' }]
+  //         }]
+  //       })
+  //     })
 
-//     beforeEach(() => {
-//       wrapper.setData({
-//         searchBody: {
-//           originCityId: 1,
-//           destinationCityId: 2,
-//           cid: 3,
-//           data: '2023-10-22',
-//           hora: '21:45'
-//         }
-//       })
+  //     beforeEach(() => {
+  //       wrapper.setData({
+  //         searchBody: {
+  //           originCityId: 1,
+  //           destinationCityId: 2,
+  //           cid: 3,
+  //           data: '2023-10-22',
+  //           hora: '21:45'
+  //         }
+  //       })
 
-//       const searchButton = wrapper.findComponent('button')
-//       searchButton.trigger('click')
-//     })
+  //       const searchButton = wrapper.findComponent('button')
+  //       searchButton.trigger('click')
+  //     })
 
-//     it('calls emtu-api to execute bus search', () => {
-//       expect(emtuApi.post).toHaveBeenNthCalledWith(1, '/bus', {
-//         originCityId: 1,
-//         destinationCityId: 2,
-//         cid: 3,
-//         data: '2023-10-22',
-//         hora: '21:45'
-//       })
-//     })
+  //     it('calls emtu-api to execute bus search', () => {
+  //       expect(emtuApi.post).toHaveBeenNthCalledWith(1, '/bus', {
+  //         originCityId: 1,
+  //         destinationCityId: 2,
+  //         cid: 3,
+  //         data: '2023-10-22',
+  //         hora: '21:45'
+  //       })
+  //     })
 
-//     it('formats the result grouping by cid', () => {
-//       expect(setBusRoutes).toHaveBeenCalledWith({ busRoutes: [] }, [{
-//         group: 'G1',
-//         routes: [
-//           { code: '244', vehicle: [{ group: 'G1' }] },
-//           {
-//             code: '420',
-//             vehicle: [{ group: 'G1' }, { group: 'G2' }]
-//           }]
-//       }, {
-//         group: 'G2',
-//         routes: [
-//           { code: '420', vehicle: [{ group: 'G1' }, { group: 'G2' }] }]
-//       }])
-//     })
+  //     it('formats the result grouping by cid', () => {
+  //       expect(setBusRoutes).toHaveBeenCalledWith({ busRoutes: [] }, [{
+  //         group: 'G1',
+  //         routes: [
+  //           { code: '244', vehicle: [{ group: 'G1' }] },
+  //           {
+  //             code: '420',
+  //             vehicle: [{ group: 'G1' }, { group: 'G2' }]
+  //           }]
+  //       }, {
+  //         group: 'G2',
+  //         routes: [
+  //           { code: '420', vehicle: [{ group: 'G1' }, { group: 'G2' }] }]
+  //       }])
+  //     })
 
-//     describe('when bus search goes wrong', () => {
-//       let consoleError
+  //     describe('when bus search goes wrong', () => {
+  //       let consoleError
 
-//       beforeAll(() => {
-//         consoleError = jest.spyOn(console, 'error')
-//         emtuApi.post.mockRejectedValue('error ocurred')
-//       })
+  //       beforeAll(() => {
+  //         consoleError = jest.spyOn(console, 'error')
+  //         emtuApi.post.mockRejectedValue('error ocurred')
+  //       })
 
-//       it('calls console.error', () => {
-//         expect(consoleError).toHaveBeenCalledWith('error ocurred')
-//       })
-//       afterAll(() => {
-//         jest.resetAllMocks()
-//         emtuApi.post = jest.fn().mockResolvedValue({
-//           data: [{
-//             code: '244',
-//             vehicle: [{ group: 'G1' }]
-//           },
-//           {
-//             code: '420',
-//             vehicle: [{ group: 'G1' }, { group: 'G2' }]
-//           }]
-//         })
-//       })
-//     })
-//   })
+  //       it('calls console.error', () => {
+  //         expect(consoleError).toHaveBeenCalledWith('error ocurred')
+  //       })
+  //       afterAll(() => {
+  //         jest.resetAllMocks()
+  //         emtuApi.post = jest.fn().mockResolvedValue({
+  //           data: [{
+  //             code: '244',
+  //             vehicle: [{ group: 'G1' }]
+  //           },
+  //           {
+  //             code: '420',
+  //             vehicle: [{ group: 'G1' }, { group: 'G2' }]
+  //           }]
+  //         })
+  //       })
+  //     })
+  //   })
 })
