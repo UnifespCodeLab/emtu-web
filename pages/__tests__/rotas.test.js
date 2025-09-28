@@ -33,7 +33,7 @@ describe('Pages / RoutesPage', () => {
       }
     })
   })
-  
+
   it('matches the screenshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })

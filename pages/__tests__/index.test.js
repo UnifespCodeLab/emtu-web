@@ -2,7 +2,7 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuetify from 'vuetify'
 import Vuex, { Store } from 'vuex'
 import SearchPage from '~/pages/index.vue'
-import emtuApi from '~/assets/services/emtu-api'
+// import emtuApi from '~/assets/services/emtu-api'
 import * as bus from '~/store/bus'
 jest.mock('vue2-leaflet', () => ({ // Mock temporário do Vue2-leaflet
   LMap: {
