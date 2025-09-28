@@ -1,38 +1,42 @@
-// import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
-// import Vuetify from 'vuetify'
-// import Vuex, { Store } from 'vuex'
-// import RoutesPage from '~/pages/rotas.vue'
-// import * as bus from '~/store/bus'
-// import 'core-js'
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import Vuetify from 'vuetify'
+import Vuex, { Store } from 'vuex'
+import RoutesPage from '~/pages/rotas.vue'
+import * as bus from '~/store/bus'
+import 'core-js'
 
-// const localVue = createLocalVue()
-// localVue.use(Vuex)
+const localVue = createLocalVue()
+localVue.use(Vuex)
 
-// const store = new Store({
-//   modules: {
-//     bus: {
-//       namespaced: true,
-//       ...bus
-//     }
-//   }
-// })
+const store = new Store({
+  modules: {
+    bus: {
+      namespaced: true,
+      ...bus
+    }
+  }
+})
 
-// describe('Pages / RoutesPage', () => {
-//   let vuetify
-//   let wrapper
+describe('Pages / RoutesPage', () => {
+  let vuetify
+  let wrapper
 
-//   beforeEach(() => {
-//     vuetify = new Vuetify()
+  beforeEach(() => {
+    vuetify = new Vuetify()
 
-//     wrapper = mount(RoutesPage, {
-//       localVue,
-//       vuetify,
-//       store,
-//       stubs: {
-//         'router-link': RouterLinkStub
-//       }
-//     })
-//   })
+    wrapper = mount(RoutesPage, {
+      localVue,
+      vuetify,
+      store,
+      stubs: {
+        'router-link': RouterLinkStub
+      }
+    })
+  })
+  
+  it('matches the screenshot', () => {
+    expect(wrapper.element).toMatchSnapshot()
+  })
 
 //   describe('when busRoutes is empty', () => {
 //     beforeEach(() => {
@@ -68,8 +72,8 @@
 //       }])
 //     })
 
-//     it('should render the page', () => {
-//       expect(wrapper.element).toMatchSnapshot()
-//     })
-//   })
-// })
+  //   it('should render the page', () => {
+  //     expect(wrapper.element).toMatchSnapshot()
+  //   })
+  // })
+})

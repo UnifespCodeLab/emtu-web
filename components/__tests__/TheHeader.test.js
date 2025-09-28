@@ -1,28 +1,28 @@
-// import { mount, createLocalVue } from '@vue/test-utils'
-// import Vuetify from 'vuetify'
+import { mount, createLocalVue } from '@vue/test-utils'
+import Vuetify from 'vuetify'
 
-// import TheHeader from '~/components/TheHeader.vue'
+import TheHeader from '~/components/TheHeader.vue'
 
-// describe('Components / TheHeader', () => {
-//   const localVue = createLocalVue()
-//   let vuetify
-//   let wrapper
+describe('Components / TheHeader', () => {
+  const localVue = createLocalVue()
+  let vuetify
+  let wrapper
 
-//   beforeEach(() => {
-//     vuetify = new Vuetify()
+  beforeEach(() => {
+    vuetify = new Vuetify()
 
-//     wrapper = mount(TheHeader, {
-//       localVue,
-//       vuetify,
-//       mocks: {
-//         $route: { }
-//       }
-//     })
-//   })
+    wrapper = mount(TheHeader, {
+      localVue,
+      vuetify,
+      mocks: {
+        $route: { }
+      }
+    })
+  })
 
-//   it('matches the screenshot', () => {
-//     expect(wrapper.element).toMatchSnapshot()
-//   })
+  it('matches the screenshot', () => {
+    expect(wrapper.element).toMatchSnapshot()
+  })
 
 //   it('should render title correctly', () => {
 //     const title = wrapper.findComponent({ name: 'v-toolbar-title' })
@@ -44,4 +44,4 @@
 //     await menu.trigger('click')
 //     expect(wrapper.emitted().toggleSideBar).toBeTruthy()
 //   })
-// })
+})

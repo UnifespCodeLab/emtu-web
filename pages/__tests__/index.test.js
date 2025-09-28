@@ -1,93 +1,97 @@
-// import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
-// import Vuetify from 'vuetify'
-// import Vuex, { Store } from 'vuex'
-// import SearchPage from '~/pages/index.vue'
-// import emtuApi from '~/assets/services/emtu-api'
-// import * as bus from '~/store/bus'
-// jest.mock('vue2-leaflet', () => ({ // Mock temporário do Vue2-leaflet
-//   LMap: {
-//     render (h) { return h('div', { class: 'mock-map' }) }
-//   },
-//   LTileLayer: {
-//     render (h) { return h('div') }
-//   },
-//   LControl: {
-//     render (h) { return h('div') }
-//   },
-//   LMarker: {
-//     render (h) { return h('div') }
-//   }
-// }))
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import Vuetify from 'vuetify'
+import Vuex, { Store } from 'vuex'
+import SearchPage from '~/pages/index.vue'
+import emtuApi from '~/assets/services/emtu-api'
+import * as bus from '~/store/bus'
+jest.mock('vue2-leaflet', () => ({ // Mock temporário do Vue2-leaflet
+  LMap: {
+    render (h) { return h('div', { class: 'mock-map' }) }
+  },
+  LTileLayer: {
+    render (h) { return h('div') }
+  },
+  LControl: {
+    render (h) { return h('div') }
+  },
+  LMarker: {
+    render (h) { return h('div') }
+  }
+}))
 
-// jest.requireActual('~/assets/services/emtu-api')
+jest.requireActual('~/assets/services/emtu-api')
 
-// const localVue = createLocalVue()
-// localVue.use(Vuex)
+const localVue = createLocalVue()
+localVue.use(Vuex)
 
-// const setBusRoutes = jest.fn()
+const setBusRoutes = jest.fn()
 
-// const store = new Store({
-//   modules: {
-//     city: {
-//       namespaced: true,
-//       state: {
-//         cities: []
-//       },
-//       actions: {
-//         fetchCities: () => []
-//       }
-//     },
-//     cid: {
-//       namespaced: true,
-//       state: {
-//         cids: []
-//       },
-//       actions: {
-//         fetchCids: () => []
-//       }
-//     },
-//     bus: {
-//       namespaced: true,
-//       ...bus,
-//       mutations: {
-//         setBusRoutes
-//       }
-//     },
-//     loading: {
-//       namespaced: true,
-//       actions: { changeStatusLoading: jest.fn() }
-//     },
-//     alert: {
-//       namespaced: true,
-//       actions: {
-//         showAlert: jest.fn(),
-//         hideAlert: jest.fn()
-//       }
-//     }
-//   }
-// })
+const store = new Store({
+  modules: {
+    city: {
+      namespaced: true,
+      state: {
+        cities: []
+      },
+      actions: {
+        fetchCities: () => []
+      }
+    },
+    cid: {
+      namespaced: true,
+      state: {
+        cids: []
+      },
+      actions: {
+        fetchCids: () => []
+      }
+    },
+    bus: {
+      namespaced: true,
+      ...bus,
+      mutations: {
+        setBusRoutes
+      }
+    },
+    loading: {
+      namespaced: true,
+      actions: { changeStatusLoading: jest.fn() }
+    },
+    alert: {
+      namespaced: true,
+      actions: {
+        showAlert: jest.fn(),
+        hideAlert: jest.fn()
+      }
+    }
+  }
+})
 
-// describe('Pages / SearchPage', () => {
-//   let vuetify
-//   let wrapper
+describe('Pages / SearchPage', () => {
+  let vuetify
+  let wrapper
 
-//   beforeEach(() => {
-//     vuetify = new Vuetify()
+  beforeEach(() => {
+    vuetify = new Vuetify()
 
-//     wrapper = mount(SearchPage, {
-//       localVue,
-//       vuetify,
-//       store,
-//       mocks: {
-//         $router: { push: jest.fn() },
-//         $nuxt: { $route: { path: '/' } }
-//       },
-//       stubs: {
-//         RouterLink: RouterLinkStub,
-//         NuxtLink: RouterLinkStub
-//       }
-//     })
-//   })
+    wrapper = mount(SearchPage, {
+      localVue,
+      vuetify,
+      store,
+      mocks: {
+        $router: { push: jest.fn() },
+        $nuxt: { $route: { path: '/' } }
+      },
+      stubs: {
+        RouterLink: RouterLinkStub,
+        NuxtLink: RouterLinkStub
+      }
+    })
+  })
+
+  it('matches the screenshot', () => {
+    expect(wrapper.element).toMatchSnapshot()
+  })
 
 //   describe('when all data is correct', () => {
 //     it('should render the page', () => {
@@ -177,4 +181,4 @@
 //       })
 //     })
 //   })
-// })
+})
