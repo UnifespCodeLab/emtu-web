@@ -83,7 +83,7 @@ Usuários com deficiência que utilizam o transporte público intermunicipal, es
 
 - (opcional) Dê uma olhada em como funcionam os [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
-- Vá até o board do github e encontre o [_emtu-web_](https://github.com/orgs/UnifespCodeLab/projects/4)
+- Vá até o board do github e encontre o [_emtu-web_](https://github.com/orgs/UnifespCodeLab/projects/15/views/1)
 
 - Encontre a issue desejada
 
