@@ -1,7 +1,12 @@
 <template>
   <div class="auth-form">
-    <v-icon class="mb-6" color="primary" x-large>mdi-account-plus</v-icon>
-    <div class="text-center text-h6 mb-7">Cadastro de Usuário Administrador</div>
+    <v-icon class="mb-6" color="primary" x-large>
+      mdi-account-plus
+    </v-icon>
+
+    <div class="text-center text-h6 mb-7">
+      Cadastro de Usuário Administrador
+    </div>
 
     <v-text-field
       v-model="name"
@@ -74,9 +79,6 @@ export default {
       }
     }
   },
-  destroyed () {
-    this.hideAlert()
-  },
   methods: {
     ...mapActions('alert', ['showAlert', 'hideAlert']),
 
@@ -128,6 +130,8 @@ export default {
           alertMessage: 'Cadastro realizado com sucesso! Faça login para continuar.',
           alertType: 'success'
         })
+
+        this.$emit('go-login')
       }).catch((err) => {
         if (err.response && err.response.status === 409) {
           this.showAlert({

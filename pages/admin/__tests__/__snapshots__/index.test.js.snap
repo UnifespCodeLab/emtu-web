@@ -7,117 +7,134 @@ exports[`Pages / AdminPage should render the page 1`] = `
   <div
     class="admin-page__form"
   >
-    <i
-      aria-hidden="true"
-      class="v-icon notranslate mb-6 mdi mdi-bus theme--light primary--text"
-      style="font-size: 40px;"
-    />
-     
     <div
-      class="admin-page__text text-center text-h6 mb-7"
+      class="auth-form"
     >
-      Login usuário Administrador
-    </div>
-     
-    <div
-      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed"
-    >
+      <i
+        aria-hidden="true"
+        class="v-icon notranslate mb-6 mdi mdi-bus theme--light primary--text"
+        style="font-size: 40px;"
+      />
+       
       <div
-        class="v-input__control"
+        class="text-center text-h6 mb-7"
+      >
+        Login usuário Administrador
+      </div>
+       
+      <div
+        class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed"
       >
         <div
-          class="v-input__slot"
+          class="v-input__control"
         >
           <div
-            class="v-text-field__slot"
+            class="v-input__slot"
           >
-            <label
-              class="v-label theme--light"
-              for="input-3"
-              style="left: 0px; position: absolute;"
+            <div
+              class="v-text-field__slot"
             >
-              E-mail
-            </label>
-            <input
-              id="input-3"
-              type="text"
-            />
+              <label
+                class="v-label theme--light"
+                for="input-4"
+                style="left: 0px; position: absolute;"
+              >
+                E-mail
+              </label>
+              <input
+                id="input-4"
+                type="text"
+              />
+            </div>
           </div>
-        </div>
-        <div
-          class="v-text-field__details"
-        >
           <div
-            class="v-messages theme--light"
+            class="v-text-field__details"
           >
-            <transition-group-stub
-              class="v-messages__wrapper"
-              name="message-transition"
-              tag="div"
-            />
+            <div
+              class="v-messages theme--light"
+            >
+              <transition-group-stub
+                class="v-messages__wrapper"
+                name="message-transition"
+                tag="div"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-     
-    <div
-      class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed"
-    >
+       
       <div
-        class="v-input__control"
+        class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed"
       >
         <div
-          class="v-input__slot"
+          class="v-input__control"
         >
           <div
-            class="v-text-field__slot"
+            class="v-input__slot"
           >
-            <label
-              class="v-label theme--light"
-              for="input-6"
-              style="left: 0px; position: absolute;"
+            <div
+              class="v-text-field__slot"
             >
-              Senha
-            </label>
-            <input
-              id="input-6"
-              type="password"
-            />
+              <label
+                class="v-label theme--light"
+                for="input-7"
+                style="left: 0px; position: absolute;"
+              >
+                Senha
+              </label>
+              <input
+                id="input-7"
+                type="password"
+              />
+            </div>
           </div>
-        </div>
-        <div
-          class="v-text-field__details"
-        >
           <div
-            class="v-messages theme--light"
+            class="v-text-field__details"
           >
-            <transition-group-stub
-              class="v-messages__wrapper"
-              name="message-transition"
-              tag="div"
-            />
+            <div
+              class="v-messages theme--light"
+            >
+              <transition-group-stub
+                class="v-messages__wrapper"
+                name="message-transition"
+                tag="div"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-     
-    <button
-      class="mb-6 v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
-      type="button"
-    >
-      <span
-        class="v-btn__content"
+       
+      <div
+        class="text-left text-caption color-gray mb-3"
+      >
+        Esqueceu sua senha?
+      </div>
+       
+      <button
+        class="v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light elevation-2 v-size--large primary"
+        type="button"
+      >
+        <span
+          class="v-btn__content"
+        >
+          
+    Entrar
+  
+        </span>
+      </button>
+       
+      <div
+        class="text-center mt-4 text-caption"
       >
         
-      enviar
+    Não possui uma conta?
     
-      </span>
-    </button>
-     
-    <div
-      class="admin-page__text text-center text-caption color-gray"
-    >
-      Esqueceu sua senha?
+        <span
+          class="link"
+        >
+          Cadastre-se
+        </span>
+      </div>
     </div>
   </div>
 </div>
