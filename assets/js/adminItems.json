@@ -4,5 +4,6 @@
   { "title": "Acessos diários", "icon": "", "route": "/admin/acessos-diarios" },
   { "title": "Ranking de Linhas", "icon": "", "route": "/admin/ranking-linhas" },
   { "title": "Solicitações", "icon": "", "route": "/admin/solicitacoes" },
+  { "title": "Usuários", "icon": "", "route": "/admin/usuarios" },
   { "title": "Fazer uma busca", "icon": "", "route": "/" }
 ]
