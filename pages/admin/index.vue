@@ -1,28 +1,21 @@
 <template>
   <div class="admin-page">
     <div class="admin-page__form">
-      <LoginForm v-if="showLogin" @go-register="toggleForm(false)" />
-      <RegisterForm v-else @go-login="toggleForm(true)" />
+      <LoginForm />
     </div>
   </div>
 </template>
 
 <script>
 import LoginForm from './forms/login.vue'
-import RegisterForm from './forms/cadastro.vue'
 
 export default {
   name: 'AdminPage',
-  components: { LoginForm, RegisterForm },
+  components: { LoginForm },
   layout: 'login',
   data () {
     return {
       showLogin: true
-    }
-  },
-  methods: {
-    toggleForm (isLogin) {
-      this.showLogin = isLogin
     }
   }
 }

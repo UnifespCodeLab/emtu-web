@@ -10,11 +10,6 @@
     <v-btn block color="primary" elevation="2" large @click="userLogin">
       Entrar
     </v-btn>
-
-    <div class="text-center mt-4 text-caption">
-      Não possui uma conta?
-      <span class="link" @click="$emit('go-register')">Cadastre-se</span>
-    </div>
   </div>
 </template>
 

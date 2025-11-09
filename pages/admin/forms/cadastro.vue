@@ -50,11 +50,6 @@
     >
       Cadastrar
     </v-btn>
-
-    <div class="text-center mt-4 text-caption">
-      Já possui uma conta?
-      <span class="link" @click="$emit('go-login')">Fazer login</span>
-    </div>
   </div>
 </template>
 
@@ -127,15 +122,15 @@ export default {
         password: this.password
       }).then((response) => {
         this.showAlert({
-          alertMessage: 'Cadastro realizado com sucesso! Faça login para continuar.',
+          alertMessage: 'Cadastro realizado com sucesso!',
           alertType: 'success'
         })
 
-        this.$emit('go-login')
+        this.$emit('go-users-table')
       }).catch((err) => {
         if (err.response && err.response.status === 409) {
           this.showAlert({
-            alertMessage: 'Este e-mail já está cadastrado. Tente fazer login.',
+            alertMessage: 'Este e-mail já está cadastrado.',
             alertType: 'warning'
           })
         } else {

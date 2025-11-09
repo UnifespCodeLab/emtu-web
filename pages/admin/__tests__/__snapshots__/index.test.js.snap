@@ -122,19 +122,6 @@ exports[`Pages / AdminPage should render the page 1`] = `
   
         </span>
       </button>
-       
-      <div
-        class="text-center mt-4 text-caption"
-      >
-        
-    Não possui uma conta?
-    
-        <span
-          class="link"
-        >
-          Cadastre-se
-        </span>
-      </div>
     </div>
   </div>
 </div>
