@@ -35,6 +35,7 @@ export default {
 <style lang="scss" scoped>
 .global-alert {
   position: absolute;
+  z-index: 10000 !important;
   right: 0;
 }
 </style>

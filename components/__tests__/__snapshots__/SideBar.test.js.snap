@@ -647,6 +647,31 @@ exports[`Components / Sidebar when user is logged should render admin items 1`] 
             <span
               class="item-title"
             >
+              Usuários
+            </span>
+          </div>
+        </a>
+        <a
+          class="v-list-item v-list-item--link theme--light"
+          role="listitem"
+          router=""
+          tabindex="0"
+        >
+          <div
+            class="v-list-item__icon"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate material-icons theme--light"
+            />
+          </div>
+           
+          <div
+            class="v-list-item__content"
+          >
+            <span
+              class="item-title"
+            >
               Fazer uma busca
             </span>
           </div>
