@@ -25,17 +25,23 @@
         v-if="showRegister"
         @go-users-table="toggleForm()"
       />
+
+      <UsersTable
+        v-else
+      />
     </div>
   </div>
 </template>
 
 <script>
+import UsersTable from '../../components/admin/UsersTable.vue'
 import RegisterForm from './forms/cadastro.vue'
 
 export default {
   name: 'AdminUsers',
   components: {
-    RegisterForm
+    RegisterForm,
+    UsersTable
   },
   layout: 'admin',
   data () {
