@@ -265,6 +265,7 @@ import { LMap, LTileLayer, LControl } from 'vue2-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { mapState, mapActions } from 'vuex'
 import { Icon } from 'leaflet'
+import axiosClient from '~/assets/services/emtu-api'
 
 delete Icon.Default.prototype._getIconUrl
 Icon.Default.mergeOptions({
@@ -417,6 +418,7 @@ export default {
     //   this.searchBody = { ...this.searches }
     // }
     this.loadRecentSearches()
+    this.registerAccess()
   },
   destroyed () {
     this.hideAlert()
@@ -472,6 +474,14 @@ export default {
         timeout: 10000,
         maximumAge: 10000
       })
+    },
+    async registerAccess () {
+      try {
+        await axiosClient.post('/access/trackAccess')
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Erro ao registrar acesso:', error)
+      }
     },
     centerMapOnCurrentLocation () {
       this.getCurrentLocation()
