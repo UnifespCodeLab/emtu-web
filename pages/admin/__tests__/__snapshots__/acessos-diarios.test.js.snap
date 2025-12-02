@@ -118,7 +118,8 @@ exports[`Pages / Admin / AdminDailyAccess should render the page 1`] = `
     </div>
      
     <button
-      class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--large primary"
+      class="v-btn v-btn--disabled v-btn--has-bg theme--light v-size--large"
+      disabled="disabled"
       type="button"
     >
       <span
@@ -130,6 +131,10 @@ exports[`Pages / Admin / AdminDailyAccess should render the page 1`] = `
       </span>
     </button>
   </div>
+   
+  <!---->
+   
+  <!---->
    
   <!---->
 </div>
