@@ -60,25 +60,52 @@
           </v-btn>
         </v-date-picker>
       </v-dialog>
-      <v-btn color="primary" large @click="executeSearch()">
+      <v-btn
+        color="primary"
+        large
+        :loading="loading"
+        :disabled="!startDate || !endDate || loading"
+        @click="executeSearch()"
+      >
         BUSCAR
       </v-btn>
     </div>
+
+    <div v-if="loading" class="daily-access__loading">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+        size="64"
+      />
+      <p class="mt-4">
+        Carregando dados...
+      </p>
+    </div>
+
     <div
-      v-if="series && series.length > 0"
+      v-if="!loading && series && series.length > 0"
       class="daily-access__graph-wrapper"
     >
       <AdminChart
         :categories="categories"
-        title="Média de acessos diários por mês"
+        title="Acessos diários"
         type="line"
         :series="series"
       />
+    </div>
+
+    <div
+      v-if="!loading && noData"
+      class="daily-access__no-data"
+    >
+      <p>Nenhum dado encontrado para o período selecionado.</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import axiosClient from '~/assets/services/emtu-api'
 import AdminChart from '~/components/admin/AdminChart.vue'
 
 export default {
@@ -95,22 +122,94 @@ export default {
         .toISOString()
         .substr(0, 10),
       endDateDialog: false,
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-      series: []
+      categories: [],
+      series: [],
+      loading: false,
+      noData: false
     }
   },
   methods: {
-    executeSearch () {
-      this.series = [
-        {
-          name: 'Desktops',
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    ...mapActions('alert', ['showAlert']),
+
+    async executeSearch () {
+      if (!this.startDate || !this.endDate) {
+        this.showAlert({
+          alertMessage: 'Por favor, selecione ambas as datas',
+          alertType: 'warning'
+        })
+        return
+      }
+
+      if (new Date(this.startDate) > new Date(this.endDate)) {
+        this.showAlert({
+          alertMessage: 'A data inicial deve ser menor que a data final',
+          alertType: 'warning'
+        })
+        return
+      }
+
+      this.loading = true
+      this.noData = false
+
+      try {
+        const dates = this.getDateRange(this.startDate, this.endDate)
+        const promises = dates.map(date =>
+          axiosClient.get(`/access/dailyAccess?date=${date}`)
+        )
+
+        const responses = await Promise.all(promises)
+
+        const accessData = responses.map((response, index) => ({
+          date: dates[index],
+          count: response.data.quantidade_acessos
+        }))
+
+        this.categories = accessData.map(item => this.formatDate(item.date))
+        this.series = [
+          {
+            name: 'Acessos',
+            data: accessData.map(item => item.count)
+          }
+        ]
+
+        const hasData = accessData.some(item => item.count > 0)
+        if (!hasData) {
+          this.noData = true
         }
-      ]
+      } catch (error) {
+        this.showAlert({
+          alertMessage: 'Erro ao buscar dados. Tente novamente mais tarde.',
+          alertType: 'error'
+        })
+      } finally {
+        this.loading = false
+      }
+    },
+
+    getDateRange (startDate, endDate) {
+      const dates = []
+      const currentDate = new Date(startDate)
+      const end = new Date(endDate)
+
+      // eslint-disable-next-line no-unmodified-loop-condition
+      while (currentDate <= end) {
+        dates.push(currentDate.toISOString().split('T')[0])
+        currentDate.setDate(currentDate.getDate() + 1)
+      }
+
+      return dates
+    },
+
+    formatDate (dateString) {
+      const date = new Date(dateString + 'T00:00:00')
+      const day = String(date.getDate()).padStart(2, '0')
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      return `${day}/${month}`
     }
   }
 }
 </script>
+
 <style scoped lang="scss">
 .daily-access {
   align-items: flex-start;
@@ -161,5 +260,29 @@ export default {
     margin-right: auto;
     width: 800px;
   }
+}
+
+.daily-access__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+
+  margin-top: 60px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+  }
+}
+
+.daily-access__no-data {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 16px;
 }
 </style>
