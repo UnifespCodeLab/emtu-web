@@ -32,6 +32,13 @@
           >
             mdi-pencil
           </v-icon>
+          <v-icon
+            small
+            color="error"
+            @click="confirmDelete(item)"
+          >
+            mdi-delete
+          </v-icon>
         </template>
       </v-data-table>
     </v-card>
@@ -95,6 +102,28 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <!-- Dialog de Confirmação de Exclusão -->
+    <v-dialog v-model="dialogDelete" max-width="500px">
+      <v-card>
+        <v-card-title class="text-h5">
+          Confirmar Exclusão
+        </v-card-title>
+        <v-card-text>
+          Tem certeza que deseja excluir o usuário <strong>{{ userToDelete?.name }}</strong>?
+          Esta ação não pode ser desfeita.
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn color="secondary" text @click="closeDelete">
+            Cancelar
+          </v-btn>
+          <v-btn color="error" @click="deleteUser">
+            Excluir
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -109,6 +138,7 @@ export default {
       search: '',
       loading: false,
       dialogEdit: false,
+      dialogDelete: false,
       users: [],
       editedUser: {
         id: null,
@@ -124,6 +154,7 @@ export default {
         password: '',
         passwordConfirmation: ''
       },
+      userToDelete: null,
       errors: {
         name: '',
         email: '',
@@ -245,11 +276,42 @@ export default {
       }
     },
 
+    confirmDelete (user) {
+      this.userToDelete = user
+      this.dialogDelete = true
+    },
+
+    async deleteUser () {
+      try {
+        await axiosClient.delete(`/user/admins/${this.userToDelete.id}`)
+
+        this.showAlert({
+          alertMessage: 'Usuário excluído com sucesso!',
+          alertType: 'success'
+        })
+
+        this.closeDelete()
+        this.fetchUsers()
+      } catch (error) {
+        this.showAlert({
+          alertMessage: 'Erro ao excluir usuário. Tente novamente mais tarde.',
+          alertType: 'error'
+        })
+      }
+    },
+
     closeEdit () {
       this.dialogEdit = false
       this.$nextTick(() => {
         this.editedUser = Object.assign({}, this.defaultUser)
         this.errors = { name: '', email: '', password: '', passwordConfirmation: '' }
+      })
+    },
+
+    closeDelete () {
+      this.dialogDelete = false
+      this.$nextTick(() => {
+        this.userToDelete = null
       })
     }
   }
