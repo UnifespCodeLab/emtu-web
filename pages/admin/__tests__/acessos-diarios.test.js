@@ -76,6 +76,10 @@ describe('Pages / Admin / AdminDailyAccess', () => {
 
   describe('when search button is clicked', () => {
     beforeEach(() => {
+      wrapper.vm.loading = false
+      wrapper.vm.series = [{ data: [1, 2, 3, 4] }]
+      wrapper.vm.categories = ['a', 'b', 'c', 'd']
+
       const searchButton = wrapper.findAllComponents({ name: 'v-btn' }).at(0)
       searchButton.trigger('click')
     })
@@ -87,7 +91,7 @@ describe('Pages / Admin / AdminDailyAccess', () => {
 
     it('should render correct chart', () => {
       const chart = wrapper.findComponent({ name: 'AdminChart' })
-      expect(chart.props('title')).toBe('Média de acessos diários por mês')
+      expect(chart.props('title')).toBe('Acessos diários')
       expect(chart.props('type')).toBe('line')
       expect(chart.props('categories')).toEqual(['a', 'b', 'c', 'd'])
     })
