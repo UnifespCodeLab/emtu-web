@@ -99,9 +99,16 @@
               v-for="(latlng, idx) in stopsLatLng"
               :key="idx"
               :lat-lng="latlng"
+              :icon="getStopMarkerIcon(idx)"
             >
               <v-tooltip top>
-                {{ getStopAddressTitle(busRoutes[selectedCid].routes[selectedCidRoute].busStops[idx]) }}
+                {{
+                  idx === 0
+                    ? `PARTIDA — ${getStopAddressTitle(busRoutes[selectedCid].routes[selectedCidRoute].busStops[idx])}`
+                    : idx === stopsLatLng.length - 1
+                      ? `FINAL — ${getStopAddressTitle(busRoutes[selectedCid].routes[selectedCidRoute].busStops[idx])}`
+                      : getStopAddressTitle(busRoutes[selectedCid].routes[selectedCidRoute].busStops[idx])
+                }}
               </v-tooltip>
             </l-marker>
             <!-- <l-marker :lat-lng="markerLatLng"/> -->
@@ -155,6 +162,7 @@
 import { LMap, LTileLayer, LMarker, LPolyline, LControl } from 'vue2-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { mapState } from 'vuex'
+import L from 'leaflet'
 
 export default {
   name: 'RoutesPage',
@@ -420,6 +428,28 @@ export default {
           this.mapUpdateTrigger++
         }
       }
+    },
+    getStopMarkerIcon (idx) { // Função: destacar ponto de partida e parada final no mapa da rota
+      if (idx === 0) { // Ponto inicial
+        return L.divIcon({
+          className: 'custom-stop-icon-wrapper',
+          html: '<div class="custom-stop-icon start">A</div>',
+          iconSize: [32, 32],
+          iconAnchor: [16, 16]
+        })
+      }
+
+      if (idx === this.stopsLatLng.length - 1) { // Ponto de parada final
+        return L.divIcon({
+          className: 'custom-stop-icon-wrapper',
+          html: '<div class="custom-stop-icon end">B</div>',
+          iconSize: [32, 32],
+          iconAnchor: [16, 16]
+        })
+      }
+
+      // Pontos intermediários de parada
+      return undefined
     }
   }
 }
@@ -763,6 +793,58 @@ export default {
     background-color: #e5e8eb;
     color: black;
   }
+}
+
+:deep(.custom-stop-icon-wrapper) {
+  background: transparent !important;
+  border: none !important;
+}
+
+:deep(.custom-stop-icon) {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+
+  border: 2px solid #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.28);
+  position: relative;
+  z-index: 1;
+}
+
+:deep(.custom-stop-icon::after) {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+:deep(.custom-stop-icon.start) {
+  background: #16a34a;
+}
+
+:deep(.custom-stop-icon.start::after) {
+  background: #16a34a;
+}
+
+:deep(.custom-stop-icon.end) {
+  background: #dc2626;
+}
+
+:deep(.custom-stop-icon.end::after) {
+  background: #dc2626;
 }
 
 </style>
