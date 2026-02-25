@@ -50,12 +50,24 @@
               <v-timeline-item
                 v-for="(stop, indexStop) in busRoutes[selectedCid].routes[selectedCidRoute].busStops"
                 :key="indexStop"
-                :color="'#017BFD'"
+                :class="{
+                  'timeline-item--edge': indexStop === 0 || indexStop === busRoutes[selectedCid].routes[selectedCidRoute].busStops.length - 1
+                }"
+                :color="indexStop === 0 ? '#16a34a' : indexStop === busRoutes[selectedCid].routes[selectedCidRoute].busStops.length - 1 ? '#dc2626' : '#017BFD'"
                 small
                 fill-dot
               >
                 <template #icon>
                   <!-- <span class="white--text">{{ indexStop + 1 }}</span> -->
+                  <div
+                    v-if="indexStop === 0 || indexStop === busRoutes[selectedCid].routes[selectedCidRoute].busStops.length - 1"
+                    :class="[
+                      'timeline-stop-badge',
+                      indexStop === 0 ? 'timeline-stop-badge--start' : 'timeline-stop-badge--end'
+                    ]"
+                  >
+                    {{ indexStop === 0 ? 'A' : 'B' }}
+                  </div>
                 </template>
                 <div>
                   <div class="font-weight-normal">
@@ -793,6 +805,67 @@ export default {
     background-color: #e5e8eb;
     color: black;
   }
+}
+
+.timeline-stop-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+}
+
+.timeline-stop-badge--start {
+  background: #16a34a;
+}
+
+.timeline-stop-badge--end {
+  background: #dc2626;
+}
+
+:deep(.v-timeline-item__icon) {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  overflow: visible !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:deep(.v-timeline-item__node) {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  overflow: visible !important;
+}
+
+:deep(.v-timeline-item__dot) {
+  width: 30px !important;
+  height: 30px !important;
+  overflow: visible !important;
+}
+
+:deep(.v-timeline-item__inner-dot) {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+}
+
+:deep(.v-timeline__icon .timeline-stop-badge) {
+  margin: 0 auto;
 }
 
 :deep(.custom-stop-icon-wrapper) {
