@@ -96,7 +96,7 @@
           <l-map ref="myMap" v-if="isMounted" :zoom="zoom" :center="mapCenter" :options="mapOptions" @moveend="onMapMove"
             @zoomend="onMapMove">
             <l-tile-layer :url="activeMapUrl" :attribution="activeAttribution" />
-            <l-polyline :lat-lngs="stopsLatLng" :color="'#017BFD'" :weight="5" />
+            <!-- <l-polyline :lat-lngs="snappedRoute.length ? snappedRoute : stopsLatLng" :color="'#017BFD'" :weight="5" /> -->
             <l-marker
               v-for="(latlng, idx) in stopsLatLng"
               :key="idx"
@@ -338,27 +338,29 @@ export default {
     },
     async fetchSnappedRoute (stops) {
       this.snappedRoute = []
-      // Use latitude/longitude de cada parada
       const coords = stops.map(stop => [parseFloat(stop.latitude), parseFloat(stop.longitude)])
-
-      // Filtrar paradas muito próximas para evitar loops e rotas estranhas do OSRM (aprox 300 metros)
-      const filteredCoords = this.filterStopsForRouting(coords, 300)
+      const filteredCoords = coords
 
       let allSnappedPoints = []
-      const chunkSize = 50
+      const chunkSize = 25 // Lotes menores garante que o roteador force a passagem rua a rua a cada segmento
 
       for (let i = 0; i < filteredCoords.length - 1; i += (chunkSize - 1)) {
         const chunk = filteredCoords.slice(i, i + chunkSize)
         const coordStr = chunk.map(c => `${c[1]},${c[0]}`).join(';')
 
-        // continue_straight ajuda a evitar loops (U-turns)
-        const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson&continue_straight=true`
+        const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson`
 
         try {
           const resp = await fetch(url)
           const data = await resp.json()
-          if (data.routes && data.routes.length) {
+          if (data.routes && data.routes.length > 0) {
             const routeCoords = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng])
+
+            // Remove o último ponto de cada chunk (exceto no lote final)
+            // para não duplicar o ponto de encontro com o próximo lote.
+            if (i + chunkSize - 1 < filteredCoords.length - 1) {
+              routeCoords.pop()
+            }
             allSnappedPoints = allSnappedPoints.concat(routeCoords)
           } else {
             allSnappedPoints = allSnappedPoints.concat(chunk)
