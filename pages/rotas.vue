@@ -3,17 +3,19 @@
     <template v-if="busRoutes.length">
       <div class="routes-page__header">
         <div class="routes-page__title-and-btn">
-          <h2>{{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].origin) }} <v-icon color="#017BFD" small class="mx-1">mdi-arrow-right</v-icon> {{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].destination) }}</h2>
-          <!-- <div v-if="primaryCid" class="routes-page__cid-info">
-            <span>
-              CID mais forte considerado: <strong>{{ primaryCidText }}</strong>
-            </span>
-          </div> -->
-          <div class="routes-page__right-actions">
+          <div class="routes-page__title-with-badges">
+            <h2>{{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].origin) }} <v-icon color="#017BFD" small class="mx-1">mdi-arrow-right</v-icon> {{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].destination) }}</h2>
+            <!-- <div v-if="primaryCid" class="routes-page__cid-info">
+              <span>
+                CID mais forte considerado: <strong>{{ primaryCidText }}</strong>
+              </span>
+            </div> -->
             <div class="routes-page__info">
               <div class="routes-page__date">{{ formatDate(this.searches.data) }}</div>
               <div class="routes-page__time">{{ this.searches.hora }}</div>
             </div>
+          </div>
+          <div class="routes-page__right-actions">
             <v-btn class="routes-page__buscar-btn" large @click="changeSearch">
               Alterar Rota
             </v-btn>
@@ -57,7 +59,7 @@
                 <template #icon>
                   <!-- <span class="white--text">{{ indexStop + 1 }}</span> -->
                 </template>
-                <div>
+                <div class="stop-item" @click="focusOnStop(indexStop)">
                   <div class="font-weight-normal">
                     <strong>{{ getStopAddressTitle(stop) }}</strong>
                   </div>
@@ -91,18 +93,19 @@
           <div v-else style="height:100%;display:flex;align-items:center;justify-content:center;">
             <span>Mapa indisponível</span>
           </div> -->
-          <l-map v-if="isMounted" :zoom="zoom" :center="mapCenter" :options="mapOptions" @moveend="onMapMove"
+          <l-map ref="myMap" v-if="isMounted" :zoom="zoom" :center="mapCenter" :options="mapOptions" @moveend="onMapMove"
             @zoomend="onMapMove">
             <l-tile-layer :url="activeMapUrl" :attribution="activeAttribution" />
-            <l-polyline :lat-lngs="snappedRoute.length ? snappedRoute : stopsLatLng" :color="'#017BFD'" :weight="5" />
+            <l-polyline :lat-lngs="stopsLatLng" :color="'#017BFD'" :weight="5" />
             <l-marker
               v-for="(latlng, idx) in stopsLatLng"
               :key="idx"
               :lat-lng="latlng"
+              ref="markers"
             >
-              <v-tooltip top>
+              <l-popup>
                 {{ getStopAddressTitle(busRoutes[selectedCid].routes[selectedCidRoute].busStops[idx]) }}
-              </v-tooltip>
+              </l-popup>
             </l-marker>
             <!-- <l-marker :lat-lng="markerLatLng"/> -->
             <l-control position="topright">
@@ -152,7 +155,7 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LPolyline, LControl } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LPopup, /* LPolyline, */ LControl } from 'vue2-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { mapState } from 'vuex'
 
@@ -162,7 +165,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPolyline,
+    LPopup,
+    // LPolyline,
     LControl
   },
   data () {
@@ -261,8 +265,24 @@ export default {
     stopsLatLng: {
       immediate: true,
       handler (newVal) {
-        if (this.busRoutes?.[this.selectedCid]?.routes?.[this.selectedCidRoute]?.busStops?.length > 1) {
-          this.fetchSnappedRoute(this.busRoutes[this.selectedCid].routes[this.selectedCidRoute].busStops)
+        const route = this.busRoutes?.[this.selectedCid]?.routes?.[this.selectedCidRoute]
+
+        // Verifica se a API / backend já retorna o traçado real da linha (normalmente em "points", "shape" ou "path")
+        const routePath = route?.points || route?.shape || route?.path || route?.geometry
+
+        if (routePath && routePath.length > 1) {
+          // Extrai as coordenadas diretamente do trajeto real enviado pela API para ser 100% fiel
+          this.snappedRoute = routePath.map((p) => {
+            if (Array.isArray(p)) { return [parseFloat(p[0]), parseFloat(p[1])] } // [lat, lng]
+            const lat = p.lat !== undefined ? p.lat : p.latitude
+            const lng = p.lng !== undefined ? p.lng : p.longitude
+            return [parseFloat(lat), parseFloat(lng)]
+          }).filter(p => !isNaN(p[0]) && !isNaN(p[1]))
+        } else if (route?.busStops?.length > 1) {
+          // Fallback para o algoritmo de roteamento por mapa de ruas (OSRM / aproximação por carro)
+          this.fetchSnappedRoute(route.busStops)
+        } else {
+          this.snappedRoute = []
         }
       }
     }
@@ -274,6 +294,28 @@ export default {
     }
   },
   methods: {
+    focusOnStop (index) {
+      if (this.stopsLatLng && this.stopsLatLng[index]) {
+        const targetLatLng = this.stopsLatLng[index]
+        const mapObj = this.$refs.myMap && this.$refs.myMap.mapObject
+
+        if (mapObj) {
+          mapObj.setView(targetLatLng, Math.max(this.zoom, 16), { animate: false })
+
+          // Sincroniza a propriedade reativa para ela não sobrescrever a posição logo depois de setar
+          this.center = [targetLatLng[0], targetLatLng[1]]
+          this.previousCenter = [targetLatLng[0], targetLatLng[1]]
+          this.zoom = Math.max(this.zoom, 16)
+        }
+
+        setTimeout(() => {
+          const markers = this.$refs.markers
+          if (markers && markers[index] && markers[index].mapObject) {
+            markers[index].mapObject.openPopup()
+          }
+        }, 300) // Delay pro popup abrir quando a tela já pousou no lugar
+      }
+    },
     filterStopsForRouting (stops, minDistance = 90) {
       if (!stops.length) {
         return []
@@ -296,16 +338,37 @@ export default {
     },
     async fetchSnappedRoute (stops) {
       this.snappedRoute = []
-      // Use latitude/longitude e raio de cada parada
-      const coords = stops.map(stop => [stop.latitude, stop.longitude])
-      const radiuses = stops.map(stop => stop.raio || 30).join(';') // usa o raio de cada parada, ou 30m padrão
-      const coordStr = coords.map(c => `${c[1]},${c[0]}`).join(';')
-      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson&radiuses=${radiuses}`
-      const resp = await fetch(url)
-      const data = await resp.json()
-      if (data.routes && data.routes.length) {
-        this.snappedRoute = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng])
+      // Use latitude/longitude de cada parada
+      const coords = stops.map(stop => [parseFloat(stop.latitude), parseFloat(stop.longitude)])
+
+      // Filtrar paradas muito próximas para evitar loops e rotas estranhas do OSRM (aprox 300 metros)
+      const filteredCoords = this.filterStopsForRouting(coords, 300)
+
+      let allSnappedPoints = []
+      const chunkSize = 50
+
+      for (let i = 0; i < filteredCoords.length - 1; i += (chunkSize - 1)) {
+        const chunk = filteredCoords.slice(i, i + chunkSize)
+        const coordStr = chunk.map(c => `${c[1]},${c[0]}`).join(';')
+
+        // continue_straight ajuda a evitar loops (U-turns)
+        const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson&continue_straight=true`
+
+        try {
+          const resp = await fetch(url)
+          const data = await resp.json()
+          if (data.routes && data.routes.length) {
+            const routeCoords = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng])
+            allSnappedPoints = allSnappedPoints.concat(routeCoords)
+          } else {
+            allSnappedPoints = allSnappedPoints.concat(chunk)
+          }
+        } catch (error) {
+          allSnappedPoints = allSnappedPoints.concat(chunk)
+        }
       }
+
+      this.snappedRoute = allSnappedPoints
     },
     getCityName (fullRouteName) {
       if (!fullRouteName) {
@@ -426,6 +489,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.stop-item {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #e0f0ff;
+  }
+}
+
 .routes-page__container {
   padding: 24px;
   background-color: #f0f0f0;
@@ -443,10 +517,18 @@ export default {
 }
 
 .routes-page__header h2 {
-  display: contents;
+  display: flex;
+  align-items: center;
   font-size: 18px;
   color: black;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+}
+
+.routes-page__title-with-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .routes-page__title-and-btn {
@@ -462,7 +544,9 @@ export default {
   }
 
   h2 {
-    font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     color: black;
     margin: 0;
     flex-shrink: 1;
@@ -480,10 +564,9 @@ export default {
 
   .routes-page__right-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
     gap: 8px;
   }
 
@@ -491,7 +574,6 @@ export default {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 10px;
   }
 
   .routes-page__date,
