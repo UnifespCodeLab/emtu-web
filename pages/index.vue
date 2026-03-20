@@ -1,7 +1,30 @@
 <template>
-  <div class="home">
+  <div class="home"
+    :class="{ 'high-contrast': highContrast }"
+    :style="{ '--font-scale': fontScale }"
+  >
     <div class="search-page">
       <div class="search-page__form">
+        <div class="font-controls">
+          <v-btn small outlined class="font-size-btn" @click="decreaseFontSize">
+            A-
+          </v-btn>
+          <v-btn small outlined class="font-size-btn" @click="resetFontSize">
+            A
+          </v-btn>
+          <v-btn small outlined class="font-size-btn" @click="increaseFontSize">
+            A+
+          </v-btn>
+        </div>
+        <v-btn
+          small
+          outlined
+          class="contrast-btn"
+          :class="{ 'contrast-icon-btn--active': highContrast }"
+          @click="toggleHighContrast"
+        >
+          <v-icon small>mdi-contrast-circle</v-icon>
+        </v-btn>
         <span class="header-text">Para onde você quer ir?</span>
         <v-autocomplete
           v-model="searchBody.originCityId"
@@ -152,13 +175,13 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <v-btn block color="#01193D" elevation="2" large @click="performSearch">
+        <v-btn class="search-btn" block color="#01193D" elevation="2" large @click="performSearch">
           Buscar
         </v-btn>
         <v-btn
           id="btn-solicitacao"
           to="/solicitacao"
-          class="mt-4"
+          class="mt-4 btn-solicitacao"
           :ripple="false"
           small
           text
@@ -283,6 +306,8 @@ export default {
   },
   data () {
     return {
+      fontScale: 1,
+      highContrast: false,
       alertMessage: {
         error: 'Não foi possível realizar a busca, tente novamente.',
         warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
@@ -335,6 +360,11 @@ export default {
     ...mapState('cid', ['cids']),
     ...mapState('bus', ['busRoutes']),
     ...mapState('search', ['searches']),
+    fontScaleStyle () {
+      return {
+        fontSize: `${this.fontScale}rem`
+      }
+    },
     formIsEmpty () {
       const cidIsEmpty = !this.searchBody.cid || (Array.isArray(this.searchBody.cid) && this.searchBody.cid.length === 0) || this.searchBody.cid === ''
 
@@ -419,6 +449,16 @@ export default {
     // }
     this.loadRecentSearches()
     this.registerAccess()
+
+    const savedFontScale = localStorage.getItem('searchPageFontScale')
+    if (savedFontScale) {
+      this.fontScale = Number(savedFontScale)
+    }
+
+    const savedHighContrast = localStorage.getItem('searchPageHighContrast')
+    if (savedHighContrast) {
+      this.highContrast = savedHighContrast === 'true'
+    }
   },
   destroyed () {
     this.hideAlert()
@@ -430,6 +470,29 @@ export default {
     ...mapActions('loading', ['changeStatusLoading']),
     ...mapActions('alert', ['showAlert', 'hideAlert']),
     ...mapActions('search', ['changeSearch']),
+
+    increaseFontSize () {
+      if (this.fontScale < 1.4) {
+        this.fontScale = Number((this.fontScale + 0.1).toFixed(2))
+        localStorage.setItem('searchPageFontScale', this.fontScale)
+      }
+    },
+    decreaseFontSize () {
+      if (this.fontScale > 0.8) {
+        this.fontScale = Number((this.fontScale - 0.1).toFixed(2))
+        localStorage.setItem('searchPageFontScale', this.fontScale)
+      }
+    },
+    resetFontSize () {
+      this.fontScale = 1
+      localStorage.setItem('searchPageFontScale', this.fontScale)
+    },
+
+    toggleHighContrast () {
+      this.highContrast = !this.highContrast
+      localStorage.setItem('searchPageHighContrast', this.highContrast)
+    },
+
     getCurrentLocation () {
       if (!navigator.geolocation) {
         this.locationError = 'Geolocalização não é suportada pelo seu navegador.'
@@ -786,6 +849,20 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+  --page-bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #f2f4f7;
+  --input-bg: #f1f3f5;
+  --input-border: #d9dee5;
+  --text-main: #1d1d1f;
+  --text-strong: #000000;
+  --text-muted: #666666;
+  --border-color: #e5e7eb;
+  --primary: #01193d;
+  --accent: #0099f0;
+  --chip-bg: #74c3f8;
+  --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.06);
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -793,12 +870,41 @@ export default {
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+.home.high-contrast {
+  --page-bg: #000000;
+  --surface: #000000;
+  --surface-soft: #111111;
+  --input-bg: #2a2a2a;
+  --input-border: #cfcfcf;
+  --text-main: #ffffff;
+  --text-strong: #ffff00;
+  --text-muted: #ffffff;
+  --border-color: #ffffff;
+  --primary: #ffff00;
+  --accent: #00ffff;
+  --chip-bg: #000000;
+  --shadow-soft: none;
+}
+
+.home.high-contrast *:focus {
+  outline: 3px solid #00ffff !important;
+  outline-offset: 2px;
+}
+
+.home.high-contrast .recentRoute-card,
+.home.high-contrast .cid-item,
+.home.high-contrast .search-page {
+  border: 2px solid var(--border-color);
+}
+
 .search-page {
   display: flex;
   flex-direction: row;
   margin: 1rem 1rem;
   width: webkit-fill-available;
-  background-color: white;
+  background-color: var(--surface);
+  color: var(--text-main);
   border-radius: 14px;
   margin-top: 35px;
   align-items: stretch;
@@ -963,7 +1069,7 @@ export default {
 }
 .header-text {
   text-align: center;
-  font-size: 22px;
+  font-size: calc(1.375rem * var(--font-scale));
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -976,9 +1082,9 @@ export default {
 }
 .cid-modal {
   .cid-modal__title {
-    font-size: 18px;
+    font-size: calc(1.125rem * var(--font-scale));
     font-weight: 500;
-    padding: 20px 24px 16px;
+    padding: 1.25rem 1.5rem 1rem;
   }
 
   .cid-modal__content {
@@ -997,20 +1103,21 @@ export default {
 .cid-table-container {
   max-height: 350px;
   overflow-y: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  background: var(--surface);
 }
 
 .cid-item {
   display: flex;
   align-items: center;
   padding: 16px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-color);
   cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #f8f9fa;
+    background-color: var(--surface-soft);
   }
 
   &:last-child {
@@ -1022,15 +1129,15 @@ export default {
     margin-right: 16px;
 
     .cid-item__code {
-      font-size: 14px;
+      font-size: calc(0.875rem * var(--font-scale));
       font-weight: 500;
-      color: #333;
-      margin-bottom: 4px;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
     }
 
     .cid-item__name {
-      font-size: 14px;
-      color: #666;
+      font-size: calc(0.875rem * var(--font-scale));
+      color: var(--text-main);
       line-height: 1.4;
     }
   }
@@ -1049,7 +1156,7 @@ export default {
 }
 
 .cid-chip {
-  font-size: 12px;
+  font-size: calc(0.75rem * var(--font-scale));
   height: 24px;
 
   &.cid-chip--adaptacao-alto {
@@ -1087,19 +1194,18 @@ export default {
   margin-top: 16px;
 
   .cid-selected-count {
-    font-size: 14px;
-    color: #666;
+    font-size: calc(0.875rem * var(--font-scale));
+    color: var(--text-muted);
   }
 }
 .v-btn{
-  color: white;
   border-radius: 12px;
 }
 #btn-solicitacao{
   color: #01193D;
   font-family: "Roboto", sans-serif;
   text-transform: none !important;
-  font-size: 15px;
+  font-size: calc(0.9375rem * var(--font-scale));
 }
 
 .v-text-field {
@@ -1128,9 +1234,9 @@ export default {
   }
 }
 .recents-title{
-  font-size: 22px;
+  font-size: calc(1.375rem * var(--font-scale));
   font-weight: 500;
-  color: #1D1D1F;
+  color: #000000;
 }
 .recentRoutesSearched-container {
   display: flex;
@@ -1144,9 +1250,9 @@ export default {
   }
 }
 .recentRoute-title{
-  font-size: 15px;
+  font-size: calc(0.9375rem * var(--font-scale));
   font-weight: 400;
-  color: #1D1D1F;
+  color: var(--text-main);
 }
 .recentRoute-card {
   border-radius: 14px;
@@ -1176,8 +1282,8 @@ export default {
   margin-top: auto; /* Empurra as ações para o final do card */
 }
 .recentRoute-text{
-  font-size: 16px;
-  color: #000000 !important;
+  font-size: calc(1rem * var(--font-scale));
+  color: var(--text-strong) !important;
   font-weight: 500 !important;
 }
 .recentRoute-chip{
@@ -1196,5 +1302,119 @@ export default {
     margin: 20px auto;
     width: 700px;
   }
+}
+
+.font-controls {
+  display: inline-flex;
+  margin-left: auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: #f7f7f7;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.font-size-btn {
+  border: none;
+  background: transparent;
+  color: #000000 !important;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2 ease;
+}
+
+.font-size-btn:hover {
+  background: rgba(6, 54, 45, 0.08);
+  transform: translateY(-1px);
+}
+
+.font-size-btn:active {
+  transform: scale(0.97);
+}
+
+.font-size-btn--reset {
+  background: #000000;
+  color: #fff;
+}
+
+.font-size-btn--reset:hover {
+  background: #0a4b3f;
+}
+
+.contrast-btn {
+  display: flex;
+  align-self: flex-end;
+  margin-top: 10px;
+  min-width: 50px !important;
+  width: 50px;
+  height: 40px !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  background: var(--input-bg) !important;
+  border-color: var(--border-color) !important;
+  color: #000000 !important;
+}
+
+:deep(.contrast-btn) {
+  color: #000000 !important;
+}
+
+:deep(.contrast-icon-btn .v-icon) {
+  font-size: 16px !important;
+}
+
+:deep(.v-label),
+:deep(.v-input input),
+:deep(.v-input textarea),
+:deep(.v-select__selection),
+:deep(.v-list-item__title),
+:deep(.v-list-item__subtitle),
+:deep(.v-chip__content),
+:deep(.v-card__title),
+:deep(.v-card__text),
+:deep(.btn-solicitacao) {
+  color: var(--text-main) !important;
+  font-size: calc(1em * var(--font-scale)) !important;
+}
+
+:deep(.v-input__slot),
+:deep(.v-text-field > .v-input__control > .v-input__slot),
+:deep(.v-select__slot) {
+  background: var(--input-bg) !important;
+  box-shadow: none !important;
+}
+
+:deep(.v-card),
+:deep(.v-sheet) {
+  background: var(--surface) !important;
+  color: var(--text-main) !important;
+}
+
+:deep(.v-input__prepend-inner .v-icon),
+:deep(.v-icon) {
+  color: var(--accent) !important;
+}
+
+.search-btn {
+  color: #ffffff !important;
+}
+
+:deep(.search-btn .v-btn__content) {
+  color: #ffffff !important;
+}
+
+.accessibility-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 </style>
