@@ -1,48 +1,70 @@
 <template>
-  <div class="report-page">
-    <div class="report-page__form">
-      <v-btn
-        v-if="hasSuccess"
-        block
-        color="primary"
-        elevation="2"
-        large
-        to="/"
-      >
-        voltar para home
-      </v-btn>
-
-      <template v-else>
-        <v-text-field v-model="reportData.email" label="E-mail" solo />
-        <v-autocomplete
-          v-model="reportData.originCityId"
-          :items="cities"
-          label="Cidade de origem"
-          solo
-        />
-        <v-autocomplete
-          v-model="reportData.destinationCityId"
-          :items="cities"
-          label="Cidade de destino"
-          solo
-        />
-        <v-select
-          v-model="reportData.cidId"
-          :items="cids"
-          label="Cid"
-          solo
-        />
+  <div class="home">
+    <div class="report-page">
+      <div class="report-page__form">
+        <h1 class="header-text">Solicitar Nova Rota</h1>
+        <p class="subtitle-text text-center mb-6" v-if="!hasSuccess">
+          Não encontrou o que procurava?<br>
+          Conte-nos qual rota você precisa.
+        </p>
 
         <v-btn
+          v-if="hasSuccess"
           block
-          color="primary"
-          elevation="2"
+          color="#01193D"
+          elevation="0"
           large
-          @click="submit"
+          to="/"
+          class="action-btn"
         >
-          enviar
+          Voltar para Home
         </v-btn>
-      </template>
+
+        <template v-else>
+          <v-text-field
+            v-model="reportData.email"
+            label="E-mail"
+            outlined
+            class="custom-input"
+            prepend-inner-icon="mdi-email-outline"
+          />
+          <v-autocomplete
+            v-model="reportData.originCityId"
+            :items="cities"
+            label="Cidade de origem"
+            outlined
+            class="custom-input"
+            prepend-inner-icon="mdi-map-marker-outline"
+          />
+          <v-autocomplete
+            v-model="reportData.destinationCityId"
+            :items="cities"
+            label="Cidade de destino"
+            outlined
+            class="custom-input"
+            prepend-inner-icon="mdi-map-marker"
+          />
+          <v-autocomplete
+            v-model="reportData.cidId"
+            :items="cids"
+            label="Condição / CID (Opcional)"
+            outlined
+            class="custom-input"
+            prepend-inner-icon="mdi-wheelchair-accessibility"
+          />
+
+          <v-btn
+            block
+            color="#01193D"
+            elevation="0"
+            large
+            @click="submit"
+            class="action-btn"
+          >
+            Enviar Solicitação
+          </v-btn>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -121,19 +143,76 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .report-page {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  margin: 35px auto;
+  width: webkit-fill-available;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 14px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 
   @media (min-width: 800px) {
-    align-items: center;
+    min-height: 500px;
   }
 }
+
 .report-page__form {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  width: 300px;
+  width: 100%;
+  padding: 2.5rem;
+
+  @media (min-width: 800px) {
+    width: 500px;
+    min-width: 500px;
+    justify-content: center;
+    margin: auto;
+  }
+}
+
+.header-text {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.subtitle-text {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.action-btn {
+  color: white;
+  border-radius: 12px;
+  text-transform: none !important;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.custom-input {
+  border-radius: 10px;
+}
+
+::v-deep .v-input__control {
+  border-radius: 10px !important;
+}
+
+::v-deep .v-input__prepend-inner .v-icon {
+  color: #0099F0 !important;
 }
 </style>

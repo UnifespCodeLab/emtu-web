@@ -11,9 +11,62 @@
               </span>
             </div> -->
             <div class="routes-page__info">
-              <div class="routes-page__date">{{ formatDate(this.searches.data) }}</div>
-              <div class="routes-page__time">{{ this.searches.hora }}</div>
+              <div class="routes-page__date" v-if="this.searches.data">{{ formatDate(this.searches.data) }}</div>
+              <div class="routes-page__time" v-if="this.searches.hora">{{ this.searches.hora }}</div>
+              <button
+                v-if="primaryCidText && getAdaptationLevel(primaryCidText) !== 'N/A'"
+                :class="getAdaptationChipClass(primaryCidText)"
+                style="cursor: pointer; border: none;"
+                @click="dialog = true"
+              >
+                Adaptação: {{ getAdaptationLevel(primaryCidText) }}
+              </button>
             </div>
+
+            <v-dialog v-model="dialog" max-width="700px" content-class="routes-page__modal">
+              <v-card class="routes-page__modal-card">
+                <v-card-title class="routes-page__modal-title pb-4">
+                  <span class="text-h6 font-weight-bold" style="color: black">Níveis de Adaptação</span>
+                  <v-spacer></v-spacer>
+                  <v-btn icon @click="dialog = false">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </v-card-title>
+                <v-card-text class="pt-0">
+                  <div class="routes-page__modal-container">
+                    <div class="routes-page__modal-item routes-page__modal-item--alto">
+                      <div class="routes-page__modal-icon">
+                        <v-icon color="#c62828" size="36">mdi-wheelchair-accessibility</v-icon>
+                      </div>
+                      <div class="routes-page__modal-content">
+                        <h4 style="color: #c62828">Alto</h4>
+                        <p>Pessoas com deficiência que necessitam de um alto nível de acessibilidade, por exemplo, a utilização de elevador.</p>
+                      </div>
+                    </div>
+
+                    <div class="routes-page__modal-item routes-page__modal-item--medio">
+                      <div class="routes-page__modal-icon">
+                        <v-icon color="#f57c00" size="36">mdi-human-white-cane</v-icon>
+                      </div>
+                      <div class="routes-page__modal-content">
+                        <h4 style="color: #f57c00">Médio</h4>
+                        <p>Pessoas com necessidades de acessibilidade que não tenham interferência direta no ônibus, por exemplo, a presença de piso tátil.</p>
+                      </div>
+                    </div>
+
+                    <div class="routes-page__modal-item routes-page__modal-item--baixo">
+                      <div class="routes-page__modal-icon">
+                        <v-icon color="#2e7d32" size="36">mdi-human-male</v-icon>
+                      </div>
+                      <div class="routes-page__modal-content">
+                        <h4 style="color: #2e7d32">Baixo</h4>
+                        <p>Pessoas que não necessitam de adaptações no ônibus para seu deslocamento de forma segura.</p>
+                      </div>
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
           </div>
           <div class="routes-page__right-actions">
             <v-btn class="routes-page__buscar-btn" large @click="changeSearch">
@@ -175,6 +228,7 @@ export default {
       selectedCid: 0,
       selectedCidRoute: 0,
       tab: 0,
+      dialog: false,
       center: [-23.5505, -46.6333], // Posição inicial do centro do mapa
       mapZoom: 13,
       snappedRoute: [],
@@ -415,6 +469,34 @@ export default {
       return `${data[2]}/${data[1]}`
     },
 
+    getAdaptationLevel (fullText) {
+      const groupMatch = fullText?.match(/- (G\d+)$/)
+      if (!groupMatch) {
+        return 'N/A'
+      }
+      const group = groupMatch[1]
+      switch (group) {
+        case 'G1': return 'Alto'
+        case 'G2': return 'Médio'
+        case 'G3': return 'Baixo'
+        default: return 'N/A'
+      }
+    },
+
+    getAdaptationChipClass (fullText) {
+      const groupMatch = fullText?.match(/- (G\d+)$/)
+      if (!groupMatch) {
+        return 'routes-page__adaptation routes-page__adaptation--na'
+      }
+      const group = groupMatch[1]
+      switch (group) {
+        case 'G1': return 'routes-page__adaptation routes-page__adaptation--alto'
+        case 'G2': return 'routes-page__adaptation routes-page__adaptation--medio'
+        case 'G3': return 'routes-page__adaptation routes-page__adaptation--baixo'
+        default: return 'routes-page__adaptation routes-page__adaptation--na'
+      }
+    },
+
     zoomIn () {
       if (this.zoom < 18) {
         this.zoom += 1
@@ -512,6 +594,48 @@ export default {
   gap: 1rem;
 }
 
+.routes-page__modal-card {
+  border-radius: 12px;
+  padding: 16px 8px;
+}
+
+.routes-page__modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.routes-page__modal-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+
+  h4 {
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #424242;
+  }
+}
+
+.routes-page__modal-item--alto {
+  background-color: #ffcdd2;
+}
+
+.routes-page__modal-item--medio {
+  background-color: #fff3e0;
+}
+
+.routes-page__modal-item--baixo {
+  background-color: #e8f5e8;
+}
+
 .routes-page__header {
   width: 100%;
   max-width: 1200px;
@@ -586,6 +710,30 @@ export default {
     font-size: 14px;
     color: black;
     font-weight: 500;
+  }
+
+  .routes-page__adaptation {
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+
+    &--alto {
+      background-color: #ffcdd2;
+      color: #c62828;
+    }
+    &--medio {
+      background-color: #fff3e0;
+      color: #f57c00;
+    }
+    &--baixo {
+      background-color: #e8f5e8;
+      color: #2e7d32;
+    }
+    &--na {
+      background-color: #f5f5f5;
+      color: #757575;
+    }
   }
 
   .routes-page__buscar-btn {
