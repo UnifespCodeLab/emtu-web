@@ -7,23 +7,23 @@
         mdi-alert-box
       </v-icon>
       <v-toolbar-title class="ml-4 text-button font-weight-bold">
-        Versão de testes
+        Versão de demonstração
       </v-toolbar-title>
     </v-toolbar>
 
     <v-dialog v-model="dialog" max-width="600px">
       <v-card style="border-radius: 12px; padding: 8px;">
         <v-card-title class="text-h6 font-weight-bold pb-2" style="color: black">
-          Versão de Testes
+          Versão de demonstração
           <v-spacer></v-spacer>
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
         <v-card-text class="pt-2 text-body-1" style="color: black;">
-          Bem-vindo(a) ao VApt! Esta plataforma encontra-se atualmente em <u>versão de testes</u>.
+          Bem-vindo(a) ao VApt! Esta plataforma encontra-se atualmente em <u>versão de demonstração</u>.
           Isso significa que as informações e dados apresentados podem estar desatualizados ou incorretos.<br><br>
-          <strong>Aviso sobre privacidade:</strong> A única coleta de dados que nossa plataforma realiza ocorre exclusivamente quando você efetua uma busca de rota em nosso simulador, ou envia uma nova solicitação de rota.
+          <strong>Aviso sobre privacidade:</strong> A única coleta de dados que nossa plataforma realiza ocorre exclusivamente quando você efetua uma busca de rota em nosso website, ou envia uma nova solicitação de rota.
         </v-card-text>
       </v-card>
     </v-dialog>

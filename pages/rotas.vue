@@ -16,7 +16,7 @@
               <button
                 v-if="primaryCidText && getAdaptationLevel(primaryCidText) !== 'N/A'"
                 :class="getAdaptationChipClass(primaryCidText)"
-                style="cursor: pointer; border: none;"
+                style="cursor: pointer; border: 2px solid currentColor;"
                 @click="dialog = true"
               >
                 Adaptação: {{ getAdaptationLevel(primaryCidText) }}
