@@ -3,17 +3,72 @@
     <template v-if="busRoutes.length">
       <div class="routes-page__header">
         <div class="routes-page__title-and-btn">
-          <h2>{{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].origin) }} <v-icon color="#017BFD" small class="mx-1">mdi-arrow-right</v-icon> {{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].destination) }}</h2>
-          <!-- <div v-if="primaryCid" class="routes-page__cid-info">
-            <span>
-              CID mais forte considerado: <strong>{{ primaryCidText }}</strong>
-            </span>
-          </div> -->
-          <div class="routes-page__right-actions">
+          <div class="routes-page__title-with-badges">
+            <h2>{{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].origin) }} <v-icon color="#017BFD" small class="mx-1">mdi-arrow-right</v-icon> {{ getCityName(busRoutes[selectedCid].routes[selectedCidRoute].destination) }}</h2>
+            <!-- <div v-if="primaryCid" class="routes-page__cid-info">
+              <span>
+                CID mais forte considerado: <strong>{{ primaryCidText }}</strong>
+              </span>
+            </div> -->
             <div class="routes-page__info">
-              <div class="routes-page__date">{{ formatDate(this.searches.data) }}</div>
-              <div class="routes-page__time">{{ this.searches.hora }}</div>
+              <div class="routes-page__date" v-if="this.searches.data">{{ formatDate(this.searches.data) }}</div>
+              <div class="routes-page__time" v-if="this.searches.hora">{{ this.searches.hora }}</div>
+              <button
+                v-if="primaryCidText && getAdaptationLevel(primaryCidText) !== 'N/A'"
+                :class="getAdaptationChipClass(primaryCidText)"
+                style="cursor: pointer; border: 2px solid currentColor;"
+                @click="dialog = true"
+              >
+                Adaptação: {{ getAdaptationLevel(primaryCidText) }}
+              </button>
             </div>
+
+            <v-dialog v-model="dialog" max-width="700px" content-class="routes-page__modal">
+              <v-card class="routes-page__modal-card">
+                <v-card-title class="routes-page__modal-title pb-4">
+                  <span class="text-h6 font-weight-bold" style="color: black">Níveis de Adaptação</span>
+                  <v-spacer></v-spacer>
+                  <v-btn icon @click="dialog = false">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </v-card-title>
+                <v-card-text class="pt-0">
+                  <div class="routes-page__modal-container">
+                    <div class="routes-page__modal-item routes-page__modal-item--alto">
+                      <div class="routes-page__modal-icon">
+                        <v-icon color="#c62828" size="36">mdi-wheelchair-accessibility</v-icon>
+                      </div>
+                      <div class="routes-page__modal-content">
+                        <h4 style="color: #c62828">Alto</h4>
+                        <p>Pessoas com deficiência que necessitam de um alto nível de acessibilidade, por exemplo, a utilização de elevador.</p>
+                      </div>
+                    </div>
+
+                    <div class="routes-page__modal-item routes-page__modal-item--medio">
+                      <div class="routes-page__modal-icon">
+                        <v-icon color="#f57c00" size="36">mdi-human-white-cane</v-icon>
+                      </div>
+                      <div class="routes-page__modal-content">
+                        <h4 style="color: #f57c00">Médio</h4>
+                        <p>Pessoas com necessidades de acessibilidade que não tenham interferência direta no ônibus, por exemplo, a presença de piso tátil.</p>
+                      </div>
+                    </div>
+
+                    <div class="routes-page__modal-item routes-page__modal-item--baixo">
+                      <div class="routes-page__modal-icon">
+                        <v-icon color="#2e7d32" size="36">mdi-human-male</v-icon>
+                      </div>
+                      <div class="routes-page__modal-content">
+                        <h4 style="color: #2e7d32">Baixo</h4>
+                        <p>Pessoas que não necessitam de adaptações no ônibus para seu deslocamento de forma segura.</p>
+                      </div>
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+          </div>
+          <div class="routes-page__right-actions">
             <v-btn class="routes-page__buscar-btn" large @click="changeSearch">
               Alterar Rota
             </v-btn>
@@ -57,7 +112,7 @@
                 <template #icon>
                   <!-- <span class="white--text">{{ indexStop + 1 }}</span> -->
                 </template>
-                <div>
+                <div class="stop-item" @click="focusOnStop(indexStop)">
                   <div class="font-weight-normal">
                     <strong>{{ getStopAddressTitle(stop) }}</strong>
                   </div>
@@ -91,18 +146,19 @@
           <div v-else style="height:100%;display:flex;align-items:center;justify-content:center;">
             <span>Mapa indisponível</span>
           </div> -->
-          <l-map v-if="isMounted" :zoom="zoom" :center="mapCenter" :options="mapOptions" @moveend="onMapMove"
+          <l-map ref="myMap" v-if="isMounted" :zoom="zoom" :center="mapCenter" :options="mapOptions" @moveend="onMapMove"
             @zoomend="onMapMove">
             <l-tile-layer :url="activeMapUrl" :attribution="activeAttribution" />
-            <l-polyline :lat-lngs="snappedRoute.length ? snappedRoute : stopsLatLng" :color="'#017BFD'" :weight="5" />
+            <!-- <l-polyline :lat-lngs="snappedRoute.length ? snappedRoute : stopsLatLng" :color="'#017BFD'" :weight="5" /> -->
             <l-marker
               v-for="(latlng, idx) in stopsLatLng"
               :key="idx"
               :lat-lng="latlng"
+              ref="markers"
             >
-              <v-tooltip top>
+              <l-popup>
                 {{ getStopAddressTitle(busRoutes[selectedCid].routes[selectedCidRoute].busStops[idx]) }}
-              </v-tooltip>
+              </l-popup>
             </l-marker>
             <!-- <l-marker :lat-lng="markerLatLng"/> -->
             <l-control position="topright">
@@ -152,7 +208,7 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LPolyline, LControl } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LPopup, /* LPolyline, */ LControl } from 'vue2-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { mapState } from 'vuex'
 
@@ -162,7 +218,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPolyline,
+    LPopup,
+    // LPolyline,
     LControl
   },
   data () {
@@ -171,6 +228,7 @@ export default {
       selectedCid: 0,
       selectedCidRoute: 0,
       tab: 0,
+      dialog: false,
       center: [-23.5505, -46.6333], // Posição inicial do centro do mapa
       mapZoom: 13,
       snappedRoute: [],
@@ -261,8 +319,24 @@ export default {
     stopsLatLng: {
       immediate: true,
       handler (newVal) {
-        if (this.busRoutes?.[this.selectedCid]?.routes?.[this.selectedCidRoute]?.busStops?.length > 1) {
-          this.fetchSnappedRoute(this.busRoutes[this.selectedCid].routes[this.selectedCidRoute].busStops)
+        const route = this.busRoutes?.[this.selectedCid]?.routes?.[this.selectedCidRoute]
+
+        // Verifica se a API / backend já retorna o traçado real da linha (normalmente em "points", "shape" ou "path")
+        const routePath = route?.points || route?.shape || route?.path || route?.geometry
+
+        if (routePath && routePath.length > 1) {
+          // Extrai as coordenadas diretamente do trajeto real enviado pela API para ser 100% fiel
+          this.snappedRoute = routePath.map((p) => {
+            if (Array.isArray(p)) { return [parseFloat(p[0]), parseFloat(p[1])] } // [lat, lng]
+            const lat = p.lat !== undefined ? p.lat : p.latitude
+            const lng = p.lng !== undefined ? p.lng : p.longitude
+            return [parseFloat(lat), parseFloat(lng)]
+          }).filter(p => !isNaN(p[0]) && !isNaN(p[1]))
+        } else if (route?.busStops?.length > 1) {
+          // Fallback para o algoritmo de roteamento por mapa de ruas (OSRM / aproximação por carro)
+          this.fetchSnappedRoute(route.busStops)
+        } else {
+          this.snappedRoute = []
         }
       }
     }
@@ -274,6 +348,28 @@ export default {
     }
   },
   methods: {
+    focusOnStop (index) {
+      if (this.stopsLatLng && this.stopsLatLng[index]) {
+        const targetLatLng = this.stopsLatLng[index]
+        const mapObj = this.$refs.myMap && this.$refs.myMap.mapObject
+
+        if (mapObj) {
+          mapObj.setView(targetLatLng, Math.max(this.zoom, 16), { animate: false })
+
+          // Sincroniza a propriedade reativa para ela não sobrescrever a posição logo depois de setar
+          this.center = [targetLatLng[0], targetLatLng[1]]
+          this.previousCenter = [targetLatLng[0], targetLatLng[1]]
+          this.zoom = Math.max(this.zoom, 16)
+        }
+
+        setTimeout(() => {
+          const markers = this.$refs.markers
+          if (markers && markers[index] && markers[index].mapObject) {
+            markers[index].mapObject.openPopup()
+          }
+        }, 300) // Delay pro popup abrir quando a tela já pousou no lugar
+      }
+    },
     filterStopsForRouting (stops, minDistance = 90) {
       if (!stops.length) {
         return []
@@ -296,16 +392,39 @@ export default {
     },
     async fetchSnappedRoute (stops) {
       this.snappedRoute = []
-      // Use latitude/longitude e raio de cada parada
-      const coords = stops.map(stop => [stop.latitude, stop.longitude])
-      const radiuses = stops.map(stop => stop.raio || 30).join(';') // usa o raio de cada parada, ou 30m padrão
-      const coordStr = coords.map(c => `${c[1]},${c[0]}`).join(';')
-      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson&radiuses=${radiuses}`
-      const resp = await fetch(url)
-      const data = await resp.json()
-      if (data.routes && data.routes.length) {
-        this.snappedRoute = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng])
+      const coords = stops.map(stop => [parseFloat(stop.latitude), parseFloat(stop.longitude)])
+      const filteredCoords = coords
+
+      let allSnappedPoints = []
+      const chunkSize = 25 // Lotes menores garante que o roteador force a passagem rua a rua a cada segmento
+
+      for (let i = 0; i < filteredCoords.length - 1; i += (chunkSize - 1)) {
+        const chunk = filteredCoords.slice(i, i + chunkSize)
+        const coordStr = chunk.map(c => `${c[1]},${c[0]}`).join(';')
+
+        const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson`
+
+        try {
+          const resp = await fetch(url)
+          const data = await resp.json()
+          if (data.routes && data.routes.length > 0) {
+            const routeCoords = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng])
+
+            // Remove o último ponto de cada chunk (exceto no lote final)
+            // para não duplicar o ponto de encontro com o próximo lote.
+            if (i + chunkSize - 1 < filteredCoords.length - 1) {
+              routeCoords.pop()
+            }
+            allSnappedPoints = allSnappedPoints.concat(routeCoords)
+          } else {
+            allSnappedPoints = allSnappedPoints.concat(chunk)
+          }
+        } catch (error) {
+          allSnappedPoints = allSnappedPoints.concat(chunk)
+        }
       }
+
+      this.snappedRoute = allSnappedPoints
     },
     getCityName (fullRouteName) {
       if (!fullRouteName) {
@@ -348,6 +467,34 @@ export default {
     formatDate (dateStr) {
       const data = dateStr.split('-')
       return `${data[2]}/${data[1]}`
+    },
+
+    getAdaptationLevel (fullText) {
+      const groupMatch = fullText?.match(/- (G\d+)$/)
+      if (!groupMatch) {
+        return 'N/A'
+      }
+      const group = groupMatch[1]
+      switch (group) {
+        case 'G1': return 'Alto'
+        case 'G2': return 'Médio'
+        case 'G3': return 'Baixo'
+        default: return 'N/A'
+      }
+    },
+
+    getAdaptationChipClass (fullText) {
+      const groupMatch = fullText?.match(/- (G\d+)$/)
+      if (!groupMatch) {
+        return 'routes-page__adaptation routes-page__adaptation--na'
+      }
+      const group = groupMatch[1]
+      switch (group) {
+        case 'G1': return 'routes-page__adaptation routes-page__adaptation--alto'
+        case 'G2': return 'routes-page__adaptation routes-page__adaptation--medio'
+        case 'G3': return 'routes-page__adaptation routes-page__adaptation--baixo'
+        default: return 'routes-page__adaptation routes-page__adaptation--na'
+      }
     },
 
     zoomIn () {
@@ -426,6 +573,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.stop-item {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #e0f0ff;
+  }
+}
+
 .routes-page__container {
   padding: 24px;
   background-color: #f0f0f0;
@@ -436,6 +594,48 @@ export default {
   gap: 1rem;
 }
 
+.routes-page__modal-card {
+  border-radius: 12px;
+  padding: 16px 8px;
+}
+
+.routes-page__modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.routes-page__modal-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+
+  h4 {
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #424242;
+  }
+}
+
+.routes-page__modal-item--alto {
+  background-color: #ffcdd2;
+}
+
+.routes-page__modal-item--medio {
+  background-color: #fff3e0;
+}
+
+.routes-page__modal-item--baixo {
+  background-color: #e8f5e8;
+}
+
 .routes-page__header {
   width: 100%;
   max-width: 1200px;
@@ -443,10 +643,18 @@ export default {
 }
 
 .routes-page__header h2 {
-  display: contents;
+  display: flex;
+  align-items: center;
   font-size: 18px;
   color: black;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+}
+
+.routes-page__title-with-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .routes-page__title-and-btn {
@@ -462,7 +670,9 @@ export default {
   }
 
   h2 {
-    font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     color: black;
     margin: 0;
     flex-shrink: 1;
@@ -480,10 +690,9 @@ export default {
 
   .routes-page__right-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
     gap: 8px;
   }
 
@@ -491,7 +700,6 @@ export default {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 10px;
   }
 
   .routes-page__date,
@@ -502,6 +710,30 @@ export default {
     font-size: 14px;
     color: black;
     font-weight: 500;
+  }
+
+  .routes-page__adaptation {
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+
+    &--alto {
+      background-color: #ffcdd2;
+      color: #c62828;
+    }
+    &--medio {
+      background-color: #fff3e0;
+      color: #f57c00;
+    }
+    &--baixo {
+      background-color: #e8f5e8;
+      color: #2e7d32;
+    }
+    &--na {
+      background-color: #f5f5f5;
+      color: #757575;
+    }
   }
 
   .routes-page__buscar-btn {
