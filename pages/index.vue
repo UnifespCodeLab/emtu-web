@@ -1,30 +1,18 @@
 <template>
-  <div class="home"
-    :class="{ 'high-contrast': highContrast }"
-    :style="{ '--font-scale': fontScale }"
+  <div
+    class="home"
+    :class="accessibilityClasses"
+    :style="accessibilityStyles"
   >
     <div class="search-page">
       <div class="search-page__form">
-        <div class="font-controls">
-          <v-btn small outlined class="font-size-btn" @click="decreaseFontSize">
-            A-
-          </v-btn>
-          <v-btn small outlined class="font-size-btn" @click="resetFontSize">
-            A
-          </v-btn>
-          <v-btn small outlined class="font-size-btn" @click="increaseFontSize">
-            A+
-          </v-btn>
-        </div>
-        <v-btn
-          small
-          outlined
-          class="contrast-btn"
-          :class="{ 'contrast-icon-btn--active': highContrast }"
-          @click="toggleHighContrast"
-        >
-          <v-icon small>mdi-contrast-circle</v-icon>
-        </v-btn>
+        <AccessibilityControls
+          :high-contrast="highContrast"
+          @decrease-font="decreaseFontSize"
+          @reset-font="resetFontSize"
+          @increase-font="increaseFontSize"
+          @toggle-contrast="toggleHighContrast"
+        />
         <span class="header-text">Para onde você quer ir?</span>
         <v-autocomplete
           v-model="searchBody.originCityId"
@@ -289,6 +277,8 @@ import 'leaflet/dist/leaflet.css'
 import { mapState, mapActions } from 'vuex'
 import { Icon } from 'leaflet'
 import axiosClient from '~/assets/services/emtu-api'
+import AccessibilityControls from '~/components/AccessibilityControls.vue'
+import accessibility from '~/mixins/accessibility'
 
 delete Icon.Default.prototype._getIconUrl
 Icon.Default.mergeOptions({
@@ -299,15 +289,15 @@ Icon.Default.mergeOptions({
 
 export default {
   name: 'SearchPage',
+  mixins: [accessibility],
   components: {
     LMap,
     LTileLayer,
-    LControl
+    LControl,
+    AccessibilityControls
   },
   data () {
     return {
-      fontScale: 1,
-      highContrast: false,
       alertMessage: {
         error: 'Não foi possível realizar a busca, tente novamente.',
         warning: 'Nenhuma rota foi encontrada, nos envie um pedido através da página de Solicitação'
@@ -450,15 +440,6 @@ export default {
     this.loadRecentSearches()
     this.registerAccess()
 
-    const savedFontScale = localStorage.getItem('searchPageFontScale')
-    if (savedFontScale) {
-      this.fontScale = Number(savedFontScale)
-    }
-
-    const savedHighContrast = localStorage.getItem('searchPageHighContrast')
-    if (savedHighContrast) {
-      this.highContrast = savedHighContrast === 'true'
-    }
   },
   destroyed () {
     this.hideAlert()
@@ -470,28 +451,6 @@ export default {
     ...mapActions('loading', ['changeStatusLoading']),
     ...mapActions('alert', ['showAlert', 'hideAlert']),
     ...mapActions('search', ['changeSearch']),
-
-    increaseFontSize () {
-      if (this.fontScale < 1.4) {
-        this.fontScale = Number((this.fontScale + 0.1).toFixed(2))
-        localStorage.setItem('searchPageFontScale', this.fontScale)
-      }
-    },
-    decreaseFontSize () {
-      if (this.fontScale > 0.8) {
-        this.fontScale = Number((this.fontScale - 0.1).toFixed(2))
-        localStorage.setItem('searchPageFontScale', this.fontScale)
-      }
-    },
-    resetFontSize () {
-      this.fontScale = 1
-      localStorage.setItem('searchPageFontScale', this.fontScale)
-    },
-
-    toggleHighContrast () {
-      this.highContrast = !this.highContrast
-      localStorage.setItem('searchPageHighContrast', this.highContrast)
-    },
 
     getCurrentLocation () {
       if (!navigator.geolocation) {
@@ -1417,4 +1376,8 @@ export default {
   gap: 12px;
   margin-bottom: 12px;
 }
+</style>
+
+<style lang="scss">
+@import '~/assets/styles/accessibility.scss';
 </style>
