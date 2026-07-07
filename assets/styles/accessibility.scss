@@ -1,0 +1,131 @@
+:root {
+  --font-scale: 1;
+}
+
+.accessibility-scope {
+  --page-bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #f2f4f7;
+  --input-bg: #f1f3f5;
+  --input-border: #d9dee5;
+  --text-main: #1d1d1f;
+  --text-strong: #000000;
+  --text-muted: #666666;
+  --border-color: #e5e7eb;
+  --primary: #01193d;
+  --accent: #0099f0;
+  --chip-bg: #74c3f8;
+
+  background: var(--page-bg);
+  color: var(--text-main);
+  font-size: calc(1rem * var(--font-scale));
+}
+
+.accessibility-scope.high-contrast,
+.app-high-contrast .accessibility-scope {
+  --page-bg: #000000;
+  --surface: #000000;
+  --surface-soft: #111111;
+  --input-bg: #1f1f1f;
+  --input-border: #ffffff;
+  --text-main: #ffffff;
+  --text-strong: #ffff00;
+  --text-muted: #ffffff;
+  --border-color: #ffffff;
+  --primary: #ffff00;
+  --accent: #00ffff;
+  --chip-bg: #000000;
+}
+
+.accessibility-scope.high-contrast *:focus,
+.app-high-contrast .accessibility-scope *:focus {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 2px;
+}
+
+.accessibility-scope .v-label,
+.accessibility-scope .v-input input,
+.accessibility-scope .v-input textarea,
+.accessibility-scope .v-select__selection,
+.accessibility-scope .v-list-item__title,
+.accessibility-scope .v-list-item__subtitle,
+.accessibility-scope .v-btn__content,
+.accessibility-scope .v-chip__content,
+.accessibility-scope .v-card__title,
+.accessibility-scope .v-card__text,
+.accessibility-scope .v-data-table,
+.accessibility-scope .v-data-table th,
+.accessibility-scope .v-data-table td,
+.accessibility-scope .v-data-footer,
+.accessibility-scope .v-data-footer__select,
+.accessibility-scope .v-data-footer__pagination {
+  color: var(--text-main) !important;
+  font-size: calc(1rem * var(--font-scale)) !important;
+}
+
+.accessibility-scope .v-input__slot,
+.accessibility-scope .v-text-field > .v-input__control > .v-input__slot,
+.accessibility-scope .v-select__slot,
+.accessibility-scope .v-data-table,
+.accessibility-scope .v-card,
+.accessibility-scope .v-sheet {
+  background: var(--surface) !important;
+  color: var(--text-main) !important;
+}
+
+.accessibility-scope .v-data-table th {
+  color: var(--text-strong) !important;
+  background: var(--surface-soft) !important;
+}
+
+.accessibility-scope .v-data-table tr:hover {
+  background: var(--surface-soft) !important;
+}
+
+.accessibility-scope .v-icon,
+.accessibility-scope .v-input__prepend-inner .v-icon {
+  color: var(--accent) !important;
+}
+
+.accessibility-scope.high-contrast .v-btn,
+.app-high-contrast .accessibility-scope .v-btn {
+  border: 1px solid var(--border-color) !important;
+}
+
+.accessibility-scope.high-contrast .v-data-table,
+.accessibility-scope.high-contrast .v-card,
+.accessibility-scope.high-contrast .v-input__slot,
+.app-high-contrast .accessibility-scope .v-data-table,
+.app-high-contrast .accessibility-scope .v-card,
+.app-high-contrast .accessibility-scope .v-input__slot {
+  border: 1px solid var(--border-color) !important;
+}
+
+.app-high-contrast .v-menu__content,
+.app-high-contrast .v-dialog,
+.app-high-contrast .v-picker,
+.app-high-contrast .v-list,
+.app-high-contrast .v-card,
+.app-high-contrast .v-sheet {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.app-high-contrast .v-menu__content *,
+.app-high-contrast .v-dialog *,
+.app-high-contrast .v-picker *,
+.app-high-contrast .v-list *,
+.app-high-contrast .v-card *,
+.app-high-contrast .v-sheet * {
+  color: #ffffff !important;
+  font-size: calc(1rem * var(--font-scale)) !important;
+}
+
+.app-high-contrast .v-icon {
+  color: #00ffff !important;
+}
+
+.app-high-contrast .v-btn {
+  border-color: #ffffff !important;
+}
