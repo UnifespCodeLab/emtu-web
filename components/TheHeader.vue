@@ -18,14 +18,18 @@
         VApt
       </v-toolbar-title>
       <v-spacer />
+     <TheFont />
       <v-app-bar-nav-icon id="menu-icon" aria-label="Abrir menu de navegação" @click="$emit('toggleSideBar')" />
     </v-toolbar>
   </v-card>
 </template>
 
 <script>
+import TheFont from '@/components/TheFont.vue'
+
 export default {
   name: 'TheHeader',
+  components: { TheFont },
   methods: {
     redirectToHomePage () {
       this.$router.push('/')
