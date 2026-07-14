@@ -172,7 +172,7 @@ html.font-scaled textarea::placeholder {
 .theme--light.v-picker__body,
 .high-contrast .theme--light.v-sheet,
 .high-contrast .theme--light.v-card,
-.v-data-table__wrapper, 
+.v-data-table__wrapper,
 .v-data-table-header tr,
 .v-data-table-header tr th,
 .v-data-footer
@@ -222,6 +222,5 @@ tbody tr th:hover
 .high-contrast textarea::placeholder {
   color: #ccc !important;
 }
-
 
 </style>

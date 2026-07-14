@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import TheFont from '@/components/TheFont.vue';
+import TheFont from '@/components/TheFont.vue'
 
 export default {
   name: 'TheHeader',
