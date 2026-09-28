@@ -31,6 +31,71 @@ exports[`Components / TheHeader should render title correctly 1`] = `
         class="spacer"
       />
        
+      <div
+        class="accessibility-controls"
+      >
+        <button
+          aria-label="Aumentar fonte"
+          class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-format-font-size-increase theme--light"
+            />
+          </span>
+        </button>
+         
+        <button
+          aria-label="Diminuir fonte"
+          class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-format-font-size-decrease theme--light"
+            />
+          </span>
+        </button>
+         
+        <button
+          aria-label="Alto contraste"
+          aria-pressed="false"
+          class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-contrast-circle theme--light"
+            />
+          </span>
+        </button>
+         
+        <button
+          aria-label="Resetar acessibilidade"
+          class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            <i
+              aria-hidden="true"
+              class="v-icon notranslate mdi mdi-refresh theme--light"
+            />
+          </span>
+        </button>
+      </div>
+       
       <button
         class="v-app-bar__nav-icon v-btn v-btn--icon v-btn--round theme--light v-size--default primary--text"
         color="primary"

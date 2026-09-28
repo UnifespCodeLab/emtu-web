@@ -283,6 +283,6 @@ export default {
   text-align: center;
   padding: 60px 20px;
   color: #666;
-  font-size: 16px;
+  font-size: 1rem;
 }
 </style>

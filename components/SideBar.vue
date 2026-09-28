@@ -112,7 +112,7 @@ export default {
 .close-icon {
   width: 24px !important;
   height: 24px !important;
-  font-size: 24px !important;
+  font-size: 1.5rem !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -122,7 +122,7 @@ export default {
 }
 
 .item-title {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 :deep(.v-list-item) {

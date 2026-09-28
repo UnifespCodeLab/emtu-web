@@ -91,7 +91,7 @@ export default {
   width: 100%;
 
   h2 {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
     margin: 0;
   }

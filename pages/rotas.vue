@@ -444,7 +444,7 @@ export default {
 
 .routes-page__header h2 {
   display: contents;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: black;
   margin-bottom: 12px;
 }
@@ -462,7 +462,7 @@ export default {
   }
 
   h2 {
-    font-size: 16px;
+    font-size: 1rem;
     color: black;
     margin: 0;
     flex-shrink: 1;
@@ -499,7 +499,7 @@ export default {
     background-color: #b3dbf6;
     border-radius: 8px;
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: black;
     font-weight: 500;
   }
@@ -510,7 +510,7 @@ export default {
     background-color: #01193D;
     color: #f0f0f0;
     padding: 6px 16px;
-    font-size: 14px;
+    font-size: 0.875rem;
     height: auto;
     min-height: 36px;
     max-width: 150px;
@@ -592,7 +592,7 @@ export default {
   z-index: 100;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
 
   &:first-child {
@@ -641,7 +641,7 @@ export default {
 
   span {
     margin-left: 8px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
   }
 }
@@ -664,7 +664,7 @@ export default {
   color: white;
   text-align: center;
   padding: 12px 0 4px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.5px;
 }

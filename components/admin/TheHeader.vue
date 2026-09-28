@@ -8,6 +8,7 @@
         {{ routeTitle }}
       </v-toolbar-title>
       <v-spacer />
+      <TheFont />
       <v-app-bar-nav-icon color="primary" @click="$emit('toggleSideBar')" />
     </v-toolbar>
   </v-card>
@@ -15,9 +16,11 @@
 
 <script>
 import adminItems from '~/assets/js/adminItems'
+import TheFont from '@/components/TheFont.vue'
 
 export default {
   name: 'TheHeader',
+  components: { TheFont },
   computed: {
     routeTitle () {
       const currentItem = adminItems.find(item => item.route === this.$route.path)
