@@ -1,0 +1,150 @@
+// Escala de fonte: o Vuetify usa rem, então basta alterar o font-size da raiz
+html.font-scaled {
+  font-size: var(--app-font-size);
+
+  // Componentes do Vuetify que usam px fixo: mesmos tamanhos, em rem
+  .v-input,
+  .v-label,
+  .v-alert,
+  .v-chip.v-size--large,
+  .v-date-picker-years,
+  .v-time-picker-clock__item {
+    font-size: 1rem;
+  }
+
+  .v-input--radio-group legend.v-label,
+  .v-chip.v-size--default,
+  .v-date-picker-title__year,
+  .v-tooltip__content {
+    font-size: 0.875rem;
+  }
+
+  .v-messages,
+  .v-counter,
+  .v-chip.v-size--small,
+  .v-date-picker-table th,
+  .v-date-picker-table .v-btn {
+    font-size: 0.75rem;
+  }
+
+  .v-application .blockquote {
+    font-size: 1.125rem;
+  }
+
+  .v-date-picker-title__date {
+    font-size: 2.125rem;
+  }
+
+  // Alturas fixas em px dos inputs cortam o texto ampliado (WCAG 1.4.4)
+  .v-text-field input,
+  .v-text-field__prefix,
+  .v-text-field__suffix,
+  .v-input .v-label {
+    line-height: 1.25rem;
+  }
+
+  .v-input input {
+    max-height: none;
+  }
+
+  .v-input .v-label {
+    height: auto;
+  }
+
+  .v-select__selections {
+    line-height: 1.125rem;
+  }
+
+  .v-text-field.v-text-field--solo .v-input__control {
+    min-height: 3rem;
+  }
+
+  // O v-toolbar só aceita altura em px (usa parseInt), então o header
+  // cresce aqui, sobrescrevendo os estilos inline
+  .app-header {
+    height: auto !important;
+  }
+
+  .app-header__alert,
+  .app-header__alert .v-toolbar__content {
+    height: auto !important;
+    min-height: 2.5rem;
+  }
+
+  .app-header__main,
+  .app-header__main .v-toolbar__content {
+    height: auto !important;
+    min-height: 5.25rem;
+  }
+}
+
+// Alto contraste: a classe .high-contrast fica no <body>
+.high-contrast,
+.high-contrast .v-application,
+.high-contrast .main-container,
+.high-contrast .v-picker__title.primary,
+.high-contrast .primary--text {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .home,
+.high-contrast .v-card,
+.high-contrast .v-footer,
+.high-contrast .search-page,
+.high-contrast .default-layout__content,
+.high-contrast .v-sheet,
+.high-contrast .v-toolbar,
+.high-contrast .v-navigation-drawer,
+.high-contrast .v-list,
+.high-contrast .v-menu__content,
+.high-contrast .theme--light.v-picker__body,
+.high-contrast .theme--light.v-sheet,
+.high-contrast .theme--light.v-card,
+.high-contrast .v-data-table__wrapper,
+.high-contrast .v-data-table-header tr,
+.high-contrast .v-data-table-header tr th,
+.high-contrast .v-data-footer {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .v-data-table-header tr:hover,
+.high-contrast .v-data-table-header tr th:hover,
+.high-contrast tbody tr:hover,
+.high-contrast tbody tr th:hover {
+  background: #222 !important;
+}
+
+.high-contrast .theme--light.v-time-picker-clock {
+  background: #111 !important;
+}
+
+.high-contrast .theme--light.v-label {
+  background: #111 !important;
+  z-index: 1;
+}
+
+.high-contrast *,
+.high-contrast .v-icon {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+.high-contrast a {
+  color: #0ff !important;
+}
+
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select,
+.high-contrast .v-input__slot,
+.high-contrast .button {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+.high-contrast input::placeholder,
+.high-contrast textarea::placeholder {
+  color: #ccc !important;
+}

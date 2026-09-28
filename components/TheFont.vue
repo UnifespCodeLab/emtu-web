@@ -1,14 +1,32 @@
 <template>
   <div class="accessibility-controls">
-    <v-btn icon small aria-label="Aumentar fonte" @click="increaseFont">
+    <v-btn
+      icon
+      small
+      aria-label="Aumentar fonte"
+      :disabled="fontScale >= maxFontScale"
+      @click="increaseFont"
+    >
       <v-icon>mdi-format-font-size-increase</v-icon>
     </v-btn>
 
-    <v-btn icon small aria-label="Diminuir fonte" @click="decreaseFont">
+    <v-btn
+      icon
+      small
+      aria-label="Diminuir fonte"
+      :disabled="fontScale <= minFontScale"
+      @click="decreaseFont"
+    >
       <v-icon>mdi-format-font-size-decrease</v-icon>
     </v-btn>
 
-    <v-btn icon small aria-label="Ativar alto contraste" @click="toggleContrast">
+    <v-btn
+      icon
+      small
+      aria-label="Alto contraste"
+      :aria-pressed="String(contrastEnabled)"
+      @click="toggleContrast"
+    >
       <v-icon>mdi-contrast-circle</v-icon>
     </v-btn>
 
@@ -19,6 +37,15 @@
 </template>
 
 <script>
+import {
+  MIN_FONT_SCALE,
+  MAX_FONT_SCALE,
+  FONT_SCALE_STEP,
+  roundScale,
+  loadPreferences,
+  applyFontScale,
+  applyContrast
+} from '~/assets/js/accessibility'
 
 export default {
   name: 'TheFont',
@@ -26,83 +53,50 @@ export default {
   data () {
     return {
       fontScale: 1,
-      contrastEnabled: false
+      contrastEnabled: false,
+      minFontScale: MIN_FONT_SCALE,
+      maxFontScale: MAX_FONT_SCALE
     }
   },
 
   mounted () {
-    const savedScale = localStorage.getItem('fontScale')
-    const savedContrast = localStorage.getItem('contrastEnabled')
+    const { fontScale, contrastEnabled } = loadPreferences()
 
-    if (savedScale) {
-      this.fontScale = Number(savedScale)
-      this.applyFontScale()
-    }
-
-    if (savedContrast === 'true') {
-      this.contrastEnabled = true
-      document.body.classList.add('high-contrast')
-    }
+    this.fontScale = fontScale
+    this.contrastEnabled = contrastEnabled
   },
 
   methods: {
     increaseFont () {
-      if (this.fontScale < 2) {
-        this.fontScale += 0.1
-        this.applyFontScale()
-      }
+      this.setFontScale(this.fontScale + FONT_SCALE_STEP)
     },
 
     decreaseFont () {
-      if (this.fontScale > 0.8) {
-        this.fontScale -= 0.1
-        this.applyFontScale()
-      }
+      this.setFontScale(this.fontScale - FONT_SCALE_STEP)
     },
 
-    applyFontScale () {
-      const size = `${16 * this.fontScale}px`
+    setFontScale (scale) {
+      const rounded = roundScale(scale)
 
-      document.documentElement.style.setProperty(
-        '--app-font-size',
-        size
-      )
+      if (rounded < MIN_FONT_SCALE || rounded > MAX_FONT_SCALE) {
+        return
+      }
 
-      document.documentElement.classList.add('font-scaled')
-
-      localStorage.setItem('fontScale', this.fontScale)
+      this.fontScale = rounded
+      applyFontScale(rounded)
     },
 
     toggleContrast () {
       this.contrastEnabled = !this.contrastEnabled
-
-      document.body.classList.toggle(
-        'high-contrast',
-        this.contrastEnabled
-      )
-
-      localStorage.setItem(
-        'contrastEnabled',
-        this.contrastEnabled
-      )
+      applyContrast(this.contrastEnabled)
     },
 
     resetAccessibility () {
       this.fontScale = 1
-      this.highContrast = false
+      this.contrastEnabled = false
 
-      document.documentElement.style.removeProperty(
-        '--app-font-size'
-      )
-
-      document.documentElement.classList.remove(
-        'font-scaled'
-      )
-
-      document.body.classList.remove('high-contrast')
-
-      localStorage.removeItem('fontScale')
-      localStorage.removeItem('highContrast')
+      applyFontScale(1)
+      applyContrast(false)
     }
   }
 }
@@ -114,113 +108,4 @@ export default {
   align-items: center;
   gap: 4px;
 }
-</style>
-
-<style lang="scss">
-
-html.font-scaled {
-  font-size: var(--app-font-size);
-}
-
-html.font-scaled body,
-html.font-scaled .v-application,
-html.font-scaled .v-application p,
-html.font-scaled .v-application span,
-html.font-scaled .v-application div,
-html.font-scaled .v-application label,
-html.font-scaled .v-application button,
-html.font-scaled .v-application a,
-html.font-scaled .v-application li {
-  font-size: 1em !important;
-}
-
-html.font-scaled .v-label,
-html.font-scaled .v-input input,
-html.font-scaled .v-input textarea,
-html.font-scaled .v-select__selection,
-html.font-scaled .v-input__slot {
-  font-size: 1em !important;
-}
-
-html.font-scaled .v-input input::placeholder,
-html.font-scaled .v-input textarea::placeholder,
-html.font-scaled input::placeholder,
-html.font-scaled textarea::placeholder {
-  font-size: 1em !important;
-}
-
-.high-contrast,
-.high-contrast body,
-.high-contrast .v-application,
-.high-contrast .main-container,
-.high-contrast .v-picker__title.primary,
-.high-contrast .primary--text {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-.high-contrast .home,
-.high-contrast .v-card,
-.high-contrast .v-footer,
-.high-contrast .search-page,
-.high-contrast .default-layout__content,
-.high-contrast .v-sheet,
-.high-contrast .v-toolbar,
-.high-contrast .v-navigation-drawer,
-.high-contrast .v-list,
-.high-contrast .v-menu__content,
-.theme--light.v-picker__body,
-.high-contrast .theme--light.v-sheet,
-.high-contrast .theme--light.v-card,
-.v-data-table__wrapper,
-.v-data-table-header tr,
-.v-data-table-header tr th,
-.v-data-footer
-{
-  background: #000 !important;
-  color: #fff !important;
-}
-
-.v-data-table-header tr:hover,
-.v-data-table-header tr th:hover,
-tbody tr:hover,
-tbody tr th:hover
-{
-  background: #222 !important;
-}
-
-.high-contrast .theme--light.v-time-picker-clock {
-  background: #111 !important
-}
-
-.high-contrast .theme--light.v-label{
-  background: #111 !important;
-  z-index: 1;
-}
-
-.high-contrast *,
-.high-contrast .v-icon {
-  color: #fff !important;
-  border-color: #fff !important;
-}
-
-.high-contrast a {
-  color: #00ffff !important;
-}
-
-.high-contrast input,
-.high-contrast textarea,
-.high-contrast select,
-.high-contrast .v-input__slot,
-.button
-{
-  background: #111 !important;
-  color: #fff !important;
-}
-
-.high-contrast input::placeholder,
-.high-contrast textarea::placeholder {
-  color: #ccc !important;
-}
-
 </style>
