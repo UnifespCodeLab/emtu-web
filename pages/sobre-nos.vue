@@ -120,7 +120,7 @@ $color-primary: #1976d2;
       font-style: normal;
       font-weight: 400;
       font-size: 1rem;
-      line-height: 32px;
+      line-height: 2rem;
 
       text-align: justify;
       letter-spacing: 0.25px;

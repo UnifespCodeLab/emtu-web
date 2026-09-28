@@ -22,11 +22,14 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'leaflet/dist/leaflet.css'
+    'leaflet/dist/leaflet.css',
+    '~/assets/styles/accessibility.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~/plugins/accessibility.client.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

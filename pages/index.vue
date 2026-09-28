@@ -835,7 +835,7 @@ export default {
   z-index: 10000;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
 
   &:first-child {
@@ -864,7 +864,7 @@ export default {
   }
 
   .v-icon {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
@@ -908,7 +908,7 @@ export default {
 
   span {
     margin-left: 8px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
   }
 }
@@ -931,7 +931,7 @@ export default {
   color: white;
   text-align: center;
   padding: 12px 0 4px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -955,15 +955,15 @@ export default {
   padding: 2.5rem;
 
   @media (min-width: 800px) {
-    width: 430px;
-    min-width: 430px;
+    width: 26.875rem;
+    min-width: 26.875rem;
     justify-content: center;
     margin: auto;
   }
 }
 .header-text {
   text-align: center;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -976,7 +976,7 @@ export default {
 }
 .cid-modal {
   .cid-modal__title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
     padding: 20px 24px 16px;
   }
@@ -1022,14 +1022,14 @@ export default {
     margin-right: 16px;
 
     .cid-item__code {
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 500;
       color: #333;
       margin-bottom: 4px;
     }
 
     .cid-item__name {
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #666;
       line-height: 1.4;
     }
@@ -1049,7 +1049,7 @@ export default {
 }
 
 .cid-chip {
-  font-size: 12px;
+  font-size: 0.75rem;
   height: 24px;
 
   &.cid-chip--adaptacao-alto {
@@ -1087,7 +1087,7 @@ export default {
   margin-top: 16px;
 
   .cid-selected-count {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #666;
   }
 }
@@ -1099,7 +1099,7 @@ export default {
   color: #01193D;
   font-family: "Roboto", sans-serif;
   text-transform: none !important;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .v-text-field {
@@ -1128,7 +1128,7 @@ export default {
   }
 }
 .recents-title{
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 500;
   color: #1D1D1F;
 }
@@ -1144,7 +1144,7 @@ export default {
   }
 }
 .recentRoute-title{
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   color: #1D1D1F;
 }
@@ -1176,7 +1176,7 @@ export default {
   margin-top: auto; /* Empurra as ações para o final do card */
 }
 .recentRoute-text{
-  font-size: 16px;
+  font-size: 1rem;
   color: #000000 !important;
   font-weight: 500 !important;
 }

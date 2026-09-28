@@ -366,14 +366,14 @@ export default {
 
 .header-text {
   text-align: center;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 500;
   margin-bottom: 8px;
 }
 
 .subtitle-text {
   color: #666;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.4;
 }
 
@@ -381,7 +381,7 @@ export default {
   color: white;
   border-radius: 12px;
   text-transform: none !important;
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 8px;
 }
 
@@ -399,7 +399,7 @@ export default {
 
 .cid-modal {
   .cid-modal__title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
     padding: 20px 24px 16px;
   }
@@ -445,14 +445,14 @@ export default {
     margin-right: 16px;
 
     .cid-item__code {
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 500;
       color: #333;
       margin-bottom: 4px;
     }
 
     .cid-item__name {
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #666;
       line-height: 1.4;
     }
@@ -472,7 +472,7 @@ export default {
 }
 
 .cid-chip {
-  font-size: 12px;
+  font-size: 0.75rem;
   height: 24px;
 
   &.cid-chip--adaptacao-alto {
@@ -510,7 +510,7 @@ export default {
   margin-top: 16px;
 
   .cid-selected-count {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #666;
   }
 }
